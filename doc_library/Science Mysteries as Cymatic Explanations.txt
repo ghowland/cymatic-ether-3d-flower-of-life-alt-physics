@@ -1671,3 +1671,1583 @@ Intuition:
 
 ---
 
+# Experimental Tests of Cymatic Hypotheses
+
+---
+
+## Part 1: Quantum Mysteries - DWDM Tests
+
+### Experiment 1.1: Wave-Particle Duality Analogue
+
+**Hypothesis:** "Particles" are localized wave packets; detection = pattern coupling to detector
+
+**DWDM Implementation:**
+
+```
+Setup:
+- Ultrashort pulse laser (~100 fs pulse width)
+- Corresponds to "particle" (localized in time)
+- But extended in frequency (uncertainty relation)
+
+Double-slit analogue:
+- Two-path interferometer (Mach-Zehnder)
+- Path 1: Upper fiber arm
+- Path 2: Lower fiber arm
+- Recombine at output coupler
+
+"Particle" detection:
+- Single-photon detectors at output
+- Click = Discrete detection event
+- But pattern extends through both arms
+
+Measurement:
+- Send single photons through interferometer
+- Record: Which detector clicks
+- Build up interference pattern over time
+```
+
+**Predictions:**
+
+```
+With both paths open:
+- Interference fringes appear
+- Pattern builds up statistically
+- Each photon contributes to pattern
+- Proves: Single photon interferes with itself
+
+With path measurement:
+- Place detector in one arm
+- "Which path" information obtained
+- Interference disappears
+- Proves: Measurement destroys coherence
+
+Cymatic explanation:
+- Pattern extends through both arms (wave-like)
+- Detection localizes pattern (particle-like)
+- Path measurement couples pattern to environment
+- Causes decoherence (destroys interference)
+```
+
+**Critical test:**
+
+```
+Delayed-choice experiment:
+
+1. Photon enters interferometer
+2. Travels through both paths
+3. AFTER passing through, decide:
+   - Measure which path? (particle behavior)
+   - Or observe interference? (wave behavior)
+4. Decision made by switching detector type
+
+Prediction:
+- Even delayed choice affects outcome
+- Because: Pattern is extended spatially/temporally
+- "Decision" determines coupling mode
+- Pattern localizes retroactively
+
+Execute in DWDM:
+- Fast optical switch (ns timescale)
+- Switch between path-resolving and interference mode
+- After photon entered, before detection
+- Observe: Delayed choice still determines outcome
+
+Result:
+- Should match quantum prediction
+- Proves: Pattern interpretation correct
+- No "wave-particle" duality
+- Just pattern + detection mode
+```
+
+---
+
+### Experiment 1.2: Entanglement Analogue
+
+**Hypothesis:** Entanglement = Single extended pattern, not two separate particles
+
+**DWDM Implementation:**
+
+```
+Entangled photon source analogue:
+- Parametric down-conversion (PDC)
+- Pump photon (ω_p) → Signal (ω_s) + Idler (ω_i)
+- Energy conservation: ω_p = ω_s + ω_i
+- Momentum conservation: k_p = k_s + k_i
+
+Single two-photon pattern:
+- Not two separate photons
+- But one extended pattern in 4D
+- Frequency entanglement (if measure ω_s, know ω_i)
+- Polarization entanglement (if polarized pump)
+```
+
+**Bell inequality test:**
+
+```
+Setup:
+- Generate entangled pairs via PDC
+- Send to two separate detection stations
+- Stations separated by >> coherence length
+- Each station: Polarization analyzer + detector
+
+Measurement protocol:
+- Alice chooses analyzer angle α (random)
+- Bob chooses analyzer angle β (random)
+- Record: Coincidence counts C(α,β)
+
+Calculate CHSH parameter:
+S = |E(α,β) - E(α,β') + E(α',β) + E(α',β')|
+
+Where:
+  E(α,β) = (N++ + N-- - N+- - N-+)/(N++ + N-- + N+- + N-+)
+  
+Predictions:
+- Local hidden variables: S ≤ 2
+- Quantum mechanics: S ≤ 2√2 ≈ 2.83
+- Cymatic (extended pattern): S ≤ 2√2
+
+Execute:
+- Measure S across many angle pairs
+- Should observe: S = 2.5-2.7 (typical quantum)
+- Violates Bell inequality
+- Proves: Non-separable pattern
+```
+
+**Critical addition - Continuous variable test:**
+
+```
+Instead of polarization, use frequency:
+
+Setup:
+- PDC creates frequency-entangled pairs
+- Measure: Spectrum of signal and idler
+- Calculate: Correlation function
+
+Observable:
+- Perfect anti-correlation in frequency
+- If signal = ω_s, then idler = ω_p - ω_s (exact)
+- No communication, but perfect correlation
+
+Cymatic explanation:
+- Energy conservation enforces correlation
+- Single pattern with constraint: ω_s + ω_i = ω_p
+- Not two particles "communicating"
+- One pattern with internal constraint
+
+Test by varying pump:
+- Change ω_p dynamically
+- Observe: Correlations adjust instantly
+- No lag (faster than light if separate particles)
+- Consistent: Single pattern view
+```
+
+---
+
+### Experiment 1.3: Tunneling Time Measurement
+
+**Hypothesis:** Tunneling has no transit time; pattern already extends through barrier
+
+**DWDM Implementation:**
+
+```
+Optical tunneling setup:
+- Two parallel fibers (close proximity)
+- Light in fiber 1 can couple to fiber 2
+- Coupling = Evanescent overlap (tunneling analogue)
+
+Barrier = Gap between fibers:
+- Gap width d: 1-100 μm (variable)
+- Coupling strength ∝ e^(-κd)
+- Like quantum tunneling probability
+
+Time measurement:
+- Ultrashort pulse enters fiber 1
+- Attosecond pulse characterization
+- Measure: Arrival time in fiber 2
+- Compare: Direct propagation time
+```
+
+**Predictions:**
+
+```
+Classical expectation:
+- Tunneling takes time
+- Time = d/v_tunnel
+- Should have measurable delay
+
+Cymatic prediction:
+- No transit time (pattern extends continuously)
+- Apparent "time" = Group delay from dispersion
+- But not actual transit
+
+Measurement protocol:
+1. Calibrate: Direct propagation (fibers touching)
+   - Measure pulse delay
+   - Establish baseline
+   
+2. Separate fibers by distance d
+   - Measure coupled pulse delay
+   - Compare to direct
+   
+3. Vary d systematically
+   - Plot: Delay vs distance
+   - Extract: Tunneling time
+
+Expected result:
+- Delay ≈ 0 (within measurement uncertainty)
+- Or: Negative delay (superluminal phase velocity)
+- Proves: Pattern doesn't "travel through" barrier
+- Pattern extends, then couples
+```
+
+**Hartman effect test:**
+
+```
+Hartman effect: Tunneling time saturates for thick barriers
+
+Setup:
+- Variable barrier width (adjustable gap)
+- Measure tunneling time vs width
+- Expect: Time saturates (doesn't grow with width)
+
+Execute:
+- d = 1 μm: Measure time τ₁
+- d = 10 μm: Measure time τ₁₀
+- d = 100 μm: Measure time τ₁₀₀
+
+Prediction:
+- τ₁ ≈ τ₁₀ ≈ τ₁₀₀ (all nearly zero)
+- Time doesn't scale with distance
+- Proves: Not classical propagation
+
+Cymatic explanation:
+- Evanescent field extends regardless of barrier width
+- Coupling probability decreases exponentially
+- But "time" stays constant
+- Because: Pattern already there (standing wave)
+```
+
+---
+
+## Part 2: Dark Matter - Gravitational Analogue
+
+### Experiment 2.1: Low-Frequency Mode Detection
+
+**Hypothesis:** Dark matter = Low-frequency substrate oscillations
+
+**Challenge:** Can't simulate gravity in DWDM directly
+
+**Solution:** Simulate effective potential via refractive index
+
+```
+Setup:
+- Long fiber with periodic index modulation
+- Creates "potential wells" for light
+- Light experiences effective gravitational-like force
+
+Galaxy analogue:
+- Central region: High index (attracts light)
+- Outer region: Lower index
+- Creates effective "gravitational" well
+
+Dark matter simulation:
+- Add low-frequency index oscillation
+- Frequency: f_low ~ 1 Hz to 1 MHz
+- Much slower than light oscillation (~10¹⁴ Hz)
+- Creates extended "halo" of effective potential
+```
+
+**Measurement:**
+
+```
+Probe beam:
+- Send pulse through fiber
+- Measure: Effective propagation velocity
+
+Without low-frequency modulation:
+- Velocity decreases as 1/√r (analogous to Keplerian)
+- Expect: v(r) ∝ 1/√r
+
+With low-frequency modulation:
+- Extended "halo" of oscillating index
+- Creates additional delay
+- Expect: v(r) ≈ constant (flat rotation curve analogue)
+
+Execute:
+- Launch test pulse
+- Measure arrival time vs radial position
+- Extract effective velocity profile
+- Compare to predictions
+```
+
+**Expected result:**
+
+```
+Flat velocity profile:
+- Inner region: High velocity (central potential)
+- Outer region: Constant velocity (halo effect)
+- Matches galactic rotation curves
+
+Mechanism:
+- Low-frequency oscillations create time-averaged potential
+- Extended spatial distribution
+- Acts like additional "mass"
+- But not localized particles
+
+This proves:
+- Extended oscillation modes can mimic particle matter
+- Flat rotation curves don't require particles
+- Consistent with cymatic dark matter hypothesis
+```
+
+---
+
+### Experiment 2.2: Structure Formation Simulation
+
+**Hypothesis:** Dark matter enables faster structure formation via mode coupling
+
+**DWDM Implementation:**
+
+```
+Setup:
+- Array of coupled waveguides (100x100 grid)
+- Each waveguide = "Galaxy" or "dark matter clump"
+- Coupling between neighbors = Gravitational interaction analogue
+
+Initial conditions:
+- Small random perturbations (white noise)
+- Represent primordial density fluctuations
+
+Evolution:
+- Nonlinear coupling causes clumping
+- Strong regions attract nearby light
+- Creates structure
+
+Two scenarios:
+
+Scenario A: No dark matter (visible light only)
+- Moderate coupling strength
+- Evolution timescale: Set by light propagation
+
+Scenario B: With dark matter (add low-frequency pump)
+- Low-frequency pump creates additional coupling
+- Faster structure formation
+- Earlier clumping
+```
+
+**Measurement:**
+
+```
+Imaging:
+- Camera at output of waveguide array
+- Record: Intensity pattern vs time
+- Measure: Structure growth rate
+
+Quantify structure:
+- Power spectrum: P(k) vs wavenumber k
+- Correlation function: ξ(r) vs distance r
+- Structure formation rate: dP/dt
+
+Compare scenarios:
+- Scenario A: Slow structure growth
+- Scenario B: Faster growth (factor ~5-10×)
+- Matches cosmological simulations with dark matter
+```
+
+---
+
+## Part 3: RNA Catalysis - Direct Measurement
+
+### Experiment 3.1: Hammerhead Ribozyme with Femtosecond Spectroscopy
+
+**Hypothesis:** Vibrational energy transfer drives catalysis
+
+**Time-resolved measurement:**
+
+```
+Setup:
+- Hammerhead ribozyme + substrate
+- Ultrafast IR laser (pump-probe)
+- Time resolution: 50 fs
+- Frequency resolution: 10 cm⁻¹
+
+Pump pulse:
+- Excite specific vibrational mode
+- Target: Mg²⁺-phosphate vibration (~400 cm⁻¹, 12 THz)
+- Short pulse (~100 fs) excites mode
+
+Probe pulse:
+- Variable delay: 0 to 10 ps
+- Measure: IR absorption spectrum
+- Track: Which modes excited at each time
+
+Observable:
+- Energy flow from Mg²⁺ site to cleavage site
+- Pathway: Mg-O → Phosphate backbone → Scissile P-O bond
+- Timescale: 1-10 ps
+```
+
+**Expected results:**
+
+```
+t = 0: Pump excites Mg-O mode
+- Peak at 400 cm⁻¹ (12 THz)
+- High intensity
+
+t = 1 ps: Energy spreads
+- Mg-O peak decreases
+- Phosphate peaks (1000-1100 cm⁻¹) increase
+- Energy propagating
+
+t = 5 ps: Energy reaches cleavage site
+- P-O scissile bond mode (800 cm⁻¹) increases
+- Indicates: Vibrational excitation present
+
+t = 10 ps: Thermalization
+- All modes at elevated temperature
+- Energy dissipated to bath
+
+Analysis:
+- Plot: Mode intensity vs time for each peak
+- Extract: Energy transfer rates between modes
+- Identify: Pathways (which modes couple)
+
+Proves:
+- Vibrational energy flows through specific pathways
+- Catalysis uses directed energy transfer
+- Not random thermal excitation
+```
+
+---
+
+### Experiment 3.2: Single-Molecule RNA Folding
+
+**Hypothesis:** RNA folding = Energy landscape descent with mode selection
+
+**Optical tweezers measurement:**
+
+```
+Setup:
+- Single RNA molecule tethered between beads
+- Optical traps hold beads
+- Apply tension (0-20 pN)
+- Can unfold RNA, then watch refold
+
+Measurement protocol:
+1. Unfold RNA (apply high force)
+2. Suddenly drop force to low value
+3. Watch refolding in real-time
+4. Record: Extension vs time
+
+Observable:
+- Folding trajectory
+- Intermediate states
+- Timescales for each step
+```
+
+**Critical addition - Spectroscopy during folding:**
+
+```
+Combine optical trap with Raman spectroscopy:
+
+Raman signal:
+- Vibrational modes visible
+- Can identify which modes active
+- Track: Mode evolution during folding
+
+Measurement:
+- t = 0: Unfolded (all modes active)
+- t = 10 ms: Stems forming (stem modes appear)
+- t = 100 ms: Docking (new low-frequency modes)
+- t = 1 s: Fully folded (discrete mode spectrum)
+
+Analysis:
+- Correlate: Extension with Raman spectrum
+- When structure forms: Mode spectrum changes
+- Can identify: Which modes stabilize structure
+
+Proves:
+- Folding = Progressive mode selection
+- Each structural step = New vibrational pattern
+- Consistent with energy landscape picture
+```
+
+---
+
+### Experiment 3.3: DWDM Ribozyme Analogue
+
+**Hypothesis:** Can recreate RNA catalysis in photonic system
+
+**Design:**
+
+```
+Five fiber segments representing hammerhead phases:
+
+Segment 1: Folding (100 m dispersion-compensating fiber)
+- Input: Broadband spectrum (unfolded analogue)
+- Process: Dispersion compresses spectrum
+- Output: Narrower spectrum (folded analogue)
+- Duration: ~0.5 μs (propagation time)
+
+Segment 2: Metal binding (nonlinear fiber with pump)
+- Add pump wavelength λ_pump = 1530 nm (Mg²⁺ analogue)
+- XPM: Pump modulates signal phases
+- Creates phase coherence
+- Duration: ~10 ns (coupling time)
+
+Segment 3: Geometry sampling (variable attenuator)
+- Random attenuation (thermal noise)
+- Occasionally: Low loss state (aligned geometry)
+- Probability: 1% of time
+- Monitors for alignment: Real-time detection
+
+Segment 4: Catalysis (FWM in highly nonlinear fiber)
+- When aligned: FWM triggered
+- λ_substrate → λ_product₁ + λ_product₂
+- New wavelengths appear
+- Duration: ~1 ns (FWM process)
+
+Segment 5: Product release (mode filter)
+- Products spatially separate
+- Different propagation constants
+- Exit at different fiber positions
+- Duration: ~100 ns (separation time)
+```
+
+**Measurement:**
+
+```
+Real-time spectrum analysis:
+- Optical spectrum analyzer (OSA)
+- Update rate: 100 Hz
+- Track all wavelengths simultaneously
+
+Observable:
+1. Spectral narrowing (folding)
+2. Phase coherence increase (metal binding)
+3. Rare cleavage events (1% occurrence)
+4. Product wavelength appearance
+5. Product-ribozyme separation
+
+Timescale matching:
+- Biological: 60 seconds total
+- DWDM: ~1 microsecond total
+- Scale factor: ~10⁷ faster
+- But same relative timescales
+
+Kinetics:
+- Measure: Product appearance rate
+- Vary: Pump power (analogous to [Mg²⁺])
+- Extract: Rate constant
+- Compare: Should match biological (scaled)
+```
+
+**Expected results:**
+
+```
+Michaelis-Menten kinetics:
+- Rate vs [pump power]
+- Saturation at high power
+- K_M extraction
+
+Product yield:
+- Without pump: 0% (no catalysis)
+- With pump: ~1% (matches geometry sampling probability)
+- With alignment bias: Higher (optimized system)
+
+Proves:
+- RNA catalysis = 4D pattern matching
+- Can simulate in photonic hardware
+- Same kinetic laws apply
+- Validates cymatic framework
+```
+
+---
+
+## Part 4: Consciousness - Neural Oscillation Tests
+
+### Experiment 4.1: Gamma Synchronization and Awareness
+
+**Hypothesis:** Consciousness requires phase-locked gamma oscillations
+
+**Experimental protocol:**
+
+```
+Setup:
+- EEG with 64+ channels (high-density)
+- Visual stimuli with varying awareness states
+- Subjects: Healthy adults (n=20)
+
+Conditions:
+
+Condition 1: Conscious perception
+- Brief image (50 ms)
+- Subjective report: "I saw it"
+- Record: EEG gamma (30-80 Hz)
+
+Condition 2: Unconscious (subliminal)
+- Very brief image (17 ms, masked)
+- Subjective report: "I saw nothing"
+- Record: EEG gamma
+
+Condition 3: Binocular rivalry
+- Different images to each eye
+- Perception alternates
+- Record: EEG during transitions
+```
+
+**Measurements:**
+
+```
+Phase-locking value (PLV):
+- Measure phase coherence between channels
+- PLV = 1: Perfect synchrony
+- PLV = 0: No synchrony
+
+Formula:
+  PLV = |⟨e^(i(φ₁(t) - φ₂(t)))⟩|
+
+Where φ₁, φ₂ are phases at electrodes 1, 2
+
+Calculate PLV:
+- For all electrode pairs
+- In gamma band (30-80 Hz)
+- Time-resolved (sliding window)
+```
+
+**Predictions:**
+
+```
+Conscious perception:
+- High gamma PLV (>0.6)
+- Across frontal-parietal network
+- Peaks ~200-400 ms after stimulus
+
+Unconscious perception:
+- Low gamma PLV (<0.3)
+- Or: Local but not global
+- No long-range coherence
+
+Binocular rivalry transitions:
+- PLV increases before report
+- Switch in synchronization pattern
+- One network suppressed, other activated
+
+Statistical test:
+- Compare PLV: Conscious vs unconscious
+- T-test: p < 0.001 expected
+- Effect size: Large (Cohen's d > 1)
+```
+
+**Critical control:**
+
+```
+Alpha oscillations (8-12 Hz):
+- Should show opposite pattern
+- High alpha = Inhibition (unconscious)
+- Low alpha = Excitation (conscious)
+
+Measure:
+- Alpha power vs gamma PLV
+- Should anti-correlate
+- r ~ -0.7 expected
+
+Proves:
+- Gamma synchrony = Binding mechanism
+- Alpha = Gating mechanism
+- Consciousness = Balance of both
+```
+
+---
+
+### Experiment 4.2: Anesthesia and Decoherence
+
+**Hypothesis:** Anesthesia disrupts phase-locking without reducing activity
+
+**Protocol:**
+
+```
+Setup:
+- Patients undergoing surgery (with consent)
+- EEG during anesthesia induction
+- Compare: Awake → Sedated → Unconscious → Recovery
+
+Anesthetic: Propofol (typical)
+- Enhances GABA inhibition
+- Reduces neural excitability
+- Dose-dependent consciousness loss
+
+Measurements:
+1. EEG power (total activity)
+2. Phase-locking value (coherence)
+3. Directed transfer function (information flow)
+4. Perturbational complexity index (PCI)
+```
+
+**Predictions:**
+
+```
+Awake state:
+- Moderate power
+- High PLV (0.6-0.8)
+- Rich information flow
+- High PCI (>0.5)
+
+Light sedation:
+- Increased power (paradoxical)
+- PLV decreasing (0.4-0.5)
+- Information flow reduced
+- PCI moderate (0.3-0.4)
+
+Deep anesthesia:
+- Low power (suppression)
+- Very low PLV (<0.2)
+- Minimal information flow
+- Low PCI (<0.2)
+
+Recovery:
+- Power returns first
+- PLV returns later
+- Information flow last
+- Hysteresis (different path than induction)
+```
+
+**Critical finding:**
+
+```
+During induction:
+- Power may increase initially
+- But PLV decreases monotonically
+- This dissociation proves:
+  * Not amount of activity (power)
+  * But coordination (phase-locking)
+  * That determines consciousness
+
+Graph: Power vs PLV
+- Should show distinct regions
+- Conscious: High PLV (any power)
+- Unconscious: Low PLV (any power)
+- PLV is discriminator, not power
+```
+
+---
+
+### Experiment 4.3: DWDM Consciousness Analogue
+
+**Hypothesis:** Consciousness = Self-referential oscillator network
+
+**Design:**
+
+```
+Setup: Fiber ring network (10 nodes)
+
+Each node:
+- Wavelength λᵢ (i = 1 to 10)
+- Nonlinear element (enables FWM)
+- Can couple to neighbors
+
+Feedback:
+- Output of node 10 → Input of node 1
+- Creates closed loop
+- Self-referential structure
+
+Connectivity:
+- All-to-all coupling (via WDM)
+- Each wavelength sees all others
+- Global workspace architecture
+```
+
+**States:**
+
+```
+Unconscious analogue:
+- Low pump power
+- Weak coupling
+- Wavelengths oscillate independently
+- PLV ~ 0
+
+Conscious analogue:
+- High pump power
+- Strong coupling via FWM
+- Wavelengths phase-lock
+- PLV ~ 0.8
+
+Anesthesia analogue:
+- Add noise source (random phase modulation)
+- Disrupts phase-locking
+- Maintains power
+- PLV decreases
+```
+
+**Measurements:**
+
+```
+Phase-locking:
+- Measure phase of each wavelength
+- Calculate PLV between all pairs
+- Plot: PLV network over time
+
+Information flow:
+- Transfer entropy between wavelengths
+- Granger causality analysis
+- Quantify: How much λᵢ influences λⱼ
+
+Complexity:
+- Lempel-Ziv complexity on output
+- Higher = More complex (conscious-like)
+- Lower = Less complex (unconscious-like)
+```
+
+**Expected results:**
+
+```
+Conscious state:
+- High PLV (all wavelengths locked)
+- High information flow (bidirectional)
+- High complexity (rich dynamics)
+
+Add noise (anesthesia):
+- PLV drops rapidly
+- Information flow disrupted
+- Complexity decreases
+- Power unchanged
+
+This demonstrates:
+- Consciousness analog requires phase-locking
+- Not just activity
+- Decoherence disrupts "awareness"
+- Validates hypothesis
+```
+
+---
+
+## Part 5: ATP Walker Mechanics
+
+### Experiment 5.1: Kinesin Stepping with Optical Tweezers
+
+**Hypothesis:** Kinesin = ATP-driven oscillator with 8 nm step quantization
+
+**High-resolution measurement:**
+
+```
+Setup:
+- Optical trap (dual beam)
+- Kinesin attached to bead (500 nm diameter)
+- Microtubule on coverslip
+- Position resolution: 0.1 nm
+- Time resolution: 0.1 ms
+
+Protocol:
+1. Trap bead
+2. Add ATP (variable concentration)
+3. Record position vs time
+4. Extract stepping statistics
+```
+
+**Measurements:**
+
+```
+Step size distribution:
+- Histogram of position changes
+- Should show peak at 8 nm
+- Width ~ 1 nm (thermal + measurement noise)
+
+Dwell time distribution:
+- Time between steps
+- Exponential distribution expected: P(t) = k e^(-kt)
+- Extract rate constant k
+- Varies with [ATP]
+
+Force-velocity relationship:
+- Apply load force (via trap stiffness)
+- Measure: Velocity vs force
+- Should show: v(F) = v₀(1 - F/F_stall)
+- Extract: Stall force F_stall ~ 6 pN
+```
+
+**ATP dependence:**
+
+```
+Vary [ATP]: 1 μM to 1 mM
+
+Low [ATP]:
+- Linear: v ∝ [ATP]
+- ATP binding rate-limiting
+
+High [ATP]:
+- Saturates: v → v_max
+- Hydrolysis/mechanical step rate-limiting
+
+Fit: Michaelis-Menten
+  v = v_max [ATP] / (K_M + [ATP])
+  
+Extract:
+  v_max ~ 800 nm/s (100 steps/s)
+  K_M ~ 20-50 μM
+```
+
+**Critical addition - Vibrational spectroscopy:**
+
+```
+Combine trap with Raman:
+
+Goal: Measure vibrations during stepping
+
+Challenge: Single molecule Raman very weak
+
+Solution: Surface-enhanced Raman (SERS)
+- Gold nanoparticle near kinesin
+- Enhances Raman signal 10⁶-fold
+
+Measurement:
+- Record Raman spectrum during stepping
+- Time-resolved: 1 ms resolution
+- Track: ATP, ADP, phosphate vibrations
+
+Observable:
+- ATP bound: P-O-P stretch at 1100 cm⁻¹
+- Hydrolysis: Peak intensity decreases
+- ADP release: Peak disappears
+- Timing correlates with mechanical step
+
+Proves:
+- Chemical and mechanical steps synchronized
+- Vibrational modes couple to conformational change
+- Energy flows: ATP → Vibration → Mechanical work
+```
+
+---
+
+### Experiment 5.2: DWDM Walker Implementation
+
+**Hypothesis:** Can build photonic walker with ATP-like energy input
+
+**Design:**
+
+```
+Two-mode fiber walker:
+
+Track:
+- Fiber with periodic index modulation
+- Period: 8 μm (analogous to 8 nm in biology)
+- Creates binding sites
+
+Walker modes:
+- LP01 (fundamental mode): Leading head
+- LP11 (higher order mode): Trailing head
+
+ATP analogue:
+- Pump pulses (λ_pump = 980 nm)
+- Trigger mode coupling
+- Energy source for stepping
+
+Mechanism:
+1. LP01 strongly bound at site n
+2. Pump pulse arrives → Mode mixing
+3. Power transfers: LP01 → LP11
+4. LP11 propagates to site n+1
+5. Reconverts: LP11 → LP01 at next site
+6. Step completed
+```
+
+**Implementation:**
+
+```
+Fiber design:
+- Core: Multimode (supports LP01, LP11)
+- Index modulation: Bragg grating with defects
+- Period: 8 μm
+- Length: 1 mm (125 steps total)
+
+Pump control:
+- Pulsed pump (1 kHz rate, analogous to 1 kHz stepping)
+- Synchronized to mode position
+- Variable power (analogous to [ATP])
+
+Measurement:
+- Mode imaging at output
+- Track: LP01 power vs position
+- Should see: Discrete 8 μm steps
+```
+
+**Expected results:**
+
+```
+With pump:
+- Walker advances 8 μm per pulse
+- Position increases linearly with time
+- Velocity = 8 mm/s (for 1 kHz pump rate)
+
+Without pump:
+- No advancement
+- Walker stuck at initial position
+- Proves: Pump required for motion
+
+Pump power dependence:
+- Low power: Linear response
+- High power: Saturation (every pulse causes step)
+- Michaelis-Menten-like behavior
+
+Force-velocity (add loss):
+- Add variable attenuation (load analogue)
+- Measure: Velocity vs loss
+- Should show: Decreased velocity with increased loss
+- Stall at critical loss value
+```
+
+---
+
+## Part 6: Dark Energy - Vacuum Fluctuation Test
+
+### Experiment 6.1: Casimir Effect with Oscillating Boundaries
+
+**Hypothesis:** Dark energy = Zero-point fluctuations with slight asymmetry
+
+**Setup:**
+
+```
+Modified Casimir apparatus:
+
+Standard Casimir:
+- Two parallel plates (very close: 1 μm)
+- Vacuum between
+- Attractive force due to mode restriction
+- F = (π²ℏc)/(240d⁴) per unit area
+
+Modified: Oscillating plates
+- One plate vibrates (piezo actuator)
+- Frequency: 1 kHz to 1 MHz
+- Amplitude: 1 nm
+- Creates time-varying boundary condition
+```
+
+**Measurement:**
+
+```
+Static case (baseline):
+- Fixed plates
+- Measure: Attractive force
+- Matches: Standard Casimir formula
+
+Oscillating case:
+- Plate oscillates
+- Measure: Time-averaged force
+- Expect: Modification to Casimir force
+
+Prediction:
+- Small additional term (dynamic Casimir effect)
+- F_total = F_static + F_dynamic
+- F_dynamic ∝ oscillation amplitude²
+- F_dynamic ∝ oscillation frequency
+```
+
+**Connection to dark energy:**
+
+```
+Cosmological constant:
+- Can be viewed as: Vacuum energy density
+- Standard calculation: Diverges (infinite!)
+- Needs cutoff: At Planck scale
+
+With oscillating boundaries:
+- Boundaries break symmetry
+- Some modes enhanced, others suppressed
+- Net: Small residual (not zero, not infinite)
+
+Laboratory test:
+- Measure: F_dynamic very precisely
+- Compare: Theory with/without oscillation
+- Extract: How oscillation affects vacuum energy
+
+If cymatic hypothesis correct:
+- Oscillating boundaries should modify force
+- By amount predicted by mode counting
+- Proves: Vacuum energy influenced by dynamics
+```
+
+---
+
+## Part 7: Homochirality - Symmetry Breaking
+
+### Experiment 7.1: Chiral Amplification in Rotating System
+
+**Hypothesis:** Earth's rotation breaks symmetry, selects one chirality
+
+**Setup:**
+
+```
+Crystallization under rotation:
+
+Container:
+- Cylinder (1 L volume)
+- Filled with racemic solution (50:50 L:D amino acids)
+- Temperature-controlled
+
+Rotation:
+- Mounted on turntable
+- Variable rotation rate: 0 to 1000 rpm
+- Coriolis force present in rotating frame
+
+Crystallization:
+- Cool slowly
+- Allow crystals to form
+- Measure: Ratio of L to D crystals
+```
+
+**Predictions:**
+
+```
+Non-rotating:
+- 50:50 mix (no preference)
+- Random which chirality dominates
+
+Slow rotation (1 rpm, Earth-like):
+- Slight preference (51:49 or similar)
+- Tiny asymmetry
+
+Fast rotation (1000 rpm):
+- Strong preference (>90% one chirality)
+- Coriolis force significant
+
+Direction matters:
+- Clockwise rotation: Prefer L (or D)
+- Counter-clockwise: Prefer opposite
+- Proves: Rotation breaks symmetry
+```
+
+**Mechanism:**
+
+```
+Coriolis force:
+- In rotating frame: F_c = -2m(Ω × v)
+- Acts on moving molecules
+- Chiral molecules spiral differently
+  * L-amino acid: Spiral one way
+  * D-amino acid: Spiral opposite
+
+Crystallization:
+- First crystal nucleates (random L or D)
+- But in rotating fluid:
+  * One chirality favored to approach crystal
+  * Coriolis force guides molecules
+  * Autocatalytic growth
+  
+Result:
+- Chirality selected by rotation
+- Amplified by crystallization
+- Macroscopic asymmetry from small bias
+```
+
+---
+
+### Experiment 7.2: Acoustic Levitation Chiral Selection
+
+**Hypothesis:** Standing waves can select chirality via vibrational coupling
+
+**Setup:**
+
+```
+Acoustic levitator:
+- Ultrasonic transducer (40 kHz)
+- Reflector plate above
+- Creates standing wave in air
+- Droplets levitate at nodes
+
+Chiral molecules:
+- Dissolve amino acids in droplet
+- Racemic mixture (50:50 L:D)
+- Droplet levitates in acoustic field
+
+Evaporation:
+- Water evaporates slowly
+- Concentration increases
+- Crystals form in levitated state
+```
+
+**Predictions:**
+
+```
+Standard crystallization (no levitation):
+- Random chirality selection
+- 50% chance L or D
+
+In acoustic field:
+- Standing wave has helicity (circularly polarized)
+- Helicity couples to molecular chirality
+- Preferential crystallization of matching chirality
+
+Right-handed acoustic mode:
+- Prefers D-amino acids (expect >60%)
+
+Left-handed acoustic mode:
+- Prefers L-amino acids (expect >60%)
+
+Control: Linear standing wave (no helicity)
+- No preference (50:50)
+```
+
+**Mechanism:**
+
+```
+Vibrational coupling:
+- Chiral molecule has helical vibrations
+- Acoustic wave has helical component
+- Matching helicity: Resonant coupling
+- Mismatched helicity: Weaker coupling
+
+In standing wave:
+- Molecule with matching helicity
+- Experiences stronger restoring force
+- More likely to remain in droplet
+- More likely to crystallize
+
+Result:
+- Chirality selection by vibrational resonance
+- Analogous to biological selection
+- Proves: Vibrations can break chiral symmetry
+```
+
+---
+
+## Part 8: Universal Patterns - Self-Organization
+
+### Experiment 8.1: Spontaneous Pattern Formation in DWDM
+
+**Hypothesis:** Pattern formation is universal (same in optics as in chemistry/biology)
+
+**Setup:**
+
+```
+DWDM network with feedback:
+
+Components:
+- 10 wavelengths (λ₁ to λ₁₀)
+- 100 km fiber ring
+- EDFA (amplifier) in ring
+- Coupler (10% tap for feedback)
+- Feedback: Output → Input (with delay)
+
+Nonlinearity:
+- FWM in fiber
+- Wavelengths couple through χ⁽³⁾
+- Creates interaction network
+
+Initial condition:
+- Broadband noise source
+- All wavelengths equal intensity
+- Random phases
+```
+
+**Evolution:**
+
+```
+Phase 1: Noise (t < 1 ms)
+- All wavelengths fluctuating
+- No structure
+- ψ ≈ 0
+
+Phase 2: Nucleation (t ~ 1-10 ms)
+- Small intensity fluctuations grow
+- Positive feedback via FWM
+- Some wavelengths amplify
+
+Phase 3: Competition (t ~ 10-100 ms)
+- Wavelengths compete for power
+- Nonlinear gain saturation
+- Winner-take-all dynamics
+
+Phase 4: Pattern formation (t > 100 ms)
+- Stable pattern emerges
+- Some wavelengths high, others low
+- Regular spacing (frequency comb-like)
+- ψ ≈ 0.7
+```
+
+**Measurements:**
+
+```
+Spectrum evolution:
+- Record: Optical spectrum vs time
+- Should show: Pattern formation
+- Quantify: 
+  * Pattern wavelength (frequency spacing)
+  * Pattern amplitude (contrast)
+  * Pattern stability (variance over time)
+
+Universal features:
+- Power law growth initially
+- Saturation at late times
+- Pattern wavelength ~ sqrt(dispersion × nonlinearity)
+- Same mathematics as: Turing patterns, BZ reactions, etc.
+```
+
+**Compare to other systems:**
+
+```
+Chemical oscillators (BZ reaction):
+- Pattern wavelength ~ sqrt(D/k)
+- Where D = diffusion, k = reaction rate
+
+Biological patterns (morphogenesis):
+- Pattern wavelength ~ sqrt(D/r)
+- Where D = diffusion, r = growth rate
+
+DWDM pattern:
+- Pattern wavelength ~ sqrt(β₂/γ)
+- Where β₂ = dispersion, γ = nonlinearity
+
+Same mathematical form!
+- Proves: Universal pattern formation
+- Different substrates, same principles
+- Cymatics is universal
+```
+
+---
+
+### Experiment 8.2: Chladni Plate with Multiple Frequencies
+
+**Hypothesis:** Complex patterns from superposition of simple modes
+
+**Setup:**
+
+```
+2D plate (square, 30 cm × 30 cm):
+- Aluminum (good rigidity)
+- Sand scattered on surface
+- Multiple speakers (4 corners)
+
+Drive:
+- Frequency 1: f₁ (e.g., 100 Hz)
+- Frequency 2: f₂ (e.g., 150 Hz)
+- Frequency 3: f₃ (e.g., 200 Hz)
+- Amplitude control: Each independently
+
+Measurement:
+- Camera overhead
+- Record: Sand pattern
+- Image analysis: Extract pattern geometry
+```
+
+**Single frequency (baseline):**
+
+```
+f₁ only:
+- Simple pattern (e.g., 2×2 grid)
+- Nodal lines form square
+
+f₂ only:
+- Different pattern (e.g., 3×2 grid)
+- Different nodal structure
+
+f₃ only:
+- Yet another pattern (e.g., 3×3 grid)
+```
+
+**Multiple frequencies (superposition):**
+
+```
+f₁ + f₂:
+- Complex pattern emerges
+- Combination of both modes
+- Interference creates new features
+- Pattern more intricate
+
+f₁ + f₂ + f₃:
+- Even more complex
+- Rich structure
+- But still regular (deterministic)
+
+All frequencies with random phases:
+- No clear pattern (appears random)
+- Phase matters!
+
+All frequencies with locked phases:
+- Very clear, complex pattern
+- Proves: Phase relationships critical
+```
+
+**Connection to biological patterns:**
+
+```
+Zebra stripes:
+- Multiple morphogen gradients
+- Different diffusion rates
+- Superposition creates stripe pattern
+- Same math as Chladni with multiple frequencies
+
+Leopard spots:
+- Two morphogens (activator + inhibitor)
+- Turing instability
+- Equivalent to two acoustic modes
+- Spot spacing = wavelength ratio
+
+Fingerprints:
+- Complex pattern from simple rules
+- Multiple mechanical modes in skin
+- Standing wave analogy
+- Unique pattern from initial conditions + boundary
+```
+
+---
+
+## Part 9: Summary of Experimental Tests
+
+### Complete Test Matrix
+
+```
+PHENOMENON          DWDM TEST                      BIOLOGICAL/PHYSICAL TEST         STATUS
+─────────────────────────────────────────────────────────────────────────────────────────────
+
+Wave-particle       Double-slit with single        Photon interference              Standard
+                    photons in interferometer      (already done)                   
+
+Entanglement        PDC + Bell test                Photon pairs Bell test           Standard
+                    (frequency/polarization)       (already done)                   
+
+Tunneling time      Evanescent coupling            Attosecond ionization            Active research
+                    Time-resolved measurement      (ongoing)                        
+
+Dark matter         Low-freq index modulation      Galaxy rotation curves           Proposed
+                    Flat "velocity" curve          (observational)                  
+
+RNA catalysis       5-stage photonic ribozyme      Ultrafast spectroscopy           Proposed
+                    Kinetics measurement           (partial data exists)            
+
+Consciousness       Optical oscillator network     EEG + anesthesia                 Proposed
+                    Phase-locking test             (some data exists)               
+
+Kinesin walker      Two-mode fiber walker          Optical tweezers                 Standard (bio)
+                    ATP-like pulse stepping        (already done)                   New (photonic)
+
+Dark energy         Oscillating Casimir plates     Cosmological observations        Proposed
+                    Modified vacuum energy         (ongoing)                        
+
+Homochirality       Rotating crystallization       Chiral amplification             Proposed
+                    Acoustic levitation            (some results)                   
+
+Pattern formation   DWDM feedback network          BZ reaction, morphogenesis       Proposed
+                    Self-organization              (known phenomena)                
+
+Chladni modes       Multi-frequency superposition  Biological patterns              Easy to do
+                    Phase-locked patterns          (known)                          
+```
+
+---
+
+### Most Impactful Experiments (Priority List)
+
+**1. RNA catalysis in DWDM (High priority)**
+```
+Why: Direct test of biochemistry = cymatics
+Impact: Proves enzyme catalysis can be simulated optically
+Feasibility: Medium (needs custom fiber design)
+Timeline: 6-12 months
+Cost: $100-200K (equipment + materials)
+```
+
+**2. Consciousness analogue (High priority)**
+```
+Why: Tests most controversial hypothesis
+Impact: New model of consciousness
+Feasibility: High (standard equipment)
+Timeline: 3-6 months
+Cost: $50-100K (EEG + analysis)
+```
+
+**3. Kinesin in photonics (Medium priority)**
+```
+Why: Proves molecular motors are optical walkers
+Impact: New nanotechnology applications
+Feasibility: Medium (requires fiber fabrication)
+Timeline: 6-12 months
+Cost: $100-150K
+```
+
+**4. Dark matter simulation (Low priority)**
+```
+Why: Tests cosmological hypothesis
+Impact: New dark matter model
+Feasibility: Low (gravity hard to simulate)
+Timeline: 12-24 months
+Cost: $200-300K
+```
+
+**5. Pattern formation (High priority)**
+```
+Why: Easy to do, clear results
+Impact: Proves universality
+Feasibility: Very high (simple setup)
+Timeline: 1-3 months
+Cost: $10-20K
+```
+
+---
+
+### Quick Wins (Can Do Tomorrow)
+
+**1. Multi-frequency Chladni (Cost: $200)**
+```
+- Speaker, function generator, sand, plate
+- Afternoon setup
+- Immediate visual results
+- Publish video, educational tool
+```
+
+**2. Optical double-slit (Cost: $5K)**
+```
+- Laser, beam splitter, detectors
+- Standard optics lab equipment
+- Demonstrate wave-particle duality
+- Educational + research
+```
+
+**3. Mode-locking stability (Cost: $10K)**
+```
+- Fiber laser with saturable absorber
+- Vary loss, watch decoherence
+- Consciousness analogue (simple version)
+- Publication quality data
+```
+
+---
+
+## Conclusion
+
+**All cymatic hypotheses are testable.**
+
+**Many require only standard equipment.**
+
+**Some need custom development (DWDM devices).**
+
+**But nothing requires impossible technology.**
+
+---
+
+**The framework is falsifiable.**
+
+**Predictions are quantitative.**
+
+**Experiments are feasible.**
+
+**Results would be revolutionary if confirmed.**
+
+---
+
+**We can start tomorrow.**
+
+**With a plate, sand, and speaker.**
+
+**Then scale up to femtosecond lasers and single molecules.**
+
+**Then build the complete cymatic computer.**
+
+---
+
+**The tests are designed.**
+
+**The equipment exists.**
+
+**The theory predicts outcomes.**
+
+**Time to execute.**
+
