@@ -1,228 +1,161 @@
 import numpy as np
-import time
 
 # =============================================================================
 # DYNAMIC REGIME: F1 TIRE CONTACT PATCH PHYSICS
 # =============================================================================
 
 class F1TireRegime:
-    """
-    Renormalized parameters for F1 tire physics at macroscopic scale.
-    
-    Scale: 2cm cells, 1ms timesteps
-    Domain: Contact patch is ~20cm × 15cm (10×8 cells)
-    """
+    """Renormalized parameters for F1 tire physics at macroscopic scale."""
     def __init__(self):
-        # Spatial and temporal resolution
         self.cell_size = 0.02          # 2cm per cell
-        self.dt = 0.001                # 1ms timestep
+        self.dt = 0.010                # 10ms timestep (faster for demos)
         
-        # Tire material properties (renormalized)
-        self.rubber_stiffness = 0.8    # How much rubber resists compression
-        self.rubber_damping = 0.15     # Energy loss in rubber deflection
-        self.tread_grip = 1.2          # Coefficient of friction (dry)
+        # Tire material properties
+        self.rubber_stiffness = 0.8
+        self.rubber_damping = 0.15
+        self.tread_grip = 1.2
         
         # Contact mechanics
-        self.pressure_spread = 0.3     # How load distributes across patch
-        self.slip_threshold = 0.05     # When tire starts sliding (5% slip)
-        self.peak_grip_slip = 0.12     # Maximum grip at 12% slip
-        self.slide_friction = 0.7      # Friction when fully sliding
+        self.pressure_spread = 0.3
+        self.slip_threshold = 0.05
+        self.peak_grip_slip = 0.12
+        self.slide_friction = 0.7
         
-        # Thermal (simplified)
-        self.heat_generation = 0.02    # Friction generates heat
-        self.heat_diffusion = 0.1      # Heat spreads through rubber
-        self.cooling_rate = 0.01       # Heat loss to air/track
-        self.temp_grip_factor = 0.8    # Grip increases with temp (up to limit)
+        # Thermal (fixed rates)
+        self.heat_generation = 5.0     # Heat per unit slip power
+        self.heat_diffusion = 0.05     # Slower diffusion
+        self.cooling_rate = 0.002      # Slower cooling to ambient
+        self.temp_grip_factor = 0.3
         
-        # Wear (simplified)
-        self.wear_rate = 0.0001        # Rubber wears with sliding
-        self.wear_threshold = 1.0      # When tread is gone
+        # Wear
+        self.wear_rate = 0.00001
+        self.wear_threshold = 1.0
 
 class F1ContactPatch:
-    """
-    The contact patch - where tire meets track.
-    
-    Traditional: Point contact + magic formula
-    DRS: Spatially-resolved pressure field with slip/stick zones
-    """
+    """The contact patch where tire meets track."""
     def __init__(self, width=10, length=8):
-        """
-        width: cells across tire (typically 10 = 20cm)
-        length: cells along rolling direction (typically 8 = 16cm)
-        """
         self.width = width
         self.length = length
         self.regime = F1TireRegime()
         
         # State fields
-        self.pressure = np.zeros((length, width))        # Normal pressure
-        self.shear_x = np.zeros((length, width))         # Lateral shear stress
-        self.shear_y = np.zeros((length, width))         # Longitudinal shear stress
-        self.temperature = np.ones((length, width)) * 80.0  # Celsius
-        self.wear = np.zeros((length, width))            # Accumulated wear
+        self.pressure = np.zeros((length, width))
+        self.shear_x = np.zeros((length, width))
+        self.shear_y = np.zeros((length, width))
+        self.temperature = np.ones((length, width)) * 80.0  # Start warm
+        self.wear = np.zeros((length, width))
         
-        # Velocity fields
-        self.slip_velocity_x = np.zeros((length, width)) # Lateral slip
-        self.slip_velocity_y = np.zeros((length, width)) # Longitudinal slip
+        # Slip velocities
+        self.slip_velocity_x = np.zeros((length, width))
+        self.slip_velocity_y = np.zeros((length, width))
         
         # Contact state
         self.is_contact = np.zeros((length, width), dtype=bool)
         
     def apply_load(self, vertical_force, camber_angle=0.0):
-        """
-        Distribute vertical load across contact patch.
-        
-        vertical_force: Newtons (F1 tire ~5000N cornering)
-        camber_angle: radians (typically -3 to 3 degrees)
-        """
+        """Distribute vertical load across contact patch."""
         r = self.regime
         
-        # Create pressure distribution (elliptical, shifted by camber)
-        center_x = self.width / 2 + camber_angle * 2.0  # Camber shifts contact
+        center_x = self.width / 2 + camber_angle * 2.0
         center_y = self.length / 2
+        
+        self.pressure.fill(0.0)
+        self.is_contact.fill(False)
         
         for i in range(self.length):
             for j in range(self.width):
-                # Distance from center (elliptical)
                 dx = (j - center_x) / (self.width / 2)
                 dy = (i - center_y) / (self.length / 2)
                 dist = np.sqrt(dx**2 + dy**2)
                 
                 if dist < 1.0:
-                    # Elliptical pressure distribution
                     self.pressure[i, j] = vertical_force * (1.0 - dist**2)
                     self.is_contact[i, j] = True
-                else:
-                    self.pressure[i, j] = 0.0
-                    self.is_contact[i, j] = False
         
-        # Normalize so total force = vertical_force
+        # Normalize
         total = np.sum(self.pressure)
         if total > 0:
             self.pressure *= (vertical_force / total)
     
     def apply_slip(self, slip_angle, slip_ratio, rolling_velocity):
-        """
-        Apply slip conditions from vehicle motion.
-        
-        slip_angle: radians (lateral slip, positive = right turn)
-        slip_ratio: fraction (longitudinal slip, positive = acceleration)
-        rolling_velocity: m/s (tire surface speed)
-        """
-        # Slip creates velocity difference between tire and ground
-        # Lateral slip (from steering)
+        """Apply slip conditions from vehicle motion."""
+        # Lateral slip velocity (m/s)
         self.slip_velocity_x[:, :] = rolling_velocity * np.sin(slip_angle)
         
-        # Longitudinal slip (from accel/brake)
+        # Longitudinal slip velocity (m/s)
         self.slip_velocity_y[:, :] = rolling_velocity * slip_ratio
     
     def step(self):
-        """
-        Update contact patch for one timestep.
-        
-        This is where the magic happens:
-        1. Compute slip magnitude
-        2. Determine stick vs slide zones
-        3. Generate shear forces (grip)
-        4. Generate heat
-        5. Accumulate wear
-        """
+        """Update contact patch for one timestep."""
         r = self.regime
         
-        # =====================================================================
-        # STEP 1: COMPUTE SLIP MAGNITUDE
-        # =====================================================================
-        
+        # Compute total slip speed
         slip_speed = np.sqrt(self.slip_velocity_x**2 + self.slip_velocity_y**2)
         
-        # Slip ratio (0 = perfect roll, 1 = full slide)
-        # Avoid divide by zero
+        # Slip ratio (normalized)
         slip_ratio = np.zeros_like(slip_speed)
-        mask = slip_speed > 0.01
-        slip_ratio[mask] = slip_speed[mask] / (slip_speed[mask] + 0.1)
+        mask = slip_speed > 0.001
+        slip_ratio[mask] = np.clip(slip_speed[mask] / 10.0, 0, 1.0)
         
-        # =====================================================================
-        # STEP 2: GRIP MODEL (Simplified Pacejka "Magic Formula")
-        # =====================================================================
+        # Temperature effect on grip
+        temp_factor = 1.0 + r.temp_grip_factor * np.clip((self.temperature - 80.0) / 40.0, -0.5, 0.5)
         
-        # Temperature effect on grip (peak at ~100C)
-        temp_factor = 1.0 + r.temp_grip_factor * np.tanh((self.temperature - 80.0) / 20.0)
-        temp_factor = np.clip(temp_factor, 0.5, 1.5)
-        
-        # Wear effect (worn tire = less grip)
-        wear_factor = 1.0 - self.wear * 0.3
-        wear_factor = np.clip(wear_factor, 0.3, 1.0)
+        # Wear effect
+        wear_factor = np.clip(1.0 - self.wear * 0.3, 0.3, 1.0)
         
         # Grip curve: μ(slip)
-        # Peak at slip_threshold, then decay
         mu = np.zeros_like(slip_ratio)
         
-        # Stick zone: linear rise
+        # Stick zone
         stick = slip_ratio < r.slip_threshold
         mu[stick] = r.tread_grip * (slip_ratio[stick] / r.slip_threshold)
         
-        # Peak zone: maximum grip
+        # Peak zone
         peak = (slip_ratio >= r.slip_threshold) & (slip_ratio < r.peak_grip_slip)
         mu[peak] = r.tread_grip
         
-        # Slide zone: friction decay
+        # Slide zone
         slide = slip_ratio >= r.peak_grip_slip
-        slide_factor = 1.0 - (slip_ratio[slide] - r.peak_grip_slip) / (1.0 - r.peak_grip_slip)
-        mu[slide] = r.tread_grip + (r.slide_friction - r.tread_grip) * (1.0 - slide_factor)
+        if np.any(slide):
+            slide_factor = np.clip(1.0 - (slip_ratio[slide] - r.peak_grip_slip) / (1.0 - r.peak_grip_slip), 0, 1)
+            mu[slide] = r.slide_friction + (r.tread_grip - r.slide_friction) * slide_factor
         
-        # Apply temperature and wear factors
+        # Apply factors
         mu *= temp_factor * wear_factor
         
-        # =====================================================================
-        # STEP 3: SHEAR FORCES
-        # =====================================================================
-        
-        # Shear force = μ × Normal force
-        # Directed opposite to slip velocity
+        # Shear forces
         shear_magnitude = mu * self.pressure * self.is_contact
         
-        # Decompose into x and y components
-        slip_angle = np.arctan2(self.slip_velocity_x, self.slip_velocity_y + 1e-6)
+        # Direction opposite to slip
+        slip_angle = np.arctan2(self.slip_velocity_x, self.slip_velocity_y + 1e-9)
         self.shear_x = -shear_magnitude * np.sin(slip_angle)
         self.shear_y = -shear_magnitude * np.cos(slip_angle)
         
-        # =====================================================================
-        # STEP 4: HEAT GENERATION
-        # =====================================================================
-        
-        # Heat from friction: Q = force × slip_velocity
+        # Heat generation (only where slipping)
         heat_power = shear_magnitude * slip_speed * r.heat_generation
-        
-        # Add to temperature
         self.temperature += heat_power * r.dt
         
-        # Heat diffusion (simple blur)
-        temp_blur = (
-            np.roll(self.temperature, 1, axis=0) +
-            np.roll(self.temperature, -1, axis=0) +
-            np.roll(self.temperature, 1, axis=1) +
-            np.roll(self.temperature, -1, axis=1)
-        ) / 4.0
-        self.temperature = (1.0 - r.heat_diffusion) * self.temperature + r.heat_diffusion * temp_blur
+        # Heat diffusion (simple neighbor average)
+        if r.heat_diffusion > 0:
+            temp_blur = np.copy(self.temperature)
+            for i in range(1, self.length - 1):
+                for j in range(1, self.width - 1):
+                    neighbors = (self.temperature[i-1, j] + self.temperature[i+1, j] +
+                                self.temperature[i, j-1] + self.temperature[i, j+1]) / 4.0
+                    temp_blur[i, j] = (1 - r.heat_diffusion) * self.temperature[i, j] + r.heat_diffusion * neighbors
+            self.temperature = temp_blur
         
-        # Cooling
-        self.temperature -= (self.temperature - 20.0) * r.cooling_rate
+        # Cooling to ambient (20°C)
+        self.temperature -= (self.temperature - 20.0) * r.cooling_rate * r.dt
+        self.temperature = np.clip(self.temperature, 20.0, 200.0)
         
-        # =====================================================================
-        # STEP 5: WEAR ACCUMULATION
-        # =====================================================================
-        
-        # Wear from sliding
+        # Wear accumulation
         wear_rate = slip_ratio * shear_magnitude * r.wear_rate
         self.wear += wear_rate * r.dt
-        self.wear = np.clip(self.wear, 0.0, r.wear_threshold)
+        self.wear = np.clip(self.wear, 0, r.wear_threshold)
     
     def get_total_forces(self):
-        """
-        Sum forces over entire contact patch.
-        
-        Returns: (Fx_lateral, Fy_longitudinal, Fz_normal)
-        """
+        """Sum forces over entire contact patch."""
         Fx = np.sum(self.shear_x)
         Fy = np.sum(self.shear_y)
         Fz = np.sum(self.pressure)
@@ -230,14 +163,23 @@ class F1ContactPatch:
     
     def get_statistics(self):
         """Get diagnostic statistics."""
+        contact_mask = self.is_contact
+        if not np.any(contact_mask):
+            return {
+                'total_load': 0, 'peak_pressure': 0, 'avg_temp': 20.0,
+                'peak_temp': 20.0, 'avg_wear': 0, 'contact_area': 0, 'slip_ratio': 0
+            }
+        
+        slip_speed = np.sqrt(self.slip_velocity_x**2 + self.slip_velocity_y**2)
+        
         return {
             'total_load': np.sum(self.pressure),
             'peak_pressure': np.max(self.pressure),
-            'avg_temp': np.mean(self.temperature[self.is_contact]),
+            'avg_temp': np.mean(self.temperature[contact_mask]),
             'peak_temp': np.max(self.temperature),
-            'avg_wear': np.mean(self.wear[self.is_contact]),
-            'contact_area': np.sum(self.is_contact) * (self.regime.cell_size**2),
-            'slip_ratio': np.mean(np.sqrt(self.slip_velocity_x**2 + self.slip_velocity_y**2))
+            'avg_wear': np.mean(self.wear[contact_mask]),
+            'contact_area': np.sum(contact_mask) * (self.regime.cell_size**2),
+            'slip_ratio': np.mean(slip_speed[contact_mask]) if np.any(contact_mask) else 0
         }
 
 
@@ -246,29 +188,19 @@ class F1ContactPatch:
 # =============================================================================
 
 class F1Car:
-    """
-    Simplified F1 car for tire physics demonstration.
-    
-    We track:
-    - Position and velocity
-    - Four independent contact patches
-    - Basic weight transfer
-    """
+    """Simplified F1 car for tire physics demonstration."""
     def __init__(self):
-        # Vehicle parameters
-        self.mass = 798.0           # kg (minimum F1 weight)
-        self.wheelbase = 3.6        # meters
-        self.track_width = 2.0      # meters
-        
-        # Weight distribution
-        self.static_weight_front = 0.45  # 45% front
+        self.mass = 798.0
+        self.wheelbase = 3.6
+        self.track_width = 2.0
+        self.static_weight_front = 0.45
         
         # State
-        self.velocity = 0.0         # m/s
-        self.position = 0.0         # meters along track
-        self.steering_angle = 0.0   # radians
-        self.throttle = 0.0         # 0-1
-        self.brake = 0.0            # 0-1
+        self.velocity = 0.0
+        self.position = 0.0
+        self.steering_angle = 0.0
+        self.throttle = 0.0
+        self.brake = 0.0
         
         # Tires (FL, FR, RL, RR)
         self.tires = [
@@ -278,79 +210,41 @@ class F1Car:
             F1ContactPatch(width=12, length=9),  # Rear Right (wider)
         ]
         
-    def compute_weight_transfer(self, ax, ay):
-        """
-        Compute weight on each tire from acceleration.
-        
-        ax: lateral acceleration (m/s²)
-        ay: longitudinal acceleration (m/s²)
-        """
+    def step(self, dt):
+        """Update car state for one timestep."""
         g = 9.81
-        total_weight = self.mass * g
         
-        # Longitudinal transfer (braking/acceleration)
-        # Positive ay = acceleration, weight shifts to rear
-        long_transfer = self.mass * ay * 0.5  # Height of CG / wheelbase (simplified)
-        
-        # Lateral transfer (cornering)
-        # Positive ax = right turn, weight shifts to left
-        lat_transfer = self.mass * ax * 0.3   # Height of CG / track width (simplified)
-        
-        # Static + dynamic
-        front_weight = total_weight * self.static_weight_front - long_transfer
-        rear_weight = total_weight * (1.0 - self.static_weight_front) + long_transfer
-        
-        # Distribute left/right
-        FL = front_weight * 0.5 - lat_transfer * 0.5
-        FR = front_weight * 0.5 + lat_transfer * 0.5
-        RL = rear_weight * 0.5 - lat_transfer * 0.5
-        RR = rear_weight * 0.5 + lat_transfer * 0.5
-        
-        return [FL, FR, RL, RR]
-    
-    def compute_slip_conditions(self):
-        """
-        Compute slip angle and slip ratio for each tire.
-        
-        Returns: [(slip_angle, slip_ratio), ...] for each tire
-        """
-        # Simplified: assume all tires see same slip angle
-        # Front tires: steering angle creates slip
-        front_slip_angle = self.steering_angle * 0.1  # Simplified
-        rear_slip_angle = 0.0  # Rear follows
-        
-        # Slip ratio from throttle/brake
-        # Positive = acceleration, negative = braking
+        # Simplified longitudinal acceleration from throttle/brake
         if self.throttle > 0:
-            slip_ratio = self.throttle * 0.15  # 15% max slip under power
+            target_accel = self.throttle * 15.0  # Max 15 m/s² acceleration
         elif self.brake > 0:
-            slip_ratio = -self.brake * 0.2    # 20% max slip under braking
+            target_accel = -self.brake * 40.0    # Max 40 m/s² braking
+        else:
+            target_accel = -2.0                   # Rolling resistance
+        
+        # Weight distribution (simplified - no dynamic transfer for speed)
+        total_weight = self.mass * g
+        front_weight = total_weight * self.static_weight_front
+        rear_weight = total_weight * (1.0 - self.static_weight_front)
+        
+        wheel_loads = [front_weight / 2, front_weight / 2, rear_weight / 2, rear_weight / 2]
+        
+        # Slip conditions
+        # Front slip angle from steering
+        front_slip_angle = self.steering_angle * 0.1
+        
+        # Longitudinal slip from accel/brake
+        if self.velocity > 1.0:  # Only if moving
+            if self.throttle > 0:
+                slip_ratio = self.throttle * 0.15
+            elif self.brake > 0:
+                slip_ratio = -self.brake * 0.20
+            else:
+                slip_ratio = 0.0
         else:
             slip_ratio = 0.0
         
-        return [
-            (front_slip_angle, slip_ratio),  # FL
-            (front_slip_angle, slip_ratio),  # FR
-            (rear_slip_angle, slip_ratio),   # RL
-            (rear_slip_angle, slip_ratio),   # RR
-        ]
-    
-    def step(self, dt):
-        """Update car state for one timestep."""
-        
-        # Get current slip conditions
-        slip_conditions = self.compute_slip_conditions()
-        
-        # Compute accelerations (for weight transfer)
-        # Simplified: assume constant velocity for this step
-        ax = 0.0  # Lateral (will update from tire forces)
-        ay = self.throttle * 10.0 - self.brake * 30.0  # Longitudinal
-        
-        # Weight transfer
-        wheel_loads = self.compute_weight_transfer(ax, ay)
-        
-        # Update each tire
-        total_fx = 0.0
+        # Update tires and accumulate forces
         total_fy = 0.0
         
         for i, tire in enumerate(self.tires):
@@ -358,24 +252,29 @@ class F1Car:
             tire.apply_load(wheel_loads[i], camber_angle=0.0)
             
             # Apply slip
-            slip_angle, slip_ratio = slip_conditions[i]
-            tire.apply_slip(slip_angle, slip_ratio, self.velocity)
+            if i < 2:  # Front tires
+                tire.apply_slip(front_slip_angle, slip_ratio, max(self.velocity, 1.0))
+            else:      # Rear tires
+                tire.apply_slip(0.0, slip_ratio, max(self.velocity, 1.0))
             
             # Step tire physics
             tire.step()
             
-            # Accumulate forces
-            fx, fy, _ = tire.get_total_forces()
-            total_fx += fx
+            # Get forces
+            fx, fy, fz = tire.get_total_forces()
             total_fy += fy
         
-        # Update vehicle velocity from tire forces
-        ax_actual = total_fx / self.mass
-        ay_actual = total_fy / self.mass
+        # Update velocity from tire forces
+        actual_accel = total_fy / self.mass
         
-        # Integrate
-        self.velocity += ay_actual * dt
-        self.velocity = max(0.0, self.velocity)  # Can't go backwards (simplified)
+        # Blend with target (simplified traction control)
+        final_accel = 0.7 * target_accel + 0.3 * actual_accel
+        
+        # Integrate velocity
+        self.velocity += final_accel * dt
+        self.velocity = max(0.0, self.velocity)  # Can't go backwards
+        
+        # Integrate position
         self.position += self.velocity * dt
 
 
@@ -384,14 +283,7 @@ class F1Car:
 # =============================================================================
 
 def scenario_straight_line_acceleration():
-    """
-    F1 car accelerating from standstill.
-    
-    Shows:
-    - Rear weight transfer
-    - Tire heating from wheelspin
-    - Grip vs slip relationship
-    """
+    """F1 car accelerating from standstill."""
     print("="*80)
     print("SCENARIO 1: STRAIGHT LINE ACCELERATION")
     print("="*80)
@@ -402,26 +294,25 @@ def scenario_straight_line_acceleration():
     
     car = F1Car()
     
-    # Headers
     print(f"{'Time':>6} | {'Speed':>8} | {'RL Slip%':>9} | {'RL Temp':>8} | {'RL Grip':>8} | {'Wear':>6}")
     print("-"*80)
     
     sim_time = 0.0
-    for step in range(5000):
+    dt = car.tires[0].regime.dt
+    
+    for step in range(500):
         # Progressive throttle
         car.throttle = min(1.0, sim_time / 3.0)
         car.brake = 0.0
         car.steering_angle = 0.0
         
-        # Step
-        car.step(car.tires[0].regime.dt)
-        sim_time += car.tires[0].regime.dt
+        car.step(dt)
+        sim_time += dt
         
         # Report every 0.1 seconds
-        if step % 100 == 0:
-            rl_tire = car.tires[2]  # Rear left
+        if step % 10 == 0:
+            rl_tire = car.tires[2]
             stats = rl_tire.get_statistics()
-            
             fx, fy, fz = rl_tire.get_total_forces()
             grip_force = np.sqrt(fx**2 + fy**2)
             
@@ -439,14 +330,7 @@ def scenario_straight_line_acceleration():
 
 
 def scenario_corner_entry():
-    """
-    F1 car entering a high-speed corner.
-    
-    Shows:
-    - Front tire slip angle
-    - Lateral weight transfer
-    - Temperature gradient across contact patch
-    """
+    """F1 car entering a high-speed corner."""
     print("="*80)
     print("SCENARIO 2: CORNER ENTRY (Turn 3, Suzuka-style)")
     print("="*80)
@@ -463,27 +347,28 @@ def scenario_corner_entry():
     print("-"*80)
     
     sim_time = 0.0
-    for step in range(3000):
+    dt = car.tires[0].regime.dt
+    
+    for step in range(300):
         # Corner entry sequence
         if sim_time < 1.0:
-            # Initial braking
             car.brake = 0.8
             car.steering_angle = 0.0
+            car.throttle = 0.0
         elif sim_time < 2.0:
-            # Trail braking + turn-in
             car.brake = 0.4
-            car.steering_angle = 0.15  # ~8 degrees
+            car.steering_angle = 0.15
+            car.throttle = 0.0
         else:
-            # Apex
             car.brake = 0.0
             car.throttle = 0.3
-            car.steering_angle = 0.20  # ~11 degrees
+            car.steering_angle = 0.20
         
-        car.step(car.tires[0].regime.dt)
-        sim_time += car.tires[0].regime.dt
+        car.step(dt)
+        sim_time += dt
         
-        if step % 100 == 0:
-            fl_tire = car.tires[0]  # Front left (outside tire)
+        if step % 10 == 0:
+            fl_tire = car.tires[0]
             stats = fl_tire.get_statistics()
             fx, fy, fz = fl_tire.get_total_forces()
             
@@ -502,14 +387,7 @@ def scenario_corner_entry():
 
 
 def scenario_tire_degradation():
-    """
-    Long run showing tire wear progression.
-    
-    Shows:
-    - Wear accumulation
-    - Grip loss
-    - Handling degradation
-    """
+    """Long run showing tire wear progression."""
     print("="*80)
     print("SCENARIO 3: TIRE DEGRADATION (10 lap simulation)")
     print("="*80)
@@ -519,59 +397,32 @@ def scenario_tire_degradation():
     print()
     
     car = F1Car()
-    car.velocity = 50.0  # 50 m/s = 180 km/h
-    car.steering_angle = 0.1  # Constant cornering
+    car.velocity = 50.0
+    car.steering_angle = 0.1
     car.throttle = 0.5
     
     print(f"{'Lap':>4} | {'FL Wear':>8} | {'FL Temp':>8} | {'FL Grip':>9} | {'Lap Time':>9}")
     print("-"*80)
     
-    lap_distance = 5000.0  # 5km lap
+    lap_distance = 5000.0
     laps = 10
-    
-    # Use larger timestep for this scenario (tire physics doesn't need 1ms resolution here)
-    dt = 0.010  # 10ms timestep = 100 steps per second (much faster)
+    dt = car.tires[0].regime.dt
     
     for lap in range(laps):
         distance_this_lap = 0.0
         lap_time = 0.0
-        steps_this_lap = 0
         
-        # Run until we've covered lap distance
         while distance_this_lap < lap_distance:
-            # Step all tires
-            for tire in car.tires:
-                # Get current slip conditions
-                slip_angle = car.steering_angle * 0.1 if tire in car.tires[:2] else 0.0
-                slip_ratio = car.throttle * 0.15 if car.throttle > 0 else -car.brake * 0.2
-                
-                # Simple weight (not updating each step for speed)
-                wheel_load = (car.mass * 9.81) / 4.0
-                
-                tire.apply_load(wheel_load, camber_angle=0.0)
-                tire.apply_slip(slip_angle, slip_ratio, car.velocity)
-                tire.step()
+            car.step(dt)
             
-            # Distance traveled this step
-            distance_traveled = car.velocity * dt
-            distance_this_lap += distance_traveled
-            car.position += distance_traveled
+            distance_this_lap += car.velocity * dt
             lap_time += dt
-            steps_this_lap += 1
-            
-            # Progress indicator every 1000m
-            if int(distance_this_lap) % 1000 == 0 and int(distance_this_lap - distance_traveled) % 1000 != 0:
-                print(f"  Lap {lap+1}: {int(distance_this_lap)}m / {int(lap_distance)}m", end='\r')
             
             # Safety timeout
-            if lap_time > 300.0:
-                print(f"\nWarning: Lap {lap+1} timeout")
+            if lap_time > 200.0:
                 break
         
-        # Clear progress line
-        print(" " * 60, end='\r')
-        
-        # Report at end of lap
+        # Report
         fl_tire = car.tires[0]
         stats = fl_tire.get_statistics()
         fx, fy, fz = fl_tire.get_total_forces()
@@ -583,16 +434,11 @@ def scenario_tire_degradation():
               f"{lap_time:8.2f}s")
     
     print()
-    print(f"Total simulation steps: {steps_this_lap * laps}")
     print("Notice: Progressive grip loss as tread wears, lap times increase")
-     
+
 
 def scenario_contact_patch_visualization():
-    """
-    Detailed view of contact patch pressure and temperature.
-    
-    Shows spatial distribution of forces.
-    """
+    """Detailed view of contact patch pressure and temperature."""
     print("="*80)
     print("SCENARIO 4: CONTACT PATCH VISUALIZATION")
     print("="*80)
@@ -602,12 +448,11 @@ def scenario_contact_patch_visualization():
     
     tire = F1ContactPatch(width=10, length=8)
     
-    # Apply typical cornering load
-    tire.apply_load(vertical_force=6000.0, camber_angle=-0.05)  # -3 degrees camber
+    tire.apply_load(vertical_force=6000.0, camber_angle=-0.05)
     tire.apply_slip(slip_angle=0.10, slip_ratio=0.05, rolling_velocity=50.0)
     
     # Run for 1 second to heat up
-    for _ in range(1000):
+    for _ in range(100):
         tire.step()
     
     print("PRESSURE DISTRIBUTION (N/cell):")
@@ -700,7 +545,6 @@ if __name__ == "__main__":
     print("DRS approach: μ(x,y,slip,temp,wear) → emergent total force")
     print()
     print("This is closer to how tires ACTUALLY work.")
-
 
 # This simulator demonstrates the Dynamic Regime Solver philosophy applied to F1 tire physics:
 # Key Educational Points
