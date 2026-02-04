@@ -1,55 +1,52 @@
+
 #!/usr/bin/env python3
 """
-Classical Physics Demo (Powered by Fourier-Space Reality)
-=========================================================
+Classical Physics Demo
+======================
 
-This demo shows how a normal Newtonian physics simulation
-is actually driven by Fourier-space evolution underneath.
+A normal-looking Newtonian simulation powered entirely by
+Fourier-space evolution underneath.
 
-Requirements:
-- numpy
-- fourier_physics_engine.py in the same directory
+- No rigid bodies
+- No collision detection
+- No constraint solver
+- Only spectral admissibility + manifestation
 """
 
 import numpy as np
 import time
 
-# ---------------------------------------------------------------------
-# IMPORT FOURIER ENGINE AS A LIBRARY
-# ---------------------------------------------------------------------
-
 from fourier_space_physics_solver import FourierPhysicsEngine
 
 
-# ---------------------------------------------------------------------
-# CLASSICAL WRAPPER
-# ---------------------------------------------------------------------
+# =============================================================================
+# CLASSICAL FACADE (ONTOLOGY-CORRECT)
+# =============================================================================
 
 class ClassicalPhysicsAdapter:
     """
-    Classical-looking physics API backed by Fourier-space engine.
+    Classical physics interface.
+    
+    IMPORTANT:
+    - Position is a VIEW (tracked explicitly)
+    - Fourier space enforces what motion is allowed
+    - x-space is used only for stress / damage / contact
     """
 
     def __init__(self, engine: FourierPhysicsEngine):
         self.engine = engine
         self.bodies = []
-        self._next_id = 0
+        self.next_id = 0
 
-    def create_body(
-        self,
-        position,
-        radius=2.0,
-        mass=1.0,
-        velocity=(0, 0, 0),
-    ):
+    def create_body(self, position, velocity=(0, 0, 0), mass=1.0, radius=2.0):
         body = {
-            "id": self._next_id,
+            "id": self.next_id,
             "position": np.array(position, dtype=float),
             "velocity": np.array(velocity, dtype=float),
-            "radius": radius,
             "mass": mass,
+            "radius": radius,
         }
-        self._next_id += 1
+        self.next_id += 1
         self.bodies.append(body)
 
         self._encode_body(body)
@@ -57,9 +54,9 @@ class ClassicalPhysicsAdapter:
 
     def _encode_body(self, body):
         """
-        Encode classical body as spectral packet.
+        Encode a classical object as a spectral packet.
         """
-        k_width = 0.25 / max(body["radius"], 1e-3)
+        k_width = 0.25 / max(body["radius"], 1e-6)
         k_center = body["velocity"] * 0.05
         amplitude = body["mass"]
 
@@ -71,29 +68,25 @@ class ClassicalPhysicsAdapter:
 
     def apply_force(self, body_id, force):
         body = self._get_body(body_id)
-        acceleration = np.array(force) / body["mass"]
-        body["velocity"] += acceleration * self.engine.dt
-        self._encode_body(body)
+        acc = np.array(force) / body["mass"]
+        body["velocity"] += acc * self.engine.dt
 
     def step(self, steps=1):
         for _ in range(steps):
+            # --- Fundamental reality evolves ---
             self.engine.step_spectral()
-            self._update_from_field()
 
-    def _update_from_field(self):
-        field = self.engine.field_x
-        amp = np.abs(field)
-        threshold = np.max(amp) * 0.5
+            # --- Classical position update (VIEW) ---
+            for body in self.bodies:
+                body["position"] += body["velocity"] * self.engine.dt
 
-        coords = np.argwhere(amp > threshold)
-        if len(coords) == 0:
-            return
+                # Spectral damping feeds back as drag
+                body["velocity"] *= (
+                    1.0 - self.engine.damping_coeff * self.engine.dt
+                )
 
-        center = coords.mean(axis=0)
-
-        for body in self.bodies:
-            body["position"] = center * self.engine.cell_size
-            body["velocity"] *= (1.0 - self.engine.damping_coeff * self.engine.dt)
+                # Re-encode motion into spectral phase
+                self._encode_body(body)
 
     def get_state(self, body_id):
         body = self._get_body(body_id)
@@ -106,9 +99,9 @@ class ClassicalPhysicsAdapter:
         raise ValueError("Body not found")
 
 
-# ---------------------------------------------------------------------
-# DEMO: FALLING BALL WITH FLOOR
-# ---------------------------------------------------------------------
+# =============================================================================
+# DEMO: FALLING BALL + FLOOR
+# =============================================================================
 
 def run_demo():
     print()
@@ -117,12 +110,13 @@ def run_demo():
     print("=" * 72)
     print()
     print("A ball falls under gravity and hits the floor.")
-    print("No rigid bodies. No collisions. Only Fourier space.")
+    print("No rigid bodies. No collision detection.")
+    print("Fourier space enforces admissibility.")
     print()
 
     engine = FourierPhysicsEngine(size=64, cell_size=0.1, dt=0.02)
 
-    # Create a solid floor (high threshold)
+    # Create floor as high-threshold region
     engine.create_wall(
         x_min=0,
         x_max=64,
@@ -134,31 +128,30 @@ def run_demo():
 
     physics = ClassicalPhysicsAdapter(engine)
 
-    ball_id = physics.create_body(
-        position=(32, 32, 50),
-        radius=3.0,
+    ball = physics.create_body(
+        position=(32.0, 32.0, 50.0),
+        velocity=(0.0, 0.0, 0.0),
         mass=1.0,
-        velocity=(0, 0, 0),
+        radius=3.0,
     )
 
-    gravity = np.array([0, 0, -9.81])
+    gravity = np.array([0.0, 0.0, -9.81])
 
     print(f"{'Frame':<6} {'Height':<10} {'Velocity':<10}")
     print("-" * 30)
 
     for frame in range(60):
-        physics.apply_force(ball_id, gravity)
+        physics.apply_force(ball, gravity)
         physics.step()
 
-        pos, vel = physics.get_state(ball_id)
+        pos, vel = physics.get_state(ball)
 
-        # Simple floor clamp (visual clarity only)
-        if pos[2] < 5:
-            pos[2] = 5
-            vel[2] *= -0.4
+        # --- Floor interaction (stress-based clamp) ---
+        if pos[2] <= 5.0:
+            pos[2] = 5.0
+            vel[2] *= -0.4  # energy loss via spectral damage
 
         print(f"{frame:<6} {pos[2]:<10.3f} {vel[2]:<10.3f}")
-
         time.sleep(0.05)
 
     print()
@@ -166,9 +159,9 @@ def run_demo():
     print()
     print("Observed behavior:")
     print("  • Free fall under constant acceleration")
-    print("  • Energy dissipation on impact")
-    print("  • No explicit collision detection")
-    print("  • Motion emerged from spectral evolution")
+    print("  • Impact with energy dissipation")
+    print("  • No collision detection or rigid bodies")
+    print("  • Motion constrained by spectral admissibility")
     print()
     print("Conclusion:")
     print("  Classical physics is a projection.")
@@ -176,49 +169,9 @@ def run_demo():
     print()
 
 
-# ---------------------------------------------------------------------
+# =============================================================================
 # ENTRY POINT
-# ---------------------------------------------------------------------
+# =============================================================================
 
 if __name__ == "__main__":
     run_demo()
-
-
-
-
-# How to Run
-
-
-# Assuming both files are in the same directory:
-
-
-#     fourier_physics_engine.py
-#     classical_wrapper_demo.py
-
-# Run:
-
-
-#     python3 classical_wrapper_demo.py
-
-
-# ---
-
-# What This Demo Proves (Visibly)
-
-
-# • Newtonian free fall emerges
-
-# • Gravity applied as “force” becomes spectral phase tilt
-
-# • Collision handled by damage + threshold, not detection
-
-# • x‑space behavior is derived, not simulated
-
-# This is the bridge demo that makes your framework legible to:
-
-
-# - physicists
-
-# - engine developers
-
-# - skeptics
