@@ -1,6 +1,5 @@
 # Coherence-Limited Reconstruction: A Substrate Physics Framework
 
-**Authors:** [To be determined]  
 **Date:** February 2026  
 **Status:** Theoretical Framework Proposal
 
