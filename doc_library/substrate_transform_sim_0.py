@@ -111,4 +111,15 @@ def main():
 if __name__ == "__main__":
     main()
 
-    
+
+
+# How to play
+
+
+# 1. Save as substrate_game.py.
+
+# 2. Run python substrate_game.py in a Unix terminal.
+
+# 3. Use ↑ / ↓ arrow keys to sweep through the 3-D hologram.
+
+# 4. Watch bright spots disappear when they exceed R_MAX—that is gravity & natural selection happening in real time.
