@@ -756,3 +756,60 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# This explains:
+
+# Why sleep improves learning
+# Why all-nighters backfire
+# Memory consolidation mechanism
+
+
+# Key Demonstrations
+# 1. Same Substrate, Different Outcomes
+# All experiments use identical substrate code. Only neuropeptide profiles change. This proves regime-switching.
+# 2. Trauma = Extreme Parameters
+# Not a different process. Just:
+
+# Very low threshold (hypersensitive)
+# Low coherence (fragmented)
+# Normal/high gamma (rapid encoding)
+
+# Result: One-shot learning, but pathological.
+# 3. Flow = Optimized Parameters
+# Goldilocks zone:
+
+# High but not excessive speed
+# High coherence
+# Moderate threshold
+# High retention
+
+# Result: Maximum effective learning.
+# 4. Depression = Suboptimal Configuration
+# Multiple deficits:
+
+# Low speed (slow processing)
+# Low coherence (fragmented)
+# High decay (poor retention)
+# Low BDNF (weak consolidation)
+
+# Result: Learning impairment at every step.
+
+# The Profound Unity
+# This simulation shows:
+
+# All states are parameter regimes of the same substrate
+# Neuropeptides configure parameters, not content
+# Learning always requires damage, just at different rates
+# Trauma is not special, just extreme parameter values
+# Flow is optimal, not magical
+# Sleep consolidates through parameter configuration
+
+# Same physics as:
+
+# Muscle building (different loading protocol)
+# Immune response (different antigen exposure)
+# Bone remodeling (different stress pattern)
+
+# One substrate. One equation. Many regimes.
+
