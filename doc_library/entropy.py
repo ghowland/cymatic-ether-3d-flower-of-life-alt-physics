@@ -354,5 +354,51 @@ if __name__ == "__main__":
 
 
 
-actual output:
+# actual output:
+
+
+# Starting entropy evolution simulation...
+# Initial state: Coherent Gaussian wavepacket
+
+# Step    0: S =   12.043 k_B, C = 0.066477
+# Step  100: S =   12.053 k_B, C = 0.008914
+# Step  200: S =   12.053 k_B, C = 0.005780
+# Step  300: S =   12.054 k_B, C = 0.005774
+# Step  400: S =   12.053 k_B, C = 0.004079
+# Step  500: S =   12.053 k_B, C = 0.004271
+# Step  600: S =   12.053 k_B, C = 0.003830
+# Step  700: S =   12.054 k_B, C = 0.004029
+# Step  800: S =   12.053 k_B, C = 0.003954
+# Step  900: S =   12.053 k_B, C = 0.003731
+
+# ============================================================
+# SIMULATION COMPLETE
+# ============================================================
+
+# Saved: entropy_evolution.png
+
+# Summary Statistics:
+# ------------------------------------------------------------
+# Initial entropy:  12.043 k_B
+# Final entropy:    12.053 k_B
+# Entropy increase: 0.010 k_B
+
+# Initial coherence: 0.066477
+# Final coherence:   0.002306
+# Coherence loss:    0.064171
+# ============================================================
+
+# ✓ SECOND LAW VERIFIED: dS/dt ≥ 0
+# ✓ CORRELATION S vs -ln(C): 0.1156
+
+# ============================================================
+# ENTROPY OF DIFFERENT SUBSTRATE STATES
+# ============================================================
+
+# State                               S_total    S_Shannon Interpretation
+# --------------------------------------------------------------------------------
+# Pure state (single mode)               1.39         0.00   Low entropy (ordered)
+# Coherent Gaussian                     15.61         3.27   Low entropy (ordered)
+# Thermal (random phases)               52.67         4.49   Low entropy (ordered)
+# White noise                        52634.80         9.97   High entropy (disordered)
 
