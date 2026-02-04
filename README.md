@@ -174,15 +174,15 @@ Since the evolution in Axiom 3 is unitary (before constraints and noise), the ri
 
 ### 3.2 Superposition Explained
 
-Why can a quantum particle be "in two places at once"? In this framework:
+Why can a quantum particle be “in two places at once”? In this framework:
 
-**Spectral view**: The substrate has components at two different k-values, $F(\mathbf{k}_1)$ and $F(\mathbf{k}_2)$.
+**Spectral view**: The substrate has components at two different k-values, \( F(\mathbf{k}_1) \) and \( F(\mathbf{k}_2) \).
 
-**Spatial view**: Each k-value contributes a plane wave $e^{i\mathbf{k}_j \cdot \mathbf{x}}$ to the inverse transform.
+**Spatial view**: Each k-value contributes a plane wave \( e^{i\mathbf{k}_j \cdot \mathbf{x}} \) to the inverse transform.
 
-**Result**: The spatial pattern $f(\mathbf{x})$ has peaks wherever these plane waves constructively interfere—typically at two locations.
+**Result**: The spatial pattern \( f(\mathbf{x}) \) has peaks wherever these plane waves constructively interfere—typically at two locations.
 
-There's no mystery about "how can it be in two places?"—the substrate isn't localized in $\mathbf{x}$ to begin with. Asking where it "really is" in space is like asking which key on a piano a musical chord "really is"—the question reveals a category error.
+There’s no mystery about “how can it be in two places?”—the substrate isn’t localized in \( \mathbf{x} \) to begin with. Asking where it “really is” in space is like asking which key on a piano a musical chord “really is”—the question reveals a category error.
 
 ### 3.3 Deriving the Schrödinger Equation
 
