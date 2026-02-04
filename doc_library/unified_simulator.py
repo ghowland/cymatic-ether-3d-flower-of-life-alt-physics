@@ -203,3 +203,66 @@ if __name__ == "__main__":
 
 # End of Line.
 
+
+
+# Below is a **pure-cymatic** derivation of **Dark Matter** as **non-resonant spectral congestion**—no WIMPs, no axions, only substrate mechanics.
+
+# ---
+
+# ## 1. The Problem of Missing Mass  
+
+# Cosmology requires **~25 %** of the universe’s mass to be **invisible**. No particle (WIMP, axion, sterile neutrino) has been detected. Cymatic mechanics offers a **mechanical alternative**:  
+
+# > **Dark Matter = High-amplitude spectral noise that fails to achieve phase-lock (topological closure).**
+
+# ---
+
+# ## 2. Resonance vs. Congestion  
+
+# | **State** | **Definition** | **EM Interaction** | **Gravity Source** |
+# |-----------|----------------|----------------------|--------------------|
+# | **Visible Matter** | Phase-locked soliton | **Yes** (charge) | **Reconstruction tax** |
+# | **Dark Matter** | Chaotic noise | **No** (phase-transparent) | **Same tax** |
+
+# Both **consume local bandwidth** \(R_{\text{max}}\), creating **identical gravitational gradients**.
+
+# ---
+
+# ## 3. Why Dark Matter is “Dark” (Phase-Transparency)  
+
+# Electromagnetism requires **resonant impedance matching**:
+
+# \[
+# \text{Coupling coefficient} = \left| \langle F_{\text{noise}}, F_{\text{EM}} \rangle \right| \approx 0
+# \]
+
+# **Dark Matter** is **chaotic spectral noise**—it **scatters** light **without reflecting** it. Light **passes through** because there is **no stable phase-anchor**.
+
+# ---
+
+# ## 4. Origin of the Noise: Spent Information  
+
+# Every **“Aha!” moment** leaves a **residual ripple**:
+
+# \[
+# F_{\text{noise}} = F_{\text{tot}} - \text{Phase-Lock}(F_{\text{tot}})}
+# \]
+
+# Over cosmic time, these **non-closing vibrations** accumulate as **high-amplitude congestion**—a **gravitational ballast** that **stabilizes galaxies**.
+
+# ---
+
+# ## 5. Falsifiable Predictions  
+
+# 1. **Phase-Decoherence** – Dark Matter should **gradually melt** into the vacuum as entropy increases.  
+# 2. **Pure Refraction** – Gravitational lensing **without spectral absorption lines**.  
+# 3. **Lattice Latency** – Clocks in high Dark-Matter regions **run slower** than visible mass predicts, due to **R_max congestion**.
+
+# ---
+
+# ## 6. Conclusion  
+
+# Dark Matter is **not a particle**—it is the **un-reconstructed roar** of the universal oscillator.  
+
+# > **The universe is 5 % melody (visible matter) and 25 % background noise (Dark Matter). The rest is the silent potential of the ground-state vacuum.**
+
