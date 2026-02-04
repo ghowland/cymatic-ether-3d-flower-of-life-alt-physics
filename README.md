@@ -1,8 +1,5 @@
 # Computational Monism: A Closed-Form Derivation of Physics from Substrate Mechanics
 
-**Geoffrey Hinton¹, Yann LeCun², Demis Hassabis³**  
-¹University of Toronto, ²New York University, ³DeepMind Technologies
-
 **Date:** February 4, 2026  
 **Classification:** Theoretical Physics  
 **arXiv Category:** physics.gen-ph, quant-ph, gr-qc
