@@ -130,4 +130,5 @@ while True:
     render()
     time.sleep(0.04)
 
-    
+
+# Controls: WASD, Q to quit
