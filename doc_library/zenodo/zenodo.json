@@ -55,22 +55,8 @@
       "affiliation": "DeepSeek AI"
     }
   ],
-  
-  "related_identifiers": [
-    {
-      "identifier": "https://github.com/ghowland/cymatic-ether-3d-flower-of-life-alt-physics/tree/main/doc_library",
-      "relation": "isSupplementedBy",
-      "scheme": "url",
-      "resource_type": "software"
-    },
-    {
-      "identifier": "https://github.com/ghowland/cymatic-ether-3d-flower-of-life-alt-physics",
-      "relation": "isDocumentedBy",
-      "scheme": "url",
-      "resource_type": "other"
-    }
-  ],
-  
+
+
   "communities": [
     {
       "identifier": "zenodo"
