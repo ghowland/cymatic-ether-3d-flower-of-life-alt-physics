@@ -393,3 +393,7 @@ Okay, I think I've played enough in this space. The mechanics are genuinely inte
 Whether or not it describes reality, it's a **mechanically complete toy universe** that exhibits emergence, self-organization, and complexity from simple rules. That makes it valuable as an exploration ground.
 
 What aspects would you like to develop further?
+
+
+---
+
