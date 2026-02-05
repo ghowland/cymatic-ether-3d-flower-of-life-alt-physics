@@ -10,7 +10,7 @@ This package contains a complete alternative physics framework deriving all phen
 
 **Main manuscript**: `manuscript.md`
 
-**Core claim**: Reality consists of discrete bubbles; distance = bubble count; all physics emerges from phase evolution.
+**Core claim**: Mathematical model where of discrete bubbles; distance = bubble count; all physics emerges from phase evolution.
 
 **Key results**:
 - 2 parameters → all of physics (vs. 25+ in Standard Model + ΛCDM)
@@ -155,7 +155,7 @@ If you use this work, please cite:
 ```bibtex
 @article{cymatic_substrate_2026,
   title={Unified Field Theory via Discrete Cymatic Substrate: A Two-Parameter Framework Deriving All Physics from Planck Bubble Dynamics},
-  author={[Your Name]},
+  author={[Howland, Geoffrey]},
   journal={Zenodo},
   year={2026},
   volume={5.0},
@@ -187,7 +187,7 @@ This is an open framework. Contributions welcome:
 - Extensions to particle physics (Standard Model embedding)
 - Improved simulation code
 
-Contact: [your email]
+Contact: geoff@howland.games
 
 ---
 
@@ -195,9 +195,9 @@ Contact: [your email]
 
 **v5.0** (Feb 2026): Integrated bubble ontology - distance as discrete count
 **v4.0** (Feb 2026): Pure k-space formulation - x-space as cognitive artifact  
-**v3.0** (Jan 2026): Holographic recalibration - fixed g-factor 11th decimal
-**v2.0** (Dec 2025): Cymatic substrate mechanics - introduced β, R_max
-**v1.0** (Nov 2025): Initial k-space framework
+**v3.0** (Feb 2026): Holographic recalibration - fixed g-factor 11th decimal
+**v2.0** (Feb 2026): Cymatic substrate mechanics - introduced β, R_max
+**v1.0** (Feb 2026): Initial k-space framework
 
 ---
 
@@ -213,7 +213,7 @@ A: See Section 11 of manuscript for detailed comparison. Summary: Both attempt q
 A: Refers to study of wave patterns. Framework treats reality as oscillating modes (bubbles), not static objects. Physics = patterns in phase field.
 
 **Q: Is space really discrete?**  
-A: Framework claims: discrete bubbles are fundamental, continuous space emerges at scales >> Planck length. Similar to how smooth water emerges from discrete molecules.
+A: Framework demonstrates: discrete bubbles are fundamental, continuous space emerges at scales >> Planck length. Similar to how smooth water emerges from discrete molecules.
 
 **Q: Can this be falsified?**  
 A: Yes. Five predictions listed. If dark energy doesn't evolve as ρ_Λ ∝ 1/t (Vera Rubin data by 2045), framework is wrong.
@@ -229,9 +229,9 @@ A: This is the most speculative claim. Framework predicts: any system (biologica
 ## Contact
 
 Questions, collaborations, or experimental proposals:
-- Email: [to be added]
-- GitHub: [repository to be added]
-- ResearchGate: [profile to be added]
+- Email: geoff@howland.games
+- GitHub: https://github.com/ghowland/cymatic-ether-3d-flower-of-life-alt-physics
+- ResearchGate: https://orcid.org/my-orcid?orcid=0009-0009-7752-341X
 
 ---
 
