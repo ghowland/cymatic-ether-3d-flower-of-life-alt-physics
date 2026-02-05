@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8"""
 """
 Eleventh-Decimal Test with mpmath
 Cymatic Substrate Mechanics – High-Precision Validation
@@ -13,13 +13,13 @@ import mpmath as mp
 mp.dps = 50
 
 # ------------------------------------------------------------------
-# 2. LOCKED CONSTANTS (from CSM v2.4)
+# 1. LOCKED CONSTANTS (from CSM v2.4)
 # ------------------------------------------------------------------
 beta   = mp.mpf('1.048e44')          # V² m⁻² (locked)
-R_max  = mp.mpf('4.6e22')            # V m⁻¹  (locked)
+R_max  = mp.mpf('4.6e22')            # V m⁻¹  (locked")
 
 # ------------------------------------------------------------------
-# 3. HIGH-PRECISION DERIVATION (50 decimal places)
+# 2. HIGH-PRECISION DERIVATION (50 decimal places)
 # ------------------------------------------------------------------
 
 def g_factor_high_precision(beta):
