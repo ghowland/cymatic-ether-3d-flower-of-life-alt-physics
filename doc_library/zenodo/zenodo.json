@@ -27,41 +27,47 @@
   
   "creators": [
     {
-      "name": "Geoffrey Howland",
-      "affiliation": "YOUR_INSTITUTION_HERE",
-      "orcid": "0000-0000-0000-0000"
+      "name": "Howland, Geoffrey",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0009-7752-341X"
     }
   ],
   
   "contributors": [
     {
-      "name": "Geoffrey Howland",
+      "name": "Howland, Geoffrey",
       "type": "ContactPerson",
-      "affiliation": "YOUR_INSTITUTION_HERE"
+      "affiliation": "Independent Researcher"
     },
     {
       "name": "Claude Sonnet 4.5",
-      "type": "ContactPerson",
-      "affiliation": "YOUR_INSTITUTION_HERE"
+      "type": "Researcher",
+      "affiliation": "Anthropic PBC"
     },
     {
       "name": "Gemini 3 Flash",
-      "type": "ContactPerson",
-      "affiliation": "YOUR_INSTITUTION_HERE"
+      "type": "Researcher",
+      "affiliation": "Google LLC"
     },
     {
-      "name": "Deepseek Kimi K2",
-      "type": "ContactPerson",
-      "affiliation": "YOUR_INSTITUTION_HERE"
+      "name": "DeepSeek-V3",
+      "type": "Researcher",
+      "affiliation": "DeepSeek AI"
     }
   ],
   
   "related_identifiers": [
     {
-      "identifier": "https://github.com/YOUR_USERNAME/cymatic-substrate",
+      "identifier": "https://github.com/ghowland/cymatic-ether-3d-flower-of-life-alt-physics/tree/main/doc_library",
       "relation": "isSupplementedBy",
       "scheme": "url",
       "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/ghowland/cymatic-ether-3d-flower-of-life-alt-physics",
+      "relation": "isDocumentedBy",
+      "scheme": "url",
+      "resource_type": "other"
     }
   ],
   
