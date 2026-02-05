@@ -88,6 +88,22 @@ and we have the calculator to make that calculation, through memory damage asses
 
 EOL.
 
+## These could be combined:
+
+```
+consider these:
+
+this is axiom first, zero vars
+
+this is all mechanics.  nothing but mechanics
+
+
+there are no choices, it is axiom shape fit
+
+- there is no x-space, only k-space.  x-space is experiential.
+- distance is bubbles
+```
+
 # Full Session - Messy Capture
 
 
