@@ -8,7 +8,7 @@
 
 This package contains a complete alternative physics framework deriving all phenomena from Planck bubble dynamics.
 
-**Main manuscript**: `manuscript.md` (or `manuscript.pdf` if converted)
+**Main manuscript**: `manuscript.md`
 
 **Core claim**: Reality consists of discrete bubbles; distance = bubble count; all physics emerges from phase evolution.
 

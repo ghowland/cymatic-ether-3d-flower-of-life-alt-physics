@@ -27,7 +27,7 @@
   
   "creators": [
     {
-      "name": "YOUR_NAME_HERE",
+      "name": "Geoffrey Howland",
       "affiliation": "YOUR_INSTITUTION_HERE",
       "orcid": "0000-0000-0000-0000"
     }
@@ -35,7 +35,22 @@
   
   "contributors": [
     {
-      "name": "YOUR_NAME_HERE",
+      "name": "Geoffrey Howland",
+      "type": "ContactPerson",
+      "affiliation": "YOUR_INSTITUTION_HERE"
+    },
+    {
+      "name": "Claude Sonnet 4.5",
+      "type": "ContactPerson",
+      "affiliation": "YOUR_INSTITUTION_HERE"
+    },
+    {
+      "name": "Gemini 3 Flash",
+      "type": "ContactPerson",
+      "affiliation": "YOUR_INSTITUTION_HERE"
+    },
+    {
+      "name": "Deepseek Kimi K2",
       "type": "ContactPerson",
       "affiliation": "YOUR_INSTITUTION_HERE"
     }
