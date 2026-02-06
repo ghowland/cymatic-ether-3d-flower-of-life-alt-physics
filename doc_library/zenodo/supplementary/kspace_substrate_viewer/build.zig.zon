@@ -1,15 +1,14 @@
 .{
     .name = .substrate_viewer,
     .version = "0.1.0",
+    .fingerprint = 0xa823e50efad27599,
     .paths = .{
         "",
     },
     .minimum_zig_version = "0.15.1",
-
-    .fingerprint = 0xa823e50ef2d24762,
     .dependencies = .{
         .raylib = .{
-            .url = "https://github.com/raysan5/raylib/archive/refs/heads/master.zip",
+            .url = "https://github.com/raysan5/raylib/archive/refs/heads/master.tar.gz",
             .hash = "122014109297f01e3bb731bdd7c42079af7bc795b50c0eb5dccad51bd9f7bef4e01b",
         },
     },

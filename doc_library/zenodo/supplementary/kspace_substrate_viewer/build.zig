@@ -13,8 +13,7 @@ pub fn build(b: *std.Build) void {
         }),
     });
 
-    // Allow turning off the console with: -Dsubsystem=Windows
-    const subsystem = b.option(std.Target.SubSystem, "subsystem", "Set the subsystem (Console or Windows)") orelse .Console;
+    const subsystem = b.option(std.Target.SubSystem, "subsystem", "Set the subsystem") orelse .Console;
     exe.subsystem = subsystem;
 
     const raylib_dep = b.dependency("raylib", .{
@@ -22,26 +21,21 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
-    const raylib = raylib_dep.module("raylib"); // main raylib module
-    const raygui = raylib_dep.module("raygui"); // raygui module
-    const raylib_artifact = raylib_dep.artifact("raylib"); // raylib C library
+    // Get the compiled raylib artifact
+    const raylib_artifact = raylib_dep.artifact("raylib");
 
-    // Link raylib
+    // Link it
     exe.linkLibrary(raylib_artifact);
-    exe.root_module.addImport("raylib", raylib);
-    exe.root_module.addImport("raygui", raygui);
-
     exe.linkLibC();
 
+    // Add include path for C headers (for @cImport)
+    exe.addIncludePath(raylib_dep.path("src"));
+
+    b.installArtifact(exe);
 
     const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
 
-    // Run step
     const run_step = b.step("run", "Run the substrate viewer");
     run_step.dependOn(&run_cmd.step);
-
-
-    b.installArtifact(exe);
 }
-

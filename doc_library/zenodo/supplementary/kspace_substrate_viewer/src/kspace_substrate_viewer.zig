@@ -237,10 +237,10 @@ pub fn main() !void {
         }
 
         // Zoom
-        if (rl.IsKeyPressed(rl.KEY_EQUAL) or rl.IsKeyPressed(rl.KEY_KP_ADD)) {
+        if (rl.IsKeyDown(rl.KEY_EQUAL) or rl.IsKeyDown(rl.KEY_KP_ADD)) {
             view.zoom *= zoom_speed;
         }
-        if (rl.IsKeyPressed(rl.KEY_MINUS) or rl.IsKeyPressed(rl.KEY_KP_SUBTRACT)) {
+        if (rl.IsKeyDown(rl.KEY_MINUS) or rl.IsKeyDown(rl.KEY_KP_SUBTRACT)) {
             view.zoom /= zoom_speed;
             view.zoom = @max(0.1, view.zoom);
         }
@@ -279,4 +279,3 @@ pub fn main() !void {
         rl.DrawText("Arrow/WASD: Move | +/-: Zoom | R: Reset | ESC: Quit", 20, screen_height - 30, 20, rl.WHITE);
     }
 }
-
