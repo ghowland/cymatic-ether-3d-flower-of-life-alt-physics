@@ -4,6 +4,7 @@
     .paths = .{
         "",
     },
+    .fingerprint = 0x24f4b352133a54d6,
     .minimum_zig_version = "0.15.1",
     .dependencies = .{
         .raylib = .{
