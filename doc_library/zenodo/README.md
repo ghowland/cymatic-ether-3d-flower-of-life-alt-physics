@@ -32,7 +32,6 @@ zenodo_package/
 ├── PACKAGE_SUMMARY.md         # [Comment: Overview?]
 ├── PUBLICATION_CHECKLIST.md   # [Comment: Pre-submission checklist?]
 ├── QUICK_EDIT_GUIDE.txt       # [Comment: Editing instructions?]
-├── project_plan.md            # [Comment: Development roadmap?]
 ├── zenodo.json                # Zenodo metadata
 │
 ├── code/                      # Implementations
