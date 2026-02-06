@@ -42,7 +42,7 @@ zenodo_package/
 │   └── coherence_measurements.dat
 ├── supplementary/           # Extended materials
 │   ├── mathematical_derivations.pdf
-│   ├── comparison_table.xlsx
+│   ├── standard_model_comparison.xlsx
 │   ├── experimental_protocols.md
 │   └── flatland_comparison.md
 └── code/                    # Additional analysis scripts
@@ -98,7 +98,7 @@ python code/measure_coherence.py --initial particles
 ### 4. Examine Extended Materials
 
 - `supplementary/mathematical_derivations.pdf`: Full derivations of G, g-factor, and cosmological constant
-- `supplementary/comparison_table.xlsx`: Detailed parameter comparison with Standard Model
+- `supplementary/standard_model_comparison.xlsx`: Detailed parameter comparison with Standard Model
 - `supplementary/experimental_protocols.md`: Step-by-step test procedures
 - `supplementary/flatland_comparison.md`: Abbott's Flatland vs. k-space substrate
 
