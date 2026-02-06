@@ -18,6 +18,9 @@ The left and right panels show k-space substrate visualizations (wave interferen
 
 ---
 
+![Tautris Screen Shot](kspace_tautris_0000.png)
+
+
 ## What This Demonstrates
 
 ### 1. Discrete → Continuous Emergence

@@ -49,6 +49,9 @@ zig build -Doptimize=ReleaseFast
 
 ## What You're Looking At
 
+![K-Space Viewer Screen Shot](kspace_cymatic_substrate_0000.png)
+
+
 ### The Substrate
 
 A 2048×2048 grid of complex-valued phase fields representing k-modes (momentum space oscillators). Each pixel shows:
