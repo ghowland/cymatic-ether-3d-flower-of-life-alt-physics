@@ -74,22 +74,6 @@ zenodo_package/
 
 ---
 
-## Empirical Validation Summary
-The K-Space Substrate framework derives 40+ fundamental observables with **zero free parameters**, using only the current bubble count \( N \approx 9 \times 10^{60} \).
-
-| Observable | Derived Value | CODATA / Planck 2018 | Precision |
-| :--- | :--- | :--- | :--- |
-| **Fine Structure (\( \alpha_{em}^{-1} \))** | 137.035999085 | 137.035999084 | $10^{-10}$ |
-| **Muon/Electron Ratio** | 206.768283 | 206.768283 | $10^{-9}$ |
-| **Dark Energy (\( \Omega_\Lambda \))** | 0.691 | 0.6911 | Exact |
-| **Higgs Mass (\( m_H \))** | 125.1 GeV | 125.25 GeV | $0.1\%$ |
-| **Baryon Asymmetry (\( \eta_B \))** | $6 \times 10^{-10}$ | $6 \times 10^{-10}$ | Exact |
-
- **[View the Full Index of 40+ Derivations](supplementary/derivation_steps/README.md)** — *Includes equations, bond-counting hierarchy, and file mappings for all particles and cosmological constants.*
-
-
----
-
 ## How to Use This Package
 
 ### 1. Read the Theory
@@ -278,6 +262,8 @@ Spin-statistics: Even bonds → bosons, Odd bonds → fermions (forced by lattic
 - r_BAO = 147 Mpc (0.5% error)
 
 **Total: 40+ observables, 0 free parameters**
+
+ **[View the Full Index of 40+ Derivations](supplementary/derivation_steps/README.md)** — *Includes equations, bond-counting hierarchy, and file mappings for all particles and cosmological constants.*
 
 ---
 
