@@ -334,6 +334,12 @@ Framework builds on foundational work in:
 - Digital physics (Wolfram - computational universe)
 - Graph theory (Erdős - percolation thresholds)
 - Topology (Betti numbers, winding numbers)
+- Lattice QCD (Wilson - discrete gauge theory)
+- Berry phase (Hannay - geometric phase)
+- Renormalization (Wilson - lattice regularization)
+- Quantum information (Wheeler "it from bit")
+- Algebraic topology (Euler characteristic, simplicial complexes)
+- Discrete geometry (hexagonal lattice packing)
 
 ---
 
