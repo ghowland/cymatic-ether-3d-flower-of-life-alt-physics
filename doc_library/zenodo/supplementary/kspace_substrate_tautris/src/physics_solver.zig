@@ -26,42 +26,6 @@ pub const PhysicsSolver = struct {
         self.contacts.deinit();
     }
 
-    pub fn detectContacts(self: *PhysicsSolver, tetris: *Tautris.Tautris) !void {
-        self.contacts.clearRetainingCapacity();
-
-        // Voxel-voxel contacts (all bodies)
-        var i: usize = 0;
-        while (i < tetris.bodies.items.len) : (i += 1) {
-            var j: usize = i + 1;
-            while (j < tetris.bodies.items.len) : (j += 1) {
-                try self.detectBodyContacts(
-                    &tetris.bodies.items[i],
-                    &tetris.bodies.items[j],
-                );
-            }
-        }
-
-        // Voxel-floor contacts
-        for (tetris.bodies.items) |*body| {
-            for (body.voxels.items) |*voxel| {
-                if (!voxel.active) continue;
-
-                const half_size = voxel.size * 0.5;
-                const penetration = half_size - voxel.position[1];
-
-                if (penetration > 0) {
-                    try self.contacts.append(Contact{
-                        .voxel_a = voxel,
-                        .voxel_b = null,
-                        .normal = .{ 0, 1, 0 },
-                        .penetration = penetration,
-                        .friction = 0.6,
-                    });
-                }
-            }
-        }
-    }
-
     fn detectBodyContacts(self: *PhysicsSolver, body_a: *Tautris.SoftBody, body_b: *Tautris.SoftBody) !void {
         for (body_a.voxels.items) |*voxel_a| {
             if (!voxel_a.active) continue;
@@ -103,20 +67,59 @@ pub const PhysicsSolver = struct {
         }
     }
 
+    pub fn detectContacts(self: *PhysicsSolver, tetris: *Tautris.Tautris) !void {
+        self.contacts.clearRetainingCapacity();
+
+        // Voxel-voxel contacts (all bodies)
+        var i: usize = 0;
+        while (i < tetris.bodies.items.len) : (i += 1) {
+            var j: usize = i + 1;
+            while (j < tetris.bodies.items.len) : (j += 1) {
+                try self.detectBodyContacts(
+                    &tetris.bodies.items[i],
+                    &tetris.bodies.items[j],
+                );
+            }
+        }
+
+        // Voxel-floor contacts with continuous detection
+        for (tetris.bodies.items) |*body| {
+            for (body.voxels.items) |*voxel| {
+                if (!voxel.active) continue;
+
+                const half_size = voxel.size * 0.5;
+                const bottom_y = voxel.position[1] - half_size;
+
+                // Check if below or very close to floor
+                if (bottom_y < 0.05) {
+                    const penetration = -bottom_y;
+
+                    try self.contacts.append(Contact{
+                        .voxel_a = voxel,
+                        .voxel_b = null,
+                        .normal = .{ 0, 1, 0 },
+                        .penetration = @max(penetration, 0.001), // Always some penetration
+                        .friction = 0.7,
+                    });
+                }
+            }
+        }
+    }
+
     fn solveContact(self: *PhysicsSolver, contact: *Contact) void {
         _ = self;
 
         const restitution: f32 = 0.3;
 
         if (contact.voxel_b) |voxel_b| {
-            // Voxel-voxel contact
+            // Voxel-voxel contact (unchanged)
             const inv_mass_a = 1.0 / contact.voxel_a.mass;
             const inv_mass_b = 1.0 / voxel_b.mass;
             const total_inv_mass = inv_mass_a + inv_mass_b;
 
-            // Position correction (Baumgarte stabilization)
-            const correction_factor: f32 = 0.2; // Beta
-            const slop: f32 = 0.01; // Allow small penetration
+            // Stronger position correction
+            const correction_factor: f32 = 0.4; // Increased from 0.2
+            const slop: f32 = 0.005; // Smaller slop
             const correction = @max(contact.penetration - slop, 0.0) * correction_factor;
 
             const correction_a = correction * inv_mass_a / total_inv_mass;
@@ -130,7 +133,6 @@ pub const PhysicsSolver = struct {
             voxel_b.position[1] -= contact.normal[1] * correction_b;
             voxel_b.position[2] -= contact.normal[2] * correction_b;
 
-            // Relative velocity
             const rel_vel = [3]f32{
                 contact.voxel_a.velocity[0] - voxel_b.velocity[0],
                 contact.voxel_a.velocity[1] - voxel_b.velocity[1],
@@ -141,10 +143,8 @@ pub const PhysicsSolver = struct {
                 rel_vel[1] * contact.normal[1] +
                 rel_vel[2] * contact.normal[2];
 
-            // Don't resolve if separating
             if (vel_along_normal > 0) return;
 
-            // Impulse magnitude
             const j = -(1.0 + restitution) * vel_along_normal / total_inv_mass;
 
             const impulse = [3]f32{
@@ -161,7 +161,7 @@ pub const PhysicsSolver = struct {
             voxel_b.velocity[1] -= impulse[1] * inv_mass_b;
             voxel_b.velocity[2] -= impulse[2] * inv_mass_b;
 
-            // Friction
+            // Friction (unchanged)
             const tangent_vel = [3]f32{
                 rel_vel[0] - contact.normal[0] * vel_along_normal,
                 rel_vel[1] - contact.normal[1] * vel_along_normal,
@@ -196,23 +196,29 @@ pub const PhysicsSolver = struct {
                 voxel_b.velocity[2] -= friction_impulse[2] * inv_mass_b;
             }
         } else {
-            // Voxel-floor contact
-            const inv_mass = 1.0 / contact.voxel_a.mass;
+            // Voxel-floor contact - STRONG correction
+            const half_size = contact.voxel_a.size * 0.5;
 
-            // Position correction
-            contact.voxel_a.position[1] += contact.penetration * 0.8;
+            // Hard constraint: never go below floor
+            if (contact.voxel_a.position[1] < half_size) {
+                contact.voxel_a.position[1] = half_size;
+            }
 
             // Velocity impulse
-            const vel_along_normal = contact.voxel_a.velocity[1]; // Y velocity
+            const vel_y = contact.voxel_a.velocity[1];
 
-            if (vel_along_normal < 0) {
-                const j = -(1.0 + restitution) * vel_along_normal * contact.voxel_a.mass;
-                contact.voxel_a.velocity[1] += j * inv_mass;
+            if (vel_y < 0) {
+                contact.voxel_a.velocity[1] = -vel_y * restitution;
+
+                // Kill bounce if too small
+                if (@abs(contact.voxel_a.velocity[1]) < 0.2) {
+                    contact.voxel_a.velocity[1] = 0;
+                }
             }
 
             // Friction
-            contact.voxel_a.velocity[0] *= (1.0 - contact.friction);
-            contact.voxel_a.velocity[2] *= (1.0 - contact.friction);
+            contact.voxel_a.velocity[0] *= (1.0 - contact.friction * 0.5);
+            contact.voxel_a.velocity[2] *= (1.0 - contact.friction * 0.5);
         }
     }
 };
