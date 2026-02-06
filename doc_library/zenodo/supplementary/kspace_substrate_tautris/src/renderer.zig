@@ -1,9 +1,9 @@
 const std = @import("std");
-const math = std.math;
 const rl = @import("local_raylib.zig").rl;
+const math = std.math;
 const KSpaceSubstrate = @import("kspace_substrate.zig").KSpaceSubstrate;
 const Physics = @import("physics.zig").Physics;
-const Tautris = @import("tautris.zig").Tautris;
+const Tetris = @import("tetris.zig").Tetris;
 
 pub const Renderer = struct {
     camera: rl.Camera3D,
@@ -30,8 +30,8 @@ pub const Renderer = struct {
     ) void {
         _ = self;
 
-        const sx_step = @as(i32, @intFromFloat(@as(f32, @floatFromInt(substrate.size)) / @as(f32, @floatFromInt(width))));
-        const sy_step = @as(i32, @intFromFloat(@as(f32, @floatFromInt(substrate.size)) / @as(f32, @floatFromInt(height))));
+        const sx_step = @max(1, @divFloor(substrate.size, width));
+        const sy_step = @max(1, @divFloor(substrate.size, height));
 
         var py: i32 = 0;
         while (py < height) : (py += 1) {
@@ -47,51 +47,25 @@ pub const Renderer = struct {
         }
     }
 
-    pub fn renderTautris3D(self: *Renderer, tautris: *Tautris, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
+    pub fn renderTetris3D(
+        self: *Renderer,
+        tetris: *Tetris,
+        physics: *Physics,
+        x: i32,
+        y: i32,
+        width: i32,
+        height: i32,
+    ) void {
         _ = physics;
 
-        // Set viewport for this panel
         rl.BeginScissorMode(x, y, width, height);
         defer rl.EndScissorMode();
 
         rl.BeginMode3D(self.camera);
         defer rl.EndMode3D();
 
-        // Draw grid floor
+        // Draw grid
         rl.DrawGrid(20, 1.0);
-
-        // Draw locked blocks
-        var yy: i32 = 0;
-        while (yy < 20) : (yy += 1) {
-            var xx: i32 = 0;
-            while (xx < 10) : (xx += 1) {
-                var zz: i32 = 0;
-                while (zz < 10) : (zz += 1) {
-                    if (tautris.grid[@intCast(yy)][@intCast(xx)][@intCast(zz)]) {
-                        const pos = rl.Vector3{
-                            .x = @floatFromInt(xx),
-                            .y = @floatFromInt(yy),
-                            .z = @floatFromInt(zz),
-                        };
-                        rl.DrawCube(pos, 0.9, 0.9, 0.9, rl.GRAY);
-                        rl.DrawCubeWires(pos, 1.0, 1.0, 1.0, rl.DARKGRAY);
-                    }
-                }
-            }
-        }
-
-        // Draw current piece
-        const blocks = tautris.getCurrentBlocks();
-        const color: rl.Color = tautris.current_piece.getColor();
-        for (blocks) |block| {
-            const pos = rl.Vector3{
-                .x = @floatFromInt(block[0]),
-                .y = @floatFromInt(block[1]),
-                .z = @floatFromInt(block[2]),
-            };
-            rl.DrawCube(pos, 0.9, 0.9, 0.9, color);
-            rl.DrawCubeWires(pos, 1.0, 1.0, 1.0, rl.BLACK);
-        }
 
         // Draw bounds
         rl.DrawCubeWires(
@@ -101,15 +75,58 @@ pub const Renderer = struct {
             10,
             rl.WHITE,
         );
+
+        // Draw all soft bodies
+        for (tetris.bodies.items) |*body| {
+            const color = body.material.getColor();
+
+            for (body.voxels.items) |voxel| {
+                if (!voxel.active) continue;
+
+                const pos = rl.Vector3{
+                    .x = voxel.position[0],
+                    .y = voxel.position[1],
+                    .z = voxel.position[2],
+                };
+
+                // Size varies with material stiffness
+                const size = 0.9 * body.material.stiffness();
+                rl.DrawCube(pos, size, size, size, color);
+                rl.DrawCubeWires(pos, 1.0, 1.0, 1.0, rl.BLACK);
+            }
+
+            // Draw springs (connections between voxels)
+            if (body.is_player_controlled) {
+                for (body.voxels.items, 0..) |v1, i| {
+                    if (!v1.active) continue;
+                    for (body.voxels.items[i + 1 ..]) |v2| {
+                        if (!v2.active) continue;
+
+                        rl.DrawLine3D(
+                            rl.Vector3{ .x = v1.position[0], .y = v1.position[1], .z = v1.position[2] },
+                            rl.Vector3{ .x = v2.position[0], .y = v2.position[1], .z = v2.position[2] },
+                            rl.Color{ .r = 255, .g = 255, .b = 255, .a = 50 },
+                        );
+                    }
+                }
+            }
+        }
     }
 
-    pub fn renderXSpace(self: *Renderer, substrate: *KSpaceSubstrate, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
+    pub fn renderXSpace(
+        self: *Renderer,
+        substrate: *KSpaceSubstrate,
+        physics: *Physics,
+        x: i32,
+        y: i32,
+        width: i32,
+        height: i32,
+    ) void {
         _ = self;
         _ = physics;
 
-        // Simplified x-space: just show substrate with different colormap
-        const sx_step = @as(i32, @intFromFloat(@as(f32, @floatFromInt(substrate.size)) / @as(f32, @floatFromInt(width))));
-        const sy_step = @as(i32, @intFromFloat(@as(f32, @floatFromInt(substrate.size)) / @as(f32, @floatFromInt(height))));
+        const sx_step = @max(1, @divFloor(substrate.size, width));
+        const sy_step = @max(1, @divFloor(substrate.size, height));
 
         var py: i32 = 0;
         while (py < height) : (py += 1) {

@@ -3,7 +3,7 @@ const rl = @import("local_raylib.zig").rl;
 
 const KSpaceSubstrate = @import("kspace_substrate.zig").KSpaceSubstrate;
 const Physics = @import("physics.zig").Physics;
-const Tautris = @import("tautris.zig").Tautris;
+const Tetris = @import("tetris.zig").Tetris;
 const Renderer = @import("renderer.zig").Renderer;
 const UI = @import("ui.zig").UI;
 
@@ -20,27 +20,25 @@ pub fn main() !void {
     defer _ = frame_gpa.deinit();
     var frame_arena = std.heap.ArenaAllocator.init(frame_gpa.allocator());
     defer frame_arena.deinit();
-    // const frame_allocator = frame_arena.allocator();
 
     // Window setup
     const window_width: i32 = 1600;
     const window_height: i32 = 900;
 
     rl.SetConfigFlags(rl.FLAG_WINDOW_RESIZABLE | rl.FLAG_MSAA_4X_HINT);
-    rl.InitWindow(window_width, window_height, "K-Space Physics Tautris");
+    rl.InitWindow(window_width, window_height, "K-Space Physics Tetris");
     defer rl.CloseWindow();
     rl.SetTargetFPS(60);
 
     // Initialize systems
     var substrate = try KSpaceSubstrate.init(app_allocator, 512);
     var physics = Physics{ .N = 9e60 };
-    var tautris = Tautris.init();
-    tautris.locked_blocks = std.array_list.Managed([3]i32).init(app_allocator); // Initialize with app_allocator
+    var tetris = try Tetris.init(app_allocator);
     var renderer = Renderer.init();
     var ui = UI.init();
 
     // Game state
-    var mode: enum { kspace, xspace } = .kspace;
+    var mode: enum { kspace, xspace } = .xspace; // Start in xspace
     var paused = false;
     var show_ui = true;
 
@@ -65,18 +63,14 @@ pub fn main() !void {
         // Update UI (slider changes N)
         ui.update(&physics);
 
-        // Update game
+        // Update physics simulation
         if (!paused) {
-            tautris.update(dt, &physics);
-            tautris.handleInput();
-
-            // Update substrate when piece locks
-            if (tautris.piece_locked) {
-                substrate.injectPiece(try tautris.locked_blocks.toOwnedSlice(), &physics);
-                tautris.piece_locked = false;
-            }
-
+            tetris.update(dt, &physics);
+            tetris.handleInput();
             substrate.step(dt, &physics);
+
+            // Continuous substrate coupling
+            tetris.updateSubstrateCoupling(&substrate, &physics);
         }
 
         // Render
@@ -84,24 +78,24 @@ pub fn main() !void {
         defer rl.EndDrawing();
         rl.ClearBackground(rl.Color{ .r = 10, .g = 10, .b = 15, .a = 255 });
 
-        const screen_width: i32 = rl.GetScreenWidth();
-        const screen_height: i32 = rl.GetScreenHeight();
+        const screen_width = rl.GetScreenWidth();
+        const screen_height = rl.GetScreenHeight();
 
         if (mode == .kspace) {
-            // K-space mode: left panel = substrate, center = tautris, right = substrate zoom
+            // K-space mode: substrate views
             renderer.renderKSpace(&substrate, 0, 0, @divTrunc(screen_width, 3), screen_height);
-            renderer.renderTautris3D(&tautris, &physics, @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
+            renderer.renderTetris3D(&tetris, &physics, @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
             renderer.renderKSpace(&substrate, 2 * @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
         } else {
-            // X-space mode: left = xspace, center = tautris, right = physics info
-            renderer.renderXSpace(&substrate, &physics, 0, 0, @divTrunc(screen_width, 3), screen_height);
-            renderer.renderTautris3D(&tautris, &physics, @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
+            // X-space mode: physics simulation
+            renderer.renderXSpace(&substrate, &physics, 0, 0, screen_width, 3, screen_height);
+            renderer.renderTetris3D(&tetris, &physics, @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
             renderer.renderXSpace(&substrate, &physics, 2 * @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
         }
 
         // UI overlay
         if (show_ui) {
-            ui.render(&physics, &tautris, mode);
+            ui.render(&physics, &tetris, mode);
         }
 
         // FPS
@@ -115,7 +109,7 @@ pub fn main() !void {
 }
 
 fn saveScreenshot(allocator: std.mem.Allocator) !void {
-    const prefix = "kspace_tautris_";
+    const prefix = "kspace_tetris_";
     const ext = ".png";
 
     var dir = std.fs.cwd();
