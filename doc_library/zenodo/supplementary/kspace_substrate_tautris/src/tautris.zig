@@ -103,7 +103,7 @@ pub const SoftBody = struct {
     is_player_controlled: bool,
 
     pub fn init(allocator: std.mem.Allocator, blocks: [4][3]i32, position: [3]f32, material: Material) !SoftBody {
-        var voxels = std.array_list.Managed(Voxel).init(allocator);
+        var voxels = std.ArrayList(Voxel).init(allocator);
 
         const block_size: f32 = 0.5; // Each block is still 0.5m
         const voxel_size: f32 = 0.25; // But subdivided into 0.25m voxels (2×2×2 = 8 voxels per block)
@@ -250,8 +250,6 @@ pub const SoftBody = struct {
 
         self.updateCenterOfMass();
     }
-
-    // Rest unchanged...
 };
 
 pub const Tautris = struct {
