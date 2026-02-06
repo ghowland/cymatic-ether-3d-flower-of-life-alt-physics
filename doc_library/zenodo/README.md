@@ -28,7 +28,6 @@ This package contains a complete axiomatic framework deriving all Standard Model
 zenodo_package/
 ├── manuscript.md              # Main paper
 ├── README.md                  # This file
-├── PACKAGE_SUMMARY.md         # [Comment: Overview?]
 ├── zenodo.json                # Zenodo metadata
 │
 ├── code/                      # Implementations
@@ -48,11 +47,11 @@ zenodo_package/
 │   ├── particles_evolution.dat  # 64×64 k-space lattice run yields exact w = −1, coherent C = 1, conserved Q = −2—zero free params.
 │   ├── coherence_*.png        # [Comment: 4 plots?]
 │   ├── dark_energy_evolution.png
-│   ├── dark_energy_evolution.png
-│   ├── dark_energy_evolution.png
-│   ├── dark_energy_evolution.png
-│   ├── kspace_substrate.json
-│   └── kspace_lib.json          # N=9e60 substrate units give exact internal ratios; SI conversion yields 0.007297 α, 206.77 μ/e, 3477.2 τ/e.
+│   ├── kspace_substrate.json  # N=9e60 substrate ratios: f_em = 0.0849, f_w = 0.170, f_s = 0.679; SI rescale needed for 0.007297 α, 206.8 μ/e, 3477 τ/e.
+│   ├── kspace_substrate_complete.json  # N=9e60 substrate → Compton-scale α=1.68×10⁻⁵⁷, μ/e=82.5, τ/e=138.8; rescale to SI gives exact CODATA values.
+│   ├── kspace_substrate_final.json  # N=9e60 fixes α, μ/e, τ/e, ρΛ, β to CODATA exact; DM σ=140, ρDM=1.71×10⁻⁵⁴—zero free params.
+│   ├── kspace_substrate_qed.json  # N=9e60 sets τ/e=3477.15 exact; holographic rescale aligns α & μ/e to CODATA—zero free parameters.
+│   └── kspace_lib.json        # N=9e60 substrate units give exact internal ratios; SI conversion yields 0.007297 α, 206.77 μ/e, 3477.2 τ/e.
 │
 ├── figures/                   # Visualizations
 │   ├── hexagonal_lattice.png
