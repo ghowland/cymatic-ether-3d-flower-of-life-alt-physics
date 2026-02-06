@@ -40,7 +40,7 @@ pub const Renderer = struct {
         }
     }
 
-    pub fn renderTautris3D(self: *Renderer, tautris: *Tautris, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
+    pub fn renderTautris3D(self: *Renderer, tetris: *Tautris, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
         _ = physics;
 
         rl.BeginScissorMode(x, y, width, height);
@@ -62,7 +62,7 @@ pub const Renderer = struct {
         );
 
         // Draw all soft bodies
-        for (tautris.bodies.items) |*body| {
+        for (tetris.bodies.items) |*body| {
             const color = body.material.getColor();
 
             for (body.voxels.items) |voxel| {
@@ -74,24 +74,33 @@ pub const Renderer = struct {
                     .z = voxel.position[2],
                 };
 
-                // Size varies with material stiffness
-                const size = 0.9 * body.material.stiffness();
+                // Always draw filled cube
+                const size = voxel.size * 0.95; // Slightly smaller for gap
                 rl.DrawCube(pos, size, size, size, color);
-                rl.DrawCubeWires(pos, 1.0, 1.0, 1.0, rl.BLACK);
+
+                // Dark wireframe for definition
+                rl.DrawCubeWires(pos, voxel.size, voxel.size, voxel.size, rl.Color{ .r = 0, .g = 0, .b = 0, .a = 100 });
             }
 
-            // Draw springs (connections between voxels)
+            // Draw springs only for player-controlled piece
             if (body.is_player_controlled) {
                 for (body.voxels.items, 0..) |v1, i| {
                     if (!v1.active) continue;
                     for (body.voxels.items[i + 1 ..]) |v2| {
                         if (!v2.active) continue;
 
-                        rl.DrawLine3D(
-                            rl.Vector3{ .x = v1.position[0], .y = v1.position[1], .z = v1.position[2] },
-                            rl.Vector3{ .x = v2.position[0], .y = v2.position[1], .z = v2.position[2] },
-                            rl.Color{ .r = 255, .g = 255, .b = 255, .a = 50 },
-                        );
+                        const dx = v1.position[0] - v2.position[0];
+                        const dy = v1.position[1] - v2.position[1];
+                        const dz = v1.position[2] - v2.position[2];
+                        const dist = @sqrt(dx * dx + dy * dy + dz * dz);
+
+                        if (dist < 2.0) { // Only draw nearby connections
+                            rl.DrawLine3D(
+                                rl.Vector3{ .x = v1.position[0], .y = v1.position[1], .z = v1.position[2] },
+                                rl.Vector3{ .x = v2.position[0], .y = v2.position[1], .z = v2.position[2] },
+                                rl.Color{ .r = 255, .g = 255, .b = 0, .a = 150 },
+                            );
+                        }
                     }
                 }
             }

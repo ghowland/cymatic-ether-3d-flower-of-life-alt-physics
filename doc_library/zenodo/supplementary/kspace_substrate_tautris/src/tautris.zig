@@ -13,27 +13,27 @@ pub const Material = enum {
 
     pub fn stiffness(self: Material) f32 {
         return switch (self) {
-            .stone => 50.0, // N/m spring constant
-            .jello => 2.0,
-            .mud => 10.0,
-            .metal => 100.0,
-            .glass => 80.0,
+            .stone => 10.0, // Reduced from 50
+            .jello => 0.5, // Reduced from 2
+            .mud => 2.0, // Reduced from 10
+            .metal => 20.0, // Reduced from 100
+            .glass => 15.0, // Reduced from 80
         };
     }
 
     pub fn damping(self: Material) f32 {
         return switch (self) {
-            .stone => 0.8,
-            .jello => 0.95,
-            .mud => 0.98,
-            .metal => 0.7,
-            .glass => 0.75,
+            .stone => 0.85,
+            .jello => 0.98,
+            .mud => 0.99,
+            .metal => 0.8,
+            .glass => 0.85,
         };
     }
 
     pub fn density(self: Material) f32 {
         return switch (self) {
-            .stone => 2500.0, // kg/m³
+            .stone => 2500.0,
             .jello => 1000.0,
             .mud => 1800.0,
             .metal => 7800.0,
@@ -43,7 +43,7 @@ pub const Material = enum {
 
     pub fn fracture_threshold(self: Material) f32 {
         return switch (self) {
-            .stone => 15.0, // m/s impact velocity
+            .stone => 15.0,
             .jello => 1000.0,
             .mud => 1000.0,
             .metal => 25.0,
@@ -54,10 +54,10 @@ pub const Material = enum {
     pub fn getColor(self: Material) rl.Color {
         return switch (self) {
             .stone => rl.Color{ .r = 128, .g = 128, .b = 128, .a = 255 },
-            .jello => rl.Color{ .r = 255, .g = 100, .b = 100, .a = 200 },
+            .jello => rl.Color{ .r = 255, .g = 100, .b = 100, .a = 180 },
             .mud => rl.Color{ .r = 139, .g = 69, .b = 19, .a = 255 },
             .metal => rl.Color{ .r = 192, .g = 192, .b = 192, .a = 255 },
-            .glass => rl.Color{ .r = 200, .g = 230, .b = 255, .a = 150 },
+            .glass => rl.Color{ .r = 100, .g = 150, .b = 255, .a = 120 }, // Bright blue transparent
         };
     }
 };
@@ -327,42 +327,6 @@ pub const Tautris = struct {
         return tetris;
     }
 
-    pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
-        // Update all bodies
-        for (self.bodies.items) |*body| {
-            body.updatePhysics(dt, 0, physics);
-            body.handleCollisions(0.0);
-
-            if (body.checkFracture(physics)) {
-                body.fracture();
-            }
-        }
-
-        // Check if current piece has settled
-        if (self.current_body) |idx| {
-            const settled = self.bodies.items[idx].center_of_mass[1] < 0.5 and
-                self.getBodyVelocitySquared(idx) < 0.5;
-
-            const timeout = self.spawn_timer >= self.max_spawn_time;
-
-            if (settled or timeout) {
-                self.bodies.items[idx].is_player_controlled = false;
-                self.spawn_timer = 0;
-                self.current_body = null;
-            }
-        }
-
-        // Spawn new piece
-        if (self.current_body == null) {
-            self.spawn_timer += dt;
-            if (self.spawn_timer >= 0.5) {
-                self.spawnPiece() catch {};
-            }
-        } else {
-            self.spawn_timer += dt;
-        }
-    }
-
     pub fn handleInput(self: *Tautris) void {
         if (self.current_body) |idx| {
             var force = [3]f32{ 0, 0, 0 };
@@ -452,5 +416,242 @@ pub const Tautris = struct {
                 }
             }
         }
+    }
+
+    pub fn handleCollisions(self: *SoftBody, floor_y: f32) void {
+        const restitution: f32 = 0.3;
+        const friction: f32 = 0.8;
+        const min_bounce_velocity: f32 = 0.1; // Stop tiny bounces
+
+        for (self.voxels.items) |*voxel| {
+            if (!voxel.active) continue;
+
+            const half_size = voxel.size * 0.5;
+
+            // Floor collision
+            if (voxel.position[1] - half_size < floor_y) {
+                voxel.position[1] = floor_y + half_size;
+
+                // Stop bouncing if velocity is tiny
+                if (@abs(voxel.velocity[1]) < min_bounce_velocity) {
+                    voxel.velocity[1] = 0;
+                } else {
+                    voxel.velocity[1] = -voxel.velocity[1] * restitution;
+                }
+
+                voxel.velocity[0] *= friction;
+                voxel.velocity[2] *= friction;
+            }
+
+            // Wall collisions
+            if (voxel.position[0] - half_size < 0) {
+                voxel.position[0] = half_size;
+                voxel.velocity[0] = -voxel.velocity[0] * restitution;
+            }
+            if (voxel.position[0] + half_size > 10) {
+                voxel.position[0] = 10 - half_size;
+                voxel.velocity[0] = -voxel.velocity[0] * restitution;
+            }
+            if (voxel.position[2] - half_size < 0) {
+                voxel.position[2] = half_size;
+                voxel.velocity[2] = -voxel.velocity[2] * restitution;
+            }
+            if (voxel.position[2] + half_size > 10) {
+                voxel.position[2] = 10 - half_size;
+                voxel.velocity[2] = -voxel.velocity[2] * restitution;
+            }
+        }
+    }
+    pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
+        // Update all bodies
+        for (self.bodies.items) |*body| {
+            body.updatePhysics(dt, 0, physics);
+            body.handleCollisions(0.0);
+
+            if (body.checkFracture(physics)) {
+                body.fracture();
+            }
+        }
+
+        // Simple voxel-voxel collision between different bodies
+        self.handleInterBodyCollisions();
+
+        // Check if current piece has settled
+        if (self.current_body) |idx| {
+            const settled = self.bodies.items[idx].center_of_mass[1] < 0.5 and
+                self.getBodyVelocitySquared(idx) < 0.5;
+
+            const timeout = self.spawn_timer >= self.max_spawn_time;
+
+            if (settled or timeout) {
+                self.bodies.items[idx].is_player_controlled = false;
+                self.spawn_timer = 0;
+                self.current_body = null;
+            }
+        }
+
+        // Spawn new piece
+        if (self.current_body == null) {
+            self.spawn_timer += dt;
+            if (self.spawn_timer >= 0.5) {
+                self.spawnPiece() catch {};
+            }
+        } else {
+            self.spawn_timer += dt;
+        }
+    }
+
+    fn handleInterBodyCollisions(self: *Tautris) void {
+        // Simple sphere-sphere collision between all voxels
+        var i: usize = 0;
+        while (i < self.bodies.items.len) : (i += 1) {
+            var j: usize = i + 1;
+            while (j < self.bodies.items.len) : (j += 1) {
+                const body1 = &self.bodies.items[i];
+                const body2 = &self.bodies.items[j];
+
+                for (body1.voxels.items) |*v1| {
+                    if (!v1.active) continue;
+
+                    for (body2.voxels.items) |*v2| {
+                        if (!v2.active) continue;
+
+                        const dx = v1.position[0] - v2.position[0];
+                        const dy = v1.position[1] - v2.position[1];
+                        const dz = v1.position[2] - v2.position[2];
+                        const dist_sq = dx * dx + dy * dy + dz * dz;
+
+                        const min_dist = (v1.size + v2.size) * 0.5;
+                        const min_dist_sq = min_dist * min_dist;
+
+                        if (dist_sq < min_dist_sq and dist_sq > 0.001) {
+                            const dist = @sqrt(dist_sq);
+                            const overlap = min_dist - dist;
+
+                            // Push apart
+                            const push_factor = overlap / dist * 0.5;
+                            v1.position[0] += dx * push_factor;
+                            v1.position[1] += dy * push_factor;
+                            v1.position[2] += dz * push_factor;
+
+                            v2.position[0] -= dx * push_factor;
+                            v2.position[1] -= dy * push_factor;
+                            v2.position[2] -= dz * push_factor;
+
+                            // Dampen velocities
+                            v1.velocity[0] *= 0.8;
+                            v1.velocity[1] *= 0.8;
+                            v1.velocity[2] *= 0.8;
+                            v2.velocity[0] *= 0.8;
+                            v2.velocity[1] *= 0.8;
+                            v2.velocity[2] *= 0.8;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    pub fn updatePhysics(self: *SoftBody, dt: f32, gravity: f32, physics: *Physics) void {
+        _ = physics;
+        _ = gravity;
+
+        const earth_gravity: f32 = 9.81;
+        const stiff = self.material.stiffness();
+        const damp = self.material.damping();
+
+        const safe_dt = @min(dt, 0.016);
+
+        // Apply gravity
+        for (self.voxels.items) |*voxel| {
+            if (!voxel.active) continue;
+            voxel.applyForce(.{ 0, -earth_gravity * voxel.mass, 0 }, safe_dt);
+        }
+
+        // Internal voxel-voxel repulsion (prevent collapse)
+        var i: usize = 0;
+        while (i < self.voxels.items.len) : (i += 1) {
+            if (!self.voxels.items[i].active) continue;
+
+            var j: usize = i + 1;
+            while (j < self.voxels.items.len) : (j += 1) {
+                if (!self.voxels.items[j].active) continue;
+
+                const v1 = &self.voxels.items[i];
+                const v2 = &self.voxels.items[j];
+
+                const dx = v1.position[0] - v2.position[0];
+                const dy = v1.position[1] - v2.position[1];
+                const dz = v1.position[2] - v2.position[2];
+                const dist = @sqrt(dx * dx + dy * dy + dz * dz);
+
+                // CRITICAL: Hard repulsion if too close
+                const min_dist = (v1.size + v2.size) * 0.4;
+                if (dist < min_dist and dist > 0.001) {
+                    const overlap = min_dist - dist;
+                    const push = overlap / dist * 0.5;
+
+                    v1.position[0] += dx * push;
+                    v1.position[1] += dy * push;
+                    v1.position[2] += dz * push;
+
+                    v2.position[0] -= dx * push;
+                    v2.position[1] -= dy * push;
+                    v2.position[2] -= dz * push;
+
+                    continue; // Skip spring if repelling
+                }
+
+                // Rest distance
+                const dx_rest = v1.rest_position[0] - v2.rest_position[0];
+                const dy_rest = v1.rest_position[1] - v2.rest_position[1];
+                const dz_rest = v1.rest_position[2] - v2.rest_position[2];
+                const rest_dist = @sqrt(dx_rest * dx_rest + dy_rest * dy_rest + dz_rest * dz_rest);
+
+                if (rest_dist < 0.01) continue;
+                if (dist < 0.1 or dist > 5.0) continue; // Skip if too close or too far
+
+                // Spring force
+                const displacement = dist - rest_dist;
+                const max_displacement: f32 = 1.0;
+                const clamped_displacement = std.math.clamp(displacement, -max_displacement, max_displacement);
+                const force_mag = stiff * clamped_displacement;
+
+                const max_force: f32 = 50.0;
+                const clamped_force = std.math.clamp(force_mag, -max_force, max_force);
+
+                const force = [3]f32{
+                    (dx / dist) * clamped_force,
+                    (dy / dist) * clamped_force,
+                    (dz / dist) * clamped_force,
+                };
+
+                v1.applyForce(.{ -force[0], -force[1], -force[2] }, safe_dt);
+                v2.applyForce(.{ force[0], force[1], force[2] }, safe_dt);
+            }
+        }
+
+        // Integrate
+        for (self.voxels.items) |*voxel| {
+            if (!voxel.active) continue;
+            voxel.integrate(safe_dt, damp);
+
+            const max_velocity: f32 = 20.0; // Reduced from 50
+            voxel.velocity[0] = std.math.clamp(voxel.velocity[0], -max_velocity, max_velocity);
+            voxel.velocity[1] = std.math.clamp(voxel.velocity[1], -max_velocity, max_velocity);
+            voxel.velocity[2] = std.math.clamp(voxel.velocity[2], -max_velocity, max_velocity);
+
+            // NaN check
+            if (std.math.isNan(voxel.position[0]) or
+                std.math.isNan(voxel.position[1]) or
+                std.math.isNan(voxel.position[2]))
+            {
+                voxel.position = .{ 5, 10, 5 };
+                voxel.velocity = .{ 0, 0, 0 };
+                voxel.active = false;
+            }
+        }
+
+        self.updateCenterOfMass();
     }
 };
