@@ -1,8 +1,10 @@
 const std = @import("std");
+const math = std.math;
 const rl = @import("local_raylib.zig").rl;
+
 const Physics = @import("physics.zig").Physics;
 const KSpaceSubstrate = @import("kspace_substrate.zig").KSpaceSubstrate;
-const math = std.math;
+const PhysicsSolver = @import("physics_solver.zig").PhysicsSolver;
 
 pub const Material = enum {
     stone,
@@ -310,22 +312,7 @@ pub const Tautris = struct {
     max_spawn_time: f32,
     allocator: std.mem.Allocator,
     score: u32,
-
-    pub fn init(allocator: std.mem.Allocator) !Tautris {
-        var tetris = Tautris{
-            .bodies = std.array_list.Managed(SoftBody).init(allocator),
-            .current_body = null,
-            .spawn_timer = 0,
-            .spawn_interval = 3.0,
-            .max_spawn_time = 5.0,
-            .allocator = allocator,
-            .score = 0,
-        };
-
-        try tetris.spawnPiece();
-
-        return tetris;
-    }
+    solver: PhysicsSolver, // Add this
 
     pub fn handleInput(self: *Tautris) void {
         if (self.current_body) |idx| {
@@ -460,44 +447,6 @@ pub const Tautris = struct {
                 voxel.position[2] = 10 - half_size;
                 voxel.velocity[2] = -voxel.velocity[2] * restitution;
             }
-        }
-    }
-    pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
-        // Update all bodies
-        for (self.bodies.items) |*body| {
-            body.updatePhysics(dt, 0, physics);
-            body.handleCollisions(0.0);
-
-            if (body.checkFracture(physics)) {
-                body.fracture();
-            }
-        }
-
-        // Simple voxel-voxel collision between different bodies
-        self.handleInterBodyCollisions();
-
-        // Check if current piece has settled
-        if (self.current_body) |idx| {
-            const settled = self.bodies.items[idx].center_of_mass[1] < 0.5 and
-                self.getBodyVelocitySquared(idx) < 0.5;
-
-            const timeout = self.spawn_timer >= self.max_spawn_time;
-
-            if (settled or timeout) {
-                self.bodies.items[idx].is_player_controlled = false;
-                self.spawn_timer = 0;
-                self.current_body = null;
-            }
-        }
-
-        // Spawn new piece
-        if (self.current_body == null) {
-            self.spawn_timer += dt;
-            if (self.spawn_timer >= 0.5) {
-                self.spawnPiece() catch {};
-            }
-        } else {
-            self.spawn_timer += dt;
         }
     }
 
@@ -653,5 +602,70 @@ pub const Tautris = struct {
         }
 
         self.updateCenterOfMass();
+    }
+
+    pub fn init(allocator: std.mem.Allocator) !Tautris {
+        var tetris = Tautris{
+            .bodies = std.array_list.Managed(SoftBody).init(allocator),
+            .current_body = null,
+            .spawn_timer = 0,
+            .spawn_interval = 3.0,
+            .max_spawn_time = 5.0,
+            .allocator = allocator,
+            .score = 0,
+            .solver = PhysicsSolver.init(allocator),
+        };
+
+        try tetris.spawnPiece();
+
+        return tetris;
+    }
+
+    pub fn deinit(self: *Tautris) void {
+        self.solver.deinit();
+    }
+
+    pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
+        // Update all bodies
+        for (self.bodies.items) |*body| {
+            body.updatePhysics(dt, 0, physics);
+
+            if (body.checkFracture(physics)) {
+                body.fracture();
+            }
+        }
+
+        // Remove handleCollisions and handleInterBodyCollisions
+        // Use constraint solver instead
+
+        // Detect all contacts
+        self.solver.detectContacts(self) catch {};
+
+        // Solve contacts iteratively (like Box2D)
+        self.solver.solveContacts(10);
+
+        // Check if current piece has settled
+        if (self.current_body) |idx| {
+            const settled = self.bodies.items[idx].center_of_mass[1] < 0.5 and
+                self.getBodyVelocitySquared(idx) < 0.5;
+
+            const timeout = self.spawn_timer >= self.max_spawn_time;
+
+            if (settled or timeout) {
+                self.bodies.items[idx].is_player_controlled = false;
+                self.spawn_timer = 0;
+                self.current_body = null;
+            }
+        }
+
+        // Spawn new piece
+        if (self.current_body == null) {
+            self.spawn_timer += dt;
+            if (self.spawn_timer >= 0.5) {
+                self.spawnPiece() catch {};
+            }
+        } else {
+            self.spawn_timer += dt;
+        }
     }
 };
