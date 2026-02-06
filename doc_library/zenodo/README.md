@@ -55,14 +55,14 @@ zenodo_package/
 │   └── kspace_*.json          # [Comment: 5 configs?]
 │
 ├── figures/                   # Visualizations
-│   ├── hexagonal_lattice.png/py
-│   ├── bond_topology.png/py
-│   ├── holographic_scaling.png/py
-│   ├── consciousness_coherence.png/py
-│   ├── entropy_arrow.png/py
-│   ├── force_coupling_chart.png/py
-│   ├── particle_mass_spectrum.png/py
-│   ├── time_evolution.png/py
+│   ├── hexagonal_lattice.png
+│   ├── bond_topology.png
+│   ├── holographic_scaling.png
+│   ├── consciousness_coherence.png
+│   ├── entropy_arrow.png
+│   ├── force_coupling_chart.png
+│   ├── particle_mass_spectrum.png
+│   ├── time_evolution.png
 │   └── complete_particle_forces_*.dat/py
 │
 └── supplementary/             # Extended materials
