@@ -1,15 +1,14 @@
 .{
-    .name = "substrate_viewer",
+    .name = .substrate_viewer,
     .version = "0.1.0",
+    .paths = .{
+        "",
+    },
+    .fingerprint = 0xa823e50ef2d24762,
     .dependencies = .{
         .raylib = .{
-            .url = "https://github.com/raysan5/raylib/archive/refs/tags/5.0.tar.gz",
-            .hash = "12208fc870547ca587c42bba0d9c0b7e90c0ff4d4682f5b8d58e28e6de1d17d26c89",
+            .url = "https://github.com/raysan5/raylib/archive/refs/tags/5.5.tar.gz",
+            .hash = "N-V-__8AAGwkvwPCiEfKjodWc0roQ1WAK3ZMnZz03gV9vG_C",
         },
-    },
-    .paths = .{
-        "build.zig",
-        "build.zig.zon",
-        "src",
     },
 }
