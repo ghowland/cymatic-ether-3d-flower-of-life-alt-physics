@@ -122,7 +122,7 @@ fn saveScreenshot(allocator: std.mem.Allocator) !void {
     var counter: u32 = 0;
 
     while (counter < 10000) : (counter += 1) {
-        const filename = try std.fmt.allocPrintZ(
+        const filename = try std.fmt.allocPrint(
             allocator,
             "{s}{d:0>4}{s}",
             .{ prefix, counter, ext },
