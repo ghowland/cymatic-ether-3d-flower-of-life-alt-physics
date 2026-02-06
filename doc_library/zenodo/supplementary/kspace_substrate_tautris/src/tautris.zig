@@ -66,16 +66,6 @@ pub const Tautris = struct {
         };
     }
 
-    // pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
-    //     const gravity = @as(f32, @floatCast(physics.gravity_scale()));
-
-    //     self.drop_timer += dt * gravity;
-    //     if (self.drop_timer >= self.drop_interval) {
-    //         self.drop_timer = 0;
-    //         self.moveDown();
-    //     }
-    // }
-
     pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
         _ = physics; // Gravity not actually used yet
 
@@ -87,12 +77,21 @@ pub const Tautris = struct {
     }
 
     pub fn handleInput(self: *Tautris) void {
-        if (rl.IsKeyPressed(rl.KEY_A)) self.moveLeft();
-        if (rl.IsKeyPressed(rl.KEY_D)) self.moveRight();
-        if (rl.IsKeyPressed(rl.KEY_W)) self.moveForward();
-        if (rl.IsKeyPressed(rl.KEY_S)) self.moveBackward();
+        // Qwerty
+        if (true) {
+            if (rl.IsKeyPressed(rl.KEY_A) or rl.IsKeyPressed(rl.KEY_LEFT)) self.moveLeft();
+            if (rl.IsKeyPressed(rl.KEY_D) or rl.IsKeyPressed(rl.KEY_RIGHT)) self.moveRight();
+            if (rl.IsKeyPressed(rl.KEY_W) or rl.IsKeyPressed(rl.KEY_UP)) self.moveForward();
+            if (rl.IsKeyPressed(rl.KEY_S)) self.moveBackward();
+        } else {
+            if (rl.IsKeyPressed(rl.KEY_A) or rl.IsKeyPressed(rl.KEY_LEFT)) self.moveLeft();
+            if (rl.IsKeyPressed(rl.KEY_E) or rl.IsKeyPressed(rl.KEY_RIGHT)) self.moveRight();
+            if (rl.IsKeyPressed(rl.KEY_COMMA) or rl.IsKeyPressed(rl.KEY_UP)) self.moveForward();
+            if (rl.IsKeyPressed(rl.KEY_O)) self.moveBackward();
+        }
+
         if (rl.IsKeyPressed(rl.KEY_DOWN)) self.hardDrop();
-        if (rl.IsKeyPressed(rl.KEY_UP)) self.rotate();
+        if (rl.IsKeyPressed(rl.KEY_SPACE)) self.rotate();
     }
 
     fn moveLeft(self: *Tautris) void {
