@@ -92,7 +92,7 @@ pub const Renderer = struct {
 
         // Draw current piece
         const blocks = tautris.getCurrentBlocks();
-        const color = tautris.current_piece.getColor();
+        const color: rl.Color = tautris.current_piece.getColor();
         for (blocks) |block| {
             const pos = rl.Vector3{
                 .x = @floatFromInt(block[0]),

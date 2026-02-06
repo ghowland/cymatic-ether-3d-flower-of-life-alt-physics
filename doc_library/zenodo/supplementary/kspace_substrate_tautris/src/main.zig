@@ -22,6 +22,7 @@ pub fn main() !void {
     defer _ = frame_gpa.deinit();
     var frame_arena = std.heap.ArenaAllocator.init(frame_gpa.allocator());
     defer frame_arena.deinit();
+    const frame_allocator = frame_arena.allocator();
 
     // Window setup
     const window_width: i32 = 1600;
@@ -72,7 +73,7 @@ pub fn main() !void {
 
             // Update substrate when piece locks
             if (tautris.piece_locked) {
-                substrate.injectPiece(tautris.locked_blocks, &physics);
+                substrate.injectPiece(try tautris.locked_blocks.toOwnedSlice(frame_allocator), &physics);
                 tautris.piece_locked = false;
             }
 
@@ -84,19 +85,19 @@ pub fn main() !void {
         defer rl.EndDrawing();
         rl.ClearBackground(rl.Color{ .r = 10, .g = 10, .b = 15, .a = 255 });
 
-        const screen_width = rl.GetScreenWidth();
-        const screen_height = rl.GetScreenHeight();
+        const screen_width: i32 = rl.GetScreenWidth();
+        const screen_height: i32 = rl.GetScreenHeight();
 
         if (mode == .kspace) {
             // K-space mode: left panel = substrate, center = tautris, right = substrate zoom
-            renderer.renderKSpace(&substrate, 0, 0, screen_width / 3, screen_height);
-            renderer.renderTautris3D(&tautris, &physics, screen_width / 3, 0, screen_width / 3, screen_height);
-            renderer.renderKSpace(&substrate, 2 * screen_width / 3, 0, screen_width / 3, screen_height);
+            renderer.renderKSpace(&substrate, 0, 0, @divTrunc(screen_width, 3), screen_height);
+            renderer.renderTautris3D(&tautris, &physics, @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
+            renderer.renderKSpace(&substrate, 2 * @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
         } else {
             // X-space mode: left = xspace, center = tautris, right = physics info
-            renderer.renderXSpace(&substrate, &physics, 0, 0, screen_width / 3, screen_height);
-            renderer.renderTautris3D(&tautris, &physics, screen_width / 3, 0, screen_width / 3, screen_height);
-            renderer.renderXSpace(&substrate, &physics, 2 * screen_width / 3, 0, screen_width / 3, screen_height);
+            renderer.renderXSpace(&substrate, &physics, 0, 0, @divTrunc(screen_width, 3), screen_height);
+            renderer.renderTautris3D(&tautris, &physics, @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
+            renderer.renderXSpace(&substrate, &physics, 2 * @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
         }
 
         // UI overlay

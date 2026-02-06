@@ -24,7 +24,7 @@ pub const Tautris = struct {
         J,
         L,
 
-        fn getBlocks(self: Piece) [4][3]i32 {
+        pub fn getBlocks(self: Piece) [4][3]i32 {
             return switch (self) {
                 .I => [4][3]i32{ .{ 0, 0, 0 }, .{ 1, 0, 0 }, .{ 2, 0, 0 }, .{ 3, 0, 0 } },
                 .O => [4][3]i32{ .{ 0, 0, 0 }, .{ 1, 0, 0 }, .{ 0, 0, 1 }, .{ 1, 0, 1 } },
@@ -36,8 +36,8 @@ pub const Tautris = struct {
             };
         }
 
-        fn getColor(self: Piece) rl.Color {
-            return switch (self) {
+        pub fn getColor(self: Piece) rl.Color {
+            const color: rl.Color = switch (self) {
                 .I => rl.SKYBLUE,
                 .O => rl.YELLOW,
                 .T => rl.PURPLE,
@@ -46,6 +46,8 @@ pub const Tautris = struct {
                 .J => rl.BLUE,
                 .L => rl.ORANGE,
             };
+
+            return color;
         }
     };
 
