@@ -17,7 +17,7 @@ pub fn build(b: *std.Build) void {
     const subsystem = b.option(std.Target.SubSystem, "subsystem", "Set the subsystem (Console or Windows)") orelse .Console;
     exe.subsystem = subsystem;
 
-    const raylib_dep = b.dependency("raylib_zig", .{
+    const raylib_dep = b.dependency("raylib", .{
         .target = target,
         .optimize = optimize,
     });
