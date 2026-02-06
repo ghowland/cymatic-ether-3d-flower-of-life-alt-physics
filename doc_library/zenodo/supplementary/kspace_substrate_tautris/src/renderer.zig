@@ -20,14 +20,7 @@ pub const Renderer = struct {
         };
     }
 
-    pub fn renderKSpace(
-        self: *Renderer,
-        substrate: *KSpaceSubstrate,
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-    ) void {
+    pub fn renderKSpace(self: *Renderer, substrate: *KSpaceSubstrate, x: i32, y: i32, width: i32, height: i32) void {
         _ = self;
 
         const sx_step = @max(1, @divFloor(substrate.size, width));
@@ -47,15 +40,7 @@ pub const Renderer = struct {
         }
     }
 
-    pub fn renderTetris3D(
-        self: *Renderer,
-        tetris: *Tetris,
-        physics: *Physics,
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-    ) void {
+    pub fn renderTetris3D(self: *Renderer, tetris: *Tetris, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
         _ = physics;
 
         rl.BeginScissorMode(x, y, width, height);
@@ -113,15 +98,7 @@ pub const Renderer = struct {
         }
     }
 
-    pub fn renderXSpace(
-        self: *Renderer,
-        substrate: *KSpaceSubstrate,
-        physics: *Physics,
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-    ) void {
+    pub fn renderXSpace(self: *Renderer, substrate: *KSpaceSubstrate, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
         _ = self;
         _ = physics;
 

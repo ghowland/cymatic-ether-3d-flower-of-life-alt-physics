@@ -31,10 +31,10 @@ pub const UI = struct {
     ) void {
         var buffer: [256]u8 = undefined;
 
-        var text = std.fmt.bufPrintZ(&buffer, "N = 10^{d:.1f}", .{self.n_slider_value}) catch "N";
+        var text = std.fmt.bufPrintZ(&buffer, "N = 10^{d:.1}", .{self.n_slider_value}) catch "N";
         rl.DrawText(text.ptr, 10, 10, 20, rl.LIME);
 
-        text = std.fmt.bufPrintZ(&buffer, "α⁻¹ = {d:.3f}", .{physics.alpha_em_inv()}) catch "α";
+        text = std.fmt.bufPrintZ(&buffer, "α⁻¹ = {d:.3}", .{physics.alpha_em_inv()}) catch "α";
         rl.DrawText(text.ptr, 10, 35, 18, rl.WHITE);
 
         text = std.fmt.bufPrintZ(&buffer, "Bodies: {d}", .{tetris.bodies.items.len}) catch "Bodies";

@@ -88,7 +88,7 @@ pub fn main() !void {
             renderer.renderKSpace(&substrate, 2 * @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
         } else {
             // X-space mode: physics simulation
-            renderer.renderXSpace(&substrate, &physics, 0, 0, screen_width, 3, screen_height);
+            renderer.renderXSpace(&substrate, &physics, 0, 0, @divTrunc(screen_width, 3), screen_height);
             renderer.renderTetris3D(&tetris, &physics, @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
             renderer.renderXSpace(&substrate, &physics, 2 * @divTrunc(screen_width, 3), 0, @divTrunc(screen_width, 3), screen_height);
         }
