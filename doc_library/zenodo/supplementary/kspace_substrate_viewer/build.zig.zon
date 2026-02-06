@@ -7,7 +7,7 @@
     .fingerprint = 0xa823e50ef2d24762,
     .dependencies = .{
         .@"raylib" = .{
-            .url = "https://github.com/raysan5/raylib/archive/refs/tags/5.5.tar.gz",
+            .url = "https://github.com/raysan5/raylib/archive/refs/heads/master.zip",
             .hash = "1220d93782859726c2c46a05450615b7edfc82b7319daac50cbc7c3345d660b022d7",
         },
     },
