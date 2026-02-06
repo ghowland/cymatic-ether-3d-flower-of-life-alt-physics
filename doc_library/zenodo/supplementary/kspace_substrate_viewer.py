@@ -14,7 +14,7 @@ class ViewState:
     center_x: float = 0.0
     center_y: float = 0.0
     zoom: float = 1.0
-    substrate_size: int = 2048  # High resolution substrate
+    substrate_size: int = 128 # 2048  # High resolution substrate
     
 class KSpaceSubstrate:
     def __init__(self, size=2048):
@@ -171,7 +171,9 @@ def main():
     view = ViewState(center_x=20.0, center_y=20.0, zoom=1.0)
     
     # Generate substrate
-    substrate = KSpaceSubstrate(size=2048)
+    # substrate = KSpaceSubstrate(size=2048)
+    # substrate = KSpaceSubstrate(size=16)
+    substrate = KSpaceSubstrate(size=2)
     
     # Movement settings
     pan_speed = 0.5  # World units per keypress

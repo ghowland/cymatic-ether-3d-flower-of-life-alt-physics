@@ -1,0 +1,15 @@
+.{
+    .name = "substrate_viewer",
+    .version = "0.1.0",
+    .dependencies = .{
+        .raylib = .{
+            .url = "https://github.com/raysan5/raylib/archive/refs/tags/5.0.tar.gz",
+            .hash = "12208fc870547ca587c42bba0d9c0b7e90c0ff4d4682f5b8d58e28e6de1d17d26c89",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
