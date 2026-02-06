@@ -66,10 +66,20 @@ pub const Tautris = struct {
         };
     }
 
-    pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
-        const gravity = @as(f32, @floatCast(physics.gravity_scale()));
+    // pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
+    //     const gravity = @as(f32, @floatCast(physics.gravity_scale()));
 
-        self.drop_timer += dt * gravity;
+    //     self.drop_timer += dt * gravity;
+    //     if (self.drop_timer >= self.drop_interval) {
+    //         self.drop_timer = 0;
+    //         self.moveDown();
+    //     }
+    // }
+
+    pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
+        _ = physics; // Gravity not actually used yet
+
+        self.drop_timer += dt;
         if (self.drop_timer >= self.drop_interval) {
             self.drop_timer = 0;
             self.moveDown();
