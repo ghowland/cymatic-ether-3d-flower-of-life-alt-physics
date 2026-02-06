@@ -1,5 +1,5 @@
 const std = @import("std");
-const rl = @import("local_raylib.zig");
+const rl = @import("local_raylib.zig").rl;
 const Physics = @import("physics.zig").Physics;
 const Tautris = @import("tautris.zig").Tautris;
 const math = std.math;

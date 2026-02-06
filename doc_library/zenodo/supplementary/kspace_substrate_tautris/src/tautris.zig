@@ -1,5 +1,5 @@
 const std = @import("std");
-const rl = @import("local_raylib.zig");
+const rl = @import("local_raylib.zig").rl;
 const Physics = @import("physics.zig").Physics;
 
 pub const Tautris = struct {
@@ -7,7 +7,7 @@ pub const Tautris = struct {
     current_piece: Piece,
     position: [3]i32,
     rotation: u8,
-    locked_blocks: std.ArrayList([3]i32),
+    locked_blocks: std.array_list.Managed([3]i32),
     piece_locked: bool,
     score: u32,
     drop_timer: f32,
@@ -58,7 +58,7 @@ pub const Tautris = struct {
             .current_piece = .T,
             .position = .{ 4, 18, 4 },
             .rotation = 0,
-            .locked_blocks = std.ArrayList([3]i32).init(allocator),
+            .locked_blocks = std.array_list.Managed([3]i32).init(allocator),
             .piece_locked = false,
             .score = 0,
             .drop_timer = 0,

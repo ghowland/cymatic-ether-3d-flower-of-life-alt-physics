@@ -1,6 +1,6 @@
 const std = @import("std");
 const math = std.math;
-const rl = @import("local_raylib.zig");
+const rl = @import("local_raylib.zig").rl;
 const KSpaceSubstrate = @import("kspace_substrate.zig").KSpaceSubstrate;
 const Physics = @import("physics.zig").Physics;
 const Tautris = @import("tautris.zig").Tautris;

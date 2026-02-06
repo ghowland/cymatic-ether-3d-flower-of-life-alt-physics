@@ -1,5 +1,5 @@
 const std = @import("std");
-const rl = @import("local_raylib.zig");
+const rl = @import("local_raylib.zig").rl;
 
 const KSpaceSubstrate = @import("kspace_substrate.zig").KSpaceSubstrate;
 const Physics = @import("physics.zig").Physics;
@@ -20,7 +20,7 @@ pub fn main() !void {
     defer _ = frame_gpa.deinit();
     var frame_arena = std.heap.ArenaAllocator.init(frame_gpa.allocator());
     defer frame_arena.deinit();
-    const frame_allocator = frame_arena.allocator();
+    // const frame_allocator = frame_arena.allocator();
 
     // Window setup
     const window_width: i32 = 1600;
@@ -71,7 +71,7 @@ pub fn main() !void {
 
             // Update substrate when piece locks
             if (tautris.piece_locked) {
-                substrate.injectPiece(try tautris.locked_blocks.toOwnedSlice(frame_allocator), &physics);
+                substrate.injectPiece(try tautris.locked_blocks.toOwnedSlice(), &physics);
                 tautris.piece_locked = false;
             }
 
