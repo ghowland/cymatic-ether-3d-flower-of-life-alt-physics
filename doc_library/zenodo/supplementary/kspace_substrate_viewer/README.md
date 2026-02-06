@@ -12,6 +12,9 @@ This is a **pure visualization tool** - no game, no physics simulation, just bea
 
 ---
 
+![K-Space Viewer Screen Shot](docs/kspace_cymatic_substrate_0000.png)
+
+
 ## Quick Start
 
 ```bash
@@ -48,8 +51,6 @@ zig build -Doptimize=ReleaseFast
 ---
 
 ## What You're Looking At
-
-![K-Space Viewer Screen Shot](docs/kspace_cymatic_substrate_0000.png)
 
 
 ### The Substrate
