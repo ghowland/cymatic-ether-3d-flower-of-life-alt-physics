@@ -1,7 +1,5 @@
 const std = @import("std");
-const rl = @cImport({
-    @cInclude("raylib.h");
-});
+const rl = @import("local_raylib.zig");
 const Physics = @import("physics.zig").Physics;
 
 pub const Tautris = struct {
