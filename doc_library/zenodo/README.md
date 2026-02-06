@@ -101,6 +101,7 @@ python code/measure_coherence.py --initial particles
 - `supplementary/standard_model_comparison.xlsx`: Detailed parameter comparison with Standard Model
 - `supplementary/experimental_protocols.md`: Step-by-step test procedures
 - `supplementary/flatland_comparison.md`: Abbott's Flatland vs. k-space substrate
+- `supplementary/llm_kspace_guide.md`: LLM Guide to mapping K-Space and stop them from tripping up on x-space, SI and UV problems
 
 ---
 
