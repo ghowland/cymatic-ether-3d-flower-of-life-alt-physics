@@ -554,7 +554,7 @@ pub const Tautris = struct {
     }
 
     pub fn init(allocator: std.mem.Allocator) !Tautris {
-        var tetris = Tautris{
+        var tautris = Tautris{
             .bodies = std.array_list.Managed(SoftBody).init(allocator),
             .current_body = null,
             .spawn_timer = 0,
@@ -565,9 +565,9 @@ pub const Tautris = struct {
             .solver = PhysicsSolver.init(allocator),
         };
 
-        try tetris.spawnPiece();
+        try tautris.spawnPiece();
 
-        return tetris;
+        return tautris;
     }
 
     pub fn deinit(self: *Tautris) void {

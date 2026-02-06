@@ -67,23 +67,23 @@ pub const PhysicsSolver = struct {
         }
     }
 
-    pub fn detectContacts(self: *PhysicsSolver, tetris: *Tautris.Tautris) !void {
+    pub fn detectContacts(self: *PhysicsSolver, tautris: *Tautris.Tautris) !void {
         self.contacts.clearRetainingCapacity();
 
         // Voxel-voxel contacts (all bodies)
         var i: usize = 0;
-        while (i < tetris.bodies.items.len) : (i += 1) {
+        while (i < tautris.bodies.items.len) : (i += 1) {
             var j: usize = i + 1;
-            while (j < tetris.bodies.items.len) : (j += 1) {
+            while (j < tautris.bodies.items.len) : (j += 1) {
                 try self.detectBodyContacts(
-                    &tetris.bodies.items[i],
-                    &tetris.bodies.items[j],
+                    &tautris.bodies.items[i],
+                    &tautris.bodies.items[j],
                 );
             }
         }
 
         // Voxel-floor contacts with continuous detection
-        for (tetris.bodies.items) |*body| {
+        for (tautris.bodies.items) |*body| {
             for (body.voxels.items) |*voxel| {
                 if (!voxel.active) continue;
 
