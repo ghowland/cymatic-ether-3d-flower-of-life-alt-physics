@@ -2,7 +2,7 @@ const std = @import("std");
 const math = std.math;
 
 pub const Physics = struct {
-    N: f64, // Bubble count
+    N: f64, // Bubble count.  The 1 constant in the universe
 
     pub fn alpha_em_inv(self: Physics) f64 {
         const ln_n = @log(self.N);
@@ -43,4 +43,3 @@ pub const Physics = struct {
         return 1.0 / self.N;
     }
 };
-
