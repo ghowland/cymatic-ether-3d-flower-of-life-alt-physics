@@ -281,20 +281,44 @@ pub const SoftBody = struct {
 
 pub const Tautris = struct {
     bodies: std.array_list.Managed(SoftBody),
+    gravity_body: SoftBody, // Add this - massive invisible attractor
     current_body: ?usize,
     spawn_timer: f32,
     spawn_interval: f32,
-    max_spawn_time: f32, // Add this
+    max_spawn_time: f32,
     allocator: std.mem.Allocator,
     score: u32,
 
     pub fn init(allocator: std.mem.Allocator) !Tautris {
+        // Create massive gravity body at bottom
+        const gravity_blocks = [4][3]i32{
+            .{ 5, -5, 5 }, // Center below floor
+            .{ 5, -6, 5 },
+            .{ 5, -7, 5 },
+            .{ 5, -8, 5 },
+        };
+
+        var gravity_body = try SoftBody.init(
+            allocator,
+            gravity_blocks,
+            .{ 0, 0, 0 },
+            .metal,
+        );
+
+        // Make it massive and immobile
+        for (gravity_body.voxels.items) |*voxel| {
+            voxel.mass = 1000.0; // Very heavy
+            voxel.velocity = .{ 0, 0, 0 };
+        }
+        gravity_body.is_player_controlled = false;
+
         var tetris = Tautris{
             .bodies = std.array_list.Managed(SoftBody).init(allocator),
+            .gravity_body = gravity_body,
             .current_body = null,
             .spawn_timer = 0,
             .spawn_interval = 3.0,
-            .max_spawn_time = 4.5, // 1.5x the expected time
+            .max_spawn_time = 4.5,
             .allocator = allocator,
             .score = 0,
         };
@@ -307,8 +331,16 @@ pub const Tautris = struct {
     pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
         const gravity = @as(f32, @floatCast(physics.gravity_scale()));
 
-        // Update all bodies
+        // Update gravity body (keep it pinned)
+        for (self.gravity_body.voxels.items) |*voxel| {
+            voxel.velocity = .{ 0, 0, 0 }; // Never moves
+        }
+
+        // Update all bodies with gravitational attraction to gravity_body
         for (self.bodies.items) |*body| {
+            // Apply gravitational attraction to massive body
+            self.applyGravitationalAttraction(body, &self.gravity_body, dt);
+
             body.updatePhysics(dt, gravity, physics);
             body.handleCollisions(0.0);
 
@@ -322,7 +354,6 @@ pub const Tautris = struct {
             const settled = self.bodies.items[idx].center_of_mass[1] < 1.0 and
                 self.getBodyVelocitySquared(idx) < 0.1;
 
-            // Force spawn if taking too long
             const timeout = self.spawn_timer >= self.max_spawn_time;
 
             if (settled or timeout) {
@@ -335,11 +366,54 @@ pub const Tautris = struct {
         // Spawn new piece if needed
         if (self.current_body == null) {
             self.spawn_timer += dt;
-            if (self.spawn_timer >= 0.1) { // Quick respawn
+            if (self.spawn_timer >= 0.1) {
                 self.spawnPiece() catch {};
             }
         } else {
-            self.spawn_timer += dt; // Track time for timeout
+            self.spawn_timer += dt;
+        }
+    }
+
+    fn applyGravitationalAttraction(self: *Tautris, body: *SoftBody, attractor: *SoftBody, dt: f32) void {
+        _ = self;
+        const G: f32 = 10.0; // Gravitational constant (scaled for gameplay)
+
+        for (body.voxels.items) |*voxel| {
+            if (!voxel.active) continue;
+
+            // Find nearest attractor voxel
+            var min_dist_sq: f32 = 1e10;
+            var nearest_pos: [3]f32 = undefined;
+
+            for (attractor.voxels.items) |attractor_voxel| {
+                const dx = attractor_voxel.position[0] - voxel.position[0];
+                const dy = attractor_voxel.position[1] - voxel.position[1];
+                const dz = attractor_voxel.position[2] - voxel.position[2];
+                const dist_sq = dx * dx + dy * dy + dz * dz;
+
+                if (dist_sq < min_dist_sq) {
+                    min_dist_sq = dist_sq;
+                    nearest_pos = attractor_voxel.position;
+                }
+            }
+
+            const dist = @sqrt(min_dist_sq);
+            if (dist < 0.1) continue; // Avoid singularity
+
+            // Gravitational force: F = G * m1 * m2 / r²
+            const force_magnitude = G * voxel.mass * 1000.0 / min_dist_sq;
+
+            const dx = nearest_pos[0] - voxel.position[0];
+            const dy = nearest_pos[1] - voxel.position[1];
+            const dz = nearest_pos[2] - voxel.position[2];
+
+            const force = [3]f32{
+                (dx / dist) * force_magnitude,
+                (dy / dist) * force_magnitude,
+                (dz / dist) * force_magnitude,
+            };
+
+            voxel.applyForce(force, dt);
         }
     }
 
@@ -392,15 +466,13 @@ pub const Tautris = struct {
         const initial_velocity: f32 = -2.0;
         for (body.voxels.items) |*voxel| {
             voxel.velocity[1] = initial_velocity;
-
-            // Small random horizontal velocity for variation
             voxel.velocity[0] = (@as(f32, @floatFromInt(rl.GetRandomValue(-10, 10))) / 100.0);
             voxel.velocity[2] = (@as(f32, @floatFromInt(rl.GetRandomValue(-10, 10))) / 100.0);
         }
 
         try self.bodies.append(body);
         self.current_body = self.bodies.items.len - 1;
-        self.spawn_timer = 0; // Reset timer when spawning
+        self.spawn_timer = 0;
     }
 
     fn getBodyVelocitySquared(self: *Tautris, idx: usize) f32 {
