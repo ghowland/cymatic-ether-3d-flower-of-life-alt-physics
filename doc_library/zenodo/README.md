@@ -28,10 +28,7 @@ This package contains a complete axiomatic framework deriving all Standard Model
 zenodo_package/
 ├── manuscript.md              # Main paper
 ├── README.md                  # This file
-├── START_HERE.md              # [Comment: Quick start guide?]
 ├── PACKAGE_SUMMARY.md         # [Comment: Overview?]
-├── PUBLICATION_CHECKLIST.md   # [Comment: Pre-submission checklist?]
-├── QUICK_EDIT_GUIDE.txt       # [Comment: Editing instructions?]
 ├── zenodo.json                # Zenodo metadata
 │
 ├── code/                      # Implementations
@@ -51,7 +48,11 @@ zenodo_package/
 │   ├── particles_evolution.dat  # 64×64 k-space lattice run yields exact w = −1, coherent C = 1, conserved Q = −2—zero free params.
 │   ├── coherence_*.png        # [Comment: 4 plots?]
 │   ├── dark_energy_evolution.png
-│   └── kspace_*.json          # [Comment: 5 configs?]
+│   ├── dark_energy_evolution.png
+│   ├── dark_energy_evolution.png
+│   ├── dark_energy_evolution.png
+│   ├── kspace_substrate.json
+│   └── kspace_lib.json          # N=9e60 substrate units give exact internal ratios; SI conversion yields 0.007297 α, 206.77 μ/e, 3477.2 τ/e.
 │
 ├── figures/                   # Visualizations
 │   ├── hexagonal_lattice.png
