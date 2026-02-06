@@ -250,6 +250,103 @@ pub const SoftBody = struct {
 
         self.updateCenterOfMass();
     }
+
+    pub fn handleCollisions(self: *SoftBody, floor_y: f32) void {
+        for (self.voxels.items) |*voxel| {
+            if (!voxel.active) continue;
+
+            // Floor collision
+            if (voxel.position[1] < floor_y) {
+                voxel.position[1] = floor_y;
+                voxel.velocity[1] = -voxel.velocity[1] * 0.5; // Bounce with energy loss
+
+                // Friction
+                voxel.velocity[0] *= 0.9;
+                voxel.velocity[2] *= 0.9;
+            }
+
+            // Wall collisions
+            if (voxel.position[0] < 0) {
+                voxel.position[0] = 0;
+                voxel.velocity[0] = -voxel.velocity[0] * 0.5;
+            }
+            if (voxel.position[0] > 10) {
+                voxel.position[0] = 10;
+                voxel.velocity[0] = -voxel.velocity[0] * 0.5;
+            }
+            if (voxel.position[2] < 0) {
+                voxel.position[2] = 0;
+                voxel.velocity[2] = -voxel.velocity[2] * 0.5;
+            }
+            if (voxel.position[2] > 10) {
+                voxel.position[2] = 10;
+                voxel.velocity[2] = -voxel.velocity[2] * 0.5;
+            }
+        }
+    }
+
+    pub fn checkFracture(self: *SoftBody, physics: *Physics) bool {
+        _ = physics;
+        const threshold = self.material.fracture_threshold();
+
+        // Check if any voxel is under too much stress
+        for (self.voxels.items) |*voxel| {
+            if (!voxel.active) continue;
+
+            const speed_sq = voxel.velocity[0] * voxel.velocity[0] +
+                voxel.velocity[1] * voxel.velocity[1] +
+                voxel.velocity[2] * voxel.velocity[2];
+
+            if (speed_sq > threshold * threshold) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    pub fn fracture(self: *SoftBody) void {
+        // Simple fracture: disable random voxels
+        for (self.voxels.items) |*voxel| {
+            if (rl.GetRandomValue(0, 3) == 0) {
+                voxel.active = false;
+            }
+        }
+    }
+
+    fn updateCenterOfMass(self: *SoftBody) void {
+        var sum_x: f32 = 0;
+        var sum_y: f32 = 0;
+        var sum_z: f32 = 0;
+        var count: f32 = 0;
+
+        for (self.voxels.items) |voxel| {
+            if (!voxel.active) continue;
+            sum_x += voxel.position[0];
+            sum_y += voxel.position[1];
+            sum_z += voxel.position[2];
+            count += 1;
+        }
+
+        if (count > 0) {
+            self.center_of_mass = .{
+                sum_x / count,
+                sum_y / count,
+                sum_z / count,
+            };
+        }
+    }
+
+    pub fn applyPlayerControl(self: *SoftBody, force: [3]f32) void {
+        if (!self.is_player_controlled) return;
+
+        for (self.voxels.items) |*voxel| {
+            if (!voxel.active) continue;
+            voxel.velocity[0] += force[0];
+            voxel.velocity[1] += force[1];
+            voxel.velocity[2] += force[2];
+        }
+    }
 };
 
 pub const Tautris = struct {
