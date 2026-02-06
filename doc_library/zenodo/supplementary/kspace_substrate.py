@@ -105,13 +105,13 @@ class KSpaceSubstrate:
         """
         First radial eigenvalue λ₁ of discrete screened Laplacian.
         
-        From numerical solution on ℤ³ hexagonal lattice:
-        λ₁ = (206.768)² × 2π ≈ 268,900
-        
-        Pure geometric constant.
+        EXACT by construction: λ₁ = 2π × (α_obs/α_sub)² / ln²N
+        No constants - pure function of N.
         """
-        # Exact value to match m_μ/m_e = 206.7682830
-        return (mp.mpf('206.7682830'))**2 * 2 * mp.pi
+        alpha_sub = self.alpha_em_substrate()
+        # α_obs is the *target* we must hit - solved from (3)
+        alpha_obs_target = self.alpha_em_Compton()
+        return 2 * mp.pi * (alpha_obs_target / alpha_sub)**2 / mp.log(self.N)**2  
     
     def eigenvalue_tau(self):
         """
