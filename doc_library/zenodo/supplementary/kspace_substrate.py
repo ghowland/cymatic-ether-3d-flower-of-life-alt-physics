@@ -100,7 +100,7 @@ class KSpaceSubstrate:
     # ========================================================================
     # MASS RATIOS (N-independent eigenvalues)
     # ========================================================================
-    
+
     def eigenvalue_muon(self):
         """
         First radial eigenvalue λ₁ of discrete screened Laplacian.
@@ -111,8 +111,9 @@ class KSpaceSubstrate:
         alpha_sub = self.alpha_em_substrate()
         # α_obs is the *target* we must hit - solved from (3)
         alpha_obs_target = self.alpha_em_Compton()
-        return 2 * mp.pi * (alpha_obs_target / alpha_sub)**2 / mp.log(self.N)**2  
-    
+        return 2 * mp.pi * (alpha_obs_target / alpha_sub)**2 / mp.log(self.N)**2
+
+
     def eigenvalue_tau(self):
         """
         Second radial eigenvalue λ₂.
