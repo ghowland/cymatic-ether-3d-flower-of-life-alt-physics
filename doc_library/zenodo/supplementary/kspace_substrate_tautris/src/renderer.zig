@@ -47,15 +47,7 @@ pub const Renderer = struct {
         }
     }
 
-    pub fn renderTautris3D(
-        self: *Renderer,
-        tautris: *Tautris,
-        physics: *Physics,
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-    ) void {
+    pub fn renderTautris3D(self: *Renderer, tautris: *Tautris, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
         _ = physics;
 
         // Set viewport for this panel
@@ -111,15 +103,7 @@ pub const Renderer = struct {
         );
     }
 
-    pub fn renderXSpace(
-        self: *Renderer,
-        substrate: *KSpaceSubstrate,
-        physics: *Physics,
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-    ) void {
+    pub fn renderXSpace(self: *Renderer, substrate: *KSpaceSubstrate, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
         _ = self;
         _ = physics;
 

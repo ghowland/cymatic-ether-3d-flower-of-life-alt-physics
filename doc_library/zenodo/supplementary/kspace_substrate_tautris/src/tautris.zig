@@ -50,15 +50,12 @@ pub const Tautris = struct {
     };
 
     pub fn init() Tautris {
-        var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-        const allocator = gpa.allocator();
-
         return Tautris{
             .grid = [_][10][10]bool{[_][10]bool{[_]bool{false} ** 10} ** 10} ** 20,
             .current_piece = .T,
             .position = .{ 4, 18, 4 },
             .rotation = 0,
-            .locked_blocks = std.array_list.Managed([3]i32).init(allocator),
+            .locked_blocks = undefined, // Will be set in main
             .piece_locked = false,
             .score = 0,
             .drop_timer = 0,

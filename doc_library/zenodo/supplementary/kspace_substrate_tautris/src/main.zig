@@ -35,6 +35,7 @@ pub fn main() !void {
     var substrate = try KSpaceSubstrate.init(app_allocator, 512);
     var physics = Physics{ .N = 9e60 };
     var tautris = Tautris.init();
+    tautris.locked_blocks = std.array_list.Managed([3]i32).init(app_allocator); // Initialize with app_allocator
     var renderer = Renderer.init();
     var ui = UI.init();
 

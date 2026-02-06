@@ -24,12 +24,7 @@ pub const UI = struct {
         physics.N = math.pow(f64, 10.0, self.n_slider_value);
     }
 
-    pub fn render(
-        self: *UI,
-        physics: *Physics,
-        tautris: *Tautris,
-        mode: anytype,
-    ) void {
+    pub fn render(self: *UI, physics: *Physics, tautris: *Tautris, mode: anytype) void {
         var buffer: [256]u8 = undefined;
 
         // Top left: Physics info
