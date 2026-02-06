@@ -1,7 +1,3 @@
-// K-Space Substrate Viewer in Zig + Raylib
-// Compile: zig build-exe substrate_viewer.zig -lc -lraylib
-// Or use build.zig below
-
 const std = @import("std");
 const rl = @cImport({
     @cInclude("raylib.h");
@@ -25,34 +21,24 @@ const KSpaceSubstrate = struct {
     size: i32,
     data: []f32,
     allocator: std.mem.Allocator,
-    texture: rl.Texture2D,
-    image_data: []u8,
-    needs_update: bool,
 
     pub fn init(allocator: std.mem.Allocator, size: i32) !KSpaceSubstrate {
         const total = @as(usize, @intCast(size * size));
         const data = try allocator.alloc(f32, total);
-        const image_data = try allocator.alloc(u8, total * 4); // RGBA
 
         var substrate = KSpaceSubstrate{
             .size = size,
             .data = data,
             .allocator = allocator,
-            .texture = undefined,
-            .image_data = image_data,
-            .needs_update = true,
         };
 
         try substrate.generate();
-        substrate.createTexture();
 
         return substrate;
     }
 
     pub fn deinit(self: *KSpaceSubstrate) void {
-        rl.UnloadTexture(self.texture);
         self.allocator.free(self.data);
-        self.allocator.free(self.image_data);
     }
 
     fn generate(self: *KSpaceSubstrate) !void {
@@ -111,19 +97,6 @@ const KSpaceSubstrate = struct {
         std.debug.print("Substrate generation complete\n", .{});
     }
 
-    fn createTexture(self: *KSpaceSubstrate) void {
-        // Create initial texture (empty, will be updated)
-        const img = rl.Image{
-            .data = self.image_data.ptr,
-            .width = self.size,
-            .height = self.size,
-            .mipmaps = 1,
-            .format = rl.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
-        };
-        self.texture = rl.LoadTextureFromImage(img);
-        rl.SetTextureFilter(self.texture, rl.TEXTURE_FILTER_BILINEAR);
-    }
-
     fn colormapDisplacement(value: f32) rl.Color {
         // Normalize from [-2, 2] to [0, 1]
         var normalized = (value + 2.0) / 4.0;
@@ -150,10 +123,13 @@ const KSpaceSubstrate = struct {
         return rl.Color{ .r = r, .g = g, .b = b, .a = 255 };
     }
 
-    pub fn updateView(self: *KSpaceSubstrate, view: ViewState, screen_width: i32, screen_height: i32) void {
+    pub fn renderToTexture(self: *KSpaceSubstrate, view: ViewState, width: i32, height: i32, allocator: std.mem.Allocator) !rl.Image {
+        const pixels = try allocator.alloc(rl.Color, @intCast(width * height));
+        defer allocator.free(pixels);
+
         // Calculate world space view bounds
-        const half_w = (@as(f32, @floatFromInt(screen_width)) / 2.0) / view.zoom;
-        const half_h = (@as(f32, @floatFromInt(screen_height)) / 2.0) / view.zoom;
+        const half_w = (@as(f32, @floatFromInt(width)) / 2.0) / view.zoom;
+        const half_h = (@as(f32, @floatFromInt(height)) / 2.0) / view.zoom;
 
         const world_x_min = view.center_x - half_w;
         const world_x_max = view.center_x + half_w;
@@ -167,14 +143,65 @@ const KSpaceSubstrate = struct {
         const substrate_y_min = @as(i32, @intFromFloat((world_y_min / 40.0) * size_f));
         const substrate_y_max = @as(i32, @intFromFloat((world_y_max / 40.0) * size_f));
 
-        // Sample and render directly to screen (much faster than texture update)
+        // Render each pixel
         var sy: i32 = 0;
-        while (sy < screen_height) : (sy += 1) {
+        while (sy < height) : (sy += 1) {
             var sx: i32 = 0;
-            while (sx < screen_width) : (sx += 1) {
-                // Map screen pixel to substrate coordinate
-                const t_x = @as(f32, @floatFromInt(sx)) / @as(f32, @floatFromInt(screen_width));
-                const t_y = @as(f32, @floatFromInt(sy)) / @as(f32, @floatFromInt(screen_height));
+            while (sx < width) : (sx += 1) {
+                const t_x = @as(f32, @floatFromInt(sx)) / @as(f32, @floatFromInt(width));
+                const t_y = @as(f32, @floatFromInt(sy)) / @as(f32, @floatFromInt(height));
+
+                const sub_x_f = @as(f32, @floatFromInt(substrate_x_min)) + t_x * @as(f32, @floatFromInt(substrate_x_max - substrate_x_min));
+                const sub_y_f = @as(f32, @floatFromInt(substrate_y_min)) + t_y * @as(f32, @floatFromInt(substrate_y_max - substrate_y_min));
+
+                const sub_x = math.clamp(@as(i32, @intFromFloat(sub_x_f)), 0, self.size - 1);
+                const sub_y = math.clamp(@as(i32, @intFromFloat(sub_y_f)), 0, self.size - 1);
+
+                const idx = @as(usize, @intCast(sub_y * self.size + sub_x));
+                const value = self.data[idx];
+
+                const pixel_idx = @as(usize, @intCast(sy * width + sx));
+                pixels[pixel_idx] = colormapDisplacement(value);
+            }
+        }
+
+        // Create image
+        const img = rl.Image{
+            .data = pixels.ptr,
+            .width = width,
+            .height = height,
+            .mipmaps = 1,
+            .format = rl.PIXELFORMAT_UNCOMPRESSED_R8G8B8A8,
+        };
+
+        // Load image copy (raylib will manage memory)
+        return rl.ImageCopy(img);
+    }
+
+    pub fn drawToScreen(self: *KSpaceSubstrate, view: ViewState, width: i32, height: i32) void {
+        // Calculate world space view bounds
+        const half_w = (@as(f32, @floatFromInt(width)) / 2.0) / view.zoom;
+        const half_h = (@as(f32, @floatFromInt(height)) / 2.0) / view.zoom;
+
+        const world_x_min = view.center_x - half_w;
+        const world_x_max = view.center_x + half_w;
+        const world_y_min = view.center_y - half_h;
+        const world_y_max = view.center_y + half_h;
+
+        // Map to substrate coordinates
+        const size_f: f32 = @floatFromInt(self.size);
+        const substrate_x_min = @as(i32, @intFromFloat((world_x_min / 40.0) * size_f));
+        const substrate_x_max = @as(i32, @intFromFloat((world_x_max / 40.0) * size_f));
+        const substrate_y_min = @as(i32, @intFromFloat((world_y_min / 40.0) * size_f));
+        const substrate_y_max = @as(i32, @intFromFloat((world_y_max / 40.0) * size_f));
+
+        // Draw pixels
+        var sy: i32 = 0;
+        while (sy < height) : (sy += 1) {
+            var sx: i32 = 0;
+            while (sx < width) : (sx += 1) {
+                const t_x = @as(f32, @floatFromInt(sx)) / @as(f32, @floatFromInt(width));
+                const t_y = @as(f32, @floatFromInt(sy)) / @as(f32, @floatFromInt(height));
 
                 const sub_x_f = @as(f32, @floatFromInt(substrate_x_min)) + t_x * @as(f32, @floatFromInt(substrate_x_max - substrate_x_min));
                 const sub_y_f = @as(f32, @floatFromInt(substrate_y_min)) + t_y * @as(f32, @floatFromInt(substrate_y_max - substrate_y_min));
@@ -192,16 +219,54 @@ const KSpaceSubstrate = struct {
     }
 };
 
+fn findNextFilename(allocator: std.mem.Allocator) ![]const u8 {
+    const prefix = "kspace_cymatic_substrate_";
+    const ext = ".png";
+
+    // Try to open current directory
+    var dir = std.fs.cwd();
+
+    var counter: u32 = 0;
+    while (counter < 10000) : (counter += 1) {
+        // Format filename
+        const filename = try std.fmt.allocPrint(
+            allocator,
+            "{s}{d:0>4}{s}",
+            .{ prefix, counter, ext },
+        );
+        defer allocator.free(filename);
+
+        // Check if file exists
+        const file = dir.openFile(filename, .{}) catch {
+            // File doesn't exist, use this name
+            return try std.fmt.allocPrint(
+                allocator,
+                "{s}{d:0>4}{s}",
+                .{ prefix, counter, ext },
+            );
+        };
+        file.close();
+    }
+
+    // Fallback if all 10000 slots taken
+    return try std.fmt.allocPrint(
+        allocator,
+        "{s}9999{s}",
+        .{ prefix, ext },
+    );
+}
+
 pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
 
-    // Screen settings
-    const screen_width: i32 = 1200;
-    const screen_height: i32 = 900;
+    // Initial screen settings
+    const initial_width: i32 = 1200;
+    const initial_height: i32 = 900;
 
-    rl.InitWindow(screen_width, screen_height, "K-Space Substrate Viewer");
+    rl.SetConfigFlags(rl.FLAG_WINDOW_RESIZABLE);
+    rl.InitWindow(initial_width, initial_height, "K-Space Substrate Viewer");
     defer rl.CloseWindow();
 
     rl.SetTargetFPS(60);
@@ -218,6 +283,10 @@ pub fn main() !void {
     const zoom_speed: f32 = 1.05;
 
     while (!rl.WindowShouldClose()) {
+        // Get current window dimensions
+        const screen_width = rl.GetScreenWidth();
+        const screen_height = rl.GetScreenHeight();
+
         // Handle input
         const dt = rl.GetFrameTime();
         const move_speed = (pan_speed * 60.0 * dt) / view.zoom;
@@ -250,6 +319,27 @@ pub fn main() !void {
             view = ViewState{};
         }
 
+        // Save to PNG
+        if (rl.IsKeyPressed(rl.KEY_P)) {
+            std.debug.print("Saving image...\n", .{});
+
+            // Find next available filename
+            const filename = try findNextFilename(allocator);
+            defer allocator.free(filename);
+
+            // Render current view to image
+            const img = try substrate.renderToTexture(view, screen_width, screen_height, allocator);
+            defer rl.UnloadImage(img);
+
+            // Export as PNG
+            const success = rl.ExportImage(img, filename.ptr);
+            if (success) {
+                std.debug.print("Saved: {s}\n", .{filename});
+            } else {
+                std.debug.print("Failed to save image\n", .{});
+            }
+        }
+
         // Clamp view
         view.center_x = math.clamp(view.center_x, 0.0, 40.0);
         view.center_y = math.clamp(view.center_y, 0.0, 40.0);
@@ -261,7 +351,7 @@ pub fn main() !void {
         rl.ClearBackground(rl.BLACK);
 
         // Draw substrate
-        substrate.updateView(view, screen_width, screen_height);
+        substrate.drawToScreen(view, screen_width, screen_height);
 
         // Draw UI overlay
         const fps = rl.GetFPS();
@@ -276,6 +366,9 @@ pub fn main() !void {
         const pos_text = std.fmt.bufPrintZ(&buffer, "Pos: ({d:.1}, {d:.1})", .{ view.center_x, view.center_y }) catch "Pos: --";
         rl.DrawText(pos_text.ptr, 20, 70, 20, rl.WHITE);
 
-        rl.DrawText("Arrow/WASD: Move | +/-: Zoom | R: Reset | ESC: Quit", 20, screen_height - 30, 20, rl.WHITE);
+        const size_text = std.fmt.bufPrintZ(&buffer, "Size: {d}x{d}", .{ screen_width, screen_height }) catch "Size: --";
+        rl.DrawText(size_text.ptr, 20, 95, 20, rl.WHITE);
+
+        rl.DrawText("Arrow/WASD: Move | +/-: Zoom | R: Reset | P: Save PNG | ESC: Quit", 20, screen_height - 30, 20, rl.WHITE);
     }
 }
