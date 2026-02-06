@@ -103,7 +103,7 @@ pub const SoftBody = struct {
     is_player_controlled: bool,
 
     pub fn init(allocator: std.mem.Allocator, blocks: [4][3]i32, position: [3]f32, material: Material) !SoftBody {
-        var voxels = std.ArrayList(Voxel).init(allocator);
+        var voxels = std.array_list.Managed(Voxel).init(allocator);
 
         const block_size: f32 = 0.5; // Each block is still 0.5m
         const voxel_size: f32 = 0.25; // But subdivided into 0.25m voxels (2×2×2 = 8 voxels per block)
@@ -353,102 +353,6 @@ pub const Tautris = struct {
         }
     }
 
-    pub fn handleCollisions(self: *SoftBody, floor_y: f32) void {
-        const restitution: f32 = 0.3;
-        const friction: f32 = 0.8;
-        const min_bounce_velocity: f32 = 0.1; // Stop tiny bounces
-
-        for (self.voxels.items) |*voxel| {
-            if (!voxel.active) continue;
-
-            const half_size = voxel.size * 0.5;
-
-            // Floor collision
-            if (voxel.position[1] - half_size < floor_y) {
-                voxel.position[1] = floor_y + half_size;
-
-                // Stop bouncing if velocity is tiny
-                if (@abs(voxel.velocity[1]) < min_bounce_velocity) {
-                    voxel.velocity[1] = 0;
-                } else {
-                    voxel.velocity[1] = -voxel.velocity[1] * restitution;
-                }
-
-                voxel.velocity[0] *= friction;
-                voxel.velocity[2] *= friction;
-            }
-
-            // Wall collisions
-            if (voxel.position[0] - half_size < 0) {
-                voxel.position[0] = half_size;
-                voxel.velocity[0] = -voxel.velocity[0] * restitution;
-            }
-            if (voxel.position[0] + half_size > 10) {
-                voxel.position[0] = 10 - half_size;
-                voxel.velocity[0] = -voxel.velocity[0] * restitution;
-            }
-            if (voxel.position[2] - half_size < 0) {
-                voxel.position[2] = half_size;
-                voxel.velocity[2] = -voxel.velocity[2] * restitution;
-            }
-            if (voxel.position[2] + half_size > 10) {
-                voxel.position[2] = 10 - half_size;
-                voxel.velocity[2] = -voxel.velocity[2] * restitution;
-            }
-        }
-    }
-
-    fn handleInterBodyCollisions(self: *Tautris) void {
-        // Simple sphere-sphere collision between all voxels
-        var i: usize = 0;
-        while (i < self.bodies.items.len) : (i += 1) {
-            var j: usize = i + 1;
-            while (j < self.bodies.items.len) : (j += 1) {
-                const body1 = &self.bodies.items[i];
-                const body2 = &self.bodies.items[j];
-
-                for (body1.voxels.items) |*v1| {
-                    if (!v1.active) continue;
-
-                    for (body2.voxels.items) |*v2| {
-                        if (!v2.active) continue;
-
-                        const dx = v1.position[0] - v2.position[0];
-                        const dy = v1.position[1] - v2.position[1];
-                        const dz = v1.position[2] - v2.position[2];
-                        const dist_sq = dx * dx + dy * dy + dz * dz;
-
-                        const min_dist = (v1.size + v2.size) * 0.5;
-                        const min_dist_sq = min_dist * min_dist;
-
-                        if (dist_sq < min_dist_sq and dist_sq > 0.001) {
-                            const dist = @sqrt(dist_sq);
-                            const overlap = min_dist - dist;
-
-                            // Push apart
-                            const push_factor = overlap / dist * 0.5;
-                            v1.position[0] += dx * push_factor;
-                            v1.position[1] += dy * push_factor;
-                            v1.position[2] += dz * push_factor;
-
-                            v2.position[0] -= dx * push_factor;
-                            v2.position[1] -= dy * push_factor;
-                            v2.position[2] -= dz * push_factor;
-
-                            // Dampen velocities
-                            v1.velocity[0] *= 0.8;
-                            v1.velocity[1] *= 0.8;
-                            v1.velocity[2] *= 0.8;
-                            v2.velocity[0] *= 0.8;
-                            v2.velocity[1] *= 0.8;
-                            v2.velocity[2] *= 0.8;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     pub fn updatePhysics(self: *SoftBody, dt: f32, gravity: f32, physics: *Physics) void {
         _ = physics;
         _ = gravity;
@@ -582,9 +486,6 @@ pub const Tautris = struct {
                 body.fracture();
             }
         }
-
-        // Remove handleCollisions and handleInterBodyCollisions
-        // Use constraint solver instead
 
         // Detect all contacts
         self.solver.detectContacts(self) catch {};
