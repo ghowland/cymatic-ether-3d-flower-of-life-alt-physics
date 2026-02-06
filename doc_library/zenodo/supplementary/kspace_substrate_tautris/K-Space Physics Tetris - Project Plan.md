@@ -1,7 +1,7 @@
-# K-Space Physics Tetris - Project Plan
+# K-Space Physics tautris - Project Plan
 
 ## Overview
-Physics playground combining discrete k-space substrate mechanics with traditional Tetris gameplay. Three-panel view: k-space visualization (left), 3D Tetris gameplay (center), x-space projection (right). All physics derived from N with real-time parameter control.
+Physics playground combining discrete k-space substrate mechanics with traditional tautris gameplay. Three-panel view: k-space visualization (left), 3D tautris gameplay (center), x-space projection (right). All physics derived from N with real-time parameter control.
 
 ---
 
@@ -14,8 +14,8 @@ src/
 ├── main.zig                    # Entry point, main loop
 ├── kspace_substrate.zig        # Core physics (from working viewer)
 ├── physics_params.zig          # Derivations from N (α, masses, forces)
-├── tetris_game.zig            # Game logic, collision, scoring
-├── renderer_3d.zig            # Raylib 3D tetris blocks
+├── tautris_game.zig            # Game logic, collision, scoring
+├── renderer_3d.zig            # Raylib 3D tautris blocks
 ├── renderer_kspace.zig        # 2D k-space field visualization
 ├── renderer_xspace.zig        # 2D/3D x-space projection
 ├── ui_controls.zig            # Sliders, toggles, info panels
@@ -58,17 +58,17 @@ pub const PhysicsState = struct {
 ### 1.3 Substrate Integration
 - [ ] Port working KSpaceSubstrate to module
 - [ ] Add time evolution: `substrate.step(dt, physics)`
-- [ ] Add particle injection (tetris blocks modify field)
+- [ ] Add particle injection (tautris blocks modify field)
 - [ ] Add field query methods for rendering
 
 ---
 
-## Phase 2: Tetris Game Logic
+## Phase 2: tautris Game Logic
 
 ### 2.1 Core Game
 ```zig
-// tetris_game.zig
-pub const TetrisGame = struct {
+// tautris_game.zig
+pub const tautrisGame = struct {
     grid: [20][10][10]bool,  // 3D grid (height, x, z)
     current_piece: Tetromino,
     position: Vec3i,
@@ -76,17 +76,17 @@ pub const TetrisGame = struct {
     score: u32,
     level: u32,
     
-    pub fn update(self: *TetrisGame, dt: f32) void;
-    pub fn moveLeft(self: *TetrisGame) void;
-    pub fn moveRight(self: *TetrisGame) void;
-    pub fn moveForward(self: *TetrisGame) void;
-    pub fn moveBackward(self: *TetrisGame) void;
-    pub fn rotate(self: *TetrisGame, axis: Axis) void;
-    pub fn drop(self: *TetrisGame) void;
-    pub fn checkCollision(self: *TetrisGame) bool;
-    pub fn lockPiece(self: *TetrisGame) void;
-    pub fn clearLines(self: *TetrisGame) u32;
-    pub fn injectIntoSubstrate(self: *TetrisGame, substrate: *KSpaceSubstrate) void;
+    pub fn update(self: *tautrisGame, dt: f32) void;
+    pub fn moveLeft(self: *tautrisGame) void;
+    pub fn moveRight(self: *tautrisGame) void;
+    pub fn moveForward(self: *tautrisGame) void;
+    pub fn moveBackward(self: *tautrisGame) void;
+    pub fn rotate(self: *tautrisGame, axis: Axis) void;
+    pub fn drop(self: *tautrisGame) void;
+    pub fn checkCollision(self: *tautrisGame) bool;
+    pub fn lockPiece(self: *tautrisGame) void;
+    pub fn clearLines(self: *tautrisGame) u32;
+    pub fn injectIntoSubstrate(self: *tautrisGame, substrate: *KSpaceSubstrate) void;
 };
 
 pub const Tetromino = enum {
@@ -111,7 +111,7 @@ pub const Tetromino = enum {
 ```
 ┌─────────────┬──────────────┬─────────────┐
 │             │              │             │
-│  K-Space    │   3D Tetris  │  X-Space    │
+│  K-Space    │   3D tautris  │  X-Space    │
 │  (2D Field) │  (3D Game)   │  (2D Proj)  │
 │             │              │             │
 │  400x900    │   800x900    │  400x900    │
@@ -136,11 +136,11 @@ pub fn renderKSpace(
 }
 ```
 
-### 3.3 3D Tetris Renderer (Center Panel)
+### 3.3 3D tautris Renderer (Center Panel)
 ```zig
 // renderer_3d.zig
-pub fn renderTetris3D(
-    game: *TetrisGame,
+pub fn rendertautris3D(
+    game: *tautrisGame,
     physics: PhysicsState,
     spectrum: Spectrum,
     camera: rl.Camera3D,
@@ -267,7 +267,7 @@ pub fn drawPhysicsInfo(physics: PhysicsState, x: i32, y: i32) void {
     rl.DrawText(de_text.ptr, x, y + 60, 16, rl.WHITE);
 }
 
-pub fn drawGameInfo(game: *TetrisGame, x: i32, y: i32) void {
+pub fn drawGameInfo(game: *tautrisGame, x: i32, y: i32) void {
     // Score, level, lines
     // FPS counter
     // Current piece preview
@@ -303,7 +303,7 @@ pub const Spectrum = struct {
 
 ### 5.2 Mode Toggles
 - **K-Space mode**: Render center panel as 2D substrate (like viewer)
-- **X-Space mode**: Render center panel as 3D Tetris
+- **X-Space mode**: Render center panel as 3D tautris
 - Toggle key: `TAB`
 
 ---
@@ -312,7 +312,7 @@ pub const Spectrum = struct {
 
 ### 6.1 Input Mapping
 ```zig
-// Tetris controls
+// tautris controls
 WASD:      Move piece (X/Z plane)
 Arrow Up:  Rotate X axis
 Arrow Down: Rotate Y axis  
@@ -337,7 +337,7 @@ N:         Adjust N slider (hold and scroll)
 pub fn main() !void {
     // Setup
     var substrate = try KSpaceSubstrate.init(allocator, 512);
-    var game = TetrisGame.init();
+    var game = tautrisGame.init();
     var physics = PhysicsState{ .N = 9e60 };
     var ui = UIState{};
     
@@ -377,9 +377,9 @@ pub fn main() !void {
             renderKSpace(&substrate, 0, 0, 400, 900, ...);
         }
         
-        // Center panel: Tetris or K-Space fullscreen
+        // Center panel: tautris or K-Space fullscreen
         if (ui.render_mode == .XSpace) {
-            renderTetris3D(&game, physics, ui.spectrum, camera);
+            rendertautris3D(&game, physics, ui.spectrum, camera);
         } else {
             renderKSpace(&substrate, 400, 0, 800, 900, ...);
         }
@@ -425,7 +425,7 @@ fn injectBlock(substrate: *KSpaceSubstrate, pos: Vec3i, piece: Tetromino, physic
 
 ### 7.2 Gravity from α_g
 ```zig
-fn applyGravity(game: *TetrisGame, physics: PhysicsState, dt: f32) void {
+fn applyGravity(game: *tautrisGame, physics: PhysicsState, dt: f32) void {
     const g = physics.gravity_coupling() * 100.0;  // Scale for gameplay
     game.velocity.y -= g * dt;
 }
@@ -450,15 +450,15 @@ fn clearLine(substrate: *KSpaceSubstrate, y: i32) void {
 3. Implement PhysicsState with all derivations
 4. Test parameter changes affect display
 
-### Week 2: Tetris Mechanics
-1. Implement TetrisGame (2D first, then 3D)
+### Week 2: tautris Mechanics
+1. Implement tautrisGame (2D first, then 3D)
 2. Basic collision detection
 3. Piece rotation (quaternions)
 4. Score/level system
 
 ### Week 3: 3D Rendering
 1. Raylib 3D camera setup
-2. Render tetris grid
+2. Render tautris grid
 3. Render falling/locked pieces
 4. Ghost piece preview
 
@@ -479,7 +479,7 @@ fn clearLine(substrate: *KSpaceSubstrate, y: i32) void {
 ## Performance Considerations
 
 - **K-Space**: Already optimized (512×512 substrate)
-- **3D Tetris**: Lightweight (max 200 blocks)
+- **3D tautris**: Lightweight (max 200 blocks)
 - **X-Space**: Heavy (inverse FFT) → optional toggle
 - Target: 60 FPS with all panels active (30 FPS acceptable with X-space FFT)
 
@@ -488,7 +488,7 @@ fn clearLine(substrate: *KSpaceSubstrate, y: i32) void {
 ## Success Criteria
 
 - [ ] All physics quantities derive from single N parameter
-- [ ] Tetris gameplay smooth at 60 FPS (center panel)
+- [ ] tautris gameplay smooth at 60 FPS (center panel)
 - [ ] K-space visualization shows wave interference
 - [ ] X-space projection renders (even if slow)
 - [ ] UI sliders change physics in real-time

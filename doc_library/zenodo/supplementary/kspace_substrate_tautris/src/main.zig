@@ -5,7 +5,7 @@ const rl = @cImport({
 
 const KSpaceSubstrate = @import("kspace_substrate.zig").KSpaceSubstrate;
 const Physics = @import("physics.zig").Physics;
-const Tetris = @import("tetris.zig").Tetris;
+const Tautris = @import("tautris.zig").Tautris;
 const Renderer = @import("renderer.zig").Renderer;
 const UI = @import("ui.zig").UI;
 
@@ -22,21 +22,20 @@ pub fn main() !void {
     defer _ = frame_gpa.deinit();
     var frame_arena = std.heap.ArenaAllocator.init(frame_gpa.allocator());
     defer frame_arena.deinit();
-    const frame_allocator = frame_arena.allocator();
 
     // Window setup
     const window_width: i32 = 1600;
     const window_height: i32 = 900;
 
     rl.SetConfigFlags(rl.FLAG_WINDOW_RESIZABLE | rl.FLAG_MSAA_4X_HINT);
-    rl.InitWindow(window_width, window_height, "K-Space Physics Tetris");
+    rl.InitWindow(window_width, window_height, "K-Space Physics Tautris");
     defer rl.CloseWindow();
     rl.SetTargetFPS(60);
 
     // Initialize systems
     var substrate = try KSpaceSubstrate.init(app_allocator, 512);
     var physics = Physics{ .N = 9e60 };
-    var tetris = Tetris.init();
+    var tautris = Tautris.init();
     var renderer = Renderer.init();
     var ui = UI.init();
 
@@ -68,15 +67,15 @@ pub fn main() !void {
 
         // Update game
         if (!paused) {
-            tetris.update(dt, &physics);
-            tetris.handleInput();
-            
+            tautris.update(dt, &physics);
+            tautris.handleInput();
+
             // Update substrate when piece locks
-            if (tetris.piece_locked) {
-                substrate.injectPiece(tetris.locked_blocks, &physics);
-                tetris.piece_locked = false;
+            if (tautris.piece_locked) {
+                substrate.injectPiece(tautris.locked_blocks, &physics);
+                tautris.piece_locked = false;
             }
-            
+
             substrate.step(dt, &physics);
         }
 
@@ -89,20 +88,20 @@ pub fn main() !void {
         const screen_height = rl.GetScreenHeight();
 
         if (mode == .kspace) {
-            // K-space mode: left panel = substrate, center = tetris, right = substrate zoom
+            // K-space mode: left panel = substrate, center = tautris, right = substrate zoom
             renderer.renderKSpace(&substrate, 0, 0, screen_width / 3, screen_height);
-            renderer.renderTetris3D(&tetris, &physics, screen_width / 3, 0, screen_width / 3, screen_height);
+            renderer.renderTautris3D(&tautris, &physics, screen_width / 3, 0, screen_width / 3, screen_height);
             renderer.renderKSpace(&substrate, 2 * screen_width / 3, 0, screen_width / 3, screen_height);
         } else {
-            // X-space mode: left = xspace, center = tetris, right = physics info
+            // X-space mode: left = xspace, center = tautris, right = physics info
             renderer.renderXSpace(&substrate, &physics, 0, 0, screen_width / 3, screen_height);
-            renderer.renderTetris3D(&tetris, &physics, screen_width / 3, 0, screen_width / 3, screen_height);
+            renderer.renderTautris3D(&tautris, &physics, screen_width / 3, 0, screen_width / 3, screen_height);
             renderer.renderXSpace(&substrate, &physics, 2 * screen_width / 3, 0, screen_width / 3, screen_height);
         }
 
         // UI overlay
         if (show_ui) {
-            ui.render(&physics, &tetris, mode);
+            ui.render(&physics, &tautris, mode);
         }
 
         // FPS
@@ -116,19 +115,19 @@ pub fn main() !void {
 }
 
 fn saveScreenshot(allocator: std.mem.Allocator) !void {
-    const prefix = "kspace_tetris_";
+    const prefix = "kspace_tautris_";
     const ext = ".png";
 
     var dir = std.fs.cwd();
     var counter: u32 = 0;
-    
+
     while (counter < 10000) : (counter += 1) {
         const filename = try std.fmt.allocPrintZ(
             allocator,
             "{s}{d:0>4}{s}",
             .{ prefix, counter, ext },
         );
-        
+
         const file = dir.openFile(filename, .{}) catch {
             rl.TakeScreenshot(filename.ptr);
             std.debug.print("Saved: {s}\n", .{filename});
@@ -137,4 +136,3 @@ fn saveScreenshot(allocator: std.mem.Allocator) !void {
         file.close();
     }
 }
-

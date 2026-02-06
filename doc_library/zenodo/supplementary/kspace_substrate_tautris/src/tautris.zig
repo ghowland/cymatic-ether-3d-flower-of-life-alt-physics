@@ -4,7 +4,7 @@ const rl = @cImport({
 });
 const Physics = @import("physics.zig").Physics;
 
-pub const Tetris = struct {
+pub const Tautris = struct {
     grid: [20][10][10]bool,
     current_piece: Piece,
     position: [3]i32,
@@ -16,7 +16,13 @@ pub const Tetris = struct {
     drop_interval: f32,
 
     const Piece = enum {
-        I, O, T, S, Z, J, L,
+        I,
+        O,
+        T,
+        S,
+        Z,
+        J,
+        L,
 
         fn getBlocks(self: Piece) [4][3]i32 {
             return switch (self) {
@@ -43,11 +49,11 @@ pub const Tetris = struct {
         }
     };
 
-    pub fn init() Tetris {
+    pub fn init() Tautris {
         var gpa = std.heap.GeneralPurposeAllocator(.{}){};
         const allocator = gpa.allocator();
-        
-        return Tetris{
+
+        return Tautris{
             .grid = [_][10][10]bool{[_][10]bool{[_]bool{false} ** 10} ** 10} ** 20,
             .current_piece = .T,
             .position = .{ 4, 18, 4 },
@@ -60,9 +66,9 @@ pub const Tetris = struct {
         };
     }
 
-    pub fn update(self: *Tetris, dt: f32, physics: *Physics) void {
+    pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
         const gravity = @as(f32, @floatCast(physics.gravity_scale()));
-        
+
         self.drop_timer += dt * gravity;
         if (self.drop_timer >= self.drop_interval) {
             self.drop_timer = 0;
@@ -70,7 +76,7 @@ pub const Tetris = struct {
         }
     }
 
-    pub fn handleInput(self: *Tetris) void {
+    pub fn handleInput(self: *Tautris) void {
         if (rl.IsKeyPressed(rl.KEY_A)) self.moveLeft();
         if (rl.IsKeyPressed(rl.KEY_D)) self.moveRight();
         if (rl.IsKeyPressed(rl.KEY_W)) self.moveForward();
@@ -79,27 +85,27 @@ pub const Tetris = struct {
         if (rl.IsKeyPressed(rl.KEY_UP)) self.rotate();
     }
 
-    fn moveLeft(self: *Tetris) void {
+    fn moveLeft(self: *Tautris) void {
         self.position[0] -= 1;
         if (self.checkCollision()) self.position[0] += 1;
     }
 
-    fn moveRight(self: *Tetris) void {
+    fn moveRight(self: *Tautris) void {
         self.position[0] += 1;
         if (self.checkCollision()) self.position[0] -= 1;
     }
 
-    fn moveForward(self: *Tetris) void {
+    fn moveForward(self: *Tautris) void {
         self.position[2] -= 1;
         if (self.checkCollision()) self.position[2] += 1;
     }
 
-    fn moveBackward(self: *Tetris) void {
+    fn moveBackward(self: *Tautris) void {
         self.position[2] += 1;
         if (self.checkCollision()) self.position[2] -= 1;
     }
 
-    fn moveDown(self: *Tetris) void {
+    fn moveDown(self: *Tautris) void {
         self.position[1] -= 1;
         if (self.checkCollision()) {
             self.position[1] += 1;
@@ -107,7 +113,7 @@ pub const Tetris = struct {
         }
     }
 
-    fn hardDrop(self: *Tetris) void {
+    fn hardDrop(self: *Tautris) void {
         while (!self.checkCollision()) {
             self.position[1] -= 1;
         }
@@ -115,14 +121,14 @@ pub const Tetris = struct {
         self.lockPiece();
     }
 
-    fn rotate(self: *Tetris) void {
+    fn rotate(self: *Tautris) void {
         self.rotation = (self.rotation + 1) % 4;
         if (self.checkCollision()) {
             self.rotation = (self.rotation + 3) % 4;
         }
     }
 
-    fn checkCollision(self: *Tetris) bool {
+    fn checkCollision(self: *Tautris) bool {
         const blocks = self.current_piece.getBlocks();
         for (blocks) |block| {
             const x = self.position[0] + block[0];
@@ -136,7 +142,7 @@ pub const Tetris = struct {
         return false;
     }
 
-    fn lockPiece(self: *Tetris) void {
+    fn lockPiece(self: *Tautris) void {
         const blocks = self.current_piece.getBlocks();
         for (blocks) |block| {
             const x = self.position[0] + block[0];
@@ -154,7 +160,7 @@ pub const Tetris = struct {
         self.spawnPiece();
     }
 
-    fn clearLines(self: *Tetris) void {
+    fn clearLines(self: *Tautris) void {
         var y: i32 = 0;
         while (y < 20) : (y += 1) {
             var full = true;
@@ -182,7 +188,7 @@ pub const Tetris = struct {
         }
     }
 
-    fn spawnPiece(self: *Tetris) void {
+    fn spawnPiece(self: *Tautris) void {
         const pieces = [_]Piece{ .I, .O, .T, .S, .Z, .J, .L };
         const idx = @mod(@as(usize, @intCast(rl.GetRandomValue(0, 6))), 7);
         self.current_piece = pieces[idx];
@@ -190,7 +196,7 @@ pub const Tetris = struct {
         self.rotation = 0;
     }
 
-    pub fn getCurrentBlocks(self: *Tetris) [4][3]i32 {
+    pub fn getCurrentBlocks(self: *Tautris) [4][3]i32 {
         const blocks = self.current_piece.getBlocks();
         var result: [4][3]i32 = undefined;
         for (blocks, 0..) |block, i| {
@@ -201,4 +207,3 @@ pub const Tetris = struct {
         return result;
     }
 };
-

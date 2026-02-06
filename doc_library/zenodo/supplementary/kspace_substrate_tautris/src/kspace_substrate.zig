@@ -71,7 +71,7 @@ pub const KSpaceSubstrate = struct {
 
     pub fn step(self: *KSpaceSubstrate, dt: f32, physics: *Physics) void {
         const coupling = @as(f32, @floatCast(physics.coupling_strength()));
-        
+
         // Simple wave equation: d²φ/dt² = c² ∇²φ
         var y: i32 = 1;
         while (y < self.size - 1) : (y += 1) {
@@ -83,9 +83,9 @@ pub const KSpaceSubstrate = struct {
                 const left = @as(usize, @intCast(y * self.size + (x - 1)));
                 const right = @as(usize, @intCast(y * self.size + (x + 1)));
 
-                const laplacian = self.data[up] + self.data[down] + 
-                                 self.data[left] + self.data[right] - 
-                                 4.0 * self.data[idx];
+                const laplacian = self.data[up] + self.data[down] +
+                    self.data[left] + self.data[right] -
+                    4.0 * self.data[idx];
 
                 self.temp[idx] = self.data[idx] + coupling * dt * laplacian;
             }
@@ -99,11 +99,11 @@ pub const KSpaceSubstrate = struct {
 
     pub fn injectPiece(self: *KSpaceSubstrate, blocks: []const [3]i32, physics: *Physics) void {
         const scale = @as(f32, @floatCast(physics.holographic_scale()));
-        
+
         for (blocks) |block| {
             const kx = @as(i32, @intFromFloat(@as(f32, @floatFromInt(block[0])) * scale));
             const ky = @as(i32, @intFromFloat(@as(f32, @floatFromInt(block[2])) * scale));
-            
+
             if (kx >= 0 and kx < self.size and ky >= 0 and ky < self.size) {
                 const idx = @as(usize, @intCast(ky * self.size + kx));
                 self.data[idx] += 0.5; // Inject energy
@@ -117,4 +117,3 @@ pub const KSpaceSubstrate = struct {
         return self.data[idx];
     }
 };
-

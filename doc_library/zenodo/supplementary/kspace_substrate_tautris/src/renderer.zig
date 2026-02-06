@@ -5,7 +5,7 @@ const rl = @cImport({
 const math = std.math;
 const KSpaceSubstrate = @import("kspace_substrate.zig").KSpaceSubstrate;
 const Physics = @import("physics.zig").Physics;
-const Tetris = @import("tetris.zig").Tetris;
+const Tautris = @import("tautris.zig").Tautris;
 
 pub const Renderer = struct {
     camera: rl.Camera3D,
@@ -31,7 +31,7 @@ pub const Renderer = struct {
         height: i32,
     ) void {
         _ = self;
-        
+
         const sx_step = @as(i32, @intFromFloat(@as(f32, @floatFromInt(substrate.size)) / @as(f32, @floatFromInt(width))));
         const sy_step = @as(i32, @intFromFloat(@as(f32, @floatFromInt(substrate.size)) / @as(f32, @floatFromInt(height))));
 
@@ -41,7 +41,7 @@ pub const Renderer = struct {
             while (px < width) : (px += 1) {
                 const sx = @min(px * sx_step, substrate.size - 1);
                 const sy = @min(py * sy_step, substrate.size - 1);
-                
+
                 const value = substrate.getValue(sx, sy);
                 const color = colormapDisplacement(value);
                 rl.DrawPixel(x + px, y + py, color);
@@ -49,9 +49,9 @@ pub const Renderer = struct {
         }
     }
 
-    pub fn renderTetris3D(
+    pub fn renderTautris3D(
         self: *Renderer,
-        tetris: *Tetris,
+        tautris: *Tautris,
         physics: *Physics,
         x: i32,
         y: i32,
@@ -59,7 +59,7 @@ pub const Renderer = struct {
         height: i32,
     ) void {
         _ = physics;
-        
+
         // Set viewport for this panel
         rl.BeginScissorMode(x, y, width, height);
         defer rl.EndScissorMode();
@@ -77,7 +77,7 @@ pub const Renderer = struct {
             while (xx < 10) : (xx += 1) {
                 var zz: i32 = 0;
                 while (zz < 10) : (zz += 1) {
-                    if (tetris.grid[@intCast(yy)][@intCast(xx)][@intCast(zz)]) {
+                    if (tautris.grid[@intCast(yy)][@intCast(xx)][@intCast(zz)]) {
                         const pos = rl.Vector3{
                             .x = @floatFromInt(xx),
                             .y = @floatFromInt(yy),
@@ -91,8 +91,8 @@ pub const Renderer = struct {
         }
 
         // Draw current piece
-        const blocks = tetris.getCurrentBlocks();
-        const color = tetris.current_piece.getColor();
+        const blocks = tautris.getCurrentBlocks();
+        const color = tautris.current_piece.getColor();
         for (blocks) |block| {
             const pos = rl.Vector3{
                 .x = @floatFromInt(block[0]),
@@ -124,7 +124,7 @@ pub const Renderer = struct {
     ) void {
         _ = self;
         _ = physics;
-        
+
         // Simplified x-space: just show substrate with different colormap
         const sx_step = @as(i32, @intFromFloat(@as(f32, @floatFromInt(substrate.size)) / @as(f32, @floatFromInt(width))));
         const sy_step = @as(i32, @intFromFloat(@as(f32, @floatFromInt(substrate.size)) / @as(f32, @floatFromInt(height))));
@@ -135,7 +135,7 @@ pub const Renderer = struct {
             while (px < width) : (px += 1) {
                 const sx = @min(px * sx_step, substrate.size - 1);
                 const sy = @min(py * sy_step, substrate.size - 1);
-                
+
                 const value = substrate.getValue(sx, sy);
                 const color = colormapXSpace(value);
                 rl.DrawPixel(x + px, y + py, color);
@@ -174,4 +174,3 @@ pub const Renderer = struct {
         return rl.Color{ .r = r, .g = r, .b = r, .a = 255 };
     }
 };
-
