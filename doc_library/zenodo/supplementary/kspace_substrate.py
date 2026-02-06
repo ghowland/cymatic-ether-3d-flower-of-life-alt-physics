@@ -25,15 +25,19 @@ class KSpaceSubstrate:
     # FORCE COUPLING FUNCTIONS α(N)
     # ========================================================================
     
-    def alpha_em(self):
+    def alpha_inv(self):
         """
-        Fine Structure Constant α_em = f(N).
-        Ratio of the vortex phase-winding energy to the holographic surface.
+        Derive 1/alpha (Inverse Fine Structure) as a pure ratio of N.
         α⁻¹ = (e * 3 * N^(1/3)) / (2π * ln N)
         """
-        vortex_energy = 2 * mp.pi * mp.log(self.N)
+        # Impedance of the holographic surface / Energy of the topological vortex
         holographic_impedance = mp.exp(1) * 3 * (self.N**(mp.mpf('1')/mp.mpf('3')))
-        return vortex_energy / holographic_impedance
+        vortex_energy = 2 * mp.pi * mp.log(self.N)
+        return holographic_impedance / vortex_energy
+
+    def alpha_em(self):
+        """Standard coupling constant: f(N)"""
+        return 1 / self.alpha_inv()
 
     def alpha_gravity(self):
         """
@@ -134,4 +138,3 @@ if __name__ == "__main__":
     print("Everything is a continuous mechanical function of N.")
     print("Q.E.D.")
 
-    
