@@ -10,11 +10,11 @@
     "inverse_alpha_em": 7.076240674748884e+17
   },
   "eigenvalues": {
-    "lambda_1": 268625.79335712263,
+    "lambda_1": 5.971232200724125e+77,
     "lambda_2": 75967305.11548711
   },
   "mass_ratios": {
-    "m_mu_over_m_e": 206.768283,
+    "m_mu_over_m_e": 3.0827765424933754e+38,
     "m_tau_over_m_e": 3477.1500000000005
   },
   "dark_sector": {
@@ -28,9 +28,9 @@
       "error_percent": 99.99999999999997
     },
     "m_mu_over_m_e": {
-      "predicted": 206.768283,
+      "predicted": 3.0827765424933754e+38,
       "experimental": 206.768283,
-      "error_percent": 0.0
+      "error_percent": 1.4909329892212605e+38
     },
     "m_tau_over_m_e": {
       "predicted": 3477.1500000000005,
