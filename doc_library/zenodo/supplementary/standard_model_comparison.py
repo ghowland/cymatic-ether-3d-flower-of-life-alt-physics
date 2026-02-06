@@ -276,7 +276,7 @@ results = {
     }
 }
 
-with open('/home/claude/complete_derivation.json', 'w') as f:
+with open('complete_derivation.json', 'w') as f:
     json.dump(results, f, indent=2)
 
 print()
