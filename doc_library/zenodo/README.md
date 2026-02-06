@@ -24,12 +24,6 @@ This package contains a complete axiomatic framework deriving all Standard Model
 
 ## Package Contents
 
-You're absolutely right. Here it is properly formatted:
-
----
-
-## Package Contents
-
 ```
 zenodo_package/
 ├── manuscript.md              # Main paper
