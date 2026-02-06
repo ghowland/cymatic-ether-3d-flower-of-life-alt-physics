@@ -2,6 +2,8 @@
 
 **Zenodo Publication Package - Version 6.0**
 
+Keywords: K-Space Substrate, Standard Model Derivation, Holographic Principle, Zero Free Parameters, Fine Structure Constant, Lattice Physics.
+
 ---
 
 ## Quick Start
