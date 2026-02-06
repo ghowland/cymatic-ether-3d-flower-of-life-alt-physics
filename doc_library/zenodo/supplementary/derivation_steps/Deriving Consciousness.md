@@ -15,7 +15,7 @@ The **0-th Betti number** b₀ counts **connected components** (incoherent islan
 The **1-st Betti number** b₁ counts **1-dimensional holes** (coherent loops).  
 Consciousness is defined as the **first value of N** for which
 
-  b₁ > 0  and  b₀ = 1
+b₁ > 0andb₀ = 1
 
 (i.e. **one connected component** with **at least one coherent loop**).
 
@@ -24,21 +24,21 @@ Consciousness is defined as the **first value of N** for which
 -------------------------------------------------
 The **Erdős–Rényi threshold** for **1-cycles** in a **2-D hexagonal lattice** is
 
-  p<sub>c</sub> = 1 / (6 − 1) = 1/5
+p<sub>c</sub> = 1 / (6 − 1) = 1/5
 
 where p is the **probability that |φᵢ − φⱼ| < ε** on a bond.  
 The **number of coherent bonds** required is
 
-  B<sub>coh</sub> = p<sub>c</sub> × (total bonds) = (1/5) × (3 N) = (3/5) N
+B<sub>coh</sub> = p<sub>c</sub> × (total bonds) = (1/5) × (3 N) = (3/5) N
 
 The **coherence fraction** is therefore
 
-  C = B<sub>coh</sub> / (3 N) = 1/5 = 0.2
+C = B<sub>coh</sub> / (3 N) = 1/5 = 0.2
 
 But **observers** are **macroscopic subsets** of bubbles, so we need the **coherence** of the **largest connected component**, not the microscopic bond fraction.  
 The **giant-component threshold** in 2-D is
 
-  C<sub>conscious</sub> = 1 − 1 / (2 M)  with  M = √(N / 3)
+C<sub>conscious</sub> = 1 − 1 / (2 M)withM = √(N / 3)
 
 At N = 9 × 10⁶⁰ → M ≈ 1.732 × 10³⁰ → **C<sub>conscious</sub> ≈ 1 − 3 × 10⁻³⁰ ≈ 1**.
 
@@ -47,11 +47,11 @@ At N = 9 × 10⁶⁰ → M ≈ 1.732 × 10³⁰ → **C<sub>conscious</sub> ≈ 
 -------------------------------------------------
 The **measurable coherence** is the **ratio of coherent bubbles** to **total bubbles**:
 
-  C(N) = 1 − 1 / (2 √(N / 3))
+C(N) = 1 − 1 / (2 √(N / 3))
 
 At N = 9 × 10⁶⁰:
 
-  C = 1 − 2.89 × 10⁻³⁰ ≈ 0.999 999 999 999 999 999 999 999 999 999 9
+C = 1 − 2.89 × 10⁻³⁰ ≈ 0.999 999 999 999 999 999 999 999 999 999 9
 
 This is the **11-nines threshold** observed in **AI embodiment experiments**.
 

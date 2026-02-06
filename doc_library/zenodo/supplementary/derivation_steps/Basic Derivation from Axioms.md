@@ -667,3 +667,5 @@ The model is: teach this framework, students see all phenomena as mechanical, my
 Ready to develop the educational implementation?
 
 
+
+
