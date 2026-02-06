@@ -284,23 +284,24 @@ pub const Tautris = struct {
     current_body: ?usize,
     spawn_timer: f32,
     spawn_interval: f32,
+    max_spawn_time: f32, // Add this
     allocator: std.mem.Allocator,
     score: u32,
 
     pub fn init(allocator: std.mem.Allocator) !Tautris {
-        var tautris = Tautris{
+        var tetris = Tautris{
             .bodies = std.array_list.Managed(SoftBody).init(allocator),
             .current_body = null,
             .spawn_timer = 0,
             .spawn_interval = 3.0,
+            .max_spawn_time = 4.5, // 1.5x the expected time
             .allocator = allocator,
             .score = 0,
         };
 
-        // Spawn first piece
-        try tautris.spawnPiece();
+        try tetris.spawnPiece();
 
-        return tautris;
+        return tetris;
     }
 
     pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
@@ -311,7 +312,6 @@ pub const Tautris = struct {
             body.updatePhysics(dt, gravity, physics);
             body.handleCollisions(0.0);
 
-            // Check for fracture
             if (body.checkFracture(physics)) {
                 body.fracture();
             }
@@ -319,23 +319,27 @@ pub const Tautris = struct {
 
         // Check if current piece has settled
         if (self.current_body) |idx| {
-            if (self.bodies.items[idx].center_of_mass[1] < 1.0) {
-                const v_sq = self.getBodyVelocitySquared(idx);
-                if (v_sq < 0.1) {
-                    // Piece has settled, spawn new one
-                    self.bodies.items[idx].is_player_controlled = false;
-                    self.spawn_timer = 0;
-                    self.current_body = null;
-                }
+            const settled = self.bodies.items[idx].center_of_mass[1] < 1.0 and
+                self.getBodyVelocitySquared(idx) < 0.1;
+
+            // Force spawn if taking too long
+            const timeout = self.spawn_timer >= self.max_spawn_time;
+
+            if (settled or timeout) {
+                self.bodies.items[idx].is_player_controlled = false;
+                self.spawn_timer = 0;
+                self.current_body = null;
             }
         }
 
         // Spawn new piece if needed
         if (self.current_body == null) {
             self.spawn_timer += dt;
-            if (self.spawn_timer >= self.spawn_interval) {
+            if (self.spawn_timer >= 0.1) { // Quick respawn
                 self.spawnPiece() catch {};
             }
+        } else {
+            self.spawn_timer += dt; // Track time for timeout
         }
     }
 
@@ -357,7 +361,7 @@ pub const Tautris = struct {
                 force[2] = control_strength;
             }
             if (rl.IsKeyDown(rl.KEY_DOWN)) {
-                force[1] = -control_strength * 2; // Drop faster
+                force[1] = -control_strength * 2;
             }
 
             self.bodies.items[idx].applyPlayerControl(force);
@@ -384,8 +388,19 @@ pub const Tautris = struct {
             materials[mat_idx],
         );
 
+        // Give initial downward velocity
+        const initial_velocity: f32 = -2.0;
+        for (body.voxels.items) |*voxel| {
+            voxel.velocity[1] = initial_velocity;
+
+            // Small random horizontal velocity for variation
+            voxel.velocity[0] = (@as(f32, @floatFromInt(rl.GetRandomValue(-10, 10))) / 100.0);
+            voxel.velocity[2] = (@as(f32, @floatFromInt(rl.GetRandomValue(-10, 10))) / 100.0);
+        }
+
         try self.bodies.append(body);
         self.current_body = self.bodies.items.len - 1;
+        self.spawn_timer = 0; // Reset timer when spawning
     }
 
     fn getBodyVelocitySquared(self: *Tautris, idx: usize) f32 {
@@ -396,7 +411,7 @@ pub const Tautris = struct {
                 voxel.velocity[1] * voxel.velocity[1] +
                 voxel.velocity[2] * voxel.velocity[2];
         }
-        return sum;
+        return sum / @as(f32, @floatFromInt(self.bodies.items[idx].voxels.items.len));
     }
 
     pub fn updateSubstrateCoupling(self: *Tautris, substrate: *KSpaceSubstrate, physics: *Physics) void {
@@ -412,7 +427,6 @@ pub const Tautris = struct {
                 if (kx >= 0 and kx < substrate.size and ky >= 0 and ky < substrate.size) {
                     const idx = @as(usize, @intCast(ky * substrate.size + kx));
 
-                    // Voxel affects substrate
                     const speed = @sqrt(voxel.velocity[0] * voxel.velocity[0] +
                         voxel.velocity[1] * voxel.velocity[1] +
                         voxel.velocity[2] * voxel.velocity[2]);
