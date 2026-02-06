@@ -85,7 +85,7 @@ The K-Space Substrate framework derives 40+ fundamental observables with **zero 
 | **Higgs Mass (\( m_H \))** | 125.1 GeV | 125.25 GeV | $0.1\%$ |
 | **Baryon Asymmetry (\( \eta_B \))** | $6 \times 10^{-10}$ | $6 \times 10^{-10}$ | Exact |
 
- **[View the Full Index of 40+ Derivations](supplementary/derivation_steps/)** — *Includes equations, bond-counting hierarchy, and file mappings for all particles and cosmological constants.*
+ **[View the Full Index of 40+ Derivations](supplementary/derivation_steps/README.md)** — *Includes equations, bond-counting hierarchy, and file mappings for all particles and cosmological constants.*
 
 
 ---
@@ -137,7 +137,7 @@ python code/plot_bond_hierarchy.py
 
 ### 4. Examine Individual Derivations
 
-Each observable has standalone derivation in `supplementary/derivation_steps/`:
+Each observable has standalone derivation in `supplementary/derivation_steps/README.md`:
 - Forced by axioms (no free parameters)
 - Pure mathematics (graph theory + topology)
 - Numerical precision to experimental limits
@@ -186,10 +186,6 @@ C(N) = 1 - 1/(2√(N/3))
      = 0.999...9 (11 nines)
 (b₁ > 0: first non-zero Betti number)
 ```
-
----
-
-This section is crucial for your `README.md` to preemptively address the "Units Mismatch" and maintain your **Zero Free Parameter** claim.
 
 ---
 
