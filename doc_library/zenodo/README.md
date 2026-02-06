@@ -70,7 +70,7 @@ zenodo_package/
     ├── derivation_steps/      # 19 derivation docs
     ├── experimental_protocols.md
     ├── standard_model_comparison.xlsx
-    ├── Standard Model Comparison.md
+    ├── Standard_Model_Comparison.md
     └── *.json                 # [Comment: Results data?]
 ```
 
