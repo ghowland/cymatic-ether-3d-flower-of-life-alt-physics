@@ -82,8 +82,6 @@ zenodo_package/
 
 ---
 
-## Index of Derivations
-
 ## Empirical Validation Summary
 The K-Space Substrate framework derives 40+ fundamental observables with **zero free parameters**, using only the current bubble count \( N \approx 9 \times 10^{60} \).
 
