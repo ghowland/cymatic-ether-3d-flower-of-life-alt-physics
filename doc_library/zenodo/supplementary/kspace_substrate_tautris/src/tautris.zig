@@ -13,31 +13,41 @@ pub const Material = enum {
 
     pub fn stiffness(self: Material) f32 {
         return switch (self) {
-            .stone => 0.9,
-            .jello => 0.1,
-            .mud => 0.3,
-            .metal => 1.0,
-            .glass => 0.95,
+            .stone => 50.0, // N/m spring constant
+            .jello => 2.0,
+            .mud => 10.0,
+            .metal => 100.0,
+            .glass => 80.0,
         };
     }
 
     pub fn damping(self: Material) f32 {
         return switch (self) {
-            .stone => 0.5,
-            .jello => 0.9,
-            .mud => 0.95,
-            .metal => 0.3,
-            .glass => 0.4,
+            .stone => 0.8,
+            .jello => 0.95,
+            .mud => 0.98,
+            .metal => 0.7,
+            .glass => 0.75,
+        };
+    }
+
+    pub fn density(self: Material) f32 {
+        return switch (self) {
+            .stone => 2500.0, // kg/m³
+            .jello => 1000.0,
+            .mud => 1800.0,
+            .metal => 7800.0,
+            .glass => 2500.0,
         };
     }
 
     pub fn fracture_threshold(self: Material) f32 {
         return switch (self) {
-            .stone => 50.0,
-            .jello => 1000.0, // Never fractures
-            .mud => 1000.0, // Deforms instead
-            .metal => 80.0,
-            .glass => 20.0, // Very brittle
+            .stone => 15.0, // m/s impact velocity
+            .jello => 1000.0,
+            .mud => 1000.0,
+            .metal => 25.0,
+            .glass => 8.0,
         };
     }
 
@@ -55,10 +65,11 @@ pub const Material = enum {
 pub const Voxel = struct {
     position: [3]f32,
     velocity: [3]f32,
-    rest_position: [3]f32, // Original position in piece
+    rest_position: [3]f32,
     mass: f32,
     material: Material,
     active: bool,
+    size: f32, // Physical size in meters
 
     pub fn applyForce(self: *Voxel, force: [3]f32, dt: f32) void {
         const accel = [3]f32{
@@ -92,22 +103,27 @@ pub const SoftBody = struct {
     pub fn init(allocator: std.mem.Allocator, blocks: [4][3]i32, position: [3]f32, material: Material) !SoftBody {
         var voxels = std.array_list.Managed(Voxel).init(allocator);
 
+        const voxel_size: f32 = 0.5; // Each block is 0.5m = 50cm cube
+        const voxel_volume = voxel_size * voxel_size * voxel_size; // m³
+        const voxel_mass = material.density() * voxel_volume; // kg
+
         for (blocks) |block| {
             try voxels.append(Voxel{
                 .position = .{
-                    position[0] + @as(f32, @floatFromInt(block[0])),
-                    position[1] + @as(f32, @floatFromInt(block[1])),
-                    position[2] + @as(f32, @floatFromInt(block[2])),
+                    position[0] + @as(f32, @floatFromInt(block[0])) * voxel_size,
+                    position[1] + @as(f32, @floatFromInt(block[1])) * voxel_size,
+                    position[2] + @as(f32, @floatFromInt(block[2])) * voxel_size,
                 },
                 .velocity = .{ 0, 0, 0 },
                 .rest_position = .{
-                    @floatFromInt(block[0]),
-                    @floatFromInt(block[1]),
-                    @floatFromInt(block[2]),
+                    @as(f32, @floatFromInt(block[0])) * voxel_size,
+                    @as(f32, @floatFromInt(block[1])) * voxel_size,
+                    @as(f32, @floatFromInt(block[2])) * voxel_size,
                 },
-                .mass = 1.0,
+                .mass = voxel_mass,
                 .material = material,
                 .active = true,
+                .size = voxel_size,
             });
         }
 
@@ -121,13 +137,16 @@ pub const SoftBody = struct {
 
     pub fn updatePhysics(self: *SoftBody, dt: f32, gravity: f32, physics: *Physics) void {
         _ = physics;
+        _ = gravity; // Using real Earth gravity instead
+
+        const earth_gravity: f32 = 9.81; // m/s²
         const stiff = self.material.stiffness();
         const damp = self.material.damping();
 
         // Apply gravity
         for (self.voxels.items) |*voxel| {
             if (!voxel.active) continue;
-            voxel.applyForce(.{ 0, -gravity * voxel.mass, 0 }, dt);
+            voxel.applyForce(.{ 0, -earth_gravity * voxel.mass, 0 }, dt);
         }
 
         // Spring forces (shape preservation)
@@ -148,7 +167,7 @@ pub const SoftBody = struct {
                 const dz_rest = v1.rest_position[2] - v2.rest_position[2];
                 const rest_dist = @sqrt(dx_rest * dx_rest + dy_rest * dy_rest + dz_rest * dz_rest);
 
-                if (rest_dist < 0.1) continue; // Skip if too close
+                if (rest_dist < 0.01) continue;
 
                 // Current distance
                 const dx = v1.position[0] - v2.position[0];
@@ -156,10 +175,11 @@ pub const SoftBody = struct {
                 const dz = v1.position[2] - v2.position[2];
                 const dist = @sqrt(dx * dx + dy * dy + dz * dz);
 
-                if (dist < 0.01) continue;
+                if (dist < 0.001) continue;
 
-                // Spring force
-                const force_mag = stiff * (dist - rest_dist);
+                // Spring force: F = k * Δx
+                const displacement = dist - rest_dist;
+                const force_mag = stiff * displacement;
                 const force = [3]f32{
                     (dx / dist) * force_mag,
                     (dy / dist) * force_mag,
@@ -177,40 +197,44 @@ pub const SoftBody = struct {
             voxel.integrate(dt, damp);
         }
 
-        // Update center of mass
         self.updateCenterOfMass();
     }
 
     pub fn handleCollisions(self: *SoftBody, floor_y: f32) void {
+        const restitution: f32 = 0.3; // Coefficient of restitution (bounciness)
+        const friction: f32 = 0.8;
+
         for (self.voxels.items) |*voxel| {
             if (!voxel.active) continue;
 
+            const half_size = voxel.size * 0.5;
+
             // Floor collision
-            if (voxel.position[1] < floor_y) {
-                voxel.position[1] = floor_y;
-                voxel.velocity[1] = -voxel.velocity[1] * 0.5; // Bounce with energy loss
+            if (voxel.position[1] - half_size < floor_y) {
+                voxel.position[1] = floor_y + half_size;
+                voxel.velocity[1] = -voxel.velocity[1] * restitution;
 
                 // Friction
-                voxel.velocity[0] *= 0.9;
-                voxel.velocity[2] *= 0.9;
+                voxel.velocity[0] *= friction;
+                voxel.velocity[2] *= friction;
             }
 
-            // Wall collisions
-            if (voxel.position[0] < 0) {
-                voxel.position[0] = 0;
-                voxel.velocity[0] = -voxel.velocity[0] * 0.5;
+            // Wall collisions (10m × 10m play area)
+            if (voxel.position[0] - half_size < 0) {
+                voxel.position[0] = half_size;
+                voxel.velocity[0] = -voxel.velocity[0] * restitution;
             }
-            if (voxel.position[0] > 10) {
-                voxel.position[0] = 10;
-                voxel.velocity[0] = -voxel.velocity[0] * 0.5;
+            if (voxel.position[0] + half_size > 10) {
+                voxel.position[0] = 10 - half_size;
+                voxel.velocity[0] = -voxel.velocity[0] * restitution;
             }
-            if (voxel.position[2] < 0) {
-                voxel.position[2] = 0;
-                voxel.velocity[2] = -voxel.velocity[2] * 0.5;
+            if (voxel.position[2] - half_size < 0) {
+                voxel.position[2] = half_size;
+                voxel.velocity[2] = -voxel.velocity[2] * restitution;
             }
-            if (voxel.position[2] > 10) {
-                voxel.position[2] = 10;
-                voxel.velocity[2] = -voxel.velocity[2] * 0.5;
+            if (voxel.position[2] + half_size > 10) {
+                voxel.position[2] = 10 - half_size;
+                voxel.velocity[2] = -voxel.velocity[2] * restitution;
             }
         }
     }
@@ -219,15 +243,14 @@ pub const SoftBody = struct {
         _ = physics;
         const threshold = self.material.fracture_threshold();
 
-        // Check if any voxel is under too much stress
         for (self.voxels.items) |*voxel| {
             if (!voxel.active) continue;
 
-            const speed_sq = voxel.velocity[0] * voxel.velocity[0] +
+            const speed = @sqrt(voxel.velocity[0] * voxel.velocity[0] +
                 voxel.velocity[1] * voxel.velocity[1] +
-                voxel.velocity[2] * voxel.velocity[2];
+                voxel.velocity[2] * voxel.velocity[2]);
 
-            if (speed_sq > threshold * threshold) {
+            if (speed > threshold) {
                 return true;
             }
         }
@@ -236,7 +259,7 @@ pub const SoftBody = struct {
     }
 
     pub fn fracture(self: *SoftBody) void {
-        // Simple fracture: disable random voxels
+        // Fracture: disable random voxels
         for (self.voxels.items) |*voxel| {
             if (rl.GetRandomValue(0, 3) == 0) {
                 voxel.active = false;
@@ -281,7 +304,6 @@ pub const SoftBody = struct {
 
 pub const Tautris = struct {
     bodies: std.array_list.Managed(SoftBody),
-    gravity_body: SoftBody, // Add this - massive invisible attractor
     current_body: ?usize,
     spawn_timer: f32,
     spawn_interval: f32,
@@ -290,35 +312,12 @@ pub const Tautris = struct {
     score: u32,
 
     pub fn init(allocator: std.mem.Allocator) !Tautris {
-        // Create massive gravity body at bottom
-        const gravity_blocks = [4][3]i32{
-            .{ 5, -5, 5 }, // Center below floor
-            .{ 5, -6, 5 },
-            .{ 5, -7, 5 },
-            .{ 5, -8, 5 },
-        };
-
-        var gravity_body = try SoftBody.init(
-            allocator,
-            gravity_blocks,
-            .{ 0, 0, 0 },
-            .metal,
-        );
-
-        // Make it massive and immobile
-        for (gravity_body.voxels.items) |*voxel| {
-            voxel.mass = 1000.0; // Very heavy
-            voxel.velocity = .{ 0, 0, 0 };
-        }
-        gravity_body.is_player_controlled = false;
-
         var tetris = Tautris{
             .bodies = std.array_list.Managed(SoftBody).init(allocator),
-            .gravity_body = gravity_body,
             .current_body = null,
             .spawn_timer = 0,
             .spawn_interval = 3.0,
-            .max_spawn_time = 4.5,
+            .max_spawn_time = 5.0,
             .allocator = allocator,
             .score = 0,
         };
@@ -329,19 +328,9 @@ pub const Tautris = struct {
     }
 
     pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
-        const gravity = @as(f32, @floatCast(physics.gravity_scale()));
-
-        // Update gravity body (keep it pinned)
-        for (self.gravity_body.voxels.items) |*voxel| {
-            voxel.velocity = .{ 0, 0, 0 }; // Never moves
-        }
-
-        // Update all bodies with gravitational attraction to gravity_body
+        // Update all bodies
         for (self.bodies.items) |*body| {
-            // Apply gravitational attraction to massive body
-            self.applyGravitationalAttraction(body, &self.gravity_body, dt);
-
-            body.updatePhysics(dt, gravity, physics);
+            body.updatePhysics(dt, 0, physics);
             body.handleCollisions(0.0);
 
             if (body.checkFracture(physics)) {
@@ -351,8 +340,8 @@ pub const Tautris = struct {
 
         // Check if current piece has settled
         if (self.current_body) |idx| {
-            const settled = self.bodies.items[idx].center_of_mass[1] < 1.0 and
-                self.getBodyVelocitySquared(idx) < 0.1;
+            const settled = self.bodies.items[idx].center_of_mass[1] < 0.5 and
+                self.getBodyVelocitySquared(idx) < 0.5;
 
             const timeout = self.spawn_timer >= self.max_spawn_time;
 
@@ -363,10 +352,10 @@ pub const Tautris = struct {
             }
         }
 
-        // Spawn new piece if needed
+        // Spawn new piece
         if (self.current_body == null) {
             self.spawn_timer += dt;
-            if (self.spawn_timer >= 0.1) {
+            if (self.spawn_timer >= 0.5) {
                 self.spawnPiece() catch {};
             }
         } else {
@@ -374,53 +363,10 @@ pub const Tautris = struct {
         }
     }
 
-    fn applyGravitationalAttraction(self: *Tautris, body: *SoftBody, attractor: *SoftBody, dt: f32) void {
-        _ = self;
-        const G: f32 = 10.0; // Gravitational constant (scaled for gameplay)
-
-        for (body.voxels.items) |*voxel| {
-            if (!voxel.active) continue;
-
-            // Find nearest attractor voxel
-            var min_dist_sq: f32 = 1e10;
-            var nearest_pos: [3]f32 = undefined;
-
-            for (attractor.voxels.items) |attractor_voxel| {
-                const dx = attractor_voxel.position[0] - voxel.position[0];
-                const dy = attractor_voxel.position[1] - voxel.position[1];
-                const dz = attractor_voxel.position[2] - voxel.position[2];
-                const dist_sq = dx * dx + dy * dy + dz * dz;
-
-                if (dist_sq < min_dist_sq) {
-                    min_dist_sq = dist_sq;
-                    nearest_pos = attractor_voxel.position;
-                }
-            }
-
-            const dist = @sqrt(min_dist_sq);
-            if (dist < 0.1) continue; // Avoid singularity
-
-            // Gravitational force: F = G * m1 * m2 / r²
-            const force_magnitude = G * voxel.mass * 1000.0 / min_dist_sq;
-
-            const dx = nearest_pos[0] - voxel.position[0];
-            const dy = nearest_pos[1] - voxel.position[1];
-            const dz = nearest_pos[2] - voxel.position[2];
-
-            const force = [3]f32{
-                (dx / dist) * force_magnitude,
-                (dy / dist) * force_magnitude,
-                (dz / dist) * force_magnitude,
-            };
-
-            voxel.applyForce(force, dt);
-        }
-    }
-
     pub fn handleInput(self: *Tautris) void {
         if (self.current_body) |idx| {
             var force = [3]f32{ 0, 0, 0 };
-            const control_strength: f32 = 0.5;
+            const control_strength: f32 = 2.0; // Newtons of force
 
             if (rl.IsKeyDown(rl.KEY_A) or rl.IsKeyDown(rl.KEY_LEFT)) {
                 force[0] = -control_strength;
@@ -435,7 +381,7 @@ pub const Tautris = struct {
                 force[2] = control_strength;
             }
             if (rl.IsKeyDown(rl.KEY_DOWN)) {
-                force[1] = -control_strength * 2;
+                force[1] = -control_strength * 3;
             }
 
             self.bodies.items[idx].applyPlayerControl(force);
@@ -458,16 +404,13 @@ pub const Tautris = struct {
         const body = try SoftBody.init(
             self.allocator,
             pieces[piece_idx],
-            .{ 4, 18, 4 },
+            .{ 5.0, 18.0, 5.0 }, // Spawn at center, high up
             materials[mat_idx],
         );
 
-        // Give initial downward velocity
-        const initial_velocity: f32 = -2.0;
+        // No initial velocity - let gravity do the work
         for (body.voxels.items) |*voxel| {
-            voxel.velocity[1] = initial_velocity;
-            voxel.velocity[0] = (@as(f32, @floatFromInt(rl.GetRandomValue(-10, 10))) / 100.0);
-            voxel.velocity[2] = (@as(f32, @floatFromInt(rl.GetRandomValue(-10, 10))) / 100.0);
+            voxel.velocity = .{ 0, 0, 0 };
         }
 
         try self.bodies.append(body);
@@ -477,17 +420,20 @@ pub const Tautris = struct {
 
     fn getBodyVelocitySquared(self: *Tautris, idx: usize) f32 {
         var sum: f32 = 0;
+        var count: f32 = 0;
         for (self.bodies.items[idx].voxels.items) |voxel| {
             if (!voxel.active) continue;
             sum += voxel.velocity[0] * voxel.velocity[0] +
                 voxel.velocity[1] * voxel.velocity[1] +
                 voxel.velocity[2] * voxel.velocity[2];
+            count += 1;
         }
-        return sum / @as(f32, @floatFromInt(self.bodies.items[idx].voxels.items.len));
+        if (count == 0) return 0;
+        return sum / count;
     }
 
     pub fn updateSubstrateCoupling(self: *Tautris, substrate: *KSpaceSubstrate, physics: *Physics) void {
-        const scale = @as(f32, @floatCast(physics.holographic_scale() * 10.0));
+        const scale = @as(f32, @floatCast(physics.holographic_scale() * 50.0));
 
         for (self.bodies.items) |*body| {
             for (body.voxels.items) |voxel| {
@@ -502,7 +448,7 @@ pub const Tautris = struct {
                     const speed = @sqrt(voxel.velocity[0] * voxel.velocity[0] +
                         voxel.velocity[1] * voxel.velocity[1] +
                         voxel.velocity[2] * voxel.velocity[2]);
-                    substrate.data[idx] += speed * 0.01;
+                    substrate.data[idx] += speed * 0.002;
                 }
             }
         }
