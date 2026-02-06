@@ -97,8 +97,11 @@ this is axiom first, zero vars
 
 this is all mechanics.  nothing but mechanics
 
+k-space is 2d, not 3d.  3d is projection from 2d.  2d has "thickness" in modes
 
 there are no choices, it is axiom shape fit
+
+use inverse fourier to materialize
 
 - there is no x-space, only k-space.  x-space is experiential.
 - distance is bubbles
