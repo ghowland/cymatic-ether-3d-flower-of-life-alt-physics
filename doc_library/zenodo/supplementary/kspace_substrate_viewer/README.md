@@ -49,7 +49,7 @@ zig build -Doptimize=ReleaseFast
 
 ## What You're Looking At
 
-![K-Space Viewer Screen Shot](kspace_cymatic_substrate_0000.png)
+![K-Space Viewer Screen Shot](docs/kspace_cymatic_substrate_0000.png)
 
 
 ### The Substrate
