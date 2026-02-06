@@ -93,7 +93,7 @@ The K-Space Substrate framework derives 40+ fundamental observables with **zero 
 | **Higgs Mass (\( m_H \))** | 125.1 GeV | 125.25 GeV | $0.1\%$ |
 | **Baryon Asymmetry (\( \eta_B \))** | $6 \times 10^{-10}$ | $6 \times 10^{-10}$ | Exact |
 
- **[View the Full Index of 40+ Derivations](supplementary/derivation_steps/README.md)** — *Includes equations, bond-counting hierarchy, and file mappings for all particles and cosmological constants.*
+ **[View the Full Index of 40+ Derivations](supplementary/derivation_steps/)** — *Includes equations, bond-counting hierarchy, and file mappings for all particles and cosmological constants.*
 
 
 ---
