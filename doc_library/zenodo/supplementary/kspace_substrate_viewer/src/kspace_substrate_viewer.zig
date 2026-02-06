@@ -320,7 +320,7 @@ pub fn main() !void {
         }
 
         // Save to PNG
-        if (rl.IsKeyPressed(rl.KEY_P)) {
+        if (rl.IsKeyPressed(rl.KEY_SPACE)) {
             std.debug.print("Saving image...\n", .{});
 
             // Find next available filename
@@ -369,6 +369,6 @@ pub fn main() !void {
         const size_text = std.fmt.bufPrintZ(&buffer, "Size: {d}x{d}", .{ screen_width, screen_height }) catch "Size: --";
         rl.DrawText(size_text.ptr, 20, 95, 20, rl.WHITE);
 
-        rl.DrawText("Arrow/WASD: Move | +/-: Zoom | R: Reset | P: Save PNG | ESC: Quit", 20, screen_height - 30, 20, rl.WHITE);
+        rl.DrawText("Arrow/WASD: Move | +/-: Zoom | R: Reset | Space: Save PNG | ESC: Quit", 20, screen_height - 30, 20, rl.WHITE);
     }
 }
