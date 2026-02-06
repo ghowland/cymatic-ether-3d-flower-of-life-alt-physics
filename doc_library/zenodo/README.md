@@ -64,7 +64,7 @@ zenodo_package/
 │   ├── force_coupling_chart.png
 │   ├── particle_mass_spectrum.png
 │   ├── time_evolution.png
-│   └── complete_particle_forces_*.dat/py
+│   └── complete_particle_forces_*.dat
 │
 └── supplementary/             # Extended materials
     ├── derivation_steps/      # 19 derivation docs
