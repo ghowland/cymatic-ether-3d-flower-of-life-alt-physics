@@ -1,7 +1,7 @@
 const std = @import("std");
 const rl = @import("local_raylib.zig").rl;
 const Physics = @import("physics.zig").Physics;
-const Tetris = @import("tetris.zig").Tetris;
+const Tautris = @import("tautris.zig").Tautris;
 const math = std.math;
 
 pub const UI = struct {
@@ -26,7 +26,7 @@ pub const UI = struct {
     pub fn render(
         self: *UI,
         physics: *Physics,
-        tetris: *Tetris,
+        tautris: *Tautris,
         mode: anytype,
     ) void {
         var buffer: [256]u8 = undefined;
@@ -37,10 +37,10 @@ pub const UI = struct {
         text = std.fmt.bufPrintZ(&buffer, "α⁻¹ = {d:.3}", .{physics.alpha_em_inv()}) catch "α";
         rl.DrawText(text.ptr, 10, 35, 18, rl.WHITE);
 
-        text = std.fmt.bufPrintZ(&buffer, "Bodies: {d}", .{tetris.bodies.items.len}) catch "Bodies";
+        text = std.fmt.bufPrintZ(&buffer, "Bodies: {d}", .{tautris.bodies.items.len}) catch "Bodies";
         rl.DrawText(text.ptr, 10, 60, 18, rl.WHITE);
 
-        text = std.fmt.bufPrintZ(&buffer, "Score: {d}", .{tetris.score}) catch "Score";
+        text = std.fmt.bufPrintZ(&buffer, "Score: {d}", .{tautris.score}) catch "Score";
         rl.DrawText(text.ptr, 10, 85, 20, rl.YELLOW);
 
         const mode_text = if (mode == .kspace) "K-SPACE" else "X-SPACE";

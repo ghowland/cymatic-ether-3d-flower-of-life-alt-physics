@@ -3,7 +3,7 @@ const rl = @import("local_raylib.zig").rl;
 const math = std.math;
 const KSpaceSubstrate = @import("kspace_substrate.zig").KSpaceSubstrate;
 const Physics = @import("physics.zig").Physics;
-const Tetris = @import("tetris.zig").Tetris;
+const Tautris = @import("tautris.zig").Tautris;
 
 pub const Renderer = struct {
     camera: rl.Camera3D,
@@ -40,7 +40,7 @@ pub const Renderer = struct {
         }
     }
 
-    pub fn renderTetris3D(self: *Renderer, tetris: *Tetris, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
+    pub fn renderTautris3D(self: *Renderer, tautris: *Tautris, physics: *Physics, x: i32, y: i32, width: i32, height: i32) void {
         _ = physics;
 
         rl.BeginScissorMode(x, y, width, height);
@@ -62,7 +62,7 @@ pub const Renderer = struct {
         );
 
         // Draw all soft bodies
-        for (tetris.bodies.items) |*body| {
+        for (tautris.bodies.items) |*body| {
             const color = body.material.getColor();
 
             for (body.voxels.items) |voxel| {

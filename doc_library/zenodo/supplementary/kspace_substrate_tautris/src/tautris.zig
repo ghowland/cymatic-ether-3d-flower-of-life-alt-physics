@@ -279,7 +279,7 @@ pub const SoftBody = struct {
     }
 };
 
-pub const Tetris = struct {
+pub const Tautris = struct {
     bodies: std.array_list.Managed(SoftBody),
     current_body: ?usize,
     spawn_timer: f32,
@@ -287,8 +287,8 @@ pub const Tetris = struct {
     allocator: std.mem.Allocator,
     score: u32,
 
-    pub fn init(allocator: std.mem.Allocator) !Tetris {
-        var tetris = Tetris{
+    pub fn init(allocator: std.mem.Allocator) !Tautris {
+        var tautris = Tautris{
             .bodies = std.array_list.Managed(SoftBody).init(allocator),
             .current_body = null,
             .spawn_timer = 0,
@@ -298,12 +298,12 @@ pub const Tetris = struct {
         };
 
         // Spawn first piece
-        try tetris.spawnPiece();
+        try tautris.spawnPiece();
 
-        return tetris;
+        return tautris;
     }
 
-    pub fn update(self: *Tetris, dt: f32, physics: *Physics) void {
+    pub fn update(self: *Tautris, dt: f32, physics: *Physics) void {
         const gravity = @as(f32, @floatCast(physics.gravity_scale()));
 
         // Update all bodies
@@ -339,7 +339,7 @@ pub const Tetris = struct {
         }
     }
 
-    pub fn handleInput(self: *Tetris) void {
+    pub fn handleInput(self: *Tautris) void {
         if (self.current_body) |idx| {
             var force = [3]f32{ 0, 0, 0 };
             const control_strength: f32 = 0.5;
@@ -364,7 +364,7 @@ pub const Tetris = struct {
         }
     }
 
-    fn spawnPiece(self: *Tetris) !void {
+    fn spawnPiece(self: *Tautris) !void {
         const pieces = [_][4][3]i32{
             .{ .{ 0, 0, 0 }, .{ 1, 0, 0 }, .{ 2, 0, 0 }, .{ 3, 0, 0 } }, // I
             .{ .{ 0, 0, 0 }, .{ 1, 0, 0 }, .{ 0, 0, 1 }, .{ 1, 0, 1 } }, // O
@@ -388,7 +388,7 @@ pub const Tetris = struct {
         self.current_body = self.bodies.items.len - 1;
     }
 
-    fn getBodyVelocitySquared(self: *Tetris, idx: usize) f32 {
+    fn getBodyVelocitySquared(self: *Tautris, idx: usize) f32 {
         var sum: f32 = 0;
         for (self.bodies.items[idx].voxels.items) |voxel| {
             if (!voxel.active) continue;
@@ -399,7 +399,7 @@ pub const Tetris = struct {
         return sum;
     }
 
-    pub fn updateSubstrateCoupling(self: *Tetris, substrate: *KSpaceSubstrate, physics: *Physics) void {
+    pub fn updateSubstrateCoupling(self: *Tautris, substrate: *KSpaceSubstrate, physics: *Physics) void {
         const scale = @as(f32, @floatCast(physics.holographic_scale() * 10.0));
 
         for (self.bodies.items) |*body| {
