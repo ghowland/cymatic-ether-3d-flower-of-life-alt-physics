@@ -40,6 +40,13 @@ Physics reduces to counting hexagons in a 2D lattice. All observable phenomenaâ€
 
 ---
 
+- Term: Cymatic K-Space Mechanics
+- Acronym: CKS
+- Pronounciation: "Kicks"
+- Usage Pronunciation: "Kicks Mechanics"
+
+---
+
 ## 1. Foundational Structure
 
 ### 1.1 Axioms

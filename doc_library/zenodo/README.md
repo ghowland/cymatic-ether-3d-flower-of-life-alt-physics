@@ -24,6 +24,13 @@ This package contains a complete axiomatic framework deriving all Standard Model
 
 ---
 
+- Term: Cymatic K-Space Mechanics
+- Acronym: CKS
+- Pronounciation: "Kicks"
+- Usage Pronunciation: "Kicks Mechanics"
+
+---
+
 ## Package Contents
 
 ```
