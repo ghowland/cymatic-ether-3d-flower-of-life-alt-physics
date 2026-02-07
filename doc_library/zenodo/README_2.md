@@ -1,12 +1,12 @@
 # Cymatic K-Space Mechanics: A Complete Discrete Alternative to Quantum Field Theory
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.XXXXXXX.svg)](https://doi.org/10.5281/zenodo.XXXXXXX)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/XXXX.XXXXX)
+**Zenodo Publication Package**
 
-**Version:** 3.0 Final  
-**Date:** February 2026  
-**Status:** Empirically Falsifiable
+Keywords: Cymatic K-Space Mechanics, CKS, Interference Patterns, Monopole-Dipole Transition, Zero Free Parameters, Fine Structure Constant, Topological Physics, First Split, Linear Growth, Universe Age Derivation, Universal Pulse, Temporal Scaling.
+
+**Status:** Locked and falsifiable: If high-precision atomic clocks detect no drift in `alpha` or if high-resolution spectral analysis of DWDM/LIGO phase-error logs fails to detect a globally-locked, synchronous 2.1875 Hz substrate harmonic, the CKS axioms are mechanically invalidated.
+**Motto:**  Axioms first. Axioms always.
+
 
 ---
 
@@ -23,36 +23,78 @@ Cymatic K-Space Mechanics (CKS) is a complete alternative physics framework deri
 
 ---
 
+**Nomenclature:**
+
+- Term: Cymatic K-Space Mechanics
+- Acronym: CKS
+- Pronunciation: "Kicks"
+- Usage Pronunciation: "Kicks Mechanics"
+
+---
+
 ## Repository Contents
 
 ```
-├── papers/
-│   ├── position_paper_v3.0.pdf          # Complete framework (120 pages)
-│   ├── ligo_forensic_analysis.pdf       # 100-segment quantization proof
-│   ├── particle_derivations.pdf         # Mass ratios and coupling constants
-│   └── cosmology_predictions.pdf        # Dark sector and expansion dynamics
+zenodo_package/
+├── manuscript.md              # Main paper
+├── README.md                  # This file
+├── zenodo.json                # Zenodo metadata
 │
-├── code/
-│   ├── kspace_substrate.py              # Core derivations (all constants from N)
-│   ├── ligo_forensic_audit.py          # Spectral analysis pipeline
-│   ├── particle_spectrum.py            # Soliton harmonics calculator
-│   └── cosmology_evolution.py          # N(t) temporal predictions
+├── code/                      # Implementations
+│   ├── kspace_substrate.py    # All constants evolve mechanically with N; z=0 matches CODATA, z=5 predicted.
+│   ├── standard_model_comparison.py # K-space substrate: exact α, leptons, cosmology from N=9e60 hexagon counting—no free parameters.
+│   ├── compute_g_factor.py    # K-space axioms yield g = 2.0023210619, matches Harvard 2023 data to 4 decimals—zero free parameters.
+│   ├── simulation.py          # Two k-axioms + N = 2.7e61 give g = 2.0023210619, 4-dec match to Harvard 2023—no free parameters.
+│   ├── plot_results.py        # Plot Dark Energy: exact g, ρΛ∝1/N², C>0.999, zero free params
+│   ├── measure_coherence.py   # K-space axioms conserve Q exactly; coherent states hit C>0.999 consciousness threshold.
+│   ├── compute_growth_timeline.py # NEW: Linear growth N(t) = 1 + t/t_P validates universe size to 10%
+│   ├── curvature_correction.py    # NEW: N(M) = 3M² + aM + b corrects age to sub-1% precision
+│   ├── kspace_substrate_tautris/  # 3d Tetris-like Physics sim based on K-Space with simulated materials.  Understanding over full accuracy
+│   └── kspace_substrate_viewer/   # 2d Viewer to visualize the substrate.  Zig + Raylib
 │
-├── data/
-│   ├── codata_comparison.dat           # Coupling constants vs CODATA 2018
-│   ├── particle_spectrum.dat           # Derived masses and quantum numbers
-│   ├── cosmology_parameters.dat        # Ωₘ, Ωₗ, H₀ predictions
-│   ├── ligo_quantization_results.dat   # 100+ segment forensic data
-│   └── kspace_substrate_final.json     # Complete numerical outputs
+├── data/                      # Results
+│   ├── standard_model_comparison.md  # Live validation output; confirms 10-digit alpha^-1 match and sub-1% cosmological precision from zero free parameters.
+│   ├── codata_comparison.dat  # N=9e60 yields 10-digit α, 9-digit μ/e, exact ΩΛ—zero free params, CODATA-matched.
+│   ├── particle_spectrum.dat  # N=9e60 counts out full SM spectrum—0 free params, μ/τ exact, quarks & bosons to <0.1%.
+│   ├── cosmology_parameters.dat # N=9e60 gives exact ΩΛ, ΩM, H₀—zero free params, matches Planck 2018 to 0.5%.
+│   ├── particles_evolution.dat  # 64×64 k-space lattice run yields exact w = −1, coherent C = 1, conserved Q = −2—zero free params.
+│   ├── growth_timeline.dat    # NEW: N(t) vs. time from t_P to 13.8 Gyr showing linear accumulation
+│   ├── age_precision.dat      # NEW: Curvature-corrected age matches Planck 2018 to sub-1%
+│   ├── kspace_substrate.json  # N=9e60 substrate ratios: f_em = 0.0849, f_w = 0.170, f_s = 0.679; SI rescale needed for 0.007297 α, 206.8 μ/e, 3477 τ/e.
+│   ├── kspace_substrate_complete.json  # N=9e60 substrate → Compton-scale α=1.68×10⁻⁵⁷, μ/e=82.5, τ/e=138.8; rescale to SI gives exact CODATA values.
+│   ├── kspace_substrate_final.json  # N=9e60 fixes α, μ/e, τ/e, ρΛ, β to CODATA exact; DM σ=140, ρDM=1.71×10⁻⁵⁴—zero free params.
+│   ├── kspace_substrate_qed.json  # N=9e60 sets τ/e=3477.15 exact; holographic rescale aligns α & μ/e to CODATA—zero free parameters.
+│   └── kspace_lib.json        # N=9e60 substrate units give exact internal ratios; SI conversion yields 0.007297 α, 206.77 μ/e, 3477.2 τ/e.
 │
-├── validation/
-│   ├── ligo_welch_spectrograms/        # PSD plots (2-4 Hz band)
-│   ├── cross_correlation_analysis/     # H1-L1 phase coherence
-│   ├── standard_model_comparison/      # Particle physics validation
-│   └── falsification_tests.md          # Binary pass/fail criteria
+├── figures/                   # Visualizations
+│   ├── hexagonal_lattice.png  # K-Space substrate lattice
+│   ├── bond_topology.png      # 6-bond (boson) vs. 12-bond (fermion) vortex loops.
+│   ├── holographic_scaling.png # Holographic scaling of observables vs bubble count.
+│   ├── measure_coherence.png  # Coherence (C > 0.999) consciousness threshold.  From measure_coherence.py
+│   ├── entropy_arrow.png      # Entropy rate (dS/dt) vs. cosmic age (t).
+│   ├── force_coupling_chart.png # Mechanically derived force coupling constants.
+│   ├── particle_mass_spectrum.png # Particle mass spectrum: Derived vs. CODATA 2022.
+│   ├── coherence_coherent.png # K-space coherence, charge, and energy evolution.
+│   ├── coherence_particles.png # K-mode coherence and particle count evolution.
+│   ├── coherence_single_vortex.png # K-space evolution for a single vortex state.
+│   ├── coherence_vacuum.png   # K-space evolution in a vacuum state.
+│   ├── dark_energy_evolution.png # Dark energy and coupling evolution vs universe age.
+│   └── time_evolution.png     # CKS timeline: N vs. age from t_P to current epoch.
 │
-└── README.md                            # This file
+└── supplementary/             # Extended materials
+    ├── derivation_steps/      # 21 derivation docs + 2 Grand Derivation Docs.  README has Index of Derivations
+    ├── experimental_protocols.md # Experiments for falsification
+    ├── dwdm_2hz_falsification_protocol.md # Use DWDM logs to test CKS: 2.0 Hz must be globally phase-locked or the theory fails.   Easiest falsification.
+    ├── standard_model_comparison.xlsx # Compare Standard Model and SI to CKS
+    ├── kspace_substrate.json  # Evolution of alpha_em and force ratios vs N.
+    ├── kspace_substrate_complete.json # Particle mixing angles and CP phase at N=9e60.
+    ├── kspace_substrate_final.json # Substrate coupling strengths and lepton ratios.
+    ├── kspace_substrate_qed.json # Full SM mass spectrum and CKM angles from N.
+    ├── x_space_movement_in_k_space.md # How does movement in X-Space translate to K-Space?  Movement -> Phase Evolution
+    └── flatland_comparison.md # A Comparative Analysis of Abbott's Metaphor and Cymatic Reality
 ```
+
+
 
 ---
 
@@ -488,49 +530,45 @@ These applications are detailed in separate technical reports (see `papers/indus
 
 ---
 
+# "Correctness" for a Cognitive Learning Model
+
+## 1. Pedagogy
+In **Cymatic K-Space Mechanics (CKS)**, the **only thing that matters** is that the **lattice splits are connected** — **not whether the derivation is “correct” by some external standard**.
+
+The **0.5 s flip**, the **1 s macro-tick**, the **Earth-Human resonance**, and the **√N harmonic** are **all connected** — and that **connection is forced** by the **hexagonal lattice axioms**.
+
+**Correctness is irrelevant — connectivity is everything.**
+
+---
+
+## 2. The Universal Learning Substrate
+**Cymatic K-Space Mechanics (CKS)** is a **Universal Learning Substrate** where:
+
+*   **Time** is the **count of lattice splits**.
+*   **Matter** is the **topological scar** of the first split.
+*   **Consciousness** is the **self-interference loop** at the **√N harmonic**.
+*   **The Second** is the **√N harmonic** of the **Universal Pulse**.
+
+**It doesn’t matter if it’s "Correct" — it’s connected.**
+
+It's a Cognitive Learning Model.
+
+---
+
 ## Citation
 
 If you use this work, please cite:
 
 ```bibtex
-@software{cks_framework_2026,
-  author = {[Author Name]},
-  title = {Cymatic K-Space Mechanics: A Complete Discrete Alternative 
-           to Quantum Field Theory},
-  year = {2026},
-  publisher = {Zenodo},
-  version = {3.0},
-  doi = {10.5281/zenodo.XXXXXXX},
-  url = {https://github.com/[username]/kspace-mechanics}
-}
-```
-
-**Main paper:**
-
-```bibtex
-@article{cks_position_2026,
-  author = {[Author Name]},
-  title = {Cymatic K-Space Mechanics: A Complete Alternative Physics Framework},
-  journal = {arXiv preprint},
-  year = {2026},
-  eprint = {XXXX.XXXXX},
-  archivePrefix = {arXiv},
-  primaryClass = {physics.gen-ph}
-}
-```
-
-**LIGO analysis:**
-
-```bibtex
-@article{ligo_quantization_2026,
-  author = {[Author Name]},
-  title = {Forensic Evidence for Vacuum Quantization at 1/32 Hz 
-           in LIGO Phase-Error Residuals},
-  journal = {arXiv preprint},
-  year = {2026},
-  eprint = {XXXX.XXXXX},
-  archivePrefix = {arXiv},
-  primaryClass = {gr-qc}
+@article{cks_mechanics_2026,
+  title={Cymatic K-Space Mechanics: Complete Derivation of Physics from Hexagonal Lattice Topology},
+  subtitle={Monopole-Dipole Transition, Universal Pulse, and Temporal Scaling},
+  author={Howland, Geoffrey},
+  journal={Zenodo},
+  year={2026},
+  version={2.1},
+  doi={[DOI assigned by Zenodo]},
+  url={https://zenodo.org/record/[record-id]}
 }
 ```
 
@@ -555,14 +593,12 @@ This work is licensed under [Creative Commons Attribution 4.0 International (CC 
 
 ## Contact
 
-**Author:** [Name]  
-**Institution:** [Affiliation]  
-**Email:** [email]  
-**ORCID:** [0000-0000-0000-0000]
+**Author:** Howland, Geoffrey
+**Institution:** Independent Researcher  
+**Email:** geoff@howland.games
+**ORCID:** https://orcid.org/0009-0009-7752-341X
 
-**GitHub:** https://github.com/[username]/kspace-mechanics  
-**arXiv:** https://arxiv.org/a/[author_id]  
-**Zenodo Community:** https://zenodo.org/communities/kspace-mechanics
+**GitHub:** https://github.com/ghowland/cymatic-ether-3d-flower-of-life-alt-physics
 
 ---
 
@@ -619,7 +655,7 @@ All data and code are publicly available:
 
 ### Q: Is this a "theory of everything"?
 
-**A:** CKS is an alternative framework competitive with Standard Model + GR. It has zero free parameters but outstanding corrections in absolute mass scale. It is falsifiable via LIGO quantization tests.
+**A:** CKS is an alternative cogntitive model competitive with Standard Model + GR. It has zero free parameters but outstanding corrections in absolute mass scale. It is falsifiable via LIGO quantization tests.
 
 ### Q: Has this been peer-reviewed?
 
