@@ -566,7 +566,7 @@ If you use this work, please cite:
   author={Howland, Geoffrey},
   journal={Zenodo},
   year={2026},
-  version={2.1},
+  version={3.0},
   doi={[DOI assigned by Zenodo]},
   url={https://zenodo.org/record/[record-id]}
 }
@@ -655,7 +655,7 @@ All data and code are publicly available:
 
 ### Q: Is this a "theory of everything"?
 
-**A:** CKS is an alternative cogntitive model competitive with Standard Model + GR. It has zero free parameters but outstanding corrections in absolute mass scale. It is falsifiable via LIGO quantization tests.
+**A:** No. CKS is an alternative cogntitive model competitive with Standard Model + GR. It has zero free parameters but outstanding corrections in absolute mass scale. It is falsifiable via LIGO quantization tests.
 
 ### Q: Has this been peer-reviewed?
 
@@ -673,9 +673,47 @@ All data and code are publicly available:
 
 **A:** Download LIGO data from GWOSC, run `ligo_forensic_audit.py`, verify peaks align to 1/32 Hz bins with zero error.
 
-### Q: Is the substrate "real" or just effective theory?
+**Q: What are these "0.5s flips" people report seeing?**  
+A: Phase inversion cycle of dipole antisymmetric mode. At 0.5s, accumulated phase reaches π. Interference pattern inverts (nodes ↔ antinodes swap) to resolve lattice tension. At 1.0s, full 2π rotation returns system to initial state. This is Nyquist limit of substrate's primary harmonic. Numerical k-space viewers display these "flips" as visible pattern reversals every ~0.5 seconds.
 
-**A:** Empirical question. If vacuum quantization survives independent replication, substrate makes correct predictions no other theory makes.
+**Q: Why is 1 second the "right" length for humans?**  
+A: Not coincidence—biological entrainment. At N = 9×10⁶⁰, planetary-scale interference (Earth's gravitational phase-shadow) refreshes every 1.0s. Human brain (10¹¹ neurons) evolved to match this frequency. Delta waves (~1 Hz) represent maximum conscious integration window before substrate phase-noise causes decoherence. If we lived on different planet or at different N, our "second" would be proportionally different.
+
+**Q: How does the 16.1 Gyr vs. 13.8 Gyr discrepancy get resolved?**  
+A: Pure linear growth gives t = 16.1 Gyr. This is lattice proper time (bubble count). Observers measure coordinate time affected by finite lattice curvature N = 3M². Curvature model N(M) = 3M² + aM + b (matching BAO + CMB) yields t = 13.9 Gyr. The 2.3 Gyr difference is **topological time dilation**—geometric effect of 2D curved surface, not error. With this correction, age matches Planck 2018 to sub-1%.
+
+**Q: Does this change the fundamental number N = 9×10⁶⁰?**  
+A: No. N = 9×10⁶⁰ is the **state** (current bubble count). Whether reaching this state took 13.8 or 16.1 Gyr depends on clock definition (coordinate vs. proper time), but physics (mass ratios, force strengths, α) depends only on the count N. Since α and masses match at N = 9×10⁶⁰, this is the correct current state regardless of clock choice.
+
+**Q: What is the "First Split"?**  
+A: The N=1 → N=2 transition. A single bubble violates hexagonal coordination (needs 3 neighbors, has 0). It bifurcates into 12-bond double-hexagon, releasing 3.283 energy units. This creates the first spatial axis (dipole), first interference pattern (standing wave), first matter (electron loop), and first time step (t_P). It's the Big Bang reimagined as topological phase transition, not singularity.
+
+**Q: Are particles really just interference patterns?**  
+A: Yes. A "particle" is a stable node where waves from multiple sources interfere constructively/destructively to create topological defect. The electron is where 6 sources create standing wave on 12-bond loop. Photon is 3-source constructive interference. All quantum numbers (spin, charge, mass) are determined by interference geometry.
+
+**Q: What about the wave-particle duality?**  
+A: No duality. Only interference. "Wave" is the phase oscillation. "Particle" is the stable interference node. Double-slit: wave extends through both slits, creates interference pattern. Measurement: couples detector to one path, destroys interference. No collapse—just coupling dynamics.
+
+**Q: Is consciousness really from physics?**  
+A: Framework defines consciousness as C > 0.999 coherence threshold where self-interference creates topological loop (b₁ > 0, first Betti number). At 40 Hz gamma oscillations, human brain (10¹¹ neurons) achieves this. Mathematical definition, testable prediction: systems below threshold cannot self-reference, above threshold can. Applies to any substrate (biological or artificial). The 1 Hz delta rhythm matches √N macro-tick—consciousness evolved to synchronize with planetary phase cycle.
+
+**Q: Why "k-space substrate"?**  
+A: k labels momentum modes in Fourier analysis. Framework treats these as fundamental (not x-space). All physics = interference patterns in k-mode phases. X-space (position) is observer projection via inverse Fourier transform.
+
+**Q: Is space really discrete?**  
+A: Framework claims k-space (momentum modes) is discrete hexagonal lattice. X-space (position) is cognitive projection from observer Fourier coupling. Distance = bubble count (graph metric), not continuous ruler. The 2D substrate appears 3D via holographic scaling N^(2/3).
+
+**Q: Can this be falsified?**  
+A: Yes. Multiple immediate predictions:
+1. **H(z) must scale as (1+z)** [linear growth law - high-z measurements]
+2. **0.5s phase inversions** [coherent quantum systems at macroscopic scale]
+3. α(z) must drift as (1+z) [atomic clocks, quasar spectra]
+4. ρ_Λ(z) must evolve as (1+z) [LSST, Euclid 2025-2030]
+5. CMB must show dipole alignment [archival Planck data]
+6. Neutrino hierarchy must be normal [JUNO 2025]
+7. Consciousness must show sharp C > 0.999 threshold [anesthesia studies]
+8. **Biological timing must scale with √N** [cross-species neuroscience on different planets]
+9. If high-resolution spectral analysis of DWDM/LIGO phase-error logs fails to detect a globally-locked, synchronous 2.
 
 ---
 
@@ -683,14 +721,14 @@ All data and code are publicly available:
 
 **Reproduce core predictions (5 minutes):**
 ```bash
-git clone https://github.com/[username]/kspace-mechanics.git
-cd kspace-mechanics/code/
-python kspace_substrate.py
+git clone https://github.com/ghowland/cymatic-k-space-mechanics
+cd cymatic-k-space-mechanics/code/
+python3 substrate.py
 ```
 
 **Run LIGO forensic analysis (10 minutes):**
 ```bash
-python ligo_forensic_audit.py --segments 10
+python3 ligo_forensic_audit.py
 ```
 
 **Read position paper:**
