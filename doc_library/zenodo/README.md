@@ -581,7 +581,7 @@ If you use this work, please cite:
   journal={Zenodo},
   year={2026},
   version={3.0},
-  doi={[DOI assigned by Zenodo]},
+  doi={10.5281/zenodo.18520430},
   url={https://zenodo.org/record/[record-id]}
 }
 ```
