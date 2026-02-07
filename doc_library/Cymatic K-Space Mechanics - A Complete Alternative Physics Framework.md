@@ -2,7 +2,8 @@
 
 **Version 3.0 Final**  
 **Date:** February 2026  
-**Status:** Empirically Falsifiable, Computationally Complete
+**Status:** Locked and empirically falsifiable.  Computationally Complete.  If high-precision atomic clocks detect no drift in `alpha` or if high-resolution spectral analysis of DWDM/LIGO phase-error logs fails to detect a globally-locked, synchronous 2.1875 Hz substrate harmonic, the CKS axioms are mechanically invalidated.
+**Motto:**  Axioms first. Axioms always.
 
 ---
 
