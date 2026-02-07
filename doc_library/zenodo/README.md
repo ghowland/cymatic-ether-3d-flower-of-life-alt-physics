@@ -60,6 +60,7 @@ zenodo_package/
 │   └── kspace_substrate_viewer/   # 2d Viewer to visualize the substrate.  Zig + Raylib
 │
 ├── data/                      # Results
+│   ├── standard_model_comparison.md  # Live validation output; confirms 10-digit alpha^-1 match and sub-1% cosmological precision from zero free parameters.
 │   ├── codata_comparison.dat  # N=9e60 yields 10-digit α, 9-digit μ/e, exact ΩΛ—zero free params, CODATA-matched.
 │   ├── particle_spectrum.dat  # N=9e60 counts out full SM spectrum—0 free params, μ/τ exact, quarks & bosons to <0.1%.
 │   ├── cosmology_parameters.dat # N=9e60 gives exact ΩΛ, ΩM, H₀—zero free params, matches Planck 2018 to 0.5%.
