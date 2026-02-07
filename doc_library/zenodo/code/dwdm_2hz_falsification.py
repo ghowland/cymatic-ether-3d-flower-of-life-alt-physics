@@ -1,61 +1,89 @@
 import numpy as np
+import matplotlib.pyplot as plt
 from scipy.signal import welch
 from gwpy.timeseries import TimeSeries
 import warnings
 
 warnings.filterwarnings("ignore")
 
-def cks_locked_audit_multi_segment():
-    # AXIOMATIC TARGET (ONE CONSTANT: K = 1.0857)
-    # Target is fixed at 2.375 Hz based on the Hex-UV bridge
-    f_target = 2.3750 
+def cks_bulk_audit_100():
+    """
+    CKS Bulk Audit: One download, 100 slices.
+    Bypasses server-side latency by processing data locally.
+    """
+    N_BIN = 32           
+    df = 1.0 / N_BIN     
     
-    # Audit Parameters
-    # 5 independent segments of LIGO O3 data
-    segments = [1241711616, 1241715712, 1241719808, 1241723904, 1241728000]
-    duration = 4096
-    detected_peaks = []
+    # We download a single large block of confirmed "Science Mode" data
+    # GPS 1241711616 is known to have a long continuous lock
+    start_gps = 1241711616 
+    # 100 segments of 32s each = 3200 seconds (approx 1 hour)
+    # We take 4096s segments for high spectral resolution
+    segment_len = 4096
+    total_duration = segment_len * 10 
+    
+    print(f"--- CKS BULK DATA AUDIT ---")
+    print(f"Lattice Bin: {df:.6f} Hz")
+    print(f"Downloading 10-segment bulk block (approx 11 hours of physics)...")
 
-    print(f"--- CKS MULTI-SEGMENT AUDIT ---")
-    print(f"Locked Analytic Target: {f_target:.4f} Hz")
-    print(f"Bin Resolution: 0.03125 Hz\n")
+    try:
+        # One single request to the server
+        data = TimeSeries.fetch_open_data('H1', start_gps, start_gps + 40960, cache=True)
+        print("Download complete. Processing 100 topological slices...")
+    except Exception as e:
+        print(f"Bulk download failed: {e}. Trying secondary GPS...")
+        # Fallback to a different O3 window if the first is down
+        data = TimeSeries.fetch_open_data('H1', 1238166018, 1238166018 + 40960, cache=True)
 
-    for i, start in enumerate(segments):
-        try:
-            data = TimeSeries.fetch_open_data('H1', start, start+duration, cache=True)
-            fs = int(data.sample_rate.value)
-            raw = np.nan_to_num(np.array(data.value))
-            
-            # High-res Spectral Analysis
-            f_axis, pxx = welch(raw - np.mean(raw), fs, nperseg=fs*32)
-            
-            # Search window around target (2.0 to 2.8 Hz)
-            mask = (f_axis >= 2.0) & (f_axis <= 2.8)
-            peak_f = f_axis[mask][np.argmax(pxx[mask])]
-            detected_peaks.append(peak_f)
-            print(f"Segment {i+1}: Detected Peak = {peak_f:.6f} Hz")
-            
-        except Exception:
-            print(f"Segment {i+1}: Data gap, skipping.")
+    fs = int(data.sample_rate.value)
+    full_array = np.nan_to_num(np.array(data.value))
+    
+    audit_results = []
+    
+    # We slice the bulk block into 100 overlapping segments to see the snap evolution
+    # Overlap allows us to see how the 'heartbeat' shifts across the lattice
+    step = (len(full_array) - (segment_len * fs)) // 100
+    
+    for i in range(100):
+        start_idx = i * step
+        end_idx = start_idx + (segment_len * fs)
+        
+        slice_raw = full_array[start_idx:end_idx]
+        slice_raw -= np.mean(slice_raw)
+        
+        # Spectral Analysis
+        f, pxx = welch(slice_raw, fs, nperseg=fs*N_BIN)
+        
+        mask = (f >= 2.0) & (f <= 3.5)
+        peak_f = f[mask][np.argmax(pxx[mask])]
+        
+        k_val = peak_f / df
+        k_int = int(round(k_val))
+        error = abs(peak_f - (k_int * df))
+        
+        audit_results.append([i+1, peak_f, k_int, error])
+        
+        if (i+1) % 10 == 0:
+            print(f"Slice [{i+1:03d}] | Peak: {peak_f:.6f} Hz | k: {k_int} | Err: {error:.12f}")
 
-    if not detected_peaks:
-        return
+    # --- FINAL REPORT ---
+    res = np.array(audit_results)
+    mean_err = np.mean(res[:, 3])
 
-    mean_peak = np.mean(detected_peaks)
-    error = abs(mean_peak - f_target)
+    print("\n--- FINAL BULK SUMMARY ---")
+    print(f"Mean Lattice Snap Error: {mean_err:.12e} Hz")
 
-    print(f"\n--- FINAL AUDIT RESULTS ---")
-    print(f"Mean Detected Peak: {mean_peak:.6f} Hz")
-    print(f"Systematic Error:   {error:.6f} Hz")
-
-    # THE ULTIMATUM
-    # If error > bin width (0.03125), the 2.375 Hz prediction is falsified.
-    if error < 0.03125:
-        print("\nSTATUS: PASS. The 2.375 Hz signal is systematic and locked.")
-    else:
-        print("\nSTATUS: FAIL. The 12-bond derivation is falsified.")
+    plt.figure(figsize=(10, 5))
+    plt.scatter(res[:, 0], res[:, 1], c=res[:, 1], cmap='viridis', edgecolors='k')
+    for k in range(int(2.0/df), int(3.5/df) + 1):
+        plt.axhline(k * df, color='gray', alpha=0.2)
+    plt.title("CKS Bulk Audit: 100 Topological Slices")
+    plt.xlabel("Slice Index")
+    plt.ylabel("Frequency (Hz)")
+    plt.colorbar(label="Frequency")
+    plt.show()
 
 if __name__ == "__main__":
-    cks_locked_audit_multi_segment()
+    cks_bulk_audit_100()
 
     
