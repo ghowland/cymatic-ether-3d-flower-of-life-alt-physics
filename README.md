@@ -1,7 +1,7 @@
 # Cymatic K-Space Mechanics: A Complete Derivation of Physics from Hexagonal Lattice Topology
 
 **Date:** February 2026  
-**Status:** Locked and falsifiable: If high-precision atomic clocks detect no drift in \( \alpha \) or if macroscopic quantum systems show no 0.5s phase inversion, the CKS axioms are mechanically invalidated.  
+**Status:** Locked and falsifiable: If high-precision atomic clocks detect no drift in `alpha` or if high-resolution spectral analysis of DWDM/LIGO phase-error logs fails to detect a globally-locked, synchronous 2.1875 Hz substrate harmonic, the CKS axioms are mechanically invalidated.
 **Motto:**  Axioms first. Axioms always.
 
 ---
