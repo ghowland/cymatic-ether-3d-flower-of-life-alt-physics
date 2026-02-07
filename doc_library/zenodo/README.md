@@ -83,7 +83,7 @@ zenodo_package/
 │   ├── hexagonal_lattice.png  # K-Space substrate lattice
 │   ├── bond_topology.png      # 6-bond (boson) vs. 12-bond (fermion) vortex loops.
 │   ├── holographic_scaling.png # Holographic scaling of observables vs bubble count.
-│   ├── consciousness_coherence.png # Coherence (C > 0.999) consciousness threshold.
+│   ├── measure_coherence.png  # Coherence (C > 0.999) consciousness threshold.  From measure_coherence.py
 │   ├── entropy_arrow.png      # Entropy rate (dS/dt) vs. cosmic age (t).
 │   ├── force_coupling_chart.png # Mechanically derived force coupling constants.
 │   ├── particle_mass_spectrum.png # Particle mass spectrum: Derived vs. CODATA 2022.
