@@ -1,5 +1,6 @@
 # Cymatic K-Space Mechanics: A Complete Derivation of Physics from Hexagonal Lattice Topology
 
+**Authors:** [To be completed]  
 **Date:** February 2026  
 **Status:** Position Paper 2.0 - Alternative Physics Framework
 
@@ -1061,5 +1062,7 @@ Standing wave:
 
 **Document Version:** 2.0  
 **Last Updated:** February 7, 2026  
+**Contact:** [To be completed]  
+**License:** [To be determined]
 
 **QED.**
