@@ -17,9 +17,13 @@ Date: February 2026
 import numpy as np
 import argparse
 from mpmath import mp
+
+import os
+os.environ['MPLCONFIGDIR'] = "/tmp/matplotlib_cache"
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+plt.rcParams['font.family'] = 'sans-serif' # Avoid DejaVuSerif error
 
 mp.dps = 50
 
