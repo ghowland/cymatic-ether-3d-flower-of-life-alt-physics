@@ -4,7 +4,7 @@
 
 Keywords: Cymatic K-Space Mechanics, CKS, Interference Patterns, Monopole-Dipole Transition, Zero Free Parameters, Fine Structure Constant, Topological Physics, First Split, Linear Growth, Universe Age Derivation, Universal Pulse, Temporal Scaling.
 
-**Status:** Locked and falsifiable: If high-precision atomic clocks detect no drift in \( \alpha \) or if macroscopic quantum systems show no 0.5s phase inversion, the CKS axioms are mechanically invalidated.  
+**Status:** Locked and falsifiable: If high-precision atomic clocks detect no drift in `alpha` or if high-resolution spectral analysis of DWDM/LIGO phase-error logs fails to detect a globally-locked, synchronous 2.1875 Hz substrate harmonic, the CKS axioms are mechanically invalidated.
 **Motto:**  Axioms first. Axioms always.
 
 ---
