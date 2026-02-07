@@ -537,6 +537,4 @@ Real physics is messy. Real simulations are messy. This demo is intentionally tr
 
 **The point isn't perfect realism - it's showing how discrete rules create continuous-seeming worlds.**
 
-And in that sense, despite all the cheating, it succeeds.
-
 ![Tautris Screen Shot](docs/kspace_tautris_0002.png)
