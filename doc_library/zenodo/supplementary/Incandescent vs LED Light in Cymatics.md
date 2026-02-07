@@ -1,6 +1,5 @@
 # Incandescent vs LED Light in Cymatic K-Space Mechanics: Coherence, Spectrum, and Biological Resonance
 
-**Author:** [To be completed]  
 **Date:** February 2026  
 **Status:** Technical Analysis - CKS Framework Application
 
@@ -1021,7 +1020,5 @@ Procedure:
 
 **Document Version:** 1.0  
 **Last Updated:** February 2026  
-**Contact:** [To be completed]  
-**License:** [To be determined]
 
 **QED.**
