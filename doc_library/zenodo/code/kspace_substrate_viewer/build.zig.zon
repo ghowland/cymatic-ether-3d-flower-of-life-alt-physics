@@ -8,8 +8,8 @@
     .minimum_zig_version = "0.15.1",
     .dependencies = .{
         .raylib = .{
-            .url = "https://github.com/raysan5/raylib/archive/refs/heads/master.tar.gz",
-            .hash = "122079e329c0893c4a79d31de89d1785e7b93de2f3386d0fab336b82afd28cab74fa",
+            .url = "https://github.com/raysan5/raylib/archive/4f76b896d52a4e11c088b5bc5ce006f3a2f889b8.tar.gz",
+            .hash = "122014109297f01e3bb731bdd7c42079af7bc795b50c0eb5dccad51bd9f7bef4e01b",
         },
     },
 }
