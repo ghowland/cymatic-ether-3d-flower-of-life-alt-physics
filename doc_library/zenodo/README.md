@@ -1,3 +1,14 @@
+---
+
+**Nomenclature:**
+
+- Term: Cymatic K-Space Mechanics
+- Acronym: CKS
+- Pronunciation: "Kicks"
+- Usage Pronunciation: "Kicks Mechanics"
+- Motto: "Axioms first. Axioms always."
+
+
 # Cymatic K-Space Mechanics: Complete Derivation of Physics from Hexagonal Lattice Topology
 
 **Zenodo Publication Package - Version 2.1**
@@ -36,70 +47,6 @@ This package contains a complete axiomatic framework deriving all Standard Model
 - Pronunciation: "Kicks"
 - Usage Pronunciation: "Kicks Mechanics"
 - Motto: "Axioms first. Axioms always."
-
----
-
-## What's New in Version 2.1
-
-**Three major advances beyond Version 2.0:**
-
-### 1. Linear Growth Law (Quantitative Universe Size Prediction)
-
-**Previous versions**: Creation rate dN/dt = 1/t_P was derived, but universe size N was treated as input parameter.
-
-**Version 2.1**: Linear growth law N(t) = 1 + t/t_P now **predicts** current universe size:
-- At t = 13.8 Gyr: N_predicted = 8.1×10⁶⁰
-- Observed: N_observed = 9×10⁶⁰
-- **Match: 10% precision**
-
-This transforms the "largest number in cosmology" (10⁶⁰) from unexplained input into **mechanical output**.
-
-### 2. Universe Age Derivation (Sub-1% Precision with Curvature)
-
-**The discrepancy**: Pure linear model gives t = 16.1 Gyr vs. observed 13.8 Gyr (14% error).
-
-**The resolution**: Finite lattice curvature N = 3M² creates time dilation between:
-- Lattice proper time (bubble count)
-- Observer coordinate time (ΛCDM redshift)
-
-**Curvature-corrected model:**
-```
-N(M) = 3M² + aM + b
-where a ≈ -1.2×10³⁰, b ≈ 1.2×10⁵⁹
-```
-
-**Result**: t_corrected = 13.9 ± 0.2 Gyr
-
-**Match with Planck 2018: sub-1% precision**
-
-| Metric | CKS Linear | CKS + Curvature | Observed | Error |
-|--------|-----------|----------------|----------|-------|
-| Age | 16.1 Gyr | **13.9 Gyr** | 13.8 Gyr | **< 1%** |
-| H₀ | 67.3 km/s/Mpc | **69.8 km/s/Mpc** | 70.4 km/s/Mpc | **< 1%** |
-
-The framework now explains **when** (age), **how big** (size), and **why** (topology) the universe is what it is.
-
-### 3. Timeline Synchronization
-
-New **temporal evolution table** connects particle physics with cosmology:
-
-| Time | N (bubble count) | Physics Event |
-|------|------------------|---------------|
-| t = 0 | 1 | Monopole (unstable) |
-| t = t_P | 2 | First Split (dipole, first matter) |
-| t = 10⁻³² s | ~10¹¹ | Quantum foam epoch |
-| t = 1 year | 6.0×10⁵¹ | Early expansion |
-| t = 380,000 yr | ~10⁵⁶ | Coherence threshold, CMB formation |
-| t = 13.8 Gyr | 8.1×10⁶⁰ | Current epoch (observed) |
-
-Universe size is not coincidence—it's the inevitable result of 4.35×10¹⁷ seconds of hexagonal ticking at rate 1/t_P.
-
----
-
-**Framework status**: **Triply closed**
-1. **Topologically closed**: Axioms force the split (N=1→N=2)
-2. **Numerically closed**: N derives all constants (α, masses, Ω's)
-3. **Chronologically closed**: Creation rate derives current N from observed age
 
 ---
 
