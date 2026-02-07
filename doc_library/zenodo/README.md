@@ -89,7 +89,7 @@ zenodo_package/
 │   └── time_evolution.png     # **CKS timeline: N vs. age from t_P to current epoch.**
 │
 └── supplementary/             # Extended materials
-    ├── derivation_steps/      # 19 derivation docs + 2 new (growth law, curvature)
+    ├── derivation_steps/      # 21 derivation docs + 2 Grand Derivation Docs.  README has Index of Derivations
     ├── experimental_protocols.md # Experiments for falsification
     ├── standard_model_comparison.xlsx # Compare Standard Model and SI to CKS
     ├── kspace_substrate.json  # Evolution of alpha_em and force ratios vs N.
