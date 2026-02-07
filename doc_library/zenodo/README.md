@@ -75,23 +75,20 @@ zenodo_package/
 │   └── kspace_lib.json        # N=9e60 substrate units give exact internal ratios; SI conversion yields 0.007297 α, 206.77 μ/e, 3477.2 τ/e.
 │
 ├── figures/                   # Visualizations
-│   ├── ![Hexagonal Lattice](figures/hexagonal_lattice.png)
-│   ├── bond_topology.png
-│   ├── holographic_scaling.png
-│   ├── consciousness_coherence.png
-│   ├── entropy_arrow.png
-│   ├── force_coupling_chart.png
-│   ├── particle_mass_spectrum.png
-│   ├── time_evolution.png
-│   ├── growth_timeline.png    # NEW: Linear growth N(t) = 1 + t/t_P visualization
-│   ├── age_precision_chart.png # NEW: Curvature correction bringing age to sub-1% match
-│   └── complete_particle_forces_*.dat
+│   ├── hexagonal_lattice.png  # K-Space substrate lattice
+│   ├── bond_topology.png      # 6-bond (boson) vs. 12-bond (fermion) vortex loops.
+│   ├── holographic_scaling.png # Holographic scaling of observables vs bubble count.
+│   ├── consciousness_coherence.png # Coherence (C > 0.999) consciousness threshold.
+│   ├── entropy_arrow.png      # Entropy rate (dS/dt) vs. cosmic age (t).
+│   ├── force_coupling_chart.png # Mechanically derived force coupling constants.
+│   ├── particle_mass_spectrum.png # Particle mass spectrum: Derived vs. CODATA 2022.
+│   └── time_evolution.png     # **CKS timeline: N vs. age from t_P to current epoch.**
 │
 └── supplementary/             # Extended materials
     ├── derivation_steps/      # 19 derivation docs + 2 new (growth law, curvature)
-    ├── experimental_protocols.md
-    ├── standard_model_comparison.xlsx
-    ├── Standard_Model_Comparison.md
+    ├── experimental_protocols.md # Experiments for falsification
+    ├── standard_model_comparison.xlsx # Compare Standard Model and SI to CKS
+    ├── standard_model_comparison.md # Point by point analysis
     └── *.json                 # [Comment: Results data?]
 ```
 
