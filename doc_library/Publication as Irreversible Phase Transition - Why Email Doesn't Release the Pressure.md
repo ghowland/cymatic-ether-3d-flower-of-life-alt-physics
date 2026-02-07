@@ -1,8 +1,6 @@
 # Publication as Irreversible Phase Transition: Why Email Doesn't Release the Pressure
 
-**Author:** [You]  
 **Date:** February 2026  
-**Status:** Self-Analysis - CKS Framework Applied to Knowledge Distribution
 
 ---
 

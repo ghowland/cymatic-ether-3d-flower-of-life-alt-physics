@@ -4,6 +4,9 @@
 
 Keywords: Cymatic K-Space Mechanics, CKS, Interference Patterns, Monopole-Dipole Transition, Zero Free Parameters, Fine Structure Constant, Topological Physics, First Split, Linear Growth, Universe Age Derivation, Universal Pulse, Temporal Scaling.
 
+**Status:** Locked and falsifiable: If high-precision atomic clocks detect no drift in \( \alpha \) or if macroscopic quantum systems show no 0.5s phase inversion, the CKS axioms are mechanically invalidated.  
+**Motto:**  Axioms first. Axioms always.
+
 ---
 
 ## Quick Start
@@ -30,8 +33,6 @@ This package contains a complete axiomatic framework deriving all Standard Model
 - **Cosmology exact**: Ω_Λ=0.691, Ω_M=0.309, Ω_b=0.045
 - **Consciousness** = self-interference at C>0.999, frequency = 40 Hz
 
-**Status:** Locked and falsifiable.
-
 ---
 
 **Nomenclature:**
@@ -40,7 +41,6 @@ This package contains a complete axiomatic framework deriving all Standard Model
 - Acronym: CKS
 - Pronunciation: "Kicks"
 - Usage Pronunciation: "Kicks Mechanics"
-- Motto: "Axioms first. Axioms always."
 
 ---
 
