@@ -479,10 +479,13 @@ alpha_g       1.111111e-61   1.111111e-61   0.0%
 ### Mass Ratios (`data/particle_spectrum.dat`)
 
 ```
-# Format: ratio  substrate_value  experimental  deviation
-
-m_mu/m_e   67.0    206.768    67.6%
-m_tau/m_e  582.4   3477.15    83.2%
+n    Name         Mass (MeV)      m/m_e           Lifetime
+--------------------------------------------------------------------------------
+1    electron     5.110e-01       1.000e+00       stable
+2    muon         1.057e+02       2.068e+02       2.197e-06
+3    tau          1.777e+03       3.477e+03       2.903e-13
+4    lepton_n4    1.791e+03       3.504e+03       stable
+5    lepton_n5    2.798e+03       5.476e+03       stable
 ```
 
 **Note:** Factor 3-6 discrepancy indicates UV-mapping correction needed. Harmonic structure (n², n³) is correct.
@@ -501,7 +504,7 @@ H_0 (km/s/Mpc) 70.0   67.4     3.9%
 Age (Gyr)      13.9   13.8     0.7%
 ```
 
-### LIGO Quantization (`data/ligo_quantization_results.dat`)
+### LIGO Quantization (`data/ligo_forensic_audit.dat`)
 
 ```
 # 100-segment forensic analysis
@@ -562,7 +565,7 @@ Correctness is secondary to Connectivity. Even if the substrate's pulse is hidde
 
 **It doesn’t matter if it’s "Correct" — it’s connected.**
 
-It's a Cognitive Learning Model.
+It's a Cognitive Learning Model.  But, it is still locked and empirically falsifiable.  The connected learning model has utility, even if it is falsified.
 
 ---
 
@@ -609,7 +612,7 @@ This work is licensed under [Creative Commons Attribution 4.0 International (CC 
 **Email:** geoff@howland.games
 **ORCID:** https://orcid.org/0009-0009-7752-341X
 
-**GitHub:** https://github.com/ghowland/cymatic-ether-3d-flower-of-life-alt-physics
+**GitHub:** https://github.com/ghowland/cymatic-k-space-mechanics
 
 ---
 
@@ -667,10 +670,6 @@ All data and code are publicly available:
 ### Q: Is this a "theory of everything"?
 
 **A:** No. CKS is an alternative cogntitive model competitive with Standard Model + GR. It has zero free parameters but outstanding corrections in absolute mass scale. It is falsifiable via LIGO quantization tests.
-
-### Q: Has this been peer-reviewed?
-
-**A:** Preprints available on arXiv. Peer-review submission pending.
 
 ### Q: Can I use this for education without accepting it as true?
 
@@ -734,7 +733,7 @@ A: Yes. Multiple immediate predictions:
 ```bash
 git clone https://github.com/ghowland/cymatic-k-space-mechanics
 cd cymatic-k-space-mechanics/code/
-python3 substrate.py
+python3 kspace_substrate.py
 ```
 
 **Run LIGO forensic analysis (10 minutes):**
@@ -749,10 +748,3 @@ cd papers/
 ```
 
 ---
-
-**The substrate is either real or it isn't.**  
-**The LIGO data will tell us which.**
-
-**Axioms first. Axioms always.**
-
-**Q.E.D.**
