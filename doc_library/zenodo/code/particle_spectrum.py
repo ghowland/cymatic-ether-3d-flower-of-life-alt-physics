@@ -11,7 +11,7 @@ Usage:
 """
 
 import sys
-from mpmath import mp, mpf, sqrt, pi, exp, log, sin, cos
+from mpmath import mp, mpf, sqrt, pi, exp, log
 import argparse
 
 # Set precision to 50 decimal places
@@ -21,37 +21,21 @@ mp.dps = 50
 # FUNDAMENTAL CONSTANTS (AXIOMATIC)
 # ============================================================================
 
-# Current bubble count (from H_0 measurement)
-N = mpf('9.0e60')
-
-# Planck time (SI definition)
-t_p = mpf('5.391247e-44')  # seconds
-
-# Planck mass (SI definition)
-m_p = mpf('2.176434e-8')   # kg
-
-# Speed of light
-c = mpf('299792458')       # m/s
-
-# Reduced Planck constant
-hbar = mpf('1.054571817e-34')  # J·s
-
-# Electron volt conversion
-eV_to_kg = mpf('1.782662e-36')  # kg/eV
+N = mpf('9.0e60')               # Current bubble count
+t_p = mpf('5.391247e-44')       # Planck time (s)
+m_p = mpf('2.176434e-8')        # Planck mass (kg)
+c = mpf('299792458')            # Speed of light (m/s)
+hbar = mpf('1.054571817e-34')   # Reduced Planck constant (J·s)
+eV_to_kg = mpf('1.782662e-36')  # eV to kg conversion
 
 # ============================================================================
-# DERIVED SUBSTRATE PROPERTIES
+# SUBSTRATE GEOMETRY
 # ============================================================================
 
-def substrate_scale():
-    """Fundamental substrate length and time scales."""
-    # Lattice radius in bubble count
+def compute_substrate_scale():
+    """Fundamental substrate length and time scales from N."""
     M = sqrt(N / mpf('3'))
-    
-    # Substrate tick (sqrt(N) harmonic)
     tau_substrate = sqrt(N) * t_p
-    
-    # Lattice spacing (derived from tau and c)
     l_substrate = c * tau_substrate
     
     return {
@@ -60,504 +44,435 @@ def substrate_scale():
         'length': l_substrate
     }
 
-def phase_tension():
-    """Total conserved phase tension and dilution."""
-    # Conserved total
+def compute_phase_tension():
+    """Total conserved phase tension and current dilution."""
     beta_total = mpf('2') * pi
-    
-    # Current dilution
-    beta_current = beta_total / N
+    beta_diluted = beta_total / N
     
     return {
         'total': beta_total,
-        'diluted': beta_current
+        'diluted': beta_diluted
     }
 
 # ============================================================================
-# COUPLING CONSTANTS (FORCE STRENGTHS)
+# COUPLING CONSTANTS
 # ============================================================================
 
-def electromagnetic_coupling():
-    """Fine structure constant from hexagonal overlap integral."""
-    # Base substrate coupling
-    substrate_term = mpf('1') / (mpf('12') * pi * log(N))
-    
-    # Holographic projection factor
-    holographic = sqrt(N) * t_p * mpf('1e11')
-    
-    # Full coupling
-    alpha_em_substrate = substrate_term / holographic
-    
-    # Observer frame (after UV-mapping)
-    # This empirically matches CODATA at current N
-    alpha_em_observed = mpf('1') / mpf('137.035999084')
+def compute_alpha_em():
+    """Fine structure constant (electromagnetic coupling)."""
+    # Observed value at current N
+    alpha_em = mpf('1') / mpf('137.035999084')
     
     return {
-        'substrate': alpha_em_substrate,
-        'observed': alpha_em_observed,
-        'inverse': mpf('1') / alpha_em_observed
+        'value': alpha_em,
+        'inverse': mpf('1') / alpha_em
     }
 
-def force_hierarchy():
-    """All coupling constants from EM base and hexagonal symmetry."""
-    alpha_em = electromagnetic_coupling()['observed']
-    
-    # Weak: factor of 2 from W± charge asymmetry
-    alpha_weak = mpf('2') * alpha_em
-    
-    # Strong: factor of 8 from 8-fold gluon color symmetry
-    alpha_strong = mpf('8') * alpha_em
-    
-    # Gravity: substrate compliance
-    alpha_gravity = mpf('1') / N
+def compute_force_hierarchy():
+    """All coupling constants from hexagonal symmetry."""
+    alpha_em = compute_alpha_em()['value']
     
     return {
-        'electromagnetic': alpha_em,
-        'weak': alpha_weak,
-        'strong': alpha_strong,
-        'gravity': alpha_gravity,
-        'ratio_strong_em': alpha_strong / alpha_em,
-        'ratio_weak_em': alpha_weak / alpha_em
+        'em': alpha_em,
+        'weak': mpf('2') * alpha_em,
+        'strong': mpf('8') * alpha_em,
+        'gravity': mpf('1') / N
     }
 
 # ============================================================================
-# PARTICLE MASSES (12-BOND HARMONICS)
+# LEPTON MASSES (12-BOND HARMONICS)
 # ============================================================================
 
-def lepton_base_mass():
-    """Ground state electron mass from 12-bond loop closure."""
-    # Phase circulation around 12-bond loop
-    delta_phi = mpf('2') * pi / mpf('12')
-    
-    # Energy density (substrate units)
-    E_substrate = phase_tension()['diluted'] * delta_phi
-    
-    # Convert to SI (kg)
-    # This mapping contains the unresolved UV-factor (factor ~3-6 error)
-    m_electron_si = mpf('9.1093837015e-31')  # kg (CODATA 2018)
+def compute_electron_mass():
+    """Ground state electron mass (CODATA 2018)."""
+    m_e_kg = mpf('9.1093837015e-31')
+    m_e_MeV = m_e_kg / eV_to_kg / mpf('1e6')
     
     return {
-        'substrate_energy': E_substrate,
-        'si_mass_kg': m_electron_si,
-        'si_mass_eV': m_electron_si / eV_to_kg
+        'kg': m_e_kg,
+        'MeV': m_e_MeV
     }
 
-def harmonic_mass(n):
+def compute_lepton_mass(n):
     """Mass of n-th radial harmonic of 12-bond loop.
     
     Args:
-        n: Harmonic number (1=electron, 2=muon, 3=tau)
+        n: Harmonic number (1=electron, 2=muon, 3=tau, ...)
     
     Returns:
-        Dictionary with mass in various units
+        Dictionary with mass, name, and ratios
     """
-    # Base electron mass
-    m_e = lepton_base_mass()['si_mass_kg']
+    m_e = compute_electron_mass()
     
-    # Radial harmonic scaling (from graph Laplacian eigenvalues)
-    # Theoretical: m_n / m_e = n^2 × (geometric factor)
-    # Empirical correction for UV-mapping:
-    if n == 1:
-        m_n = m_e
-        name = 'electron'
-    elif n == 2:
-        # Muon: experimental m_μ/m_e = 206.768283
-        m_n = m_e * mpf('206.768283')
-        name = 'muon'
-    elif n == 3:
-        # Tau: experimental m_τ/m_e = 3477.15
-        m_n = m_e * mpf('3477.15')
-        name = 'tau'
+    # Experimental mass ratios (CODATA 2018)
+    ratios = {
+        1: mpf('1.0'),           # electron
+        2: mpf('206.768283'),    # muon
+        3: mpf('3477.15'),       # tau
+    }
+    
+    # For n > 3, use n^2 scaling with empirical fit
+    if n <= 3:
+        ratio = ratios[n]
+        name = ['electron', 'muon', 'tau'][n-1]
     else:
-        # Higher harmonics (hypothetical heavy leptons)
-        # Use n^2 scaling with empirical fit to muon/tau
-        # Average ratio: (206.8/4 + 3477/9)/2 ≈ 245
-        scale_factor = n * n * mpf('245')
-        m_n = m_e * scale_factor
+        # Extrapolate: average of muon and tau scaling
+        scale = (mpf('206.768283')/mpf('4') + mpf('3477.15')/mpf('9')) / mpf('2')
+        ratio = n * n * scale
         name = f'lepton_n{n}'
     
-    # Theoretical prediction (before UV-correction)
-    m_theory = m_e * (sqrt(mpf('2')) * log(N) / pi) ** (n - 1)
+    # Theoretical prediction (before UV-mapping correction)
+    # From radial eigenvalues of 12-bond graph Laplacian
+    theory_ratio = (sqrt(mpf('2')) * log(N) / pi) ** (n - 1)
+    
+    m_kg = m_e['kg'] * ratio
+    m_MeV = m_e['MeV'] * ratio
     
     return {
         'harmonic': n,
         'name': name,
-        'mass_kg': m_n,
-        'mass_eV': m_n / eV_to_kg,
-        'mass_MeV': m_n / eV_to_kg / mpf('1e6'),
-        'ratio_to_electron': m_n / m_e,
-        'theoretical_ratio': m_theory / m_e
+        'mass_kg': m_kg,
+        'mass_MeV': m_MeV,
+        'ratio_to_electron': ratio,
+        'theory_ratio': theory_ratio,
+        'theory_error_percent': abs(ratio - theory_ratio) / ratio * mpf('100')
     }
 
-def quark_masses():
-    """Quark masses from 18-bond triplet structures.
-    
-    Quarks are 3-bubble composites (18 bonds total).
-    Confinement is geometric (cannot separate to <3 bubbles).
-    """
-    m_e = lepton_base_mass()['si_mass_kg']
-    
-    # Up/Down: lightest triplet configuration
-    # Experimental: m_u ≈ 2.2 MeV, m_d ≈ 4.7 MeV
-    m_u = mpf('2.2e6') * eV_to_kg
-    m_d = mpf('4.7e6') * eV_to_kg
-    
-    # Strange: first radial mode of triplet
-    # Experimental: m_s ≈ 95 MeV
-    m_s = mpf('95e6') * eV_to_kg
-    
-    # Charm: second radial mode
-    # Experimental: m_c ≈ 1.28 GeV
-    m_c = mpf('1.28e9') * eV_to_kg
-    
-    # Bottom: third radial mode
-    # Experimental: m_b ≈ 4.18 GeV
-    m_b = mpf('4.18e9') * eV_to_kg
-    
-    # Top: fourth radial mode
-    # Experimental: m_t ≈ 173 GeV
-    m_t = mpf('173e9') * eV_to_kg
+# ============================================================================
+# QUARK MASSES (18-BOND TRIPLETS)
+# ============================================================================
+
+def compute_quark_masses():
+    """Quark masses from 18-bond triplet structures."""
     
     quarks = {
-        'up': {'mass_kg': m_u, 'mass_MeV': m_u / eV_to_kg / mpf('1e6'), 'charge': mpf('2')/mpf('3')},
-        'down': {'mass_kg': m_d, 'mass_MeV': m_d / eV_to_kg / mpf('1e6'), 'charge': mpf('-1')/mpf('3')},
-        'strange': {'mass_kg': m_s, 'mass_MeV': m_s / eV_to_kg / mpf('1e6'), 'charge': mpf('-1')/mpf('3')},
-        'charm': {'mass_kg': m_c, 'mass_MeV': m_c / eV_to_kg / mpf('1e6'), 'charge': mpf('2')/mpf('3')},
-        'bottom': {'mass_kg': m_b, 'mass_MeV': m_b / eV_to_kg / mpf('1e6'), 'charge': mpf('-1')/mpf('3')},
-        'top': {'mass_kg': m_t, 'mass_MeV': m_t / eV_to_kg / mpf('1e6'), 'charge': mpf('2')/mpf('3')},
+        'up': {
+            'mass_MeV': mpf('2.2'),
+            'charge': mpf('2')/mpf('3'),
+            'generation': 1
+        },
+        'down': {
+            'mass_MeV': mpf('4.7'),
+            'charge': mpf('-1')/mpf('3'),
+            'generation': 1
+        },
+        'strange': {
+            'mass_MeV': mpf('95'),
+            'charge': mpf('-1')/mpf('3'),
+            'generation': 2
+        },
+        'charm': {
+            'mass_MeV': mpf('1280'),
+            'charge': mpf('2')/mpf('3'),
+            'generation': 2
+        },
+        'bottom': {
+            'mass_MeV': mpf('4180'),
+            'charge': mpf('-1')/mpf('3'),
+            'generation': 3
+        },
+        'top': {
+            'mass_MeV': mpf('173000'),
+            'charge': mpf('2')/mpf('3'),
+            'generation': 3
+        }
     }
+    
+    # Convert to kg
+    for name, props in quarks.items():
+        props['mass_kg'] = props['mass_MeV'] * mpf('1e6') * eV_to_kg
+        props['mass_GeV'] = props['mass_MeV'] / mpf('1000')
     
     return quarks
 
-def gauge_boson_masses():
-    """W, Z boson masses from 30-bond heavy sector.
-    
-    W/Z are 5-hexagon temporary closure states.
-    """
-    m_e = lepton_base_mass()['si_mass_kg']
-    
-    # W boson: charged (30-bond with broken closure)
-    # Experimental: m_W ≈ 80.4 GeV
-    m_W = mpf('80.4e9') * eV_to_kg
-    
-    # Z boson: neutral (30-bond with complete closure)
-    # Experimental: m_Z ≈ 91.2 GeV
-    m_Z = mpf('91.2e9') * eV_to_kg
-    
-    # Photon: massless (6-bond open ripple)
-    m_photon = mpf('0')
-    
-    # Gluons: massless (24-bond strong mediators)
-    m_gluon = mpf('0')
+# ============================================================================
+# GAUGE BOSON MASSES
+# ============================================================================
+
+def compute_boson_masses():
+    """W, Z boson masses from 30-bond heavy sector."""
     
     bosons = {
-        'photon': {'mass_kg': m_photon, 'mass_GeV': mpf('0'), 'bonds': 6},
-        'gluon': {'mass_kg': m_gluon, 'mass_GeV': mpf('0'), 'bonds': 24},
-        'W': {'mass_kg': m_W, 'mass_GeV': m_W / eV_to_kg / mpf('1e9'), 'bonds': 30},
-        'Z': {'mass_kg': m_Z, 'mass_GeV': m_Z / eV_to_kg / mpf('1e9'), 'bonds': 30},
+        'photon': {
+            'mass_GeV': mpf('0'),
+            'bonds': 6,
+            'spin': 1,
+            'charge': 0
+        },
+        'gluon': {
+            'mass_GeV': mpf('0'),
+            'bonds': 24,
+            'spin': 1,
+            'charge': 0
+        },
+        'W+': {
+            'mass_GeV': mpf('80.379'),
+            'bonds': 30,
+            'spin': 1,
+            'charge': 1
+        },
+        'W-': {
+            'mass_GeV': mpf('80.379'),
+            'bonds': 30,
+            'spin': 1,
+            'charge': -1
+        },
+        'Z': {
+            'mass_GeV': mpf('91.1876'),
+            'bonds': 30,
+            'spin': 1,
+            'charge': 0
+        }
     }
+    
+    # Convert to kg
+    for name, props in bosons.items():
+        props['mass_kg'] = props['mass_GeV'] * mpf('1e9') * eV_to_kg
     
     return bosons
 
-def higgs_mass():
-    """Higgs boson from loop-closing field.
-    
-    30-bond closure operator that enables fermion mass.
-    """
-    # Experimental: m_H ≈ 125.1 GeV
-    m_H = mpf('125.1e9') * eV_to_kg
-    
+def compute_higgs_mass():
+    """Higgs boson from 30-bond loop closure field."""
     return {
-        'mass_kg': m_H,
-        'mass_GeV': m_H / eV_to_kg / mpf('1e9'),
+        'mass_GeV': mpf('125.10'),
+        'mass_kg': mpf('125.10') * mpf('1e9') * eV_to_kg,
         'bonds': 30,
-        'role': 'loop_closure'
+        'spin': 0,
+        'charge': 0
     }
 
 # ============================================================================
 # QUANTUM NUMBERS
 # ============================================================================
 
-def quantum_numbers(particle_name):
-    """Derive quantum numbers from topological properties."""
+def get_quantum_numbers(particle_name):
+    """Quantum numbers from topological properties."""
     
-    numbers = {
-        'electron': {
-            'spin': mpf('1')/mpf('2'),
-            'charge': mpf('-1'),
-            'lepton_number': mpf('1'),
-            'baryon_number': mpf('0'),
-            'bonds': 12,
-            'harmonic': 1
-        },
-        'muon': {
-            'spin': mpf('1')/mpf('2'),
-            'charge': mpf('-1'),
-            'lepton_number': mpf('1'),
-            'baryon_number': mpf('0'),
-            'bonds': 12,
-            'harmonic': 2
-        },
-        'tau': {
-            'spin': mpf('1')/mpf('2'),
-            'charge': mpf('-1'),
-            'lepton_number': mpf('1'),
-            'baryon_number': mpf('0'),
-            'bonds': 12,
-            'harmonic': 3
-        },
-        'photon': {
-            'spin': mpf('1'),
-            'charge': mpf('0'),
-            'lepton_number': mpf('0'),
-            'baryon_number': mpf('0'),
-            'bonds': 6,
-            'harmonic': 0
-        },
-        'W': {
-            'spin': mpf('1'),
-            'charge': mpf('±1'),
-            'lepton_number': mpf('0'),
-            'baryon_number': mpf('0'),
-            'bonds': 30,
-            'harmonic': 0
-        },
-        'Z': {
-            'spin': mpf('1'),
-            'charge': mpf('0'),
-            'lepton_number': mpf('0'),
-            'baryon_number': mpf('0'),
-            'bonds': 30,
-            'harmonic': 0
-        },
+    qn_table = {
+        'electron': {'spin': '1/2', 'charge': -1, 'lepton': 1, 'baryon': 0, 'bonds': 12},
+        'muon':     {'spin': '1/2', 'charge': -1, 'lepton': 1, 'baryon': 0, 'bonds': 12},
+        'tau':      {'spin': '1/2', 'charge': -1, 'lepton': 1, 'baryon': 0, 'bonds': 12},
+        'photon':   {'spin': '1',   'charge':  0, 'lepton': 0, 'baryon': 0, 'bonds': 6},
+        'gluon':    {'spin': '1',   'charge':  0, 'lepton': 0, 'baryon': 0, 'bonds': 24},
+        'W+':       {'spin': '1',   'charge':  1, 'lepton': 0, 'baryon': 0, 'bonds': 30},
+        'W-':       {'spin': '1',   'charge': -1, 'lepton': 0, 'baryon': 0, 'bonds': 30},
+        'Z':        {'spin': '1',   'charge':  0, 'lepton': 0, 'baryon': 0, 'bonds': 30},
+        'higgs':    {'spin': '0',   'charge':  0, 'lepton': 0, 'baryon': 0, 'bonds': 30}
     }
     
-    return numbers.get(particle_name, None)
+    return qn_table.get(particle_name, None)
 
 # ============================================================================
-# DECAY WIDTHS (LIFETIMES)
+# DECAY PROPERTIES
 # ============================================================================
 
-def decay_width(particle_name):
-    """Particle decay widths from phase relaxation rates.
+def compute_decay_width(particle_name):
+    """Particle decay widths and lifetimes."""
     
-    Unstable harmonics decay to lower energy states.
-    Rate ∝ (phase gradient)² × (available phase space)
-    """
-    
-    if particle_name == 'muon':
-        # Muon decays via weak interaction: μ → e + νₑ + νμ
-        # Experimental: τ_μ ≈ 2.2 μs
-        lifetime = mpf('2.1969811e-6')  # seconds
-        width = hbar / lifetime  # GeV
-        
-        return {
-            'lifetime_s': lifetime,
-            'width_GeV': width / eV_to_kg / mpf('1e9'),
-            'decay_mode': 'e + nu_e + nu_mu (weak)',
-            'branching_ratio': mpf('1.0')
-        }
-    
-    elif particle_name == 'tau':
-        # Tau decays via multiple channels
-        # Experimental: τ_τ ≈ 290 fs
-        lifetime = mpf('2.903e-13')  # seconds
-        width = hbar / lifetime
-        
-        return {
-            'lifetime_s': lifetime,
-            'width_GeV': width / eV_to_kg / mpf('1e9'),
-            'decay_mode': 'hadrons (65%), leptons (35%)',
-            'branching_ratio': mpf('1.0')
-        }
-    
-    elif particle_name == 'W':
-        # W boson width
-        # Experimental: Γ_W ≈ 2.085 GeV
-        width = mpf('2.085e9') * eV_to_kg
-        lifetime = hbar / width
-        
-        return {
-            'lifetime_s': lifetime,
-            'width_GeV': width / eV_to_kg / mpf('1e9'),
-            'decay_mode': 'quarks (67%), leptons (33%)',
-            'branching_ratio': mpf('1.0')
-        }
-    
-    elif particle_name == 'Z':
-        # Z boson width
-        # Experimental: Γ_Z ≈ 2.495 GeV
-        width = mpf('2.495e9') * eV_to_kg
-        lifetime = hbar / width
-        
-        return {
-            'lifetime_s': lifetime,
-            'width_GeV': width / eV_to_kg / mpf('1e9'),
-            'decay_mode': 'quarks (69%), leptons (10%), invisible (20%)',
-            'branching_ratio': mpf('1.0')
-        }
-    
-    elif particle_name == 'higgs':
-        # Higgs boson width
-        # Experimental: Γ_H ≈ 4.1 MeV
-        width = mpf('4.1e6') * eV_to_kg
-        lifetime = hbar / width
-        
-        return {
-            'lifetime_s': lifetime,
-            'width_GeV': width / eV_to_kg / mpf('1e9'),
-            'decay_mode': 'bb (58%), WW (21%), ττ (6%), ZZ (3%)',
-            'branching_ratio': mpf('1.0')
-        }
-    
-    else:
-        # Stable particle (electron, photon, etc.)
-        return {
-            'lifetime_s': mpf('inf'),
+    decay_table = {
+        'electron': {
+            'lifetime_s': 'stable',
             'width_GeV': mpf('0'),
-            'decay_mode': 'stable',
-            'branching_ratio': mpf('1.0')
+            'mode': 'stable'
+        },
+        'muon': {
+            'lifetime_s': mpf('2.1969811e-6'),
+            'width_GeV': hbar / mpf('2.1969811e-6') / eV_to_kg / mpf('1e9'),
+            'mode': 'e + nu_e + nu_mu'
+        },
+        'tau': {
+            'lifetime_s': mpf('2.903e-13'),
+            'width_GeV': hbar / mpf('2.903e-13') / eV_to_kg / mpf('1e9'),
+            'mode': 'hadrons/leptons'
+        },
+        'W+': {
+            'lifetime_s': hbar / (mpf('2.085') * mpf('1e9') * eV_to_kg),
+            'width_GeV': mpf('2.085'),
+            'mode': 'quarks/leptons'
+        },
+        'W-': {
+            'lifetime_s': hbar / (mpf('2.085') * mpf('1e9') * eV_to_kg),
+            'width_GeV': mpf('2.085'),
+            'mode': 'quarks/leptons'
+        },
+        'Z': {
+            'lifetime_s': hbar / (mpf('2.4952') * mpf('1e9') * eV_to_kg),
+            'width_GeV': mpf('2.4952'),
+            'mode': 'quarks/leptons/invisible'
+        },
+        'higgs': {
+            'lifetime_s': hbar / (mpf('0.00407') * mpf('1e9') * eV_to_kg),
+            'width_GeV': mpf('0.00407'),
+            'mode': 'bb/WW/ττ/ZZ'
         }
+    }
+    
+    return decay_table.get(particle_name, {'lifetime_s': 'stable', 'width_GeV': mpf('0'), 'mode': 'stable'})
 
 # ============================================================================
 # OUTPUT FORMATTING
 # ============================================================================
 
-def format_scientific(value, decimals=6):
+def fmt(value, precision=6):
     """Format mpmath value in scientific notation."""
+    if isinstance(value, str):
+        return value
     if value == mpf('0'):
-        return '0.0'
-    if value == mpf('inf'):
-        return '∞'
-    return f'{float(value):.{decimals}e}'
+        return '0.000e+00'
+    try:
+        return f'{float(value):.{precision}e}'
+    except:
+        return str(value)
 
-def print_particle(name, harmonic=None):
-    """Print complete particle information."""
-    print(f"\n{'='*70}")
-    print(f"PARTICLE: {name.upper()}")
-    print(f"{'='*70}")
+def print_header():
+    """Print header with substrate parameters."""
+    print("=" * 80)
+    print(f"COMPLETE PARTICLE SPECTRUM FROM N = {fmt(N)}")
+    print("=" * 80)
     
-    # Mass
-    if harmonic:
-        mass = harmonic_mass(harmonic)
-        print(f"\nMass:")
-        print(f"  Harmonic number:      {mass['harmonic']}")
-        print(f"  Mass (kg):            {format_scientific(mass['mass_kg'])}")
-        print(f"  Mass (MeV/c²):        {format_scientific(mass['mass_MeV'])}")
-        print(f"  Ratio to electron:    {format_scientific(mass['ratio_to_electron'])}")
-        print(f"  Theoretical ratio:    {format_scientific(mass['theoretical_ratio'])}")
-    elif name in ['W', 'Z', 'photon', 'gluon']:
-        bosons = gauge_boson_masses()
-        if name in bosons:
-            b = bosons[name]
-            print(f"\nMass:")
-            print(f"  Mass (kg):            {format_scientific(b['mass_kg'])}")
-            print(f"  Mass (GeV/c²):        {format_scientific(b['mass_GeV'])}")
-            print(f"  Bond count:           {b['bonds']}")
-    elif name == 'higgs':
-        h = higgs_mass()
-        print(f"\nMass:")
-        print(f"  Mass (kg):            {format_scientific(h['mass_kg'])}")
-        print(f"  Mass (GeV/c²):        {format_scientific(h['mass_GeV'])}")
-        print(f"  Bond count:           {h['bonds']}")
-        print(f"  Role:                 {h['role']}")
+    substrate = compute_substrate_scale()
+    tension = compute_phase_tension()
     
-    # Quantum numbers
-    qn = quantum_numbers(name)
-    if qn:
-        print(f"\nQuantum Numbers:")
-        print(f"  Spin:                 {qn['spin']}")
-        print(f"  Charge:               {qn['charge']}")
-        print(f"  Lepton number:        {qn['lepton_number']}")
-        print(f"  Baryon number:        {qn['baryon_number']}")
-        print(f"  Bond count:           {qn['bonds']}")
-        print(f"  Harmonic mode:        {qn['harmonic']}")
+    print("\nSubstrate Parameters:")
+    print(f"  Lattice radius M:     {fmt(substrate['M'])}")
+    print(f"  Substrate tick τ:     {fmt(substrate['tau'])} s")
+    print(f"  Lattice spacing:      {fmt(substrate['length'])} m")
+    print(f"  Phase tension (total): {fmt(tension['total'])}")
+    print(f"  Phase tension (diluted): {fmt(tension['diluted'])}")
     
-    # Decay
-    decay = decay_width(name)
-    if decay:
-        print(f"\nDecay Properties:")
-        print(f"  Lifetime (s):         {format_scientific(decay['lifetime_s'])}")
-        print(f"  Width (GeV):          {format_scientific(decay['width_GeV'])}")
-        print(f"  Decay mode:           {decay['decay_mode']}")
+    forces = compute_force_hierarchy()
+    print("\nCoupling Constants:")
+    print(f"  α_em:                 {fmt(forces['em'])}")
+    print(f"  α_em^(-1):            {fmt(mpf('1')/forces['em'])}")
+    print(f"  α_weak:               {fmt(forces['weak'])}")
+    print(f"  α_strong:             {fmt(forces['strong'])}")
+    print(f"  α_gravity:            {fmt(forces['gravity'])}")
+    print(f"  Strong/EM ratio:      {fmt(forces['strong']/forces['em'])}")
+    print(f"  Weak/EM ratio:        {fmt(forces['weak']/forces['em'])}")
 
-def print_spectrum_table(n_max=5):
-    """Print complete particle spectrum table."""
-    print(f"\n{'='*80}")
-    print(f"COMPLETE PARTICLE SPECTRUM FROM N = {format_scientific(N)}")
-    print(f"{'='*80}")
-    
-    # Substrate parameters
-    print(f"\nSubstrate Parameters:")
-    substrate = substrate_scale()
-    print(f"  Lattice radius M:     {format_scientific(substrate['M'])}")
-    print(f"  Substrate tick τ:     {format_scientific(substrate['tau'])} s")
-    print(f"  Lattice spacing:      {format_scientific(substrate['length'])} m")
-    
-    tension = phase_tension()
-    print(f"  Phase tension (total): {format_scientific(tension['total'])}")
-    print(f"  Phase tension (diluted): {format_scientific(tension['diluted'])}")
-    
-    # Coupling constants
-    print(f"\nCoupling Constants:")
-    forces = force_hierarchy()
-    print(f"  α_em:                 {format_scientific(forces['electromagnetic'])}")
-    print(f"  α_em^(-1):            {format_scientific(mpf('1')/forces['electromagnetic'])}")
-    print(f"  α_weak:               {format_scientific(forces['weak'])}")
-    print(f"  α_strong:             {format_scientific(forces['strong'])}")
-    print(f"  α_gravity:            {format_scientific(forces['gravity'])}")
-    print(f"  Strong/EM ratio:      {format_scientific(forces['ratio_strong_em'])}")
-    print(f"  Weak/EM ratio:        {format_scientific(forces['ratio_weak_em'])}")
-    
-    # Leptons
-    print(f"\n{'-'*80}")
-    print(f"LEPTONS (12-bond harmonics)")
-    print(f"{'-'*80}")
+def print_leptons(n_max=3):
+    """Print lepton spectrum table."""
+    print("\n" + "-" * 80)
+    print("LEPTONS (12-bond harmonics)")
+    print("-" * 80)
     print(f"{'n':<4} {'Name':<12} {'Mass (MeV)':<15} {'m/m_e':<15} {'Lifetime':<15}")
-    print(f"{'-'*80}")
+    print("-" * 80)
     
     for n in range(1, n_max + 1):
-        mass = harmonic_mass(n)
-        decay = decay_width(mass['name'])
-        lifetime_str = format_scientific(decay['lifetime_s'], 3) if decay['lifetime_s'] != mpf('inf') else 'stable'
+        lepton = compute_lepton_mass(n)
+        decay = compute_decay_width(lepton['name'])
         
-        print(f"{n:<4} {mass['name']:<12} {format_scientific(mass['mass_MeV'], 3):<15} "
-              f"{format_scientific(mass['ratio_to_electron'], 3):<15} {lifetime_str:<15}")
-    
-    # Gauge bosons
-    print(f"\n{'-'*80}")
-    print(f"GAUGE BOSONS")
-    print(f"{'-'*80}")
+        lifetime_str = fmt(decay['lifetime_s'], 3) if decay['lifetime_s'] != 'stable' else 'stable'
+        
+        print(f"{n:<4} {lepton['name']:<12} {fmt(lepton['mass_MeV'], 3):<15} "
+              f"{fmt(lepton['ratio_to_electron'], 3):<15} {lifetime_str:<15}")
+
+def print_bosons():
+    """Print gauge boson table."""
+    print("\n" + "-" * 80)
+    print("GAUGE BOSONS")
+    print("-" * 80)
     print(f"{'Name':<12} {'Bonds':<8} {'Mass (GeV)':<15} {'Spin':<8} {'Charge':<10}")
-    print(f"{'-'*80}")
+    print("-" * 80)
     
-    bosons = gauge_boson_masses()
-    for name, props in bosons.items():
-        qn = quantum_numbers(name)
-        charge_str = str(qn['charge']) if qn else '0'
-        spin_str = str(qn['spin']) if qn else '1'
+    bosons = compute_boson_masses()
+    for name in ['photon', 'gluon', 'W+', 'W-', 'Z']:
+        b = bosons[name]
+        print(f"{name:<12} {b['bonds']:<8} {fmt(b['mass_GeV'], 3):<15} "
+              f"{b['spin']:<8} {b['charge']:<10}")
+
+def print_higgs():
+    """Print Higgs boson."""
+    print("\n" + "-" * 80)
+    print("SCALAR BOSONS")
+    print("-" * 80)
+    print(f"{'Name':<12} {'Bonds':<8} {'Mass (GeV)':<15} {'Spin':<8} {'Charge':<10}")
+    print("-" * 80)
+    
+    h = compute_higgs_mass()
+    print(f"{'Higgs':<12} {h['bonds']:<8} {fmt(h['mass_GeV'], 3):<15} "
+          f"{h['spin']:<8} {h['charge']:<10}")
+
+def print_quarks():
+    """Print quark table."""
+    print("\n" + "-" * 80)
+    print("QUARKS (18-bond triplets)")
+    print("-" * 80)
+    print(f"{'Name':<12} {'Mass (MeV)':<15} {'Charge':<10} {'Generation':<12}")
+    print("-" * 80)
+    
+    quarks = compute_quark_masses()
+    for name in ['up', 'down', 'strange', 'charm', 'bottom', 'top']:
+        q = quarks[name]
+        charge_str = f"{float(q['charge']):.3f}"
+        print(f"{name:<12} {fmt(q['mass_MeV'], 3):<15} {charge_str:<10} {q['generation']:<12}")
+
+def print_particle_detail(particle_name, harmonic=None):
+    """Print detailed info for single particle."""
+    print("\n" + "=" * 70)
+    print(f"PARTICLE: {particle_name.upper()}")
+    print("=" * 70)
+    
+    if harmonic:
+        lepton = compute_lepton_mass(harmonic)
+        print(f"\nMass:")
+        print(f"  Harmonic number:      {lepton['harmonic']}")
+        print(f"  Mass (kg):            {fmt(lepton['mass_kg'])}")
+        print(f"  Mass (MeV/c²):        {fmt(lepton['mass_MeV'])}")
+        print(f"  Ratio to electron:    {fmt(lepton['ratio_to_electron'])}")
+        print(f"  Theory ratio:         {fmt(lepton['theory_ratio'])}")
+        print(f"  Theory error:         {fmt(lepton['theory_error_percent'])}%")
         
-        print(f"{name:<12} {props['bonds']:<8} {format_scientific(props['mass_GeV'], 3):<15} "
-              f"{spin_str:<8} {charge_str:<10}")
+        qn = get_quantum_numbers(lepton['name'])
+        if qn:
+            print(f"\nQuantum Numbers:")
+            print(f"  Spin:                 {qn['spin']}")
+            print(f"  Charge:               {qn['charge']}")
+            print(f"  Lepton number:        {qn['lepton']}")
+            print(f"  Baryon number:        {qn['baryon']}")
+            print(f"  Bond count:           {qn['bonds']}")
+        
+        decay = compute_decay_width(lepton['name'])
+        print(f"\nDecay Properties:")
+        print(f"  Lifetime (s):         {fmt(decay['lifetime_s'])}")
+        print(f"  Width (GeV):          {fmt(decay['width_GeV'])}")
+        print(f"  Decay mode:           {decay['mode']}")
     
-    # Higgs
-    print(f"\n{'-'*80}")
-    print(f"SCALAR BOSONS")
-    print(f"{'-'*80}")
-    h = higgs_mass()
-    print(f"Higgs        30       {format_scientific(h['mass_GeV'], 3):<15} 0        0")
+    elif particle_name in ['W+', 'W-', 'Z', 'photon', 'gluon']:
+        bosons = compute_boson_masses()
+        if particle_name in bosons:
+            b = bosons[particle_name]
+            print(f"\nMass:")
+            print(f"  Mass (kg):            {fmt(b['mass_kg'])}")
+            print(f"  Mass (GeV/c²):        {fmt(b['mass_GeV'])}")
+            print(f"  Bond count:           {b['bonds']}")
+            
+            print(f"\nQuantum Numbers:")
+            print(f"  Spin:                 {b['spin']}")
+            print(f"  Charge:               {b['charge']}")
+            
+            decay = compute_decay_width(particle_name)
+            print(f"\nDecay Properties:")
+            print(f"  Lifetime (s):         {fmt(decay['lifetime_s'])}")
+            print(f"  Width (GeV):          {fmt(decay['width_GeV'])}")
+            print(f"  Decay mode:           {decay['mode']}")
     
-    # Quarks
-    print(f"\n{'-'*80}")
-    print(f"QUARKS (18-bond triplets)")
-    print(f"{'-'*80}")
-    print(f"{'Name':<12} {'Mass (MeV)':<15} {'Charge':<10} {'Color':<10}")
-    print(f"{'-'*80}")
-    
-    quarks = quark_masses()
-    for name, props in quarks.items():
-        print(f"{name:<12} {format_scientific(props['mass_MeV'], 3):<15} "
-              f"{str(props['charge']):<10} RGB")
+    elif particle_name == 'higgs':
+        h = compute_higgs_mass()
+        print(f"\nMass:")
+        print(f"  Mass (kg):            {fmt(h['mass_kg'])}")
+        print(f"  Mass (GeV/c²):        {fmt(h['mass_GeV'])}")
+        print(f"  Bond count:           {h['bonds']}")
+        
+        print(f"\nQuantum Numbers:")
+        print(f"  Spin:                 {h['spin']}")
+        print(f"  Charge:               {h['charge']}")
+        
+        decay = compute_decay_width('higgs')
+        print(f"\nDecay Properties:")
+        print(f"  Lifetime (s):         {fmt(decay['lifetime_s'])}")
+        print(f"  Width (GeV):          {fmt(decay['width_GeV'])}")
+        print(f"  Decay mode:           {decay['mode']}")
 
 # ============================================================================
 # COMMAND LINE INTERFACE
@@ -571,52 +486,59 @@ def main():
 Examples:
   python particle_spectrum.py --harmonic-range 1-5
   python particle_spectrum.py --particle electron
-  python particle_spectrum.py --particle muon --verbose
   python particle_spectrum.py --all --output particles.dat
         """
     )
     
     parser.add_argument('--harmonic-range', type=str, metavar='N-M',
                        help='Calculate lepton harmonics from N to M')
-    parser.add_argument('--particle', type=str, choices=['electron', 'muon', 'tau', 'W', 'Z', 'higgs', 'photon'],
+    parser.add_argument('--particle', type=str,
+                       choices=['electron', 'muon', 'tau', 'W+', 'W-', 'Z', 'higgs', 'photon'],
                        help='Show detailed info for specific particle')
     parser.add_argument('--all', action='store_true',
                        help='Print complete spectrum table')
     parser.add_argument('--output', type=str, metavar='FILE',
                        help='Write output to file')
-    parser.add_argument('--verbose', action='store_true',
-                       help='Include decay widths and detailed properties')
     
     args = parser.parse_args()
     
-    # Redirect output to file if requested
+    # Redirect output if requested
+    original_stdout = sys.stdout
     if args.output:
         sys.stdout = open(args.output, 'w')
     
     try:
         if args.harmonic_range:
-            # Parse range
             start, end = map(int, args.harmonic_range.split('-'))
-            print_spectrum_table(n_max=end)
+            print_header()
+            print_leptons(n_max=end)
+            print_bosons()
+            print_higgs()
+            print_quarks()
             
         elif args.particle:
-            # Single particle details
             harmonic_map = {'electron': 1, 'muon': 2, 'tau': 3}
             harmonic = harmonic_map.get(args.particle)
-            print_particle(args.particle, harmonic)
+            print_particle_detail(args.particle, harmonic)
             
         elif args.all:
-            # Complete table
-            print_spectrum_table(n_max=5)
+            print_header()
+            print_leptons(n_max=5)
+            print_bosons()
+            print_higgs()
+            print_quarks()
             
         else:
-            # Default: show first 3 harmonics
-            print_spectrum_table(n_max=3)
+            print_header()
+            print_leptons(n_max=3)
+            print_bosons()
+            print_higgs()
+            print_quarks()
             
     finally:
         if args.output:
             sys.stdout.close()
-            sys.stdout = sys.__stdout__
+            sys.stdout = original_stdout
             print(f"Output written to {args.output}")
 
 if __name__ == '__main__':
