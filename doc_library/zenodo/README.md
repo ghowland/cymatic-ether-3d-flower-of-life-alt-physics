@@ -100,6 +100,7 @@ zenodo_package/
     ├── kspace_substrate_complete.json # Particle mixing angles and CP phase at N=9e60.
     ├── kspace_substrate_final.json # Substrate coupling strengths and lepton ratios.
     ├── kspace_substrate_qed.json # Full SM mass spectrum and CKM angles from N.
+    ├── x_space_movement_in_k_space.md # How does movement in X-Space translate to K-Space?  Movement -> Phase Evolution
     └── flatland_comparison.md # A Comparative Analysis of Abbott's Metaphor and Cymatic Reality
 ```
 
