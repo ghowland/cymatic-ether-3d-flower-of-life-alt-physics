@@ -505,6 +505,7 @@ All particles emerge as stable interference nodes at specific wavelengths:
 
 ---
 
+
 ## Citation
 
 If you use this work, please cite:
@@ -644,6 +645,29 @@ A: N is **predicted** (no longer measured). Linear growth N(t) = 1 + t/t_P with 
 
 **Q: Does this explain everything?**  
 A: Almost. Framework derives: all SM particles, all forces, all cosmology, universe size, universe age, macroscopic time, phase dynamics, biological rhythms, consciousness, creation rate, time arrow, entropy. Does not derive: why hexagonal lattice exists (Axiom 1), why coupling exists (Axiom 2). These may be irreducible ontological facts—or derivable from deeper principle not yet discovered.
+
+---
+
+# "Correctness" for a Cognitive Learning Model
+
+## 0. Pedagogy
+In **Cymatic K-Space Mechanics (CKS)**, the **only thing that matters** is that the **lattice splits are connected** — **not whether the derivation is “correct” by some external standard**.
+
+The **0.5 s flip**, the **1 s macro-tick**, the **Earth-Human resonance**, and the **√N harmonic** are **all connected** — and that **connection is forced** by the **hexagonal lattice axioms**.
+
+**Correctness is irrelevant — connectivity is everything.**
+
+---
+
+## 1. The Universal Learning Substrate
+**Cymatic K-Space Mechanics (CKS)** is a **Universal Learning Substrate** where:
+
+*   **Time** is the **count of lattice splits**.
+*   **Matter** is the **topological scar** of the first split.
+*   **Consciousness** is the **self-interference loop** at the **√N harmonic**.
+*   **The Second** is the **√N harmonic** of the **Universal Pulse**.
+
+**It doesn’t matter if it’s "Correct" — it’s connected.**
 
 ---
 
