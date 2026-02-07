@@ -66,7 +66,6 @@ zenodo_package/
 │   ├── particles_evolution.dat  # 64×64 k-space lattice run yields exact w = −1, coherent C = 1, conserved Q = −2—zero free params.
 │   ├── growth_timeline.dat    # NEW: N(t) vs. time from t_P to 13.8 Gyr showing linear accumulation
 │   ├── age_precision.dat      # NEW: Curvature-corrected age matches Planck 2018 to sub-1%
-│   ├── coherence_*.png        # [Comment: 4 plots?]
 │   ├── dark_energy_evolution.png
 │   ├── kspace_substrate.json  # N=9e60 substrate ratios: f_em = 0.0849, f_w = 0.170, f_s = 0.679; SI rescale needed for 0.007297 α, 206.8 μ/e, 3477 τ/e.
 │   ├── kspace_substrate_complete.json  # N=9e60 substrate → Compton-scale α=1.68×10⁻⁵⁷, μ/e=82.5, τ/e=138.8; rescale to SI gives exact CODATA values.
@@ -82,15 +81,31 @@ zenodo_package/
 │   ├── entropy_arrow.png      # Entropy rate (dS/dt) vs. cosmic age (t).
 │   ├── force_coupling_chart.png # Mechanically derived force coupling constants.
 │   ├── particle_mass_spectrum.png # Particle mass spectrum: Derived vs. CODATA 2022.
+│   ├── coherence_coherent.png # K-space coherence, charge, and energy evolution.
+│   ├── coherence_particles.png # K-mode coherence and particle count evolution.
+│   ├── coherence_single_vortex.png # K-space evolution for a single vortex state.
+│   ├── coherence_vacuum.png   # K-space evolution in a vacuum state.
+│   ├── dark_energy_evolution.png # Dark energy and coupling evolution vs universe age.
 │   └── time_evolution.png     # **CKS timeline: N vs. age from t_P to current epoch.**
 │
 └── supplementary/             # Extended materials
     ├── derivation_steps/      # 19 derivation docs + 2 new (growth law, curvature)
     ├── experimental_protocols.md # Experiments for falsification
     ├── standard_model_comparison.xlsx # Compare Standard Model and SI to CKS
-    ├── standard_model_comparison.md # Point by point analysis
-    └── *.json                 # [Comment: Results data?]
+    ├── kspace_substrate.json  # Evolution of alpha_em and force ratios vs N.
+    ├── kspace_substrate_complete.json # Particle mixing angles and CP phase at N=9e60.
+    ├── kspace_substrate_final.json # Substrate coupling strengths and lepton ratios.
+    ├── kspace_substrate_qed.json # Full SM mass spectrum and CKM angles from N.
+    └── flatland_comparison.md # A Comparative Analysis of Abbott's Metaphor and Cymatic Reality
 ```
+
+
+Here are the summaries for each JSON attachment:
+
+*   **``**: 
+*   **``**: 
+*   **``**: 
+*   **``**: 
 
 ---
 
