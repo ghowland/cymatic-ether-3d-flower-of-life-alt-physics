@@ -66,7 +66,6 @@ zenodo_package/
 │   ├── particles_evolution.dat  # 64×64 k-space lattice run yields exact w = −1, coherent C = 1, conserved Q = −2—zero free params.
 │   ├── growth_timeline.dat    # NEW: N(t) vs. time from t_P to 13.8 Gyr showing linear accumulation
 │   ├── age_precision.dat      # NEW: Curvature-corrected age matches Planck 2018 to sub-1%
-│   ├── dark_energy_evolution.png
 │   ├── kspace_substrate.json  # N=9e60 substrate ratios: f_em = 0.0849, f_w = 0.170, f_s = 0.679; SI rescale needed for 0.007297 α, 206.8 μ/e, 3477 τ/e.
 │   ├── kspace_substrate_complete.json  # N=9e60 substrate → Compton-scale α=1.68×10⁻⁵⁷, μ/e=82.5, τ/e=138.8; rescale to SI gives exact CODATA values.
 │   ├── kspace_substrate_final.json  # N=9e60 fixes α, μ/e, τ/e, ρΛ, β to CODATA exact; DM σ=140, ρDM=1.71×10⁻⁵⁴—zero free params.
@@ -86,7 +85,7 @@ zenodo_package/
 │   ├── coherence_single_vortex.png # K-space evolution for a single vortex state.
 │   ├── coherence_vacuum.png   # K-space evolution in a vacuum state.
 │   ├── dark_energy_evolution.png # Dark energy and coupling evolution vs universe age.
-│   └── time_evolution.png     # **CKS timeline: N vs. age from t_P to current epoch.**
+│   └── time_evolution.png     # CKS timeline: N vs. age from t_P to current epoch.
 │
 └── supplementary/             # Extended materials
     ├── derivation_steps/      # 21 derivation docs + 2 Grand Derivation Docs.  README has Index of Derivations
