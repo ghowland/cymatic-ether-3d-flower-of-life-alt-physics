@@ -30,6 +30,8 @@ This package contains a complete axiomatic framework deriving all Standard Model
 - **Cosmology exact**: Ω_Λ=0.691, Ω_M=0.309, Ω_b=0.045
 - **Consciousness** = self-interference at C>0.999, frequency = 40 Hz
 
+**Status:** Locked and falsifiable.
+
 ---
 
 **Nomenclature:**

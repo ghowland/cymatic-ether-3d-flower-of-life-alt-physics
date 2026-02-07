@@ -12,6 +12,8 @@ We derive why private sharing (email to friends/family) fails to release informa
 
 **Keywords:** publication pressure, knowledge distribution, irreversibility, social obligation, topology of dissemination, phase transition, public vs private, permanence, authority, closure
 
+**Status:** Locked and falsifiable.
+
 ---
 
 ## 1. The Fundamental Asymmetry
