@@ -178,7 +178,7 @@ python code/plot_bond_hierarchy.py
 
 ### 4. Examine Individual Derivations
 
-Each observable has standalone derivation in `supplementary/derivation_steps/README.md`:
+Each observable has standalone derivation in (supplementary/derivation_steps/README.md)[supplementary/derivation_steps/README.md]:
 - Forced by axioms (no free parameters)
 - Pure mathematics (graph theory + topology)
 - Numerical precision to experimental limits
