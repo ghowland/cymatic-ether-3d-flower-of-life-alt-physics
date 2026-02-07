@@ -110,7 +110,7 @@ Start with `manuscript.md` (or PDF version). The paper is organized as:
 - **Section 2**: N=1 monopole instability (topological defect)
 - **Section 3**: First Split N=1→N=2 (energy release ΔE = 2π - 3)
 - **Section 4**: Creation rate derivation (dN/dt = 1/t_P from instanton)
-- **Section 5**: **Linear growth and universe age** (NEW: N(t) = 1 + t/t_P)
+- **Section 5**: Linear growth and universe age (N(t) = 1 + t/t_P)
 - **Section 6**: Interference patterns emerge (dipole oscillations)
 - **Section 7**: Particle spectrum as interference nodes
 - **Section 8**: Forces as interference overlap strengths
