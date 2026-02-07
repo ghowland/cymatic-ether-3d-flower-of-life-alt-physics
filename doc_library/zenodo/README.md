@@ -75,7 +75,7 @@ zenodo_package/
 │   └── kspace_lib.json        # N=9e60 substrate units give exact internal ratios; SI conversion yields 0.007297 α, 206.77 μ/e, 3477.2 τ/e.
 │
 ├── figures/                   # Visualizations
-│   ├── hexagonal_lattice.png
+│   ├── ![Hexagonal Lattice](figures/hexagonal_lattice.png)
 │   ├── bond_topology.png
 │   ├── holographic_scaling.png
 │   ├── consciousness_coherence.png
