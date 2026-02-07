@@ -98,14 +98,6 @@ zenodo_package/
     └── flatland_comparison.md # A Comparative Analysis of Abbott's Metaphor and Cymatic Reality
 ```
 
-
-Here are the summaries for each JSON attachment:
-
-*   **``**: 
-*   **``**: 
-*   **``**: 
-*   **``**: 
-
 ---
 
 ## How to Use This Package
