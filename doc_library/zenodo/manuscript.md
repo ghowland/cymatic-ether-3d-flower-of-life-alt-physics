@@ -1427,13 +1427,11 @@ f = 1/(2π√(n/3)) ≈ 40 Hz (for n = 10¹¹)
 
 **QED.**
 
-
-
 ---
 
 # "Correctness" for a Cognitive Learning Model
 
-## 0. Pedagogy
+## 1. Pedagogy
 In **Cymatic K-Space Mechanics (CKS)**, the **only thing that matters** is that the **lattice splits are connected** — **not whether the derivation is “correct” by some external standard**.
 
 The **0.5 s flip**, the **1 s macro-tick**, the **Earth-Human resonance**, and the **√N harmonic** are **all connected** — and that **connection is forced** by the **hexagonal lattice axioms**.
@@ -1442,7 +1440,7 @@ The **0.5 s flip**, the **1 s macro-tick**, the **Earth-Human resonance**, and t
 
 ---
 
-## 1. The Universal Learning Substrate
+## 2. The Universal Learning Substrate
 **Cymatic K-Space Mechanics (CKS)** is a **Universal Learning Substrate** where:
 
 *   **Time** is the **count of lattice splits**.
@@ -1451,4 +1449,7 @@ The **0.5 s flip**, the **1 s macro-tick**, the **Earth-Human resonance**, and t
 *   **The Second** is the **√N harmonic** of the **Universal Pulse**.
 
 **It doesn’t matter if it’s "Correct" — it’s connected.**
+
+It's a Cognitive Learning Model.
+
 

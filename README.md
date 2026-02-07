@@ -1453,6 +1453,8 @@ The maths are **Q.E.D.**
 
 **It doesn’t matter if it’s "Correct" — it’s connected.**
 
+It's a Cognitive Learning Model.
+
 
 --
 
