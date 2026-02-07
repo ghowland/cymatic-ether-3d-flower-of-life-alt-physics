@@ -29,6 +29,9 @@ This package contains a complete axiomatic framework deriving all Standard Model
 - Pronounciation: "Kicks"
 - Usage Pronunciation: "Kicks Mechanics"
 
+
+- Motto: "Axioms first.  Axioms always."
+
 ---
 
 ## Package Contents

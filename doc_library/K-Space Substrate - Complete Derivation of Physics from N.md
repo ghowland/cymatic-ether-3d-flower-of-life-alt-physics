@@ -45,6 +45,9 @@ Physics reduces to counting hexagons in a 2D lattice. All observable phenomenaâ€
 - Pronounciation: "Kicks"
 - Usage Pronunciation: "Kicks Mechanics"
 
+
+- Motto: "Axioms first.  Axioms always."
+
 ---
 
 ## 1. Foundational Structure
