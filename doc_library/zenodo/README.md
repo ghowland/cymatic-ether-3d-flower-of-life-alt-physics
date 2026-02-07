@@ -156,6 +156,8 @@ This validates framework against CODATA 2022:
 
 **Output**: Precision table with CODATA comparison
 
+**Data**: (data/standard_model_comparison.md)[data/standard_model_comparison.md]
+
 ### 3. Reproduce Results
 
 All derivations are mechanically reproducible:
