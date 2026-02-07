@@ -17,16 +17,9 @@ This is a **pure visualization tool** - no game, no physics simulation, just bea
 
 ## Quick Start
 
-```bash
-# Build
-zig build
+$ ./build.sh && ./run.sh
 
-# Run
-zig build run
-
-# Or build optimized
-zig build -Doptimize=ReleaseFast
-```
+---
 
 **Requirements:**
 - Zig 0.15.1

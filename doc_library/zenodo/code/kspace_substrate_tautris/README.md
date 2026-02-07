@@ -18,6 +18,17 @@ The left and right panels show k-space substrate visualizations (wave interferen
 
 ---
 
+## Quick Start
+
+$ ./build.sh && ./run.sh
+
+**Requirements:**
+- Zig 0.15.1
+- Raylib (automatically downloaded from GitHub)
+- Windows/Linux/macOS
+
+---
+
 ![Tautris Screen Shot](docs/kspace_tautris_0000.png)
 
 
