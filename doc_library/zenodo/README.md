@@ -1,22 +1,3 @@
----
-
-**Nomenclature:**
-
-- Term: Cymatic K-Space Mechanics
-- Acronym: CKS
-- Pronunciation: "Kicks"
-- Usage Pronunciation: "Kicks Mechanics"
-- Motto: "Axioms first. Axioms always."
-
-
-# Cymatic K-Space Mechanics: Complete Derivation of Physics from Hexagonal Lattice Topology
-
-**Zenodo Publication Package - Version 2.1**
-
-Keywords: Cymatic K-Space Mechanics, CKS, Interference Patterns, Monopole-Dipole Transition, Zero Free Parameters, Fine Structure Constant, Topological Physics, First Split, Linear Growth, Universe Age Derivation.
-
----
-
 ## Quick Start
 
 This package contains a complete axiomatic framework deriving all Standard Model + General Relativity phenomena from discrete hexagonal lattice interference patterns.
