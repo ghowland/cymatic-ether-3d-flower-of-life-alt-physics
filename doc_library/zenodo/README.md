@@ -97,6 +97,7 @@ zenodo_package/
 └── supplementary/             # Extended materials
     ├── derivation_steps/      # 21 derivation docs + 2 Grand Derivation Docs.  README has Index of Derivations
     ├── experimental_protocols.md # Experiments for falsification
+    ├── dwdm_2hz_falsification_protocol.md # Use DWDM logs to test CKS: 2.0 Hz must be globally phase-locked or the theory fails.   Easiest falsification.
     ├── standard_model_comparison.xlsx # Compare Standard Model and SI to CKS
     ├── kspace_substrate.json  # Evolution of alpha_em and force ratios vs N.
     ├── kspace_substrate_complete.json # Particle mixing angles and CP phase at N=9e60.
