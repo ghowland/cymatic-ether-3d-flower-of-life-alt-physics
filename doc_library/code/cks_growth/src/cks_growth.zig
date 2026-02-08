@@ -161,6 +161,50 @@ const CKSLattice = struct {
         try self.constructLattice();
     }
 
+    fn setPhaseWave(self: *CKSLattice, wavelength: f32, dir_x: f32, dir_y: f32) void {
+        const k_mag = 2.0 * PI / wavelength;
+        const norm = @sqrt(dir_x * dir_x + dir_y * dir_y);
+        const kx = k_mag * dir_x / norm;
+        const ky = k_mag * dir_y / norm;
+
+        for (self.bubbles.items) |*bubble| {
+            const phase_angle = kx * bubble.pos_k.x + ky * bubble.pos_k.y;
+            bubble.phase = Complex.fromPolar(1.0, phase_angle);
+        }
+    }
+
+    fn evolveStep(self: *CKSLattice, dt: f32, omega: f32, beta: f32) void {
+        var new_phases = self.allocator.alloc(Complex, self.bubbles.items.len) catch return;
+        defer self.allocator.free(new_phases);
+
+        for (self.bubbles.items, 0..) |bubble, i| {
+            // Natural oscillation: -iω φ
+            const d_phi_natural = Complex.init(
+                omega * bubble.phase.im,
+                -omega * bubble.phase.re,
+            );
+
+            // Coupling: β Σ(φⱼ - φₖ)
+            var d_phi_coupling = Complex.init(0, 0);
+            for (bubble.neighbors[0..bubble.neighbor_count]) |maybe_neighbor| {
+                if (maybe_neighbor) |neighbor_id| {
+                    const phi_j = self.bubbles.items[neighbor_id].phase;
+                    const diff = phi_j.sub(bubble.phase);
+                    d_phi_coupling = d_phi_coupling.add(diff.mul(beta));
+                }
+            }
+
+            const d_phi = d_phi_natural.add(d_phi_coupling);
+            new_phases[i] = bubble.phase.add(d_phi.mul(dt)).normalize();
+        }
+
+        for (self.bubbles.items, 0..) |*bubble, i| {
+            bubble.phase = new_phases[i];
+        }
+
+        self.evolution_time += dt;
+    }
+
     fn constructLattice(self: *CKSLattice) !void {
         self.bubbles.clearRetainingCapacity();
 
@@ -177,6 +221,11 @@ const CKSLattice = struct {
             self.bubbles.items[1].addNeighbor(2);
             self.bubbles.items[2].addNeighbor(0);
             self.bubbles.items[2].addNeighbor(1);
+
+            // Compute x-space positions (inverse Fourier for triangle)
+            self.bubbles.items[0].pos_x = .{ .x = 0, .y = 0 };
+            self.bubbles.items[1].pos_x = .{ .x = 1, .y = 0 };
+            self.bubbles.items[2].pos_x = .{ .x = 0.5, .y = @sqrt(3.0) / 2.0 };
         } else {
             // Construct hexagonal lattice in 3 sectors
             var positions = std.array_list.Managed(rl.Vector2).init(self.allocator);
@@ -259,6 +308,9 @@ const CKSLattice = struct {
                     bubble.addNeighbor(distances.items[k].id);
                 }
             }
+
+            // Compute x-space positions (inverse Fourier transform)
+            self.computeXSpacePositions();
         }
 
         // Update N to actual count
@@ -269,48 +321,109 @@ const CKSLattice = struct {
         self.coherence = 1.0 - 1.0 / (2.0 * @sqrt(fN / 3.0));
     }
 
-    fn setPhaseWave(self: *CKSLattice, wavelength: f32, dir_x: f32, dir_y: f32) void {
-        const k_mag = 2.0 * PI / wavelength;
-        const norm = @sqrt(dir_x * dir_x + dir_y * dir_y);
-        const kx = k_mag * dir_x / norm;
-        const ky = k_mag * dir_y / norm;
+    fn computeXSpacePositions(self: *CKSLattice) void {
+        // Discrete inverse Fourier transform: k-space -> x-space
+        // x(r) = Σ_k φ(k) * e^(i k·r)
 
-        for (self.bubbles.items) |*bubble| {
-            const phase_angle = kx * bubble.pos_k.x + ky * bubble.pos_k.y;
-            bubble.phase = Complex.fromPolar(1.0, phase_angle);
+        const n_bubbles = self.bubbles.items.len;
+        if (n_bubbles == 0) return;
+
+        // For visualization, we sample x-space at same grid positions as k-space
+        // but compute via inverse transform
+        for (self.bubbles.items, 0..) |*bubble_x, idx| {
+            _ = idx;
+            var sum_re: f32 = 0;
+            var sum_im: f32 = 0;
+
+            // Use the k-space position as our x-space sampling point
+            const r_x = bubble_x.pos_k.x;
+            const r_y = bubble_x.pos_k.y;
+
+            // Sum over all k-modes
+            for (self.bubbles.items) |bubble_k| {
+                const k_x = bubble_k.pos_k.x;
+                const k_y = bubble_k.pos_k.y;
+
+                // k·r dot product
+                const k_dot_r = k_x * r_x + k_y * r_y;
+
+                // e^(i k·r) = cos(k·r) + i sin(k·r)
+                const phase_re = @cos(k_dot_r);
+                const phase_im = @sin(k_dot_r);
+
+                // φ(k) * e^(i k·r)
+                sum_re += bubble_k.phase.re * phase_re - bubble_k.phase.im * phase_im;
+                sum_im += bubble_k.phase.re * phase_im + bubble_k.phase.im * phase_re;
+            }
+
+            // Normalize and use amplitude as position offset
+            const amplitude = @sqrt(sum_re * sum_re + sum_im * sum_im) / @as(f32, @floatFromInt(n_bubbles));
+            const angle = math.atan2(sum_im, sum_re);
+
+            // Map to x-space: use angle for direction, amplitude for radial position
+            const r_scale = 1.0 + amplitude * 0.5; // Small perturbation
+            bubble_x.pos_x = .{
+                .x = r_x * r_scale * @cos(angle * 0.1),
+                .y = r_y * r_scale * @sin(angle * 0.1),
+            };
         }
     }
 
-    fn evolveStep(self: *CKSLattice, dt: f32, omega: f32, beta: f32) void {
-        var new_phases = self.allocator.alloc(Complex, self.bubbles.items.len) catch return;
-        defer self.allocator.free(new_phases);
-
-        for (self.bubbles.items, 0..) |bubble, i| {
-            // Natural oscillation: -iω φ
-            const d_phi_natural = Complex.init(
-                omega * bubble.phase.im,
-                -omega * bubble.phase.re,
-            );
-
-            // Coupling: β Σ(φⱼ - φₖ)
-            var d_phi_coupling = Complex.init(0, 0);
+    fn renderLattice(self: *Renderer, lattice: *CKSLattice, camera: Camera, is_k_space: bool) void {
+        // Draw edges
+        for (lattice.bubbles.items) |bubble| {
             for (bubble.neighbors[0..bubble.neighbor_count]) |maybe_neighbor| {
                 if (maybe_neighbor) |neighbor_id| {
-                    const phi_j = self.bubbles.items[neighbor_id].phase;
-                    const diff = phi_j.sub(bubble.phase);
-                    d_phi_coupling = d_phi_coupling.add(diff.mul(beta));
+                    const pos1_k = if (is_k_space) bubble.pos_k else bubble.pos_x;
+                    const pos2_k = if (is_k_space)
+                        lattice.bubbles.items[neighbor_id].pos_k
+                    else
+                        lattice.bubbles.items[neighbor_id].pos_x;
+
+                    const pos1 = camera.worldToScreen(pos1_k);
+                    const pos2 = camera.worldToScreen(pos2_k);
+
+                    rl.drawLineEx(
+                        pos1,
+                        pos2,
+                        1.5,
+                        rl.Color.init(100, 100, 120, @intFromFloat(self.config.edge_alpha * 255.0)),
+                    );
                 }
             }
-
-            const d_phi = d_phi_natural.add(d_phi_coupling);
-            new_phases[i] = bubble.phase.add(d_phi.mul(dt)).normalize();
         }
 
-        for (self.bubbles.items, 0..) |*bubble, i| {
-            bubble.phase = new_phases[i];
+        // Draw bubbles
+        const radius_scale = camera.zoom;
+        const bubble_radius = std.math.clamp(
+            self.config.bubble_min_radius + radius_scale * 0.5,
+            self.config.bubble_min_radius,
+            self.config.bubble_max_radius,
+        );
+
+        for (lattice.bubbles.items) |bubble| {
+            const pos_world = if (is_k_space) bubble.pos_k else bubble.pos_x;
+            const pos = camera.worldToScreen(pos_world);
+
+            // Color from phase angle
+            const phase_angle = bubble.phase.angle();
+            const hue = (phase_angle + PI) / (2.0 * PI);
+            const color = hsvToRgb(hue, 0.8, 0.9);
+
+            rl.drawCircleV(pos, bubble_radius, color);
+            rl.drawCircleLines(
+                @intFromFloat(pos.x),
+                @intFromFloat(pos.y),
+                bubble_radius,
+                rl.Color.init(0, 0, 0, 180),
+            );
         }
 
-        self.evolution_time += dt;
+        // Label
+        const label = if (is_k_space) "k-space" else "x-space";
+        const split_x = self.canvas_left + self.canvas_width / 2.0;
+        const label_x = if (is_k_space) self.canvas_left + 10 else split_x + 10;
+        rl.drawText(label, @intFromFloat(label_x), 10, 20, rl.Color.white);
     }
 };
 
@@ -399,27 +512,38 @@ const Renderer = struct {
     fn updateCameras(self: *Renderer, lattice: *CKSLattice) void {
         if (lattice.bubbles.items.len == 0) return;
 
-        // Compute bounds
-        var min_x: f32 = lattice.bubbles.items[0].pos_k.x;
-        var max_x: f32 = min_x;
-        var min_y: f32 = lattice.bubbles.items[0].pos_k.y;
-        var max_y: f32 = min_y;
+        // Compute k-space bounds
+        var min_x_k: f32 = lattice.bubbles.items[0].pos_k.x;
+        var max_x_k: f32 = min_x_k;
+        var min_y_k: f32 = lattice.bubbles.items[0].pos_k.y;
+        var max_y_k: f32 = min_y_k;
+
+        // Compute x-space bounds
+        var min_x_x: f32 = lattice.bubbles.items[0].pos_x.x;
+        var max_x_x: f32 = min_x_x;
+        var min_y_x: f32 = lattice.bubbles.items[0].pos_x.y;
+        var max_y_x: f32 = min_y_x;
 
         for (lattice.bubbles.items) |bubble| {
-            min_x = @min(min_x, bubble.pos_k.x);
-            max_x = @max(max_x, bubble.pos_k.x);
-            min_y = @min(min_y, bubble.pos_k.y);
-            max_y = @max(max_y, bubble.pos_k.y);
+            min_x_k = @min(min_x_k, bubble.pos_k.x);
+            max_x_k = @max(max_x_k, bubble.pos_k.x);
+            min_y_k = @min(min_y_k, bubble.pos_k.y);
+            max_y_k = @max(max_y_k, bubble.pos_k.y);
+
+            min_x_x = @min(min_x_x, bubble.pos_x.x);
+            max_x_x = @max(max_x_x, bubble.pos_x.x);
+            min_y_x = @min(min_y_x, bubble.pos_x.y);
+            max_y_x = @max(max_y_x, bubble.pos_x.y);
         }
 
         const canvas_height = @as(f32, @floatFromInt(self.config.screen_height));
 
         // K-space camera (left half of canvas)
-        self.camera_k.fitBounds(min_x, max_x, min_y, max_y, self.canvas_width / 2.0, canvas_height);
+        self.camera_k.fitBounds(min_x_k, max_x_k, min_y_k, max_y_k, self.canvas_width / 2.0, canvas_height);
         self.camera_k.offset.x += self.canvas_left;
 
         // X-space camera (right half of canvas)
-        self.camera_x.fitBounds(min_x, max_x, min_y, max_y, self.canvas_width / 2.0, canvas_height);
+        self.camera_x.fitBounds(min_x_x, max_x_x, min_y_x, max_y_x, self.canvas_width / 2.0, canvas_height);
         self.camera_x.offset.x += self.canvas_left + self.canvas_width / 2.0;
 
         self.camera_k.update();
