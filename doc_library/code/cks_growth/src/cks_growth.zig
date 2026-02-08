@@ -1,5 +1,8 @@
 const std = @import("std");
-const rl = @import("raylib");
+const rl = @cImport({
+    @cInclude("raylib.h");
+});
+
 const math = std.math;
 
 const PI = math.pi;
@@ -14,17 +17,17 @@ const Config = struct {
     screen_height: i32 = 900,
     target_fps: i32 = 60,
     step_mode: bool = false,
-    
+
     // Visual
     bubble_min_radius: f32 = 2.0,
     bubble_max_radius: f32 = 8.0,
     edge_alpha: f32 = 0.3,
-    
+
     // Physics
     evolution_dt: f32 = 0.05,
     coupling_beta: f32 = 0.5,
     oscillation_omega: f32 = 1.0,
-    
+
     // Auto-step timing (when not in step mode)
     auto_step_delay: f32 = 0.5, // seconds between N increments
 };
@@ -36,47 +39,47 @@ const Config = struct {
 const Complex = struct {
     re: f32,
     im: f32,
-    
+
     fn init(re: f32, im: f32) Complex {
         return .{ .re = re, .im = im };
     }
-    
+
     fn fromPolar(r: f32, theta: f32) Complex {
         return .{
             .re = r * @cos(theta),
             .im = r * @sin(theta),
         };
     }
-    
+
     fn add(self: Complex, other: Complex) Complex {
         return .{ .re = self.re + other.re, .im = self.im + other.im };
     }
-    
+
     fn sub(self: Complex, other: Complex) Complex {
         return .{ .re = self.re - other.re, .im = self.im - other.im };
     }
-    
+
     fn mul(self: Complex, scalar: f32) Complex {
         return .{ .re = self.re * scalar, .im = self.im * scalar };
     }
-    
+
     fn mulComplex(self: Complex, other: Complex) Complex {
         return .{
             .re = self.re * other.re - self.im * other.im,
             .im = self.re * other.im + self.im * other.re,
         };
     }
-    
+
     fn abs(self: Complex) f32 {
         return @sqrt(self.re * self.re + self.im * self.im);
     }
-    
+
     fn normalize(self: Complex) Complex {
         const magnitude = self.abs();
         if (magnitude < 1e-6) return Complex.init(1, 0);
         return .{ .re = self.re / magnitude, .im = self.im / magnitude };
     }
-    
+
     fn angle(self: Complex) f32 {
         return math.atan2(self.im, self.re);
     }
@@ -93,7 +96,7 @@ const Bubble = struct {
     phase: Complex,
     neighbors: [3]?usize, // 3 neighbors max (hexagonal coordination)
     neighbor_count: usize,
-    
+
     fn init(id: usize, x: f32, y: f32) Bubble {
         return .{
             .id = id,
@@ -104,7 +107,7 @@ const Bubble = struct {
             .neighbor_count = 0,
         };
     }
-    
+
     fn addNeighbor(self: *Bubble, neighbor_id: usize) void {
         if (self.neighbor_count < 3) {
             self.neighbors[self.neighbor_count] = neighbor_id;
@@ -121,28 +124,28 @@ const CKSLattice = struct {
     allocator: std.mem.Allocator,
     M: i32,
     N: i32,
-    bubbles: std.ArrayList(Bubble),
-    
+    bubbles: std.array_list.Managed(Bubble),
+
     // Physics constants
     t_p: f64 = 5.39e-44,
     coherence: f64 = 0,
-    
+
     // Auto-evolution state
     evolution_time: f32 = 0,
-    
+
     fn init(allocator: std.mem.Allocator) !CKSLattice {
         return .{
             .allocator = allocator,
             .M = 1,
             .N = 1,
-            .bubbles = std.ArrayList(Bubble).init(allocator),
+            .bubbles = std.array_list.Managed(Bubble).init(allocator),
         };
     }
-    
+
     fn deinit(self: *CKSLattice) void {
         self.bubbles.deinit();
     }
-    
+
     fn reset(self: *CKSLattice) !void {
         self.bubbles.clearRetainingCapacity();
         self.M = 1;
@@ -150,26 +153,23 @@ const CKSLattice = struct {
         self.evolution_time = 0;
         try self.constructLattice();
     }
-    
+
     fn growToNextN(self: *CKSLattice) !void {
         // Find next M such that N = 3M²
         self.M += 1;
         self.N = 3 * self.M * self.M;
         try self.constructLattice();
     }
-    
+
     fn constructLattice(self: *CKSLattice) !void {
         self.bubbles.clearRetainingCapacity();
-        
-        // N = 3M²
-        const target_N = 3 * self.M * self.M;
-        
+
         if (self.M == 1) {
             // N = 3: Equilateral triangle
             try self.bubbles.append(Bubble.init(0, 0, 0));
             try self.bubbles.append(Bubble.init(1, 1, 0));
             try self.bubbles.append(Bubble.init(2, 0.5, @sqrt(3.0) / 2.0));
-            
+
             // Connect neighbors
             self.bubbles.items[0].addNeighbor(1);
             self.bubbles.items[0].addNeighbor(2);
@@ -179,36 +179,36 @@ const CKSLattice = struct {
             self.bubbles.items[2].addNeighbor(1);
         } else {
             // Construct hexagonal lattice in 3 sectors
-            var positions = std.ArrayList(rl.Vector2).init(self.allocator);
+            var positions = std.array_list.Managed(rl.Vector2).init(self.allocator);
             defer positions.deinit();
-            
+
             // Generate positions in 3 sectors
             var sector: i32 = 0;
             while (sector < 3) : (sector += 1) {
                 const angle_offset = @as(f32, @floatFromInt(sector)) * 2.0 * PI / 3.0;
-                
+
                 var i: i32 = 0;
                 while (i < self.M) : (i += 1) {
                     var j: i32 = 0;
                     while (j < self.M - i) : (j += 1) {
                         const fi = @as(f32, @floatFromInt(i));
                         const fj = @as(f32, @floatFromInt(j));
-                        
+
                         const r = fi + fj * 0.5;
                         const theta = math.atan2(fj * @sqrt(3.0) / 2.0, fi + fj * 0.5) + angle_offset;
-                        
+
                         const x = r * @cos(theta);
                         const y = r * @sin(theta);
-                        
+
                         try positions.append(.{ .x = x, .y = y });
                     }
                 }
             }
-            
+
             // Remove duplicates
-            var unique_positions = std.ArrayList(rl.Vector2).init(self.allocator);
+            var unique_positions = std.array_list.Managed(rl.Vector2).init(self.allocator);
             defer unique_positions.deinit();
-            
+
             const tolerance = 1e-4;
             for (positions.items) |pos| {
                 var is_duplicate = false;
@@ -225,34 +225,34 @@ const CKSLattice = struct {
                     try unique_positions.append(pos);
                 }
             }
-            
+
             // Create bubbles
             for (unique_positions.items, 0..) |pos, id| {
                 try self.bubbles.append(Bubble.init(id, pos.x, pos.y));
             }
-            
+
             // Connect neighbors by distance
             for (self.bubbles.items, 0..) |*bubble, i| {
-                var distances = std.ArrayList(struct { dist: f32, id: usize }).init(self.allocator);
+                var distances = std.array_list.Managed(struct { dist: f32, id: usize }).init(self.allocator);
                 defer distances.deinit();
-                
+
                 for (self.bubbles.items, 0..) |other, j| {
                     if (i == j) continue;
-                    
+
                     const dx = bubble.pos_k.x - other.pos_k.x;
                     const dy = bubble.pos_k.y - other.pos_k.y;
                     const dist = @sqrt(dx * dx + dy * dy);
-                    
+
                     try distances.append(.{ .dist = dist, .id = j });
                 }
-                
+
                 // Sort by distance
                 std.mem.sort(@TypeOf(distances.items[0]), distances.items, {}, struct {
                     fn lessThan(_: void, a: @TypeOf(distances.items[0]), b: @TypeOf(distances.items[0])) bool {
                         return a.dist < b.dist;
                     }
                 }.lessThan);
-                
+
                 // Take 3 nearest
                 const num_neighbors = @min(distances.items.len, 3);
                 for (0..num_neighbors) |k| {
@@ -260,38 +260,38 @@ const CKSLattice = struct {
                 }
             }
         }
-        
+
         // Update N to actual count
         self.N = @intCast(self.bubbles.items.len);
-        
+
         // Compute coherence
         const fN = @as(f64, @floatFromInt(self.N));
         self.coherence = 1.0 - 1.0 / (2.0 * @sqrt(fN / 3.0));
     }
-    
+
     fn setPhaseWave(self: *CKSLattice, wavelength: f32, dir_x: f32, dir_y: f32) void {
         const k_mag = 2.0 * PI / wavelength;
         const norm = @sqrt(dir_x * dir_x + dir_y * dir_y);
         const kx = k_mag * dir_x / norm;
         const ky = k_mag * dir_y / norm;
-        
+
         for (self.bubbles.items) |*bubble| {
             const phase_angle = kx * bubble.pos_k.x + ky * bubble.pos_k.y;
             bubble.phase = Complex.fromPolar(1.0, phase_angle);
         }
     }
-    
+
     fn evolveStep(self: *CKSLattice, dt: f32, omega: f32, beta: f32) void {
         var new_phases = self.allocator.alloc(Complex, self.bubbles.items.len) catch return;
         defer self.allocator.free(new_phases);
-        
+
         for (self.bubbles.items, 0..) |bubble, i| {
             // Natural oscillation: -iω φ
             const d_phi_natural = Complex.init(
                 omega * bubble.phase.im,
                 -omega * bubble.phase.re,
             );
-            
+
             // Coupling: β Σ(φⱼ - φₖ)
             var d_phi_coupling = Complex.init(0, 0);
             for (bubble.neighbors[0..bubble.neighbor_count]) |maybe_neighbor| {
@@ -301,15 +301,15 @@ const CKSLattice = struct {
                     d_phi_coupling = d_phi_coupling.add(diff.mul(beta));
                 }
             }
-            
+
             const d_phi = d_phi_natural.add(d_phi_coupling);
             new_phases[i] = bubble.phase.add(d_phi.mul(dt)).normalize();
         }
-        
+
         for (self.bubbles.items, 0..) |*bubble, i| {
             bubble.phase = new_phases[i];
         }
-        
+
         self.evolution_time += dt;
     }
 };
@@ -323,7 +323,7 @@ const Camera = struct {
     zoom: f32,
     target_zoom: f32,
     zoom_speed: f32 = 0.1,
-    
+
     fn init() Camera {
         return .{
             .offset = .{ .x = 0, .y = 0 },
@@ -331,35 +331,35 @@ const Camera = struct {
             .target_zoom = 1.0,
         };
     }
-    
+
     fn update(self: *Camera) void {
         // Smooth zoom
         self.zoom += (self.target_zoom - self.zoom) * self.zoom_speed;
     }
-    
+
     fn fitBounds(self: *Camera, min_x: f32, max_x: f32, min_y: f32, max_y: f32, canvas_width: f32, canvas_height: f32) void {
         const width = max_x - min_x;
         const height = max_y - min_y;
-        
+
         if (width < 1e-6 or height < 1e-6) {
             self.target_zoom = 1.0;
             self.offset = .{ .x = 0, .y = 0 };
             return;
         }
-        
+
         const zoom_x = canvas_width / (width * 1.2);
         const zoom_y = canvas_height / (height * 1.2);
         self.target_zoom = @min(zoom_x, zoom_y);
-        
+
         const center_x = (min_x + max_x) / 2.0;
         const center_y = (min_y + max_y) / 2.0;
-        
+
         self.offset = .{
             .x = canvas_width / 2.0 - center_x * self.target_zoom,
             .y = canvas_height / 2.0 - center_y * self.target_zoom,
         };
     }
-    
+
     fn worldToScreen(self: Camera, pos: rl.Vector2) rl.Vector2 {
         return .{
             .x = pos.x * self.zoom + self.offset.x,
@@ -376,16 +376,16 @@ const Renderer = struct {
     config: Config,
     camera_k: Camera,
     camera_x: Camera,
-    
+
     panel_width: f32,
     canvas_left: f32,
     canvas_width: f32,
-    
+
     fn init(config: Config) Renderer {
         const panel_width = @as(f32, @floatFromInt(config.screen_width)) * 0.1;
         const canvas_left = panel_width;
         const canvas_width = @as(f32, @floatFromInt(config.screen_width)) * 0.8;
-        
+
         return .{
             .config = config,
             .camera_k = Camera.init(),
@@ -395,61 +395,61 @@ const Renderer = struct {
             .canvas_width = canvas_width,
         };
     }
-    
+
     fn updateCameras(self: *Renderer, lattice: *CKSLattice) void {
         if (lattice.bubbles.items.len == 0) return;
-        
+
         // Compute bounds
         var min_x: f32 = lattice.bubbles.items[0].pos_k.x;
         var max_x: f32 = min_x;
         var min_y: f32 = lattice.bubbles.items[0].pos_k.y;
         var max_y: f32 = min_y;
-        
+
         for (lattice.bubbles.items) |bubble| {
             min_x = @min(min_x, bubble.pos_k.x);
             max_x = @max(max_x, bubble.pos_k.x);
             min_y = @min(min_y, bubble.pos_k.y);
             max_y = @max(max_y, bubble.pos_k.y);
         }
-        
+
         const canvas_height = @as(f32, @floatFromInt(self.config.screen_height));
-        
+
         // K-space camera (left half of canvas)
         self.camera_k.fitBounds(min_x, max_x, min_y, max_y, self.canvas_width / 2.0, canvas_height);
         self.camera_k.offset.x += self.canvas_left;
-        
+
         // X-space camera (right half of canvas)
         self.camera_x.fitBounds(min_x, max_x, min_y, max_y, self.canvas_width / 2.0, canvas_height);
         self.camera_x.offset.x += self.canvas_left + self.canvas_width / 2.0;
-        
+
         self.camera_k.update();
         self.camera_x.update();
     }
-    
+
     fn render(self: *Renderer, lattice: *CKSLattice) void {
-        rl.clearBackground(rl.Color.init(20, 20, 30, 255));
-        
+        rl.ClearBackground(rl.Color{ .r = 20, .g = 20, .b = 30, .a = 255 });
+
         const canvas_height = @as(f32, @floatFromInt(self.config.screen_height));
-        
+
         // Draw split line
         const split_x = self.canvas_left + self.canvas_width / 2.0;
-        rl.drawLineEx(
+        rl.DrawLineEx(
             .{ .x = split_x, .y = 0 },
             .{ .x = split_x, .y = canvas_height },
             2.0,
-            rl.Color.init(80, 80, 100, 255),
+            rl.Color{ .r = 80, .g = 80, .b = 100, .a = 255 },
         );
-        
+
         // Render k-space (left)
         self.renderLattice(lattice, self.camera_k, true);
-        
+
         // Render x-space (right)
         self.renderLattice(lattice, self.camera_x, false);
-        
+
         // Render stats panels
         self.renderStats(lattice);
     }
-    
+
     fn renderLattice(self: *Renderer, lattice: *CKSLattice, camera: Camera, is_k_space: bool) void {
         // Draw edges
         for (lattice.bubbles.items) |bubble| {
@@ -457,17 +457,17 @@ const Renderer = struct {
                 if (maybe_neighbor) |neighbor_id| {
                     const pos1 = camera.worldToScreen(bubble.pos_k);
                     const pos2 = camera.worldToScreen(lattice.bubbles.items[neighbor_id].pos_k);
-                    
-                    rl.drawLineEx(
+
+                    rl.DrawLineEx(
                         pos1,
                         pos2,
                         1.5,
-                        rl.Color.init(100, 100, 120, @intFromFloat(self.config.edge_alpha * 255.0)),
+                        rl.Color{ .r = 100, .g = 100, .b = 120, .a = @intFromFloat(self.config.edge_alpha * 255.0) },
                     );
                 }
             }
         }
-        
+
         // Draw bubbles
         const radius_scale = camera.zoom;
         const bubble_radius = std.math.clamp(
@@ -475,99 +475,100 @@ const Renderer = struct {
             self.config.bubble_min_radius,
             self.config.bubble_max_radius,
         );
-        
+
         for (lattice.bubbles.items) |bubble| {
             const pos = camera.worldToScreen(bubble.pos_k);
-            
+
             // Color from phase angle
             const phase_angle = bubble.phase.angle();
             const hue = (phase_angle + PI) / (2.0 * PI);
             const color = hsvToRgb(hue, 0.8, 0.9);
-            
-            rl.drawCircleV(pos, bubble_radius, color);
-            rl.drawCircleLines(
+
+            rl.DrawCircleV(pos, bubble_radius, color);
+            rl.DrawCircleLines(
                 @intFromFloat(pos.x),
                 @intFromFloat(pos.y),
                 bubble_radius,
-                rl.Color.init(0, 0, 0, 180),
+                rl.Color{ .r = 0, .g = 0, .b = 0, .a = 180 },
             );
         }
-        
+
         // Label
         const label = if (is_k_space) "k-space" else "x-space";
+        const split_x = self.canvas_left + self.canvas_width / 2.0;
         const label_x = if (is_k_space) self.canvas_left + 10 else split_x + 10;
-        rl.drawText(label, @intFromFloat(label_x), 10, 20, rl.Color.white);
+        rl.DrawText(label, @intFromFloat(label_x), 10, 20, rl.WHITE);
     }
-    
+
     fn renderStats(self: *Renderer, lattice: *CKSLattice) void {
         const left_panel_x: i32 = 10;
         const right_panel_x: i32 = @intFromFloat(@as(f32, @floatFromInt(self.config.screen_width)) - self.panel_width + 10);
         var y: i32 = 10;
         const line_height: i32 = 25;
         const font_size: i32 = 18;
-        
+
         // Left panel - K-space stats
-        rl.drawText("K-SPACE", left_panel_x, y, font_size, rl.Color.yellow);
+        rl.DrawText("K-SPACE", left_panel_x, y, font_size, rl.YELLOW);
         y += line_height;
-        
+
         var buf: [256]u8 = undefined;
-        
+
         // M
         const m_text = std.fmt.bufPrintZ(&buf, "M = {d}", .{lattice.M}) catch "M = ?";
-        rl.drawText(m_text.ptr, left_panel_x, y, font_size, rl.Color.white);
+        rl.DrawText(m_text.ptr, left_panel_x, y, font_size, rl.WHITE);
         y += line_height;
-        
+
         // N
         const n_text = std.fmt.bufPrintZ(&buf, "N = {d}", .{lattice.N}) catch "N = ?";
-        rl.drawText(n_text.ptr, left_panel_x, y, font_size, rl.Color.white);
+        rl.DrawText(n_text.ptr, left_panel_x, y, font_size, rl.WHITE);
         y += line_height;
-        
+
         // Coherence
         const c_text = std.fmt.bufPrintZ(&buf, "C = {d:.6}", .{lattice.coherence}) catch "C = ?";
-        rl.drawText(c_text.ptr, left_panel_x, y, font_size, rl.Color.white);
+        rl.DrawText(c_text.ptr, left_panel_x, y, font_size, rl.WHITE);
         y += line_height;
-        
+
         // Phase tension
         const beta = 2.0 * PI / @as(f64, @floatFromInt(lattice.N));
-        const beta_text = std.fmt.bufPrintZ(&buf, "β = {d:.2e}", .{beta}) catch "β = ?";
-        rl.drawText(beta_text.ptr, left_panel_x, y, font_size, rl.Color.white);
+        const beta_text = std.fmt.bufPrintZ(&buf, "β = {d:.2}", .{beta}) catch "β = ?";
+        rl.DrawText(beta_text.ptr, left_panel_x, y, font_size, rl.WHITE);
         y += line_height;
-        
+
         // Alpha_em
         const alpha_em = 1.0 / 137.036;
         const alpha_text = std.fmt.bufPrintZ(&buf, "α_em = {d:.6}", .{alpha_em}) catch "α = ?";
-        rl.drawText(alpha_text.ptr, left_panel_x, y, font_size, rl.Color.white);
+        rl.DrawText(alpha_text.ptr, left_panel_x, y, font_size, rl.WHITE);
         y += line_height;
-        
+
         // Right panel - X-space stats (same values)
         y = 10;
-        rl.drawText("X-SPACE", right_panel_x, y, font_size, rl.Color.yellow);
+        rl.DrawText("X-SPACE", right_panel_x, y, font_size, rl.YELLOW);
         y += line_height;
-        
-        rl.drawText(m_text.ptr, right_panel_x, y, font_size, rl.Color.white);
+
+        rl.DrawText(m_text.ptr, right_panel_x, y, font_size, rl.WHITE);
         y += line_height;
-        
-        rl.drawText(n_text.ptr, right_panel_x, y, font_size, rl.Color.white);
+
+        rl.DrawText(n_text.ptr, right_panel_x, y, font_size, rl.WHITE);
         y += line_height;
-        
-        rl.drawText(c_text.ptr, right_panel_x, y, font_size, rl.Color.white);
+
+        rl.DrawText(c_text.ptr, right_panel_x, y, font_size, rl.WHITE);
         y += line_height;
-        
-        rl.drawText(beta_text.ptr, right_panel_x, y, font_size, rl.Color.white);
+
+        rl.DrawText(beta_text.ptr, right_panel_x, y, font_size, rl.WHITE);
         y += line_height;
-        
-        rl.drawText(alpha_text.ptr, right_panel_x, y, font_size, rl.Color.white);
-        
+
+        rl.DrawText(alpha_text.ptr, right_panel_x, y, font_size, rl.WHITE);
+
         // Bottom instructions
         const bottom_y = self.config.screen_height - 30;
         const instructions = if (self.config.step_mode)
             "STEP MODE: SPACE=Next N | R=Reset | ESC=Quit"
         else
             "AUTO MODE: SPACE=Reset | ESC=Quit";
-        
-        const text_width = rl.measureText(instructions, 16);
+
+        const text_width = rl.MeasureText(instructions, 16);
         const text_x = @divTrunc(self.config.screen_width - text_width, 2);
-        rl.drawText(instructions, text_x, bottom_y, 16, rl.Color.lightGray);
+        rl.DrawText(instructions, text_x, bottom_y, 16, rl.LIGHTGRAY);
     }
 };
 
@@ -579,11 +580,11 @@ fn hsvToRgb(h: f32, s: f32, v: f32) rl.Color {
     const c = v * s;
     const x = c * (1.0 - @abs(@mod(h * 6.0, 2.0) - 1.0));
     const m = v - c;
-    
+
     var r: f32 = 0;
     var g: f32 = 0;
     var b: f32 = 0;
-    
+
     const h_sector = h * 6.0;
     if (h_sector < 1.0) {
         r = c;
@@ -610,13 +611,13 @@ fn hsvToRgb(h: f32, s: f32, v: f32) rl.Color {
         g = 0;
         b = x;
     }
-    
-    return rl.Color.init(
-        @intFromFloat((r + m) * 255.0),
-        @intFromFloat((g + m) * 255.0),
-        @intFromFloat((b + m) * 255.0),
-        255,
-    );
+
+    return rl.Color{
+        .r = @intFromFloat((r + m) * 255.0),
+        .g = @intFromFloat((g + m) * 255.0),
+        .b = @intFromFloat((b + m) * 255.0),
+        .a = 255,
+    };
 }
 
 // ============================================================================
@@ -627,44 +628,44 @@ pub fn main() !void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
     defer _ = gpa.deinit();
     const allocator = gpa.allocator();
-    
+
     // Parse args
     var config = Config{};
-    
+
     var args = try std.process.argsWithAllocator(allocator);
     defer args.deinit();
-    
+
     _ = args.skip(); // Skip program name
     while (args.next()) |arg| {
         if (std.mem.eql(u8, arg, "--step")) {
             config.step_mode = true;
         }
     }
-    
+
     // Initialize window
-    rl.initWindow(config.screen_width, config.screen_height, "CKS Lattice Growth");
-    defer rl.closeWindow();
-    
-    rl.setTargetFPS(config.target_fps);
-    
+    rl.InitWindow(config.screen_width, config.screen_height, "CKS Lattice Growth");
+    defer rl.CloseWindow();
+
+    rl.SetTargetFPS(config.target_fps);
+
     // Initialize lattice
     var lattice = try CKSLattice.init(allocator);
     defer lattice.deinit();
-    
+
     try lattice.constructLattice();
     lattice.setPhaseWave(4.0, 1.0, 0.5);
-    
+
     // Initialize renderer
     var renderer = Renderer.init(config);
-    
+
     var auto_step_timer: f32 = 0;
-    
+
     // Main loop
-    while (!rl.windowShouldClose()) {
-        const dt = rl.getFrameTime();
-        
+    while (!rl.WindowShouldClose()) {
+        const dt = rl.GetFrameTime();
+
         // Input
-        if (rl.isKeyPressed(rl.KeyboardKey.key_space)) {
+        if (rl.IsKeyPressed(rl.KEY_SPACE)) {
             if (config.step_mode) {
                 // Step to next N
                 try lattice.growToNextN();
@@ -676,13 +677,13 @@ pub fn main() !void {
                 auto_step_timer = 0;
             }
         }
-        
-        if (rl.isKeyPressed(rl.KeyboardKey.key_r)) {
+
+        if (rl.IsKeyPressed(rl.KEY_R)) {
             try lattice.reset();
             lattice.setPhaseWave(4.0, 1.0, 0.5);
             auto_step_timer = 0;
         }
-        
+
         // Auto-step (if not in step mode)
         if (!config.step_mode) {
             auto_step_timer += dt;
@@ -692,17 +693,16 @@ pub fn main() !void {
                 lattice.setPhaseWave(4.0, 1.0, 0.5);
             }
         }
-        
+
         // Evolve phases
         lattice.evolveStep(config.evolution_dt, config.oscillation_omega, config.coupling_beta);
-        
+
         // Update cameras to keep lattice on screen
         renderer.updateCameras(&lattice);
-        
+
         // Render
-        rl.beginDrawing();
+        rl.BeginDrawing();
         renderer.render(&lattice);
-        rl.endDrawing();
+        rl.EndDrawing();
     }
 }
-
