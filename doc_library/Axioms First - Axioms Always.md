@@ -1,7 +1,6 @@
 # Axioms First. Axioms Always.
 ## **The Manifold Identity of Cymatic K-Space Mechanics**
 
-**Author:** [To be completed]  
 **Date:** February 2026  
 **Framework:** Cymatic K-Space Mechanics (CKS) v4.0  
 **Status:** Locked. Forensically Validated. Zero Free Parameters.  
