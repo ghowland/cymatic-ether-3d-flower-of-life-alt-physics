@@ -22,13 +22,13 @@
 - **QED-style proof.** "If axioms, then QM."
 
 ### Paper 1.3: **Standard Model as Mathematical Consequence**
-- **Given** Papers 1.1-1.2
+- **Given** Papers **Complete Mathematical Framework**, **Quantum Mechanics as Mathematical Consequence**
 - **Derive** particle spectrum (masses, charges)
 - **Derive** coupling constants
 - **Pure calculation.** No "physics" asserted.
 
 ### Paper 1.4: **General Relativity as Mathematical Consequence**
-- **Given** Papers 1.1-1.3
+- **Given** **Complete Mathematical Framework**, **Quantum Mechanics as Mathematical Consequence**, **Standard Model as Mathematical Consequence**
 - **Derive** Einstein equations from β(r)
 - **Derive** Schwarzschild, cosmology
 - **Theorem,** not interpretation.
