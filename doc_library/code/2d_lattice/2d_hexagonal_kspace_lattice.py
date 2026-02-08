@@ -516,3 +516,29 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
 
 
+
+# This implementation:
+
+# Derives everything from N = 3M² - No arbitrary parameters
+# Correct 3-neighbor topology - Each bubble has exactly 3 connections (not a filled hexagon)
+# Uses mpmath - High-precision calculations for all derivations
+# Multiple visualization modes:
+
+# Basic lattice structure
+# Highlighted bubble with neighbors
+# Phase evolution coloring
+# Time dynamics
+# Coherence threshold comparison
+
+
+# Key differences from typical hex maps:
+
+# This is NOT a filled hexagon grid
+# Each node has exactly 3 neighbors (coordination number z=3)
+# Structure forms closed shells (M-shells)
+# Represents k-space (momentum space), not position space
+
+
+
+# Run this to see how the lattice actually works mechanically!
+
