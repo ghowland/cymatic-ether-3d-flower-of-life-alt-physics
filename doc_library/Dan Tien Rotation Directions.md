@@ -333,3 +333,87 @@ If you implement these Somatic Opcodes in a kinetic model or training protocol, 
 
 ---
 
+In the CKS framework, we distinguish between **Mobility** (the ability of the soliton to translate through the hexagonal grid) and **Motility** (the internal ability to move phases through the biological manifold).
+
+Here is the enumerated **Somatic Instruction Set** for Human Mobility and Motility.
+
+---
+
+### I. Motility OpCodes (Internal Signal Transport)
+*Internal motility governs how efficiently the phase-gradient flows through your internal waveguide (spine) and registers (joints).*
+
+| OpCode | Name | Pattern | Functional Mechanical Logic |
+| :--- | :--- | :--- | :--- |
+| **`FLOW`** | **Gradient Stream** | Smooth spinal wave | Initiates a sequential phase-shift from $10^{43}$ to $10^{42}$. |
+| **`PUMP`** | **Heartbeat Sync** | Rhythmic contraction | Syncs internal fluid motility to the 2.0 Hz substrate clock. |
+| **`PERM`** | **Sector Swap** | Lateral Dan Tien orbit | Permutes $s_1$ and $s_2$ to prevent local "bottlenecks" in the manifold. |
+| **`WIPE`** | **Buffer Reset** | Quick joint shake | Clears "interferential rust" from the $\phi$-vents instantly. |
+| **`COMP`** | **Lattice Load** | Pelvic floor lock | Increases internal k-space pressure to stabilize the core. |
+| **`VENT`** | **Gradient Release** | Deep exhalation | Lowers core tension to allow for "soft" phase-reconfiguration. |
+
+---
+
+### II. Mobility OpCodes (External Manifold Translation)
+*Mobility governs how the human soliton navigates the external hexagonal grid (x,y,z translation).*
+
+| OpCode | Name | Pattern | Functional Mechanical Logic |
+| :--- | :--- | :--- | :--- |
+| **`GLIDE`**| **Phase-Coasting** | Walking at 2.0 Hz | Nullifies phase-inertia; body coast on substrate compliance. |
+| **`PIVOT`**| **Axis Shift** | Rotation on ball of foot | Re-aligns the vertical resonator with a new $k$-vector. |
+| **`VAULT`**| **Lattice Spring** | Plyometric jump | Rapidly compresses/releases the $10^{42}$ ground-girdle. |
+| **`SHIFT`**| **Lateral Slide** | Side-to-side translation | Executes a horizontal sector-transfer without axial rotation. |
+| **`STRIKE`**| **Vector Punch** | 45-degree discharge | Discharges core tension along a specific k-space diagonal. |
+| **`COIL`** | **Topological Twist** | Spiral limb winding | Increases the "binding energy" of a specific limb-manifold. |
+
+---
+
+### III. The "Mobility/Motility" Unification (Programming Examples)
+
+In high-performance humans, Motility is the **Pre-requisite** for Mobility. You must "move the phases internally" before you can "move the body externally."
+
+**Macro: The "Zero-Impact" Sprint**
+```bash
+RUN  [PUMP_2Hz]          # Synchronize internal motility to substrate
+RUN  [PERM_Lateral]      # Permute sectors to prevent leg-lock
+EXEC [GLIDE_Mobility]    # Translate on the planetary integer-rungs
+CHECK [ERR < 10^-3]      # Audit decimation to prevent joint leakage
+```
+
+**Macro: The "Instant Pivot" (Evasive Maneuver)**
+```bash
+EXEC [WIPE_Joints]       # Reset the local buffers
+RUN  [STC_Diagonal]      # Stitch the seams for cross-lateral flow
+EXEC [PIVOT_Axis]        # Re-align the 12-bond loop to the target
+EXEC [DSG_Discharge]     # Project momentum onto the new vector
+```
+
+---
+
+### 4. Summary: The Sovereign Developer's Cheat Sheet
+
+*   **Motility** is the **Kernel Execution** (Phase-management).
+*   **Mobility** is the **I/O Update** (Spatial navigation).
+*   **The Problem with Modern Fitness:** It tries to do `Mobility` without checking the `Motility` logs.
+*   **The CKS Advantage:** We `WIPE` the buffers and `SYNC` the clocks *before* we `STRIKE` or `GLIDE`. This ensures the hardware never outruns the software template.
+
+**Axioms first. Axioms always.**  
+**Internal Motility. External Mobility.**  
+**The Code is Correct. The Move is QED.**
+
+---
+
+## Citation
+If you use these OpCodes for human kinetic programming, cite:
+
+```bibtex
+@manual{cks_bio_12_2026,
+  title={Mobility and Motility OpCodes: The CKS Instruction Set for Human Movement},
+  author={Howland, Geoffrey},
+  year={2026},
+  version={1.0},
+  note={Series: [CKS-BIO-12-2026]. Internal/External movement instructions.}
+}
+```
+
+---
+
