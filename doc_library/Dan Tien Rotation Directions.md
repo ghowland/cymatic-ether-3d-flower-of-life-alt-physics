@@ -235,3 +235,101 @@ If you use this computational model of somatic programming, cite:
 
 ---
 
+In the CKS framework, we move beyond the "Abdominal Core" (the CPU) to the **Limbs and Extremities** (the I/O Peripherals). Every joint represents a local logic-gate, and every limb-arc is a specific modulation of the global phase-field.
+
+Here are the enumerated **Somatic OpCodes** categorized by their mechanical function in the k-space manifold.
+
+---
+
+### I. Fundamental Manifold Control (The Core)
+*These instructions set the global state of the biological computer.*
+
+| OpCode | Pattern | Functional Purpose |
+| :--- | :--- | :--- |
+| **`HALT`** | Total Stillness (No-Lock) | Gears static. High Phase-Inertia. System idle. |
+| **`BOOT`** | Dan Tien Centripetal Orbit | **Initialize Vortex**. Gears spinning, ready for input. |
+| **`SYNC`** | 2.0 Hz Breath/Heart lock | **Clock Synchronization**. Locks manifold to substrate. |
+| **`CHG`** | Sagittal CW (Down-Back) | **Accumulate Tension**. Build substrate potential. |
+| **`DSG`** | Sagittal CCW (Up-Forward) | **Discharge Tension**. Convert potential to kinetic. |
+| **`PRM`** | Lateral Orbit | **Permute Sector**. Swaps Right ($s_1$) and Left ($s_2$) logic. |
+| **`STC`** | Diagonal Figure-8 | **Stitch Manifold**. Unified Cross-Lateral bus access. |
+
+---
+
+### II. Dynamic Interaction (The Extremities)
+*These instructions handle the I/O between the human soliton and the external environment.*
+
+| OpCode | Pattern | Mechanical Result |
+| :--- | :--- | :--- |
+| **`PUSH`** | Linear extension | **Phase-Gradient Projection**. Displacing external k-space. |
+| **`PULL`** | Linear retraction | **Phase-Gradient Capture**. Drawing external k-modes in. |
+| **`ROT`** | Wrist/Ankle circularity | **Buffer Clear ($\phi$-vent)**. Clears local "Rust" at joint. |
+| **`WRAP`** | Spiral limb winding | **Topological Torsion**. Increasing binding energy of the strike. |
+| **`SHNT`** | Deflection arc | **Redirect Phase-Flow**. Offloading external tension to ground. |
+| **`WAVE`** | Sequential joint firing | **High-Fidelity Decimation**. Moving 10⁴³ code to 10⁴² output. |
+
+---
+
+### III. Scaling & Resolution (The Sensory Stack)
+*These instructions manage the resolution ($M$) of the observer.*
+
+| OpCode | Pattern | Cognitive Result |
+| :--- | :--- | :--- |
+| **`SCAN`** | Rhythmic Eye Movement | **K-Space Sampling**. Updating the internal $M$-model. |
+| **`LOCK`** | Fixed Axial Gaze | **Phase-Lock on Target**. Minimizing jitter for precision. |
+| **`BLAST`** | Explosive vocalization (Kiai) | **Global Phase Discharge**. Clearing the manifold cache. |
+| **`UP-RES`** | Focused internal attention | **Increase M-Resolution**. Finer sampling of local k-nodes. |
+
+---
+
+### IV. Programming movement (Macro-Code Examples)
+
+By combining these Opcodes, we can write "Movement Macros" that ensure bit-perfect execution.
+
+**Macro: The "Unstoppable" Strike**
+```bash
+BOOT [Dan_Tien]          # Start the gears
+CHG  [Sagittal_CW]       # Load the core capacitor
+WRAP [Arm_Spiral]        # Twist the waveguide (Tension)
+DSG  [Sagittal_CCW]      # FIRE: Release the discharge
+SHNT [Hip_Transfer]      # Offload the recoil to the Ground (Feet)
+```
+
+**Macro: The "Deep Heal"**
+```bash
+SYNC [2.0 Hz Breath]     # Align with the Substrate
+STC  [Diagonal_X]        # Stitch the sector seams
+ROT  [All_Joints_phi]    # Scrub the buffers (Remove Rust)
+NOP  [Vortex_Idle]       # Let the template refresh the hardware
+```
+
+---
+
+### 5. Why researchers missed this
+Traditional fitness treats the body as a **Heat Engine** (Energy in $\to$ Work out). 
+*   **The CKS Reality:** The body is a **Phase-Locked Loop**. 
+*   Muscles are not "motors"; they are **Actuators** that respond to the k-space template.
+*   The "Opcodes" are the method of **Sovereign Firmware Update**. By moving in these specific patterns, you are rewriting the logic of your own manifold to be more efficient.
+
+**Axioms first. Axioms always.**  
+**The Pattern is the Program.**  
+**The Vortex is the Clock.**  
+**Movement is QED.**
+
+---
+
+## Citation
+If you implement these Somatic Opcodes in a kinetic model or training protocol, please cite:
+
+```bibtex
+@manual{cks_comp_5_1_2026,
+  title={Somatic Opcodes: The Instruction Set for Substrate-Native Movement},
+  author={Howland, Geoffrey},
+  year={2026},
+  version={1.1},
+  note={CKS Series: [CKS-COMP-5.1-2026]. Complete Opcode Enumeration.}
+}
+```
+
+---
+
