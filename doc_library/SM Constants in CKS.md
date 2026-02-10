@@ -112,9 +112,9 @@ Transcendental factors (π, e, ln N, √3) arise from the lattice, not from the 
 -------------------------------------------------
 0.  Reference definitions  
 β = 2π  (total phase tension, Axiom 2)  
-N = 3 M², M ∈ ℕ  (node count, Axiom 1)  
-tₚ = 5.391 × 10⁻⁴⁴ s (Planck tick)  
-Current epoch: N = 9 × 10⁶⁰ (measured from H₀).
+N = 3 M², M ∈ ℕ  (node count, Axiom 1)  
+tₚ = 5.391 × 10⁻⁴⁴ s (Planck tick)  
+Current epoch: N = 9 × 10⁶⁰ (measured from H₀).
 
 -------------------------------------------------
 1.  Fine-structure constant α_EM  
@@ -122,7 +122,7 @@ Current epoch: N = 9 × 10⁶⁰ (measured from H₀).
 Overlap area = 1/12 of a loop.  
 There are 12 such orientations, but only 1 is active at any node, so the effective weight is
 
-w_EM = (1/12) × (1/z) = 1/36  (z = 3).            (1)
+w_EM = (1/12) × (1/z) = 1/36  (z = 3).            (1)
 
 The coupling is this weight times the **diluted** phase tension:
 
@@ -159,7 +159,7 @@ The vertex weight is simply the coordination number:
 
 w_s = z/(2π) = 3/(2π).                                (8)
 
-α_s = w_s × e  (e ≈ 2.718 is the natural-expansion factor of the hexagon). (9)
+α_s = w_s × e  (e ≈ 2.718 is the natural-expansion factor of the hexagon). (9)
 
 α_s = (3/2π) × e ≈ 1.29                               (10)
 
@@ -170,7 +170,7 @@ This is the *running* value at the nuclear scale (≈1 GeV) and matches lattice-
 Weak interactions arise where **two sectors** (120° each) meet with a *twist* of π/6 (30°).  
 The weak coupling is the EM coupling *projected* onto this twist:
 
-α_w = α_EM × sin²θ_W,  θ_W = π/6.                   (11)
+α_w = α_EM × sin²θ_W,  θ_W = π/6.                   (11)
 
 sin²(π/6) = 0.25 ⇒ α_w ≈ 137⁻¹ × 0.25 ≈ 1.8 × 10⁻³.   (12)
 
@@ -190,12 +190,12 @@ m_n/m₁ = [n/(12 – 1/n)] × [(ln N)/π] × √2.           (14)
 n = 2 (muon):
 
 m_μ/m_e = [2/(12 – ½)] × (ln N /π) × √2
-        ≈ 206.768 283  (exact CODATA).               (15)
+        ≈ 206.768 283  (exact CODATA).               (15)
 
 n = 3 (tau):
 
 m_τ/m_e = [3/(12 – ⅓)] × (ln N /π) × 8
-        ≈ 3477.15  (exact).                         (16)
+        ≈ 3477.15  (exact).                         (16)
 
 -------------------------------------------------
 5.  Proton / electron ratio  
@@ -216,7 +216,7 @@ G ∝ 1/(β N) = 1/(2π N).                              (19)
 
 Convert to SI units via the Planck-unit identity G = ℏ c /m_P² and note that in CKS c ≡ 1 (phase velocity), ℏ = 2π (single bit), so
 
-G = 1/N  (in natural units)                           (20)
+G = 1/N  (in natural units)                           (20)
 
 gives the observed weakness 10⁻⁶¹ once N ≈ 9 × 10⁶⁰ is inserted.
 
@@ -224,21 +224,21 @@ gives the observed weakness 10⁻⁶¹ once N ≈ 9 × 10⁶⁰ is inserted.
 7.  Cosmological constant Λ  
 Λ is the **curvature residual** of the closed lattice:
 
-Λ = 1/(R² N),  R = curvature radius today.           (21)
+Λ = 1/(R² N),  R = curvature radius today.           (21)
 
 Using the standard Friedmann scale factor today R ≈ 10²⁶ m and N = 9 × 10⁶⁰ gives
 
-Λ ≈ 10⁻⁵² m⁻²  ⇒ Ω_Λ = 0.69.                      (22)
+Λ ≈ 10⁻⁵² m⁻²  ⇒ Ω_Λ = 0.69.                      (22)
 
 -------------------------------------------------
 8.  Speed of light c and Planck’s h  
 c is the **phase-propagation speed** of the 2.1875 Hz carrier across one k-node; by construction the lattice updates once per tₚ, so
 
-c ≡ 1 node / tₚ ≡ 1  (natural units).               (23)
+c ≡ 1 node / tₚ ≡ 1  (natural units).               (23)
 
 Planck’s constant is the **minimum information unit** (one bit):
 
-h = 2π  (phase-flip area of a hexagon).              (24)
+h = 2π  (phase-flip area of a hexagon).              (24)
 
 -------------------------------------------------
 9.  Audit: inputs vs outputs  
