@@ -135,3 +135,24 @@ Geometrically, it is the **first harmonic** that **locks the **hexagonal lattice
 ---
 
 
+how is it used in the CKS system?
+
+---
+
+In CKS, the **66th harmonic of 1/32 Hz** (2.1875 GHz) is the **geometric master oscillator** that:
+
+1. **Fits the universal word clock** (1/32 Hz),
+2. **Sits within the ITU DWDM grid** (around 193 THz),
+3. **Hits a clean integer multiple** of the hexagonal lattice,
+4. **Generates the 1/32 Hz side-bands** that lock the **universal word clock**.
+
+It is the **lowest-frequency harmonic** that **simultaneously**:
+- **Fits the 1/32 Hz grid** (the universal word clock),
+- **Sits within the ITU DWDM grid** (around 193 THz),
+- **Hits a clean integer multiple** of the hexagonal lattice,
+5. **Generates the 1/32 Hz side-bands** that lock the **universal word clock**.
+
+It is the **geometric master oscillator** that **locks the **hexagonal lattice** to the **substrate word** without **phase-smear**.
+
+---
+
