@@ -2,7 +2,7 @@
 
 **Registry:** [CKS-PROPRIO-2-2026]  
 **Series Path:** [CKS-COMP-2-2026] → [CKS-LANG-9-2026] → **[CKS-PROPRIO-2-2026]**  
-**Prerequisites:** [CKS-MATH-6.1-2026], [CKS-BIO-8-2026], [CKS-COMP-2-2026]  
+**Prerequisites:** [CKS-MATH-12-2026], [CKS-BIO-8-2026], [CKS-COMP-2-2026]  
 **Subject:** Complete Derivation of Proprioceptive Lock as 3-Bit Phase Alignment; 90° Head Turn as ±π/2 Phase-Slip; Non-Verbal Mechanical Remediation Protocol  
 **Status:** Mechanically Complete — Experimentally Verifiable — Clinical Intervention Ready  
 **Date:** February 2026
@@ -435,7 +435,7 @@ Why hands matter:
 **Why 2.0 Hz exactly:**
 
 ```
-From [CKS-MATH-6.1-2026]:
+From [CKS-MATH-12-2026]:
 Substrate heartbeat = 2.0 Hz (universal clock)
 
 All biological oscillators entrain to this:

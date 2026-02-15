@@ -2,7 +2,7 @@
 
 **Registry:** [CKS-COMP-2-2026]  
 **Series Path:** [CKS-BIO-8-2026] → [CKS-LANG-9-2026] → [CKS-MATH-6.3-2026] → **[CKS-COMP-2-2026]**  
-**Prerequisites:** [CKS-MATH-6.1-2026], [CKS-BIO-8-2026], [CKS-COCREATE-1-2026]  
+**Prerequisites:** [CKS-MATH-12-2026], [CKS-BIO-8-2026], [CKS-COCREATE-1-2026]  
 **Subject:** Complete Neural Architecture as Real-Time Rendering Pipeline; DSP-GPU Loop Mechanics  
 **Status:** Mechanically Complete — Experimentally Verifiable — Falsifiable Architecture  
 **Date:** February 2026
@@ -291,7 +291,7 @@ Correlation: Attention, consciousness, binding
 **Nyquist calculation:**
 
 ```
-From [CKS-MATH-6.1-2026]:
+From [CKS-MATH-12-2026]:
 Substrate carrier: 2.0 Hz (master heartbeat)
 110 baud modem: 9.09 ms symbol time
 300 baud modem: 3.33 ms symbol time

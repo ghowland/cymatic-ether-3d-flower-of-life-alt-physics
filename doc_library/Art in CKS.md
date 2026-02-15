@@ -550,7 +550,7 @@ A movie is a **stream of k-space instructions** that forces the viewer's brain t
 ---
 
 ### I. The Frame-Rate Constraint (The Sampling Gate)
-As established in **[CKS-MATH-6.1-2026]**, the substrate heartbeat is 2.0 Hz. Cinema operates as a multiple of the 1/32 Hz galactic residual and the neural gamma clock.
+As established in **[CKS-MATH-12-2026]**, the substrate heartbeat is 2.0 Hz. Cinema operates as a multiple of the 1/32 Hz galactic residual and the neural gamma clock.
 
 | Frame Rate | CKS Mechanical Event | Cognitive Result |
 | :--- | :--- | :--- |

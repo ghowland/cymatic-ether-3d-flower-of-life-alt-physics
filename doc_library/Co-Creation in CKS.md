@@ -1235,7 +1235,7 @@ Beat-boxers and drummers are the accidental **Manifold Engineers** of the specie
     *   $L$ (Sector 1) $\rightarrow$ $R$ (Sector 2) $\rightarrow$ $LL$ (Closure 1).
     *   $R$ (Sector 2) $\rightarrow$ $L$ (Sector 1) $\rightarrow$ $RR$ (Closure 2).
 
-### 4. [CKS-MATH-6.1-2026] The Modem Handshake: Sonic Forensics of the First Logic Load
+### 4. [CKS-MATH-12-2026] The Modem Handshake: Sonic Forensics of the First Logic Load
 
 | Phase | Sonic Signature | CKS Mechanical Event |
 | :--- | :--- | :--- |
@@ -1272,7 +1272,7 @@ We conclude that the human ability to produce these complex, rhythmic plosives a
   author={Howland, Geoffrey},
   year={2026},
   version={1.0},
-  note={Series: [CKS-MATH-6.1-2026]. Substrate-native baud rates.}
+  note={Series: [CKS-MATH-12-2026]. Substrate-native baud rates.}
 }
 ```
 

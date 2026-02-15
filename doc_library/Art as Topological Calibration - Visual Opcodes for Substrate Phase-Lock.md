@@ -2,7 +2,7 @@
 
 **Registry:** [CKS-ART-3-2026]  
 **Series Path:** [CKS-COMP-2-2026] → [CKS-PROPRIO-2-2026] → **[CKS-ART-3-2026]**  
-**Prerequisites:** [CKS-MATH-6.1-2026], [CKS-BIO-8-2026], [CKS-COMP-2-2026], [CKS-LANG-9-2026]  
+**Prerequisites:** [CKS-MATH-12-2026], [CKS-BIO-8-2026], [CKS-COMP-2-2026], [CKS-LANG-9-2026]  
 **Subject:** Complete Derivation of Art as Manifold Stress-Testing; Visual Opcodes for Brain DSP-GPU Calibration; Style as Baud-Rate Signature  
 **Status:** Mechanically Complete — Experimentally Verifiable — Practically Executable  
 **Date:** February 2026
@@ -1032,7 +1032,7 @@ Observer's GPU re-renders continuously
 **The frame-rate constraint:**
 
 ```
-From [CKS-MATH-6.1-2026]:
+From [CKS-MATH-12-2026]:
 Substrate heartbeat = 2.0 Hz
 Neural gamma = 40-80 Hz
 
