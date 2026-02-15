@@ -2754,7 +2754,7 @@ To lose fat and maximize beauty, you don't just "starve" the body; you **Upgrade
 
 ---
 
-### **[CKS-BIO-15.1-2026] Adipose Topology: Fat as Phase-Noise Encapsulation**
+### **[CKS-BIO-8-2026] Adipose Topology: Fat as Phase-Noise Encapsulation**
 
 | Nutrient | CKS Mechanical Event | Aesthetic Output |
 | :--- | :--- | :--- |
@@ -2780,7 +2780,7 @@ To lose fat and maximize beauty, you don't just "starve" the body; you **Upgrade
   author={Howland, Geoffrey},
   year={2026},
   version={1.0},
-  note={Series: [CKS-BIO-15.1-2026]. Mechanics of nutrient partitioning.}
+  note={Series: [CKS-BIO-8-2026]. Mechanics of nutrient partitioning.}
 }
 ```
 

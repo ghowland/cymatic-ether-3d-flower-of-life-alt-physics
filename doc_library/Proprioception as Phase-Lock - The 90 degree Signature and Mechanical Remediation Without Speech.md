@@ -2,7 +2,7 @@
 
 **Registry:** [CKS-PROPRIO-2-2026]  
 **Series Path:** [CKS-COMP-2-2026] → [CKS-LANG-9-2026] → **[CKS-PROPRIO-2-2026]**  
-**Prerequisites:** [CKS-MATH-6.1-2026], [CKS-BIO-15.1-2026], [CKS-COMP-2-2026]  
+**Prerequisites:** [CKS-MATH-6.1-2026], [CKS-BIO-8-2026], [CKS-COMP-2-2026]  
 **Subject:** Complete Derivation of Proprioceptive Lock as 3-Bit Phase Alignment; 90° Head Turn as ±π/2 Phase-Slip; Non-Verbal Mechanical Remediation Protocol  
 **Status:** Mechanically Complete — Experimentally Verifiable — Clinical Intervention Ready  
 **Date:** February 2026
@@ -220,7 +220,7 @@ When visual contact broken:
 **The mechanism:**
 
 ```
-From [CKS-BIO-15.1-2026]:
+From [CKS-BIO-8-2026]:
 Eyes = 110/300 baud modem sampling k-space
 
 Mother's face = high-coherence k-space pattern

@@ -1,4 +1,4 @@
-This document, **[CKS-BIO-15.1-2026]**, defines the **Operational Protocol** for the mechanical removal of topological wraps. It moves beyond passive breathing into **Interactive Phase-Coupling**, using a second operator as an external "Buffer Controller" to help the subject's manifold unzip.
+This document, **[CKS-BIO-8-2026]**, defines the **Operational Protocol** for the mechanical removal of topological wraps. It moves beyond passive breathing into **Interactive Phase-Coupling**, using a second operator as an external "Buffer Controller" to help the subject's manifold unzip.
 
 ### 1. The Collaborative Buffer (The "Worker")
 In CKS, a "Worker" acts as an external **Coupling Stabilizer ($\beta_{ext}$)**.
@@ -41,11 +41,11 @@ If the medical "Crabs" cannot see the utility in a non-invasive, 15-minute mecha
 
 ---
 
-# [CKS-BIO-15.1-2026] 
+# [CKS-BIO-8-2026] 
 # Interactive Phase-Clearing: The Collaborative Loop Unwinding Protocol  
 
-**Registry:** [CKS-BIO-15.1-2026]  
-**Series Path:** [CKS-MATH-1-2026] → [CKS-BIO-14.3-2026] → [CKS-BIO-15.1-2026]  
+**Registry:** [CKS-BIO-8-2026]  
+**Series Path:** [CKS-MATH-1-2026] → [CKS-BIO-14.3-2026] → [CKS-BIO-8-2026]  
 **Prerequisites:** [CKS-BIO-14.3-2026] (Thickness Coefficient)  
 **Subject:** Manual Manifold Unzipping; Cooperative Coherence Restoration  
 **Status:** Operational Protocol — Ready for Field Deployment  
@@ -126,7 +126,7 @@ To finalize the **Interactive Phase-Clearing** protocol, we must derive the mech
 # The Worker-Subject Coupling: Deriving Accelerated Manifold Unzipping  
 
 **Registry:** [CKS-BIO-15.2-2026]  
-**Series Path:** [CKS-MATH-1-2026] → [CKS-BIO-15.1-2026] → [CKS-BIO-15.2-2026]  
+**Series Path:** [CKS-MATH-1-2026] → [CKS-BIO-8-2026] → [CKS-BIO-15.2-2026]  
 **Subject:** External Coupling Invariants; Torsion Release Dynamics  
 **Status:** Mechanically Complete — Mathematical Lock  
 **Date:** February 2026  
