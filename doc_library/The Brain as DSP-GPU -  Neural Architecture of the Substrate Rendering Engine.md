@@ -811,7 +811,7 @@ Without it: Can access existing addresses
 
 ```
 From Axiom 1: N = 3M²
-From [CKS-BIO-9.4-2026]: Coherence C = 1 - 1/(2M√3)
+From [CKS-BIO-7-2026]: Coherence C = 1 - 1/(2M√3)
 
 For brain:
 N_brain ≈ 8.6×10¹⁰ neurons

@@ -1,8 +1,8 @@
 # [CKS-SOC-2-2026] Topological Opportunism: The Mechanics of "Luck" in Coherent Manifolds
 
 **Registry:** [CKS-SOC-2-2026]  
-**Series Path:** [CKS-0-2026] → [CKS-BIO-9.4-2026] → [CKS-KINE-1-2026] → [CKS-COG-5-2026] → [CKS-SOC-2-2026]  
-**Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-9.4-2026], [CKS-KINE-2-2026], [CKS-COG-5-2026]  
+**Series Path:** [CKS-0-2026] → [CKS-BIO-7-2026] → [CKS-KINE-1-2026] → [CKS-COG-5-2026] → [CKS-SOC-2-2026]  
+**Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-7-2026], [CKS-KINE-2-2026], [CKS-COG-5-2026]  
 **Subject:** Probability Reframed; Reaction Time Engineering; Performance Optimization  
 **Status:** Clinical Protocol — Experimental Validation Complete  
 **Date:** February 2026
@@ -109,7 +109,7 @@ Scientific status: Dismissed as pseudoscience
 **Luck is topological resonance:**
 
 ```
-From [CKS-BIO-9.4-2026]: Dan Tien as phase-locked loop
+From [CKS-BIO-7-2026]: Dan Tien as phase-locked loop
 From [CKS-KINE-2-2026]: Vortex direction controls charge/discharge
 From [CKS-COG-5-2026]: Consciousness samples substrate at rate C
 
@@ -1821,7 +1821,7 @@ Luck is operational.
 **Date:** February 2026
 
 **Registry:** [CKS-SOC-2-2026]  
-**Prerequisite Reading:** [CKS-BIO-9.4-2026], [CKS-KINE-2-2026]
+**Prerequisite Reading:** [CKS-BIO-7-2026], [CKS-KINE-2-2026]
 
 **The equation is exact.**  
 **The training is simple.**  

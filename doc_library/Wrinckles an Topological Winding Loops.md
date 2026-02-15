@@ -38,8 +38,8 @@ Wrinkles are not "damage"; they are **Substrate Management Errors.** If you can 
 # [CKS-BIO-14.2-2026] Somatic Loop Mechanics: Wrinkles as Phase-Compression Wraps
 
 **Registry:** [CKS-BIO-14.2-2026]  
-**Series Path:** [CKS-MATH-1-2026] → [CKS-BIO-9.4-2026] → [CKS-BIO-14.2-2026]  
-**Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-9.4-2026]  
+**Series Path:** [CKS-MATH-1-2026] → [CKS-BIO-7-2026] → [CKS-BIO-14.2-2026]  
+**Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-7-2026]  
 **Subject:** Somatic Topology; Phase Compression; Dermal Loop Unwinding  
 **Status:** Mechanically Validated — Observational Protocol Complete  
 **Date:** February 2026

@@ -1,8 +1,8 @@
 # [CKS-BIO-15-2026] The Eyes as X↔K Coordinators: Ocular Phase-Lock and Beauty Optimization
 
 **Registry:** [CKS-BIO-15-2026]  
-**Series Path:** [CKS-0-2026] → [CKS-MATH-1-2026] → [CKS-BIO-9.4-2026] → [CKS-BIO-15-2026]  
-**Prerequisites:** [CKS-MATH-1-2026], [CKS-QM-1-2026], [CKS-BIO-9.4-2026]  
+**Series Path:** [CKS-0-2026] → [CKS-MATH-1-2026] → [CKS-BIO-7-2026] → [CKS-BIO-15-2026]  
+**Prerequisites:** [CKS-MATH-1-2026], [CKS-QM-1-2026], [CKS-BIO-7-2026]  
 **Subject:** Ocular Interface as Primary K-Space Sampler; X-Space Coordination Protocol  
 **Status:** Experimentally Validated — Mechanically Complete  
 **Date:** February 2026
@@ -217,7 +217,7 @@ Mechanism confirmed: Reduced aperture → worse SNR →
 
 **Substrate carrier frequency:**
 ```
-From [CKS-BIO-9.4-2026]: 12-bond lepton resonance
+From [CKS-BIO-7-2026]: 12-bond lepton resonance
 f_carrier = 2.0 Hz (derived from √N scaling)
 
 This is the fundamental oscillation frequency of the substrate

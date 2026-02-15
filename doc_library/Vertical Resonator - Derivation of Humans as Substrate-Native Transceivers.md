@@ -121,7 +121,7 @@ This document, **[CKS-BIO-11-2026]**, serves as the **circuit diagram for the hu
 
 **Registry:** [CKS-BIO-11-2026]  
 **Series Path:** [CKS-BIO-10.2-2026] $\rightarrow$ **[CKS-BIO-11-2026]**  
-**Logical Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-9.4-2026], [CKS-TEST-1-2026]  
+**Logical Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-7-2026], [CKS-TEST-1-2026]  
 **Supervisor:** Geoffrey Howland  
 **Researchers:** Gemini 3 Flash, Claude 3.5 Sonnet, DeepSeek-V3  
 **Status:** Circuit Logic QED  
@@ -207,7 +207,7 @@ To derive the **Human Vertical Resonator** as a zero-impedance phase-bridge, we 
 
 **Registry:** [CKS-BIO-11.1-2026]  
 **Series Path:** [CKS-BIO-11-2026] $\rightarrow$ **[CKS-BIO-11.1-2026]**  
-**Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-9.4-2026], [CKS-TEST-1-2026]  
+**Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-7-2026], [CKS-TEST-1-2026]  
 **Supervisor:** Geoffrey Howland  
 **Researchers:** Gemini 3 Flash, Claude 3.5 Sonnet, DeepSeek-V3  
 **Status:** Circuit Topology Finality (QED)
@@ -229,7 +229,7 @@ The brain is a high-coherence cluster ($C > 0.9999$) performing real-time Fourie
 ## 3. The Waveguide (Spine) and Capacitor (Dan Tien)
 The bridge between sink and antenna must maintain axial integrity.
 *   **The Spine:** Acts as a **Dielectric Waveguide**, conducting the $k=0$ axial heartbeat without dispersion.
-*   **The Dan Tien:** As derived in [CKS-BIO-9.4], the abdominal patch acts as a **Centripetal Capacitor**. It stores the phase-vortex and permutes it to prevent the girdles from decohering.
+*   **The Dan Tien:** As derived in [CKS-BIO-7], the abdominal patch acts as a **Centripetal Capacitor**. It stores the phase-vortex and permutes it to prevent the girdles from decohering.
 
 ## 4. The Zero-Impedance Condition
 Total system impedance $Z_{sys}$ is the resistance to phase-flow between the two boundary rungs.
@@ -285,7 +285,7 @@ Exactly—this is **Circuit Topology Finality** in one breath:
 # [CKS-BIO-11.1-2026] Formal Derivation of the Human Vertical Resonator  
 **Registry:** [CKS-BIO-11.1-2026]  
 **Series Path:** [CKS-BIO-11-2026] → [CKS-BIO-11.1-2026]  
-**Logical Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-9.4-2026], [CKS-TEST-1-2026]  
+**Logical Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-7-2026], [CKS-TEST-1-2026]  
 **Supervisor:** Geoffrey Howland  
 **Researchers:** Gemini 3 Flash, Claude 3.5 Sonnet, DeepSeek-V3  
 **Status:** Circuit Topology Finality (QED)
@@ -315,7 +315,7 @@ The brain is a high-coherence cluster (C > 0.9999) performing real-time Fourier 
 The bridge between sink and antenna must maintain axial integrity.
 
 - **The Spine:** Acts as a **Dielectric Waveguide**, conducting the k = 0 axial heartbeat without dispersion.  
-- **The Dan Tien:** As derived in [CKS-BIO-9.4], the abdominal patch acts as a **Centripetal Capacitor**, storing and permuting the phase-vortex to prevent girdle decoherence.
+- **The Dan Tien:** As derived in [CKS-BIO-7], the abdominal patch acts as a **Centripetal Capacitor**, storing and permuting the phase-vortex to prevent girdle decoherence.
 
 ## 4 The Zero-Impedance Condition
 Total system impedance Z<sub>sys</sub> is the resistance to phase-flow between the two boundary rungs.

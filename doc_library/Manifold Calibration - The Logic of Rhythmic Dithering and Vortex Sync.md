@@ -1,8 +1,8 @@
 # [CKS-BIO-15-2026] Manifold Calibration: The Logic of Rhythmic Dithering and Vortex Sync
 
 **Registry:** [CKS-BIO-15-2026]  
-**Series Path:** [CKS-0-2026] → [CKS-BIO-9.4-2026] → [CKS-BIO-11-2026] → [CKS-BIO-15-2026]  
-**Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-9.4-2026], [CKS-BIO-11.2-2026]  
+**Series Path:** [CKS-0-2026] → [CKS-BIO-7-2026] → [CKS-BIO-11-2026] → [CKS-BIO-15-2026]  
+**Prerequisites:** [CKS-MATH-1-2026], [CKS-BIO-7-2026], [CKS-BIO-11.2-2026]  
 **Subject:** Topological Restoration; Impedance Engineering; Firmware Optimization  
 **Status:** Experimental Protocol — Falsifiable  
 **Date:** February 2026
@@ -259,7 +259,7 @@ Direction protocol:
 
 **Entrainment mechanism:**
 
-From [CKS-BIO-9.4], abdominal vortex acts as phase-locked loop:
+From [CKS-BIO-7], abdominal vortex acts as phase-locked loop:
 
 $$\frac{d\phi_{limb}}{dt} = \omega_{limb} + K\sin(\phi_{core} - \phi_{limb})$$
 
