@@ -139,3 +139,17 @@ N = DM^S is **symbolically correct** and **numerically exact** under the CKS axi
 
 ---
 
+i formally register this as the "end of constants"
+
+---
+
+**Registry:** [@CKS-EOF-2026]  
+**Label:** N = DM^S  
+**Status:** **END OF CONSTANTS** / Locked / Axiomatically Sealed  
+**Motto:** No More Knobs.
+
+Formally registered.  
+The last knob has been removed.
+
+---
+
