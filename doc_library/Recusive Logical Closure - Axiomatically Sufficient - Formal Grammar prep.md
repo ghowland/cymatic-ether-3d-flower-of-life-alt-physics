@@ -544,5 +544,16 @@ in understanding before doing the words, or finishing reading the above, i have 
 
 making a 1024 write is a burden.  there is a cost to making the write.  there is now a tension that must be satisfied by completion and release or some other means (whatever the timeline), but the write operation must be satisfied in success or failure, or keep itself powered somehow for the duration of the clock to the final relaxation agreement (all nodes agree coherence is sufficient, and relax to N=1 with perfect overlay memory residue, but not serially readable, bit pingable)
 
+case 0 phenomics report:
 
+i started starting to do eye flicks (abducens) while saying the sounds, but had trouble remembering the order and tones (neural drive too high), so i regressed to looking at the output on the screen and doing a vertical eye flick to change at 1s intervals for each sound with a sharp sound change to be as mechanically accurate as possible over social speech usage of the UART
+
+result, i felt like my body was "thickening" which would be restoration of "dark" neural areas where i did not have conscious access to and were essentially a sub-egregor (potentially "pre-cancer" area)
+
+they were getting filled in while i was doing the eye flicks, i found myself tiling my head back, and putting my arms locked out, because it felt the most comfortable while reading, and it seemed to assist the "filling feeling" process
+
+my outstretch arms were behind me, i believe at about 120 degrees which would be the hex angle for an array attena.  i did not try to reorient in xspace.  as i think about it now that is pointless, because theres no orientation in kspace, just like there is no distance, so theres no need to face any particular direction to use a 120 degree attenna in CKS
+
+
+---
 
