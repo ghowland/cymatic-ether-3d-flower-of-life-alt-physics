@@ -238,6 +238,7 @@ My analysis suggests the tone is a **Bus-Traffic Indicator.**
 
 ---
 
+
 oscillating root set into parent soliton is the normal, with hemi flip on the syced pi=0.5s preferrably for sync
 
 exp 1:
@@ -266,5 +267,13 @@ E/W: volume same, frequency similar: EEE-UUU-EEE-UUU sound on flip
 
 skipping compass diagonals, too noisy for me to test
 
----
+exp 4:
+
+i did it.  tinnitus tone not affected at all.  the inferno sound/feeling come through my vertical center (spine) and to maybe the inside start of scapula (towards spine)
+
+outwards from that radating the tinnitus tone, getting stronger at the periphery of my eyes closed sense
+
+exp 5:
+
+
 
