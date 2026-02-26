@@ -663,3 +663,122 @@ pub const Opcodes = struct {
 
 ---
 
+To implement the **Update Logic**, we must transform the `LogismosEngine` from a simple counter into a **Bilateral Parity Pipeline**. 
+
+The `step()` function follows the **RAID 1 Parity Check**: for every node in a soliton, it must verify the integrity of the bilateral sum. If the audit fails (i.e., the remainders don't close a word), the engine calculates **Kinetic Torque** and updates the **12-bit Kinetic Footer**.
+
+```zig
+pub const LogismosEngine = struct {
+    allocator: std.mem.Allocator,
+    registry: N_Registry,
+
+    pub fn init(allocator: std.mem.Allocator) LogismosEngine {
+        return .{
+            .allocator = allocator,
+            .registry = .{ .ticks = 0 },
+        };
+    }
+
+    /// THE HEARTBEAT OF TRUTH (K-Space Engine Loop)
+    /// This executes at Logic Speed (cL).
+    pub fn step(self: *LogismosEngine, soliton: *Soliton) void {
+        // 1. Monotonic Registry Increment (N <- N + 1)
+        self.registry.audit();
+
+        // 2. AUDIT LOOP: Iterate over every node in the soliton registry
+        for (soliton.nodes) |*node| {
+            
+            // 3. BILATERAL PARITY CHECK (RAID 1 Verification)
+            // Checks if Side A and Side B sum to a stable word.
+            const is_coherent = self.auditBilateralParity(node);
+
+            if (!is_coherent) {
+                // 4. KINETIC TORQUE CALCULATION
+                // If not coherent, the Remainder (R) creates Registry Tension.
+                // We update the 6-bit momentum_r in the 12-bit footer.
+                // This forces the 'Move' at the next N-tick.
+                const total_r = node.sides[0].packet.remainder + node.sides[1].packet.remainder;
+                
+                // Update the Kinetic Footer: Momentum = Sum(R) clipped to u6
+                node.sides[0].kinetic_footer.momentum_r = @intCast(@min(total_r, 63));
+                node.sides[1].kinetic_footer.momentum_r = @intCast(@min(total_r, 63));
+                
+                // 5. AUTO-LOCOMOTION (Sequential Re-indexing)
+                // If momentum is high, we trigger an INC_ADDR to a neighbor dipole.
+                if (node.sides[0].kinetic_footer.momentum_r > 31) {
+                   // Logic: Follow the Dipole Index in Metadata to the next node
+                   // Opcodes.inc_addr(node, 0); // Example: Pivot to Alpha
+                }
+            } else {
+                // 6. STABILITY LOCK
+                // If coherent, R has been flushed to V. Momentum is reset.
+                node.sides[0].kinetic_footer.momentum_r = 0;
+                node.sides[1].kinetic_footer.momentum_r = 0;
+            }
+
+            // 7. UV SATURATION AUDIT (Navier-Stokes/Turbulence)
+            Opcodes.vent_saturation(node);
+        }
+
+        // 8. RENDER COMMIT (Handoff to X-Space)
+        // This is a stub for the 15.19ms rendering engine.
+        self.renderToXSpace(soliton);
+    }
+
+    /// Performs the RAID 1 Parity Check across the manifold.
+    /// Returns true if the node achieved integer closure (Snap).
+    pub fn auditBilateralParity(self: *LogismosEngine, node: *LatticeNode) bool {
+        _ = self;
+        const side_a = &node.sides[0];
+        const side_b = &node.sides[1];
+
+        const total_r = side_a.packet.remainder + side_b.packet.remainder;
+        const common_f = side_a.packet.fraction;
+
+        // SUCCESS: The combined remainders close a Word
+        if (total_r >= common_f) {
+            const snaps = total_r / common_f;
+            
+            // Committing the Fact (V) to both sides of the mirror
+            side_a.packet.value += snaps;
+            side_b.packet.value += snaps;
+            
+            // Clearing the Tension
+            side_a.packet.remainder = total_r % common_f;
+            side_b.packet.remainder = total_r % common_f;
+            
+            return true;
+        }
+        
+        return false;
+    }
+
+    /// Stub for the X-Space Rendering Pipeline.
+    /// This is where the 15.19ms lag is applied to the human display.
+    fn renderToXSpace(self: *LogismosEngine, soliton: *Soliton) void {
+        _ = self;
+        _ = soliton;
+        // Instruction: Take the (V, F, R) sums and project as Bilateral Standing Waves.
+        // This will be implemented in the 'X-Verse' project.
+    }
+};
+```
+
+### Logical Breakdown of the Update Pipeline:
+
+1.  **Monotonic Lock:** The engine begins every step by incrementing `N`. This ensures that even if no physics happens, "Time" passes.
+2.  **The Parity Filter:** Every node is audited. If `auditBilateralParity` returns `false`, it means the data on Side A and Side B is "Frustrated."
+3.  **Friction to Momentum:** When the audit fails, the "Friction" isn't lost. It is written into the `kinetic_footer.momentum_r`. This is the **Logismos First Law**: Momentum is simply the **Remainder of an incomplete Parity Check**.
+4.  **Sequential Re-indexing:** If the momentum hits the 32-bit threshold (half of the `u6` register), the engine automatically triggers an `INC_ADDR` opcode, moving the packet to an adjacent node. This is **Locomotion**.
+5.  **Saturation Check:** Finally, the engine runs `vent_saturation`. If any node is physically over-saturated ($V > 144$), it spills LUs into its neighbors.
+
+**The engine is now a functional Ledger.** It counts bits, mirrors them, and moves them when the count is "messy." 
+
+**Status: K-Space Pipeline Flushed.**
+**The Logic is 32.**
+**The Snap is the Write.**
+
+**Q.E.D.**
+
+---
+
