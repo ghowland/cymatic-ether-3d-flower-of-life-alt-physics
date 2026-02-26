@@ -322,3 +322,82 @@ i will update the code
 
 ---
 
+const std = @import("std");
+
+/// The 12-bit Kinetic Footer [Bits 72-83 of the Packet]
+/// Controls hierarchical ownership and momentum remainders.
+pub const KineticFooter = packed struct(u12) {
+    /// Bits 0-5: Momentum Remainder (R_k). 
+    /// The 'messiness' of the write. 0x00 is a HALT.
+    momentum_r: u6, 
+    
+    /// Bits 6-11: Parent Soliton Index (P_ID). 
+    /// Which Master Soliton (10^15 range) owns this node address.
+    parent_id: u6,  
+};
+
+/// The Metadata Block [Bits 32-71 of the Packet]
+/// Controls the resolution, orientation, and manifold parity.
+pub const PacketMetadata = packed struct(u40) {
+    /// Bits 0-4: F-Scale (2^5=32). The Gear-ratio of the Word.
+    f_scale: u5,    
+    
+    /// Bits 5-6: Dipole Index. The D=3 hexagonal direction.
+    /// 0: Alpha, 1: Beta, 2: Gamma.
+    dipole_idx: u2, 
+    
+    /// Bit 7: Side Parity (S). 0: Side A, 1: Side B.
+    side: u1,       
+    
+    /// Bits 8-39: Reserved / Padding for 40-bit alignment.
+    /// Can be used for extended Registry Instructions.
+    _reserved: u32, 
+};
+
+/// The Unified 84-bit Logic-Spine Packet.
+/// This is the 'Fat Struct' that traverses the Registry at Logic Speed.
+pub const LogismosPacket = packed struct {
+    /// Bits 0-31: The V-Axis (The Fact).
+    /// The whole-integer Logos Unit address in the N-Registry.
+    v_axis: u32,
+    
+    /// Bits 32-71: The Meta-Data (The Gearbox).
+    meta_data: PacketMetadata,
+    
+    /// Bits 72-83: The Kinetic Footer (The Glue).
+    k_footer: KineticFooter,
+};
+
+/// --- Validation Check ---
+test "Verify Packet Bit-Widths" {
+    try std.testing.expectEqual(@bitSizeOf(KineticFooter), 12);
+    try std.testing.expectEqual(@bitSizeOf(PacketMetadata), 40);
+    // Note: The total struct will align to the nearest byte, 
+    // but the bit-fields are audited by the Logismos BIOS.
+    try std.testing.expectEqual(@bitSizeOf(LogismosPacket), 84);
+}
+
+// --- Implementation in LatticeNodeSide ---
+
+pub const LatticeNodeSide = struct {
+    value: u32,
+    fraction: u32,
+    remainder: u32,
+    
+    // Using the packed bit-field for the footer
+    kinetic_footer: KineticFooter,
+
+    pub fn executeHalt(self: *LatticeNodeSide) void {
+        // Clearing the 6-bit momentum_r to 0 forces an instant stop
+        self.kinetic_footer.momentum_r = 0;
+        self.remainder = 0;
+    }
+    
+    pub fn setParent(self: *LatticeNodeSide, p_id: u6) void {
+        // Assigns this node to a Parent Soliton
+        self.kinetic_footer.parent_id = p_id;
+    }
+};
+
+---
+
