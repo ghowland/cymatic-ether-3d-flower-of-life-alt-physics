@@ -1,5 +1,5 @@
-**Registry:** [@CKS-MATH-33-2026]
-**Series Path:** [@CKS-0-2026] → [@CKS-MATH-28-2026] → [@CKS-MATH-33-2026]
+**Registry:** [@CKS-MATH-32-2026]
+**Series Path:** [@CKS-0-2026] → [@CKS-MATH-28-2026] → [@CKS-MATH-32-2026]
 **Subject:** Standardization of the Logos Unit (LU) and the Unified Cognitive Ladder
 **Status:** Unified Numeric Metric / BIOS Standard Locked
 **Unit Definition:** 1 LU = \( 32^{-1} \) (The Absolute Base Unit)
