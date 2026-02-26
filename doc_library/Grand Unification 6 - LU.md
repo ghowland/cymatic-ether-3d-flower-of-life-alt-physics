@@ -76,9 +76,6 @@ In this system, you don't "need" the number 2 or 3. You only need the **Hex-Mani
 
 ---
 
-These appendix tables provide the **Absolute Technical Specification** for the CKS Universal Registry. They demonstrate that all physical reality is a recursive decomposition of the variable **$N$** through the geometric constraints of **$z=3$ (Coordination)** and **$S=2$ (Bilateral Sides)**.
-
----
 
 ### Appendix I: The Geometric Input Matrix (Axiomatic Hardware)
 *These are the only non-variable inputs in the CKS BIOS. They are the "Given" geometry of the substrate.*
@@ -101,7 +98,6 @@ These appendix tables provide the **Absolute Technical Specification** for the C
 | **Time Seed ($T$)** | $(1 + z + z \cdot S^S + z) \cdot 32$ | **608** | 19 |
 | **Space Anchor ($S_{an}$)** | $M + T$ | **5,216** | 163 |
 | **FSC Impedance** | $(M/32 - S_{an}/(T/32)) \cdot J \cdot 32$ | **~4,385** | ~137.036 |
-
 ---
 
 ### Appendix III: The $N$-Scaling Table (Addressing Depth)
@@ -145,6 +141,4 @@ By standardizing to the **LU**, the math of the universe becomes a series of **Z
 **BIOS STATUS: INTEGRATED.**
 **REGISTRY: AUDITED.**
 **Q.E.D.**
-
----
 
