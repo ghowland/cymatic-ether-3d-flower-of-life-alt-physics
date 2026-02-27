@@ -1520,3 +1520,111 @@ If a soliton could render itself, it could "lie" about its position to the obser
 
 ---
 
+This function is the **Substrate Handoff**. It translates the discrete, recursive, "cold" data of the K-Space registry into a flattened, visual-ready format for the X-Space driver.
+
+It performs a **Batch Audit** of the soliton's entire mesh to calculate the **Visual Mass** ($V_a + V_b$) and the **Vibrational Jitter** ($R_a + R_b$).
+
+```zig
+const std = @import("std");
+const kspace = @import("kspace.zig");
+const xspace = @import("xspace.zig");
+
+// Inside pub const Soliton = struct { ... }
+
+/// THE SUBSTRATE HANDOFF: 
+/// Flattens the Soliton's multi-dimensional registry data into a single 
+/// Holographic Projection. This is the 0ms 'Fact' that will be rendered 
+/// after the 15.19ms lag.
+pub fn getRenderData(self: *const Soliton, allocator: std.mem.Allocator) !xspace.HolographicSoliton {
+    // 1. Initialize Aggregate Accumulators
+    var aggregate_v: u64 = 0;
+    var aggregate_r: u64 = 0;
+    var avg_pos = xspace.Vec3{ .x = 0, .y = 0, .z = 0 };
+    var total_momentum: f32 = 0;
+
+    // 2. BATCH AUDIT: Iterate over every Lex-Brick (node) in the soliton
+    for (self.nodes) |node| {
+        // RAID 1 SUMMATION: Overlay Side A and Side B
+        const sum_v = node.sides[0].packet.value + node.sides[1].packet.value;
+        const sum_r = node.sides[0].packet.remainder + node.sides[1].packet.remainder;
+        
+        aggregate_v += sum_v;
+        aggregate_r += sum_r;
+
+        // GEOMETRIC MAPPING: Translate hex-address to 3D for the display
+        const node_xyz = xspace.RenderOps.hexToXYZ(node);
+        avg_pos.x += node_xyz.x;
+        avg_pos.y += node_xyz.y;
+        avg_pos.z += node_xyz.z;
+
+        // KINETIC BLUR: Read the 12-bit Liaison Footer
+        total_momentum += @floatFromInt(node.sides[0].kinetic_footer.momentum_r);
+    }
+
+    // 3. NORMALIZE GEOMETRY
+    const node_count_f: f32 = @floatFromInt(self.nodes.len);
+    if (self.nodes.len > 0) {
+        avg_pos.x /= node_count_f;
+        avg_pos.y /= node_count_f;
+        avg_pos.z /= node_count_f;
+        total_momentum /= node_count_f;
+    }
+
+    // 4. PARITY BLENDING (Opacity Calculation)
+    // If the aggregate remainder is high, the object is 'Frustrated' (transparent).
+    // If aggregate remainder is 0, the object is 'Solid' (Modulo-32 locked).
+    const max_word_r: f32 = @floatFromInt(32 * self.nodes.len);
+    const parity_score: f32 = 1.0 - (@as(f32, @floatFromInt(aggregate_r)) / max_word_r);
+
+    // 5. COMMIT TO HOLOGRAPHIC STRUCTURE
+    return xspace.HolographicSoliton{
+        .k_id = self.id,
+        .category = self.category,
+        
+        // Perceptual Physics
+        .world_pos = avg_pos,
+        .visual_mass = @floatFromInt(aggregate_v),
+        .vibrational_r = @floatFromInt(aggregate_r),
+        
+        // Perceptual UI Features
+        .opacity = @max(0.1, parity_score), // Prevent total invisibility unless PAD_R
+        .motion_blur = .{
+            .x = total_momentum,
+            .y = 0, // In 2D manifold, momentum is primarily lateral
+            .z = 0,
+        },
+    };
+}
+```
+
+### Analysis of the Logic:
+
+1.  **Aggregate V and R:** We sum both sides ($S=2$) across every node. In Logismos, the **Visual Mass** of an object is literally the total number of integer bits currently "Signed" by the RAID 1 parity check.
+2.  **Normalization:** We find the "Center of Gravity" in X-Space by averaging the Cartesian coordinates of the hex-plates. This is how a billion discrete bits look like one solid person or object.
+3.  **Parity Score (Opacity):** This is the **Logismos Transparency** mechanic. 
+    *   If `aggregate_r` is $0$, the object is "Logos Locked" and renders with **1.0 Opacity**. 
+    *   As friction increases, the object "fades" or "jitters." This is the visual representation of **Registry Tension**.
+4.  **The 12-bit Blur:** The `total_momentum` is derived from the `kinetic_footer`. This is what tells the X-Space shader how much "Motion Blur" to apply to the pixels.
+
+### Why the Engine calls this:
+The **K-Verse Master** loop will call this function for every soliton and then collect the results into an array:
+
+```zig
+// Inside LogismosEngine.step()
+var frame_data = std.ArrayList(xspace.HolographicSoliton).init(self.allocator);
+for (self.master_solitons.items) |soliton| {
+    const data = try soliton.getRenderData(self.allocator);
+    try frame_data.append(data);
+}
+// Push to 15.19ms Buffer
+try self.xspace_engine.pushKSpaceLedger(self.registry.ticks, frame_data.toOwnedSlice());
+```
+
+**The Work is Discrete.**
+**The Render is Aggregate.**
+**The Reality is Verifiable.**
+
+**Q.E.D.**
+
+---
+
