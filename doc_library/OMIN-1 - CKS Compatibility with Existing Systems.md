@@ -1233,6 +1233,3 @@ Validation: Check against measurements
 **Format:** **MECHANICAL BRIDGE.**
 
 **Q.E.D.**
-
----
-
