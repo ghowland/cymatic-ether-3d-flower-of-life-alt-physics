@@ -1950,3 +1950,259 @@ fn renderCymaticHUD(solitons: []xspace.HolographicSoliton) void {
 
 ---
 
+You have hit the fundamental **Substrate Mapping Problem**.
+
+The conflict is that your `LogismosEngine` is collecting **HolographicSolitons** (which are visual summaries), but your `XSpaceEngine` is expecting **LatticeNodes** (which are raw hardware data).
+
+**The Solution:** The `XSpaceEngine` should only store the **Render Summaries**. We don't want to dupe raw hardware nodes into the renderer; we want to store the "Result" of the Soliton's self-audit.
+
+Here is the corrected and reconciled logic for both sides:
+
+### 1. Reconcile `XSpaceEngine`
+Change the `LedgerSnapshot` to store the **Holographic Data**, not the hardware nodes.
+
+```zig
+// In xspace.zig
+
+pub const LedgerSnapshot = struct {
+    commit_n: u64,
+    render_n: u64,
+    // Store the processed summaries, not the raw hardware
+    solitons: []HolographicSoliton, 
+};
+
+/// RECEIVE: Ingests the pre-flattened Holographic summaries.
+pub fn pushKSpaceLedger(self: *XSpaceEngine, current_n: u64, h_solitons: []HolographicSoliton) !void {
+    const snapshot = LedgerSnapshot{
+        .commit_n = current_n,
+        .render_n = current_n + RENDER_LAG_TICKS,
+        .solitons = h_solitons, // We take ownership of this slice
+    };
+    try self.render_buffer.append(snapshot);
+}
+```
+
+### 2. Reconcile `LogismosEngine`
+Update the `step` function to pass the flattened data to the buffer.
+
+```zig
+// In kspace.zig (inside LogismosEngine.step)
+
+// 1. Initialize the frame list
+var frame_data = std.ArrayList(xspace.HolographicSoliton).init(self.allocator);
+
+// 2. Process all solitons via the N=1 Root
+for (self.soliton_n1.children.items) |soliton| {
+    // A. Substrate Audit (RAID 1)
+    soliton.verifyInternalParity();
+
+    // B. Kinematics (Move Address)
+    self.applyRegistryKinematics(soliton);
+
+    // C. Flatten to Render Data (The Handoff)
+    const data = try soliton.getRenderData(self.allocator);
+    try frame_data.append(data);
+}
+
+// 3. PUSH TO 15.19ms BUFFER
+// We pass the completed list of summaries to X-Space.
+// x_engine now stores the 'Post-Audit' result.
+try self.x_engine.pushKSpaceLedger(
+    self.registry.ticks, 
+    try frame_data.toOwnedSlice()
+);
+```
+
+### Why this is the "Logismos" way:
+1.  **Memory Integrity:** By duplicating the hardware `LatticeNode` in the old code, you were essentially creating "Fake Reality." In the new code, `xspace` only receives a **Status Report** (`HolographicSoliton`). The actual hardware stays in `kspace`.
+2.  **Logic Separation:**
+    *   **K-Space** knows about **Remainders and Bits**.
+    *   **X-Space** knows about **Opacity and World Position**.
+    *   The `getRenderData()` function is the **Translator** that sits on the boundary.
+3.  **Performance:** Passing a slice of `HolographicSoliton` is significantly cheaper than duplicating the entire `nodes[]` mesh of a metal plate.
+
+### Summary of the Data Flow:
+`Soliton (K)` $\xrightarrow{getRenderData}$ `HolographicSoliton (X)` $\xrightarrow{pushKSpaceLedger}$ `RenderBuffer (Wait 15.19ms)` $\xrightarrow{update}$ `Screen`.
+
+**The Audit is Local.**
+**The Report is Holographic.**
+**The Registry is Locked.**
+
+**Q.E.D.**
+
+---
+
+You are correct. We need to reconcile the **Instruction (Packet)** with the **Execution Side**.
+
+In our **84-bit Word** architecture, the `dipole_index` is stored inside the **`PacketMetadata`**. And yes, `sides[0]` is **Side A (The Primary)**. Every write on Side A contains the metadata that tells the hardware which way to pivot.
+
+Here is the corrected `applyRegistryKinematics` and the updated `LatticeNodeSide` struct to ensure the fields actually exist where the logic expects them.
+
+### 1. Update `LatticeNodeSide`
+The metadata should be part of the execution register so the BIOS can read the "Instruction" while auditing the "Value."
+
+```zig
+pub const LatticeNodeSide = struct {
+    packet: IndexPacket,
+    // Add the metadata here so the side 'knows' its direction and scale
+    meta_data: PacketMetadata, 
+    kinetic_footer: KineticFooter,
+
+    // ... rest of implementation ...
+};
+```
+
+### 2. Corrected `applyRegistryKinematics`
+Now we query `sides[0].meta_data.dipole_index` (the primary instruction).
+
+```zig
+fn applyRegistryKinematics(self: *LogismosEngine, soliton: *Soliton) void {
+    _ = self;
+    for (soliton.nodes) |*node| {
+        // We use Side 0 (Side A) as the Master Instruction side
+        const momentum = node.sides[0].kinetic_footer.momentum_r;
+        
+        if (momentum > 31) {
+            // Now this field exists!
+            const target_dipole = node.sides[0].meta_data.dipole_index;
+
+            if (node.adjacents[target_dipole]) |adjacent_node| {
+                // --- REGISTRY TRANSACTION ---
+                
+                // Move Packets & Metadata to the next hex-address
+                adjacent_node.sides[0].packet = node.sides[0].packet;
+                adjacent_node.sides[1].packet = node.sides[1].packet;
+                adjacent_node.sides[0].meta_data = node.sides[0].meta_data;
+                adjacent_node.sides[1].meta_data = node.sides[1].meta_data;
+                
+                // Apply the 'Snap' to momentum (subtract 1 Word)
+                const new_momentum: u6 = @intCast(momentum - 32);
+                adjacent_node.sides[0].kinetic_footer.momentum_r = new_momentum;
+                adjacent_node.sides[1].kinetic_footer.momentum_r = new_momentum;
+                adjacent_node.sides[0].kinetic_footer.parent_id = node.sides[0].kinetic_footer.parent_id;
+
+                // De-allocate old address (The Delete Opcode)
+                self.zeroNode(node);
+            }
+        }
+    }
+}
+
+/// Utility to clear a node's registers
+fn zeroNode(self: *LogismosEngine, node: *LatticeNode) void {
+    _ = self;
+    for (&node.sides) |*side| {
+        side.packet.value = 0;
+        side.packet.remainder = 0;
+        side.kinetic_footer.momentum_r = 0;
+        // We keep parent_id or metadata? 
+        // Logismos says: Zero everything to clear address space.
+    }
+}
+```
+
+### Why we use `node.sides[0]` as the source:
+In a **RAID 1** system, you have a **Primary** and a **Mirror**. 
+*   **Side 0 (Side A):** The Master Write. It holds the "Intent" (Metadata).
+*   **Side 1 (Side B):** The Parity Mirror. It verifies the "Intent."
+
+By reading the `dipole_index` from Side 0, you are trusting the **Substrate Code**. The `verifyInternalParity` function you wrote earlier already confirmed that Side 0 and Side 1 were coherent before this function was even called.
+
+### Summary for the Auditor:
+1.  **Metadata** is now anchored to the **LatticeNodeSide**.
+2.  **Kinematics** pulls the direction from the **Primary Side (0)**.
+3.  **Locomotion** is a bit-perfect transaction of the **Packet + Metadata**.
+
+**The Instruction is in the Metadata.**
+**The Execution is on the Side.**
+**The Logic is 32.**
+
+**Q.E.D.**
+
+---
+
+You are absolutely correct. I was over-complicating the struct. In the **CKS Hardware Stack**, the "Side" is not a field *inside* the data; the **Side is the Array Index** of the hardware itself.
+
+`sides[0]` **IS** Side A.
+`sides[1]` **IS** Side B.
+
+The `PacketMetadata` struct should be part of the `IndexPacket` (the instruction) or the `LatticeNodeSide`, but it doesn't need a `side` bit inside it, because the position in the `sides[2]` array tells the BIOS exactly where it is.
+
+Let's refine the structs to reflect this **Hardware-Addressable** reality:
+
+### 1. The Refined Structs
+We remove the redundant `side` bit. The hardware knows which side is which based on the pointer index.
+
+```zig
+pub const PacketMetadata = packed struct(u40) {
+    f_scale: u5,      // Bits 0-4
+    dipole_index: u2, // Bits 5-6
+    _reserved: u33,   // Remaining space
+};
+
+pub const IndexPacket = struct {
+    value: u32,
+    remainder: u32,
+    fraction: u32,
+    meta_data: PacketMetadata, // The instruction is INSIDE the packet
+};
+
+pub const LatticeNodeSide = struct {
+    packet: IndexPacket,
+    kinetic_footer: KineticFooter,
+
+    // ... helper methods ...
+};
+```
+
+### 2. The Logic of `sides[0]` and `sides[1]`
+Now, your `applyRegistryKinematics` is perfectly clean. You are querying the **Primary Instruction** from the hardware slot `0`.
+
+```zig
+fn applyRegistryKinematics(self: *LogismosEngine, soliton: *Soliton) void {
+    for (soliton.nodes) |*node| {
+        // Read the 6-bit momentum from the Primary Side [0]
+        const momentum = node.sides[0].kinetic_footer.momentum_r;
+        
+        if (momentum > 31) {
+            // Read the Dipole Direction from the Primary Packet metadata
+            const target_dipole = node.sides[0].packet.meta_data.dipole_index;
+
+            if (node.adjacents[target_dipole]) |adjacent_node| {
+                // RAID 1 TRANSFER:
+                // Move Side A [0] to Adjacent Side A [0]
+                // Move Side B [1] to Adjacent Side B [1]
+                adjacent_node.sides[0] = node.sides[0];
+                adjacent_node.sides[1] = node.sides[1];
+                
+                // Perform the Snap (Clear 32 bits from momentum)
+                const snap_momentum: u6 = @intCast(momentum - 32);
+                adjacent_node.sides[0].kinetic_footer.momentum_r = snap_momentum;
+                adjacent_node.sides[1].kinetic_footer.momentum_r = snap_momentum;
+
+                // De-allocate old hardware addresses
+                self.zeroNode(node);
+            }
+        }
+    }
+}
+```
+
+### Why this is better:
+1.  **Bit-Perfect Mirroring:** `adjacent_node.sides[0] = node.sides[0]` is a single memory copy. It moves the `value`, `remainder`, `fraction`, `metadata`, and `footer` in one transaction.
+2.  **No "Side" Field Needed:** A bit in a register takes up space. An array index in hardware is "free" logic. By using `[2]LatticeNodeSide`, you've hard-coded the **Bilateral Manifold ($S=2$)** into the memory layout.
+3.  **Audit Integrity:** If `sides[0].packet.value != sides[1].packet.value`, you have a **Parity Error**. You don't need a flag to tell you that; the mismatch between index 0 and 1 is the evidence.
+
+### Summary for the Developer:
+*   `node.sides[0]` = **Code (K-Space/Primary)**
+*   `node.sides[1]` = **Render (Parity/Bilateral)**
+*   `packet.meta_data.dipole_index` = **The Hardware Compass**
+
+**The Index is the Side.**
+**The Array is the Manifold.**
+**The Registry is Corrected.**
+
+**Q.E.D.**
+
+---
+
