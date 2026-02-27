@@ -1628,3 +1628,92 @@ try self.xspace_engine.pushKSpaceLedger(self.registry.ticks, frame_data.toOwnedS
 
 ---
 
+This function is the **Kinetic Resolution Engine**. It executes the **Logismos Second Law**: that "Motion" is the hardware's way of resolving un-snapped remainder tension. 
+
+`applyRegistryKinematics` does not use calculus to find a velocity; it audits the **12-bit Kinetic Footer** and executes the **`INC_ADDR` (Locomotion)** opcode if the registry torque exceeds the 32-bit word threshold.
+
+```zig
+/// KINETIC RESOLUTION ENGINE:
+/// Operates at Logic Speed (cL) to move solitons across the registry.
+/// This is the industrial execution of 'Force' as 'Registry Re-indexing'.
+fn applyRegistryKinematics(self: *LogismosEngine, soliton: *Soliton) void {
+    _ = self;
+
+    // 1. ITERATE: Every Lex-Brick (node) in the soliton mesh
+    for (soliton.nodes) |*node| {
+        
+        // 2. AUDIT FOOTER: Check the 6-bit Momentum Register (R_k)
+        // We use Side A as the primary instruction source.
+        const momentum = node.sides[0].kinetic_footer.momentum_r;
+        
+        // 3. THRESHOLD CHECK: Does the tension exceed the 32-bit Word?
+        // In CKS, if R > 31, the registry 'slips' into the next node.
+        if (momentum > 31) {
+            
+            // 4. RETRIEVE DIRECTION: Query the D=3 Dipole Index from Metadata
+            // This is the hard-coded 120-degree pivot direction.
+            const target_dipole = node.sides[0].meta_data.dipole_index;
+
+            // 5. ATTEMPT LOCOMOTION: Execute Opcode 0x11 (INC_ADDR)
+            // This performs the 'Serial Teleport' to the adjacent hex-plate.
+            if (node.adjacents[target_dipole]) |adjacent_node| {
+                
+                // --- REGISTRY TRANSACTION START ---
+                
+                // A. Clone the Packet (V, F, R) to the Target
+                // We move the 'Fact' and the 'Tension' to the next address.
+                adjacent_node.sides[0].packet = node.sides[0].packet;
+                adjacent_node.sides[1].packet = node.sides[1].packet;
+                
+                // B. Maintain Kinetic Footer in the new address
+                // We subtract 32 from momentum to signify one 'Snap' of movement.
+                const new_momentum: u6 = @intCast(momentum - 32);
+                adjacent_node.sides[0].kinetic_footer.momentum_r = new_momentum;
+                adjacent_node.sides[1].kinetic_footer.momentum_r = new_momentum;
+                
+                // C. Inheritance: Maintain the Parent Soliton ID (6-bit Liaison)
+                adjacent_node.sides[0].kinetic_footer.parent_id = node.sides[0].kinetic_footer.parent_id;
+                adjacent_node.sides[1].kinetic_footer.parent_id = node.sides[1].kinetic_footer.parent_id;
+
+                // D. DELETE OLD (Registry De-allocation)
+                // Zeroing the old node's LUs clears the space for the next write.
+                node.sides[0].packet.value = 0;
+                node.sides[1].packet.value = 0;
+                node.sides[0].packet.remainder = 0;
+                node.sides[1].packet.remainder = 0;
+                node.sides[0].kinetic_footer.momentum_r = 0;
+                node.sides[1].kinetic_footer.momentum_r = 0;
+
+                // --- REGISTRY TRANSACTION COMPLETE ---
+                
+            } else {
+                // REGISTRY WALL: The dipole index points to an unallocated address.
+                // Physics Result: The object hits a 'Boundary' and R builds further.
+                node.sides[0].packet.remainder += 1; 
+            }
+        }
+    }
+}
+```
+
+### Technical Breakdown of the Kinematics:
+
+1.  **The Slip-Point (32):** The `if (momentum > 31)` check is the digital equivalent of **Inertia**. The object stays in place until its accumulated "Audit Failure" equals one whole **32-bit Logic Word**. At that point, it *must* re-index.
+2.  **The Transactional Write:** Note the sequence: **Write to Adjacent $\to$ Modify Momentum $\to$ Zero Old Node.** This ensures the soliton never "disappears" or "duplicates" during locomotion. It is a bit-perfect transfer of identity.
+3.  **The 6-bit Carryover:** We subtract 32 from the momentum (`momentum - 32`) but keep the remainder. This allows for "Continuous Velocity." If an object is moving fast, its $R_k$ might be 60. After one snap, it still has 28 left, making it snap again almost immediately.
+4.  **Registry Boundaries:** If the `adjacents` pointer is `null`, the LUs cannot move. The tension is forced back into the `remainder` register. This is how Logismos calculates **Collision and Pressure** without complex math—it's just a failed address-write.
+
+### Why this is "Kinematics":
+There are no floating-point velocities. There are only **Pointers** and **Counters**. 
+*   **Speed:** Is the frequency of how many $N$-ticks it takes to hit the 32-bit momentum threshold.
+*   **Direction:** Is the 2-bit Dipole Index.
+*   **Force:** Is the value of the 6-bit Momentum R.
+
+**The Physics is the Logic.**
+**The Move is the Re-Index.**
+**The Registry is Locked.**
+
+**Q.E.D.**
+
+---
+
