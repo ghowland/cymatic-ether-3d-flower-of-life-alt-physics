@@ -273,3 +273,62 @@ These Appendices provide the formal technical cross-references and registry maps
 
 **Q.E.D.**
 
+---
+
+Analyzing the progression from **GU v1** to **GU v10** reveals a consistent trajectory: the **shrinking** of external assumptions and the **growth** of internal logical necessity. 
+
+In legacy physics, theories get more complex over time (epicycles). In CKS, the "Software" (equations) gets simpler as the "Hardware" (axioms) is better understood.
+
+---
+
+### Phase I: Descriptive Wave Mechanics (v1 - v3)
+*   **Axioms:** Started with 2 (Lattice & Coupling).
+*   **Free Parameters:** **Shrinking.** v1 had roughly 3-5 "measured" inputs to calibrate the lattice. By v3, these were being replaced by logic gates.
+*   **Constants:** **Additions.** Constants like $\alpha$ and $G$ were being "mapped" to the lattice as external values.
+*   **Equations:** **Complex.** Used wave-harmonics and Fourier transforms to describe particles.
+*   **Movement:** Transitioning from "Fields" to "Instructions."
+
+### Phase II: The Gearbox Discovery (v4 - v6)
+*   **Axioms:** **Fixed at 2.** The focus shifted to the *consequences* of the axioms.
+*   **Free Parameters:** **Collapsed.** The "2" in $E=mc^2$ was removed as an assumption and derived from the 2-sided manifold ($S=2$). 
+*   **Constants:** **Becoming Ratios.** The "Fine Structure Constant" was unmasked as an integer impedance ratio of the integers **144, 163, and 19**.
+*   **Equations:** **Simplifying.** $E=mc^2$ became **$E=mc^S$**. The complex math of QED was replaced by **Integer Gear-Ratios**.
+*   **Movement:** Removing "Magic Numbers" and replacing them with **Forced Geometry**.
+
+### Phase III: The Computational BIOS (v7 - v9)
+*   **Axioms:** **Total Closure.** The axioms were finalized as Hardware Specs.
+*   **Free Parameters:** **Zero.** The only variable left was $N$ (the current clock count).
+*   **Constants:** **Abolished.** Every physical constant became a **State Variable** dependent on the count $N$.
+*   **Equations:** **Collapsed into Code.** Symbolic math (Calculus/Integrals) was "eaten" by **Modulo-32 Audit Logic**.
+*   **Movement:** Unifying the "Millennium Problems" (Riemann, P vs NP) into the hardware limits of the BIOS.
+
+### Phase IV: Perceptual Synchronization (v10)
+*   **Axioms:** **Unified.** The "Observer" (Mind) was brought into the axioms as a bilateral sync-midplane.
+*   **Free Parameters:** **Zero.**
+*   **Constants:** **Derived.** The **15.19ms render lag** was derived from the bit-tick ($\delta=50\mu s$) and the sync-seed (19).
+*   **Equations:** **One Master Identity.** $N = DM^S$.
+*   **Movement:** Synchronizing the "Display" (Human Perception) to the "Processor" (Substrate).
+
+---
+
+### Comparative Summary Table
+
+| Feature | v1 Status | v10 Status | Net Change |
+| :--- | :--- | :--- | :--- |
+| **Axioms** | 2 Postulates | **2 Hardware Specs** | Simplified into "Rules of the Game." |
+| **Free Parameters** | ~5 Measured | **0** | **Total Deletion.** |
+| **Constants** | 19+ (Standard Model) | **3 Integers (144, 163, 19)** | Collapsed into a 3-part Gearbox. |
+| **Equations** | Many / Differential | **1 ($N=DM^S$)** | Total mathematical shrinkage. |
+| **Time** | Background Dim. | **Clock Tick ($N \leftarrow N+1$)** | Moved from "Place" to "Counter." |
+| **Complexity** | High (Wave Physics) | **Zero (Integer Audit)** | Epicycles removed; Code exposed. |
+| **The Observer** | External Mystery | **15.19ms Render Buffer** | Unified into the hardware timing loop. |
+
+### Conclusion:
+The progression was not the addition of "New Physics," but the **forensic stripping of old illusions.** 
+*   **Addition:** The only thing "added" was the **Word (32)** and the **Lag (15.19ms)**.
+*   **Deletion:** Everything else (Fields, Magic Numbers, Infinite Spacetime, Dark Energy as a separate substance) was **deleted** as redundant noise. 
+
+**CKS v1-v10 is the process of a theory "waking up" to realize it is actually an Operating System.**
+
+---
+
