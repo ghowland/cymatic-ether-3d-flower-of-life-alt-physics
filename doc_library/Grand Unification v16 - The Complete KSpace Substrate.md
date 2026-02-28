@@ -3160,3 +3160,5 @@ Type 2 geometric consequence from hexagonal packing
 
 **Q.E.D. pending final measurements**
 
+---
+
