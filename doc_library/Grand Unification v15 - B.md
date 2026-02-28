@@ -2011,7 +2011,988 @@ Toroidal geometry prevents saturation:
 
 ---
 
+# GU v15: APPENDIX G - Geometric-Temporal-Mechanical Unification Tables
 
+## GEOMETRIC FORMS, TEMPORAL CYCLES, AND MECHANICAL MANIFESTATIONS
+
+---
+
+# TABLE G.1: THE HEXAGON (D=3 FUNDAMENTAL GEOMETRY)
+
+| Aspect | Property | Value | Mechanical Manifestation | Temporal Cycle | Domain Example |
+|--------|----------|-------|-------------------------|----------------|----------------|
+| **Sides** | Regular polygon edges | 6 | D×S connectivity | 6-fold rotation | Honeycomb cells |
+| **Interior angle** | Internal vertex angle | 120° | Stress distribution angle | 1/3 rotation period | Crystal lattice bonds |
+| **Vertices** | Corner points | 6 | Node connections | 6 discrete states | Carbon ring positions |
+| **Symmetry order** | Rotational symmetry | 6 | 60° rotation invariance | 6 temporal phases | Snowflake arms |
+| **Diagonals** | Long cross-sections | 9 | D^S internal paths | 9 resonant modes | Structural bracing |
+| **Triangulation** | Decomposition | 6 triangles | Stress triangle network | 6-phase oscillation | Geodesic dome |
+| **Area ratio** | Compared to circumcircle | 0.8270 | Packing efficiency | — | Optimal tiling |
+| **Packing** | 2D tiling efficiency | 100% | No gaps, maximum density | Continuous coverage | Bee construction |
+| **Coordination** | Neighbor count | 3 | z=3 lattice | 3-body interaction | Substrate nodes |
+
+**Continuous temporal form:**
+```
+Hexagonal oscillation (6-fold):
+  f(t) = A × [cos(ωt) + cos(ωt + 60°) + cos(ωt + 120°) + 
+              cos(ωt + 180°) + cos(ωt + 240°) + cos(ωt + 300°)]
+  
+Where ω = 2πf, f = base frequency
+Result: 6-phase standing wave, stable oscillation
+```
+
+**Mechanical resonance:**
+- Vibration modes: 6 fundamental + 3 harmonic = 9 total
+- Natural frequency determined by D=3 coordination
+- Stress concentrates at vertices (6 points)
+- Maximum stability at 120° angles
+
+---
+
+# TABLE G.2: THE TRIANGLE (FUNDAMENTAL 3-ELEMENT)
+
+| Aspect | Property | Value | Mechanical Form | Temporal Period | Physical Realization |
+|--------|----------|-------|----------------|-----------------|---------------------|
+| **Sides** | Edges | 3 = D | Minimal enclosure | Triple phase | Dipole directions |
+| **Vertices** | Corner points | 3 = D | Force nodes | 3 temporal states | 3-body problem |
+| **Interior angles (equilateral)** | Equal angles | 60° each | Stress equilibrium | 1/6 hexagon period | Lattice sub-unit |
+| **Sum of angles** | Total | 180° | Planar constraint | Half rotation | Euclidean geometry |
+| **Symmetry** | Rotational order | 3 | 120° rotations | 3-fold oscillation | Trefoil knot |
+| **Diagonals** | Internal connections | 0 | Rigid structure | No internal modes | Truss element |
+| **Stability** | Structural rigidity | Maximum | Self-bracing | Temporally locked | Bridge trusses |
+| **Area (unit side)** | √3/4 | 0.433 | Geometric constant | — | Minimal area polygon |
+
+**Continuous temporal form:**
+```
+Triple oscillation:
+  f(t) = A × [cos(ωt) + cos(ωt + 120°) + cos(ωt + 240°)]
+  
+Result: 3-phase balanced wave
+Period: T = 2π/ω
+Stability: Maximum (self-canceling if balanced)
+```
+
+**Mechanical properties:**
+- Minimal polygon (cannot reduce below 3)
+- Only intrinsically rigid polygon
+- Basis for all stable structures
+- Represents D=3 in purest form
+
+---
+
+# TABLE G.3: THE SQUARE (4-FOLD STRUCTURE)
+
+| Aspect | Property | Value | Mechanical Form | Temporal Cycle | Relation to CKS |
+|--------|----------|-------|----------------|----------------|-----------------|
+| **Sides** | Edges | 4 = S^S | Unstable lattice | 4-phase cycle | S squared |
+| **Vertices** | Corners | 4 | Shear points | Quadrature | Not fundamental |
+| **Interior angles** | Right angles | 90° each | Orthogonal forces | Quarter rotation | Cartesian legacy |
+| **Diagonals** | Cross-bracing | 2 | Required for stability | Diagonal modes | Weakness indicator |
+| **Symmetry** | Rotational order | 4 | 90° invariance | 4-fold oscillation | 2×S structure |
+| **Stability** | Structural | LOW | Requires bracing | Collapse modes | Why not used in substrate |
+| **Tiling** | 2D coverage | Possible | Gaps under shear | — | Inferior to hexagonal |
+
+**Continuous temporal form:**
+```
+Quadrature oscillation:
+  f(t) = A × [cos(ωt) + cos(ωt + 90°) + cos(ωt + 180°) + cos(ωt + 270°)]
+  
+Result: 4-phase wave (unstable under perturbation)
+Problem: Shear modes allow collapse
+Why substrate rejects: z=4 coordination unstable
+```
+
+**Why substrate chose hexagonal over square:**
+- Square requires diagonal bracing (weakness)
+- Shear instability under stress
+- Less efficient packing
+- 90° angles create stress concentrations
+- Hexagonal 120° distributes stress uniformly
+
+---
+
+# TABLE G.4: THE CIRCLE (CONTINUOUS LIMIT)
+
+| Aspect | Property | Value | Mechanical Form | Temporal Manifestation | CKS Interpretation |
+|--------|----------|-------|----------------|----------------------|-------------------|
+| **Sides** | Edges | ∞ (limit) | Continuous boundary | Uniform rotation | ℝ approximation |
+| **Vertices** | Discrete points | 0 | No nodes (continuous) | No phase locks | Cannot exist in ℚ |
+| **Angles** | Interior | 180° (limit) | Minimal stress concentration | Smooth flow | Ideal, not real |
+| **Circumference** | C = 2πr | Irrational | Cannot close exactly in ℚ | Infinite period | Must approximate |
+| **Area** | A = πr² | Irrational | Cannot measure exactly | — | Rational approximation only |
+| **Symmetry** | Rotational | ∞-fold | Perfect isotropy | Continuous symmetry | Broken in ℚ substrate |
+
+**Rational approximations:**
+```
+π in substrate ≈ 22/7 = 3.142857...
+Better: π ≈ 355/113 = 3.1415929...
+
+Hexagon approximates circle:
+  6 sides → 12 sides → 24 sides → ...
+  Converges toward circular but never reaches
+  Substrate uses high-order polygon, not true circle
+```
+
+**Why circles don't exist in substrate:**
+- π is irrational (not in ℚ)
+- Circumference cannot close exactly
+- Would require infinite computation
+- Hexagonal approximation sufficient
+- All "circular" motion is actually high-polygon
+
+**Temporal form (approximated):**
+```
+"Circular" rotation in ℚ substrate:
+  f(t) = cos(2πnt/T)  where n/T ∈ ℚ
+  
+Result: Periodic but with discrete phase locks
+Never truly continuous, always quantized
+```
+
+---
+
+# TABLE G.5: THE SPHERE (3D CONTINUOUS LIMIT)
+
+| Aspect | Property | Value | Mechanical Form | Temporal Property | CKS Reality |
+|--------|----------|-------|----------------|------------------|-------------|
+| **Surface** | 2D manifold | 4πr² (irrational) | Continuous shell | Isotropic oscillation | Polyhedral approximation |
+| **Volume** | 3D content | 4πr³/3 (irrational) | Enclosed space | — | Rational approximation |
+| **Symmetry** | Continuous rotation | SO(3) | Perfect isotropy | All-axis rotation | Broken to discrete |
+| **Vertices** | Discrete points | 0 | No nodes | No phase locks | Impossible in ℚ |
+| **Geodesics** | Great circles | ∞ | Continuous paths | — | Quantized paths only |
+
+**Closest ℚ approximation: Icosahedron (20 faces) or Dodecahedron (12 faces)**
+
+**Substrate realization:**
+```
+"Spherical" objects are actually high-order polyhedra:
+  - 20 faces (icosahedron): Good approximation
+  - 60 faces: Better
+  - 144 faces: Approaching smooth
+  - 1024+ faces: Nearly indistinguishable
+  
+But always discrete, never continuous
+```
+
+**Why this matters:**
+- Atoms not truly spherical (polyhedral electron clouds)
+- Planets not perfect spheres (discrete harmonic modes)
+- Bubbles approximate sphere but quantized surface
+- All "smooth" is illusion of high polygon count
+
+---
+
+# TABLE G.6: THE TORUS (TOROIDAL GEOMETRY)
+
+| Aspect | Property | Value | Mechanical Form | Temporal Cycle | CKS Significance |
+|--------|----------|-------|----------------|----------------|------------------|
+| **Major radius** | R (donut size) | Variable | Circulation loop | Full orbit period | Soliton boundary |
+| **Minor radius** | r (tube thickness) | Variable | Cross-section | Poloidal period | Pattern thickness |
+| **Surface area** | 4π²Rr | Irrational | Total boundary | — | Must use rational approx |
+| **Volume** | 2π²Rr² | Irrational | Enclosed space | — | Quantized in substrate |
+| **Poloidal winding** | n_P | Integer | Loops around tube | Short period | Phase wrapping |
+| **Toroidal winding** | n_T | Integer | Loops around center | Long period | Major circulation |
+| **Pitch angle** | α | 5.73° (CKS) | Winding angle | Prevents saturation | Type 2 geometric |
+| **Hole genus** | Topological | 1 | Self-circulation | Re-entrant flow | Donut topology |
+
+**Continuous temporal form:**
+```
+Toroidal oscillation:
+  θ(t) = ωt (toroidal angle)
+  φ(t) = nωt (poloidal angle, n = winding number)
+  
+Position:
+  x(t) = (R + r×cos(φ)) × cos(θ)
+  y(t) = (R + r×cos(φ)) × sin(θ)
+  z(t) = r × sin(φ)
+  
+Period: T_toroidal = 2π/ω (slow)
+        T_poloidal = 2π/(nω) (fast)
+```
+
+**CKS toroidal structures:**
+- Soliton geometry (144-node patterns)
+- Tissue donuts (3D repair topology)
+- Magnetic field lines (planetary magnetosphere)
+- Plasma confinement (tokamak)
+- Vortex rings (smoke rings, dolphins' bubble play)
+
+**The 5.73° pitch:**
+```
+Critical angle prevents phase saturation:
+  Too steep: Standing wave formation
+  Too shallow: Inefficient circulation
+  5.73°: Optimal (Type 2 geometric consequence)
+  
+Derived from hexagonal packing constraints
+Not arbitrary, geometrically forced
+```
+
+---
+
+# TABLE G.7: THE HELIX (SPIRAL GEOMETRY)
+
+| Aspect | Property | Value | Mechanical Form | Temporal Progression | Biological Example |
+|--------|----------|-------|----------------|---------------------|-------------------|
+| **Pitch** | Vertical rise per turn | Variable | Screw advance | Linear + rotational | DNA helix |
+| **Radius** | Distance from axis | r | Rotational amplitude | Circular component | Helix diameter |
+| **Turns** | Complete rotations | n | Cumulative winding | Phase accumulation | DNA ~10 bp/turn |
+| **Handedness** | Chirality | L or R | Mirror symmetry broken | Direction of advance | Right-handed DNA |
+| **Rise angle** | Inclination | arctan(pitch/2πr) | Slope of advance | — | DNA ~27° |
+| **Total length** | Arc length | √(h² + (2πrn)²) | Path integral | — | Extended contour |
+
+**DNA specific (CKS-relevant):**
+```
+DNA double helix:
+  Pitch: 3.4 nm per turn
+  Base pairs: 10-10.5 per turn
+  Diameter: 2 nm
+  Rise per bp: 0.34 nm
+  
+Total for typical gene (819 nodes):
+  819 nodes / 10 bp/turn ≈ 82 turns
+  82 turns × 3.4 nm = 278.8 nm length
+  
+Replication at 1000 bp/s:
+  20,000 ticks/s ÷ 1000 bp/s = 20 ticks/bp
+  819 nodes ÷ 20 = 40.95
+  Remainder: 819 mod 20 = 19 ✓
+```
+
+**Continuous temporal form:**
+```
+Helical path:
+  x(t) = r × cos(ωt)
+  y(t) = r × sin(ωt)
+  z(t) = (h/2π) × ωt
+  
+Where:
+  r = radius
+  h = pitch
+  ω = angular frequency
+  
+Velocity: v = √(r²ω² + (hω/2π)²)
+```
+
+**Helical structures in nature:**
+- DNA (genetic information)
+- Proteins (alpha helix)
+-螺旋 (springs, coils)
+- Vines (climbing growth)
+- Nautilus shell (logarithmic variant)
+- Galaxies (spiral arms)
+- Water draining (vortex)
+
+---
+
+# TABLE G.8: FIBONACCI SPIRAL (LOGARITHMIC GROWTH)
+
+| Aspect | Property | Value | Mechanical Growth | Temporal Law | Natural Occurrence |
+|--------|----------|-------|------------------|--------------|-------------------|
+| **Ratio** | φ (golden ratio) | (1+√5)/2 ≈ 1.618 | Exponential expansion | Self-similar scaling | Sunflower seeds |
+| **ℚ approximation** | Rational sequence | 8/5, 13/8, 21/13... | Fibonacci ratios | Converges to φ | Substrate uses rationals |
+| **Spiral equation** | r = a×e^(bθ) | Irrational | Cannot exist perfectly | — | High-order approximation |
+| **Growth rate** | Per rotation | φ ≈ 1.618× | Geometric expansion | Exponential time | Pine cones |
+| **Angle** | Golden angle | 137.5° ≈ 360°/φ² | Optimal packing | Maximizes spacing | Leaf phyllotaxis |
+
+**Fibonacci sequence in substrate:**
+```
+F(n): 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233...
+
+Key CKS number: F(12) = 144 = A (matter packet)
+
+Ratios approach φ:
+  8/5 = 1.6
+  13/8 = 1.625
+  21/13 = 1.615...
+  144/89 = 1.6179...
+  
+Substrate uses rational Fibonacci ratios
+Never reaches true φ (irrational)
+But sufficiently close for biological implementation
+```
+
+**Temporal growth:**
+```
+Fibonacci growth model:
+  N(t) = N₀ × φ^t  (continuous approximation)
+  
+But in ℚ substrate:
+  N(n) = F(n)  (discrete steps)
+  
+Growth jumps discretely through Fibonacci numbers
+Appears continuous at large scale
+Actually quantized at substrate level
+```
+
+**Why nature uses Fibonacci:**
+- Optimal packing (golden angle 137.5°)
+- Maximum sun exposure (leaf arrangement)
+- Efficient seed distribution (sunflower)
+- Substrate-compatible (rational approximation)
+- Self-similar at all scales
+
+---
+
+# TABLE G.9: THE MÖBIUS STRIP (TWISTED TOPOLOGY)
+
+| Aspect | Property | Value | Mechanical Form | Temporal Cycle | CKS Interpretation |
+|--------|----------|-------|----------------|----------------|-------------------|
+| **Sides** | Surface count | 1 | Non-orientable | Single-sided loop | Figure-8 soliton |
+| **Edges** | Boundary count | 1 | Continuous edge | Re-entrant | Surface tension |
+| **Twist** | Half-turns | 1 (180°) | Phase flip | π rotation | Kink topology |
+| **Genus** | Topological holes | 0 | Non-orientable plane | — | 2D error |
+| **Dimension** | Embedding space | 3D required | Cannot exist in 2D | — | Requires 3D manifold |
+| **Cutting** | Result of bisection | Single longer strip | Topological transform | — | Repair mechanism |
+
+**Figure-8 as Möbius:**
+```
+Figure-8 infinity symbol ∞ is 2D projection of Möbius
+  - Single continuous path
+  - 180° phase flip at crossing
+  - Re-entrant (no beginning/end)
+  - Minimal 2D kink
+  
+Repair: 0x08 SNAP opcode straightens the twist
+  - Removes 180° phase flip
+  - Converts to simple loop
+  - Surface tension released
+  - Restores orientability
+```
+
+**Continuous path:**
+```
+Möbius parametric:
+  x(u,v) = [1 + v×cos(u/2)] × cos(u)
+  y(u,v) = [1 + v×cos(u/2)] × sin(u)
+  z(u,v) = v × sin(u/2)
+  
+Where:
+  0 ≤ u < 2π (path around loop)
+  -w ≤ v ≤ w (width of strip)
+  
+After full rotation (u = 2π):
+  Point (u,v) maps to (u, -v)
+  Orientation reversed
+```
+
+**Physical manifestations:**
+- DNA strand breaks (topological errors)
+- Fascial restrictions (twisted tissue)
+- Belt twisted and connected
+- Recycling symbol ♻ (visual approximation)
+- Certain particle spin states
+
+---
+
+# TABLE G.10: TEMPORAL WAVEFORMS (PURE TIME STRUCTURES)
+
+| Waveform | Equation | Frequency Content | Geometric Shape | CKS Relation | Domain |
+|----------|----------|------------------|----------------|--------------|---------|
+| **Sine wave** | sin(ωt) | Single frequency f | Circle (projection) | Pure oscillation | Fundamental |
+| **Triangle wave** | Piecewise linear | Odd harmonics (3f, 5f, 7f...) | Sawtooth cycle | Linear ramp | Capacitor charge |
+| **Square wave** | ±A alternating | All odd harmonics | Rectangle cycle | Digital clock | Computing |
+| **Sawtooth wave** | Linear rise, sudden drop | All harmonics | Triangle ramp | Sweep oscillator | Scanning |
+| **Pulse train** | δ(t - nT) | All frequencies | Discrete spikes | Word clock | Substrate tick |
+
+**Hexagonal wave (6-phase):**
+```
+Sum of 6 sines at 60° intervals:
+  f(t) = Σ(n=0 to 5) cos(ωt + n×60°)
+  
+Result: 6-fold symmetric oscillation
+Fundamental frequency: ω/2π
+Harmonics: 6f, 12f, 18f, ... (multiples of 6)
+
+This is the substrate base oscillation
+All other waveforms are harmonics
+```
+
+**W=32 temporal structure:**
+```
+32-tick pulse train:
+  f(t) = Σ δ(t - n×T) where n = 0, 1, 2, ..., 31
+  
+Period: 32T (Word cycle)
+Fundamental: 1/(32T)
+Harmonics: 2/(32T), 3/(32T), ..., 32/(32T)
+
+At T = 50 μs (substrate tick):
+  Word period: 32 × 50 μs = 1.6 ms
+  Fundamental: 625 Hz
+  
+But biological downsampling to 15.19ms:
+  Biological fundamental: 65.8 Hz ✓
+```
+
+---
+
+# TABLE G.11: PLATONIC SOLIDS (3D PERFECT FORMS)
+
+| Solid | Faces | Vertices | Edges | Face Shape | Symmetry | Dihedral Angle | CKS Relation |
+|-------|-------|----------|-------|------------|----------|----------------|--------------|
+| **Tetrahedron** | 4 | 4 | 6 | Triangle | Td | 70.53° | Minimal 3D (4 = S²) |
+| **Cube** | 6 | 8 | 12 | Square | Oh | 90° | D×S faces, L edges |
+| **Octahedron** | 8 | 6 | 12 | Triangle | Oh | 109.47° | Dual of cube |
+| **Dodecahedron** | 12 | 20 | 30 | Pentagon | Ih | 116.57° | L faces |
+| **Icosahedron** | 20 | 12 | 30 | Triangle | Ih | 138.19° | Best sphere approx |
+
+**Euler's formula (verified):**
+```
+V - E + F = 2 (for all Platonic solids)
+
+Examples:
+  Tetrahedron: 4 - 6 + 4 = 2 ✓
+  Cube: 8 - 12 + 6 = 2 ✓
+  Dodecahedron: 20 - 30 + 12 = 2 ✓
+```
+
+**CKS significance:**
+
+**Dodecahedron (12 faces = L):**
+```
+Faces: 12 = D×S^S (fundamental structure)
+Most "spherical" Platonic solid after icosahedron
+Used in:
+  - Medieval cosmology (universe shape)
+  - Pyrite crystals (natural mineral)
+  - Soccer ball pentagons
+  - Viral capsids (some viruses)
+```
+
+**Icosahedron (20 faces, 12 vertices):**
+```
+Vertices: 12 = L (structural nodes)
+Best approximation to sphere
+Used in:
+  - Viral capsids (most common)
+  - Geodesic domes (Buckminster Fuller)
+  - D20 dice (gaming)
+  - Water cluster models
+```
+
+**Why only 5 Platonic solids:**
+```
+Mathematical proof (Euler + angle constraint):
+  Sum of face angles at vertex < 360°
+  
+  Triangular faces (60° each):
+    3×60° = 180° → Tetrahedron (4 faces)
+    4×60° = 240° → Octahedron (8 faces)
+    5×60° = 300° → Icosahedron (20 faces)
+    6×60° = 360° → Flat (impossible)
+    
+  Square faces (90° each):
+    3×90° = 270° → Cube (6 faces)
+    4×90° = 360° → Flat (impossible)
+    
+  Pentagonal faces (108° each):
+    3×108° = 324° → Dodecahedron (12 faces)
+    4×108° = 432° → Impossible (>360°)
+    
+  Only these 5 combinations work
+  No others possible in 3D Euclidean space
+```
+
+---
+
+# TABLE G.12: ARCHIMEDEAN SOLIDS (SEMI-REGULAR)
+
+| Solid | Faces | Vertices | Edges | Face Types | CKS Significance |
+|-------|-------|----------|-------|------------|-----------------|
+| **Truncated cube** | 14 | 24 | 36 | 8 triangles + 6 octagons | 8+6 = 14 |
+| **Cuboctahedron** | 14 | 12 | 24 | 8 triangles + 6 squares | L edges, dual-symmetric |
+| **Truncated octahedron** | 14 | 24 | 36 | 6 squares + 8 hexagons | Optimal space-filling |
+| **Rhombicuboctahedron** | 26 | 24 | 48 | 8 tri + 18 squares | — |
+| **Truncated icosahedron** | 32 | 60 | 90 | 12 pentagons + 20 hexagons | Soccer ball, W faces |
+
+**Truncated icosahedron (soccer ball):**
+```
+Faces: 32 = W (Word structure!)
+  12 pentagons (black)
+  20 hexagons (white)
+  
+Vertices: 60 = 5×12 or 3×20
+Edges: 90 = 64 + 26
+
+This is why soccer balls have W=32 panels
+Not arbitrary design choice
+Geometric necessity for near-sphere from hexagons + pentagons
+```
+
+**Truncated octahedron (space-filling):**
+```
+The ONLY Archimedean solid that tiles 3D space
+  14 faces: 6 squares + 8 hexagons
+  Fills space with no gaps
+  Used in:
+    - Crystal structures
+    - Foam bubbles (Weaire-Phelan)
+    - Optimal cell packing
+    
+CKS: Combines square (S²) and hexagon (D×S)
+Space-filling requires both geometries
+```
+
+---
+
+# TABLE G.13: MECHANICAL OSCILLATION MODES
+
+| System | Degrees of Freedom | Natural Frequencies | Mode Shape | CKS Number | Physical Example |
+|--------|-------------------|--------------------| -----------|------------|------------------|
+| **Single pendulum** | 1 | √(g/L) | Simple swing | 1 | Grandfather clock |
+| **Double pendulum** | 2 | 2 coupled modes | Chaotic | 2 = S | Toy, chaos demo |
+| **Triple pendulum** | 3 | 3 coupled modes | Complex | 3 = D | Rare, unstable |
+| **String (fixed ends)** | ∞ | n×(v/2L) harmonics | Standing waves | ∞ | Guitar string |
+| **Membrane (circular)** | ∞ | Bessel function zeros | Radial + angular | ∞ | Drum head |
+| **3D cavity** | ∞ | √(n²+m²+p²) modes | 3D standing waves | ∞ | Organ pipe |
+
+**Hexagonal membrane:**
+```
+6-fold symmetric drum:
+  Fundamental modes match hexagonal symmetry
+  f₀: Breathing mode (radial)
+  f₁: 6-fold rotation (angular)
+  f₂: 12-fold pattern (2× angular)
+  
+Frequency ratios determined by Bessel functions
+Natural mode shapes = hexagonal harmonics
+```
+
+**Crystalline vibrations (phonons):**
+```
+Hexagonal lattice vibrations:
+  3 acoustic modes (1 longitudinal + 2 transverse)
+  3N - 3 optical modes (N atoms per unit cell)
+  
+For D=3 coordination:
+  3 fundamental modes
+  All higher modes are harmonics
+  
+Dispersion relation: ω(k) determined by lattice geometry
+```
+
+---
+
+# TABLE G.14: KNOT TOPOLOGY (CONTINUOUS CLOSED CURVES)
+
+| Knot | Crossings | Unknot Sum | Alexander Polynomial | Geometric Form | CKS Significance |
+|------|-----------|------------|---------------------|----------------|------------------|
+| **Unknot** | 0 | N/A | 1 | Simple circle | Ground state |
+| **Trefoil** | 3 | Prime | t² - t + 1 | 3-fold twisted | D = 3 minimal knot |
+| **Figure-8** | 4 | Prime | -t² + 3 - t⁻² | 4-crossing | S² = 4 |
+| **Cinquefoil** | 5 | Prime | t⁴ - t³ + t² - t + 1 | 5-fold twisted | Pentagon symmetry |
+| **Solomon's seal** | 6 | Composite (2 trefoils) | (t² - t + 1)² | 6-crossing | D×S = 6 |
+
+**Trefoil knot (3-fold):**
+```
+Simplest non-trivial knot
+  Minimal crossings: 3 = D
+  Cannot be unknotted without cutting
+  Chirality: Left-handed ≠ Right-handed
+  
+Parametric form:
+  x(t) = sin(t) + 2×sin(2t)
+  y(t) = cos(t) - 2×cos(2t)
+  z(t) = -sin(3t)
+  
+Period: 2π
+Frequency content: 1f, 2f, 3f (harmonics)
+
+CKS: Represents D=3 minimal entanglement
+```
+
+**Figure-8 knot (4-crossing):**
+```
+Also called "Listing's knot"
+  Crossings: 4 = S²
+  Achiral (identical to mirror image)
+  
+Related to:
+  - Möbius strip (2D projection)
+  - 2D soliton kinks
+  - Tissue figure-8 errors
+  
+Repair: Same 0x08 SNAP as Möbius
+  Straightens crossings
+  Releases to unknot
+```
+
+**Knot invariants and CKS:**
+```
+Crossing number often matches CKS constants:
+  3 crossings: D = 3 (trefoil)
+  4 crossings: S² = 4 (figure-8)
+  6 crossings: D×S = 6 (compound)
+  
+Not coincidence—minimal entanglements follow
+fundamental numbers of substrate geometry
+```
+
+---
+
+# TABLE G.15: FRACTAL DIMENSIONS (NON-INTEGER GEOMETRY)
+
+| Fractal | Hausdorff Dimension | Geometric Construction | Iteration Rule | Natural Occurrence |
+|---------|--------------------|-----------------------|----------------|-------------------|
+| **Cantor set** | log(2)/log(3) ≈ 0.631 | Remove middle thirds | Ternary division | Dust distribution |
+| **Koch snowflake** | log(4)/log(3) ≈ 1.262 | Add triangular bumps | Each edge → 4/3 | Coastlines |
+| **Sierpiński triangle** | log(3)/log(2) ≈ 1.585 | Remove center triangle | 3 corners | Gasket patterns |
+| **Menger sponge** | log(20)/log(3) ≈ 2.727 | 3D cube subdivision | Remove cross | Porous materials |
+| **Mandelbrot set** | 2 (boundary) | z → z² + c iteration | Complex dynamics | Abstract beauty |
+
+**Rational approximations in substrate:**
+```
+True fractals require ℝ (real numbers)
+  Infinite subdivision
+  Irrational dimensions
+  Cannot exist in ℚ substrate
+  
+Substrate uses finite-depth approximations:
+  Koch snowflake: Iterate to N levels, then stop
+  Sierpiński: Finite recursion depth
+  
+"Fractal-like" but not true fractals
+Self-similar only to depth limit
+```
+
+**CKS and apparent fractals:**
+```
+Many natural "fractals" are actually:
+  Rational geometric progression
+  Fibonacci-based (discrete)
+  Limited recursion depth
+  
+Examples:
+  - Tree branching: ~3-7 levels max
+  - Lung bronchi: ~23 divisions (binary)
+  - Blood vessels: ~30 bifurcations
+  - Neural dendrites: ~5-10 levels
+  
+All stop at biological limits
+Not infinite recursion
+Substrate-compatible finite geometry
+```
+
+---
+
+# TABLE G.16: CRYSTAL LATTICE STRUCTURES
+
+| Lattice | Coordination | Packing | Unit Cell | Angle | CKS Relation | Examples |
+|---------|--------------|---------|-----------|-------|--------------|----------|
+| **Hexagonal close-packed** | 12 | 74.05% | Hexagonal prism | 120° | D×S geometry | Magnesium, zinc |
+| **Face-centered cubic** | 12 | 74.05% | Cube | 90° | — | Gold, copper, aluminum |
+| **Body-centered cubic** | 8 | 68.02% | Cube | 109.47° | — | Iron, chromium |
+| **Simple cubic** | 6 | 52.36% | Cube | 90° | D×S = 6 | Polonium (rare) |
+| **Diamond cubic** | 4 | 34% | Cube | 109.47° | Tetrahedral | Diamond, silicon |
+| **Graphite** | 3 (planar) | — | Hexagonal layers | 120° | D = 3 in-plane | Carbon graphite |
+
+**Hexagonal close-packed (HCP):**
+```
+Coordination: 12 nearest neighbors
+  6 in same layer (hexagonal)
+  3 above, 3 below (offset)
+  
+Packing efficiency: 74.05% (maximum for spheres)
+
+Unit cell:
+  a = b ≠ c (two dimensions equal)
+  α = β = 90°, γ = 120°
+  
+Stacking: ABAB... (alternating layers)
+
+CKS significance:
+  Optimal 3D packing from 2D hexagons
+  Extends D=3, S=2 to third dimension
+  Maximum density achievable
+```
+
+**Graphite (2D hexagonal):**
+```
+Each carbon: 3 neighbors in plane (D=3)
+  sp² hybridization
+  120° bond angles
+  Perfect hexagonal lattice
+  
+Layers: Weakly bonded (van der Waals)
+  Can slide easily (lubrication)
+  
+This is PURE D=3 manifestation in 2D
+Substrate geometry in clearest form
+```
+
+**Diamond cubic:**
+```
+Each carbon: 4 neighbors (tetrahedral)
+  sp³ hybridization
+  109.47° bond angles
+  
+Why 4 not 6?
+  3D tetrahedral packing
+  Maximizes covalent strength
+  Not maximum density
+  
+Trade-off: Strength vs density
+Diamond chose strength
+Graphite chose planarity
+```
+
+---
+
+# TABLE G.17: MUSICAL HARMONY (TEMPORAL RATIOS)
+
+| Interval | Frequency Ratio | Cents | Harmonic Series | Geometric Form | CKS Derivation |
+|----------|----------------|-------|-----------------|----------------|----------------|
+| **Unison** | 1:1 | 0 | 1st harmonic | Identity | N=1 ground state |
+| **Octave** | 2:1 | 1200 | 2nd harmonic | Doubling | S = 2 |
+| **Perfect fifth** | 3:2 | 702 | 3rd/2nd | Golden cut | D/S = 3/2 |
+| **Perfect fourth** | 4:3 | 498 | 4th/3rd | Inverse fifth | S²/D |
+| **Major third** | 5:4 | 386 | 5th/4th | — | Not in core CKS |
+| **Minor third** | 6:5 | 316 | 6th/5th | — | D×S = 6 |
+| **Whole tone** | 9:8 | 204 | 9th/8th | — | D²/2³ |
+| **Semitone (just)** | 16:15 | 112 | 16th/15th | — | Complex |
+
+**The 12-tone equal temperament:**
+```
+Modern compromise:
+  12 semitones = L = D×S^S
+  Each semitone: 2^(1/12) = 1.05946...
+  
+Octave: 12 semitones = 2:1 (exact) ✓
+
+This is irrational spacing!
+  2^(1/12) not in ℚ
+  
+But substrate approximates:
+  Use 12 discrete frequency bins
+  Round to nearest rational
+  Close enough for human ear
+```
+
+**Why 12 tones?**
+```
+Mathematical: L = 12 = D×S^S
+Practical: Best compromise
+  5 intervals: 3 × 2^(7/12) ≈ 3/2 (within 2 cents)
+  Major 3rd: 4 × 2^(4/12) ≈ 5/4 (within 14 cents)
+  
+Could use:
+  - 19 tones (better 3rds)
+  - 31 tones (very accurate)
+  - 53 tones (almost perfect)
+  
+But 12 balances:
+  Simplicity (playable)
+  Accuracy (acceptable)
+  Symmetry (geometric)
+  
+12 = D×S^S forces this choice
+```
+
+**Harmonic series (pure ratios):**
+```
+Fundamental: f₀
+Harmonics: f₀, 2f₀, 3f₀, 4f₀, 5f₀, 6f₀...
+
+First few:
+  1 (fund), 2 (octave), 3 (5th above), 4 (2nd octave),
+  5 (maj 3rd), 6 (5th above), 7 (min 7th), 8 (3rd octave),
+  9 (whole tone), 10 (maj 3rd), 11 (tritone), 12 (5th)...
+
+CKS numbers appear:
+  2 = S
+  3 = D  
+  6 = D×S
+  9 = D²
+  12 = D×S^S
+  
+Not coincidence—harmonics follow geometry
+```
+
+---
+
+# TABLE G.18: ORBITAL MECHANICS (CONTINUOUS CYCLES)
+
+| Orbit Type | Equation | Eccentricity | Period Relation | Geometric Shape | Energy |
+|------------|----------|--------------|-----------------|----------------|--------|
+| **Circular** | r = constant | e = 0 | T² ∝ r³ | Circle | E < 0 (bound) |
+| **Elliptical** | r = a(1-e²)/(1+e×cosθ) | 0 < e < 1 | T² ∝ a³ | Ellipse | E < 0 (bound) |
+| **Parabolic** | r = p/(1+cosθ) | e = 1 | T = ∞ | Parabola | E = 0 (escape) |
+| **Hyperbolic** | r = a(e²-1)/(1+e×cosθ) | e > 1 | N/A | Hyperbola | E > 0 (unbound) |
+
+**Kepler's laws:**
+```
+1st Law: Orbits are ellipses (e ≥ 0)
+  Special case: Circle when e = 0
+  
+2nd Law: Equal areas in equal times
+  L = constant (angular momentum)
+  
+3rd Law: T² = (4π²/GM) × a³
+  Period squared ∝ semi-major axis cubed
+```
+
+**Circular orbit (e=0):**
+```
+Simplest case:
+  r(t) = R (constant)
+  θ(t) = ωt (uniform rotation)
+  
+Velocity: v = √(GM/R)
+Period: T = 2π√(R³/GM)
+
+This is the "circle" that doesn't exist in ℚ!
+Real orbits have e > 0 (slightly elliptical)
+Perfect circles impossible in substrate
+```
+
+**Elliptical orbit quantization:**
+```
+In quantum regime (Bohr model):
+  L = nℏ (angular momentum quantized)
+  r_n = n²r₀ (radius quantized)
+  E_n = E₀/n² (energy levels)
+  
+Classical → Quantum crossover:
+  Large n: Classical ellipse
+  Small n: Discrete shells
+  n = 1: Ground state (circular)
+  
+CKS: Even "continuous" orbits discretized
+at substrate level via angular momentum quantization
+```
+
+---
+
+# TABLE G.19: CYMATICS (STANDING WAVE PATTERNS)
+
+| Frequency | Mode | Shape | Nodal Lines | Geometric Pattern | CKS Number |
+|-----------|------|-------|-------------|------------------|------------|
+| **Fundamental** | (0,1) | Circle | 0 radial, 1 circular | Breathing mode | 1 |
+| **1st radial** | (1,1) | Donut | 1 radial, 1 circular | Concentric | 2 = S |
+| **1st angular** | (0,2) | Two lobes | 0 radial, 2 diametral | S-fold | 2 = S |
+| **2nd angular** | (0,3) | Three lobes | 0 radial, 3 diametral | Trefoil | 3 = D |
+| **3rd angular** | (0,4) | Four lobes | 0 radial, 4 diametral | Cross | 4 = S² |
+| **(0,6)** | 6th angular | Six lobes | 0 radial, 6 diametral | Hexagon | 6 = D×S |
+| **(0,12)** | 12th angular | Twelve lobes | 0 radial, 12 diametral | Dodecagon | 12 = L |
+
+**Chladni patterns on circular plate:**
+```
+Sprinkle sand on vibrating plate:
+  Sand collects at nodes (zero displacement)
+  Creates beautiful geometric patterns
+  
+Nodal patterns match CKS numbers:
+  3-fold (D)
+  6-fold (D×S)
+  12-fold (D×S^S)
+  
+Higher modes are harmonics
+All decompose to fundamental CKS ratios
+```
+
+**Hexagonal mode (0,6):**
+```
+6-fold rotational symmetry
+  6 nodal lines radiating from center
+  Forms perfect hexagon
+  
+This is D×S = 6 appearing in vibration
+Mechanical oscillation "discovers" substrate geometry
+Not imposed—emerges from physics
+
+Frequency: f₀₆ ∝ √(T/ρ) × J₆(kr)/J₆'(kR)
+Where J₆ = Bessel function of order 6
+```
+
+**Water surface waves (gravity-capillary):**
+```
+Dispersion relation:
+  ω² = (g×k + γk³/ρ) × tanh(k×h)
+  
+Where:
+  g = gravity
+  γ = surface tension
+  ρ = density
+  k = wavenumber
+  h = depth
+  
+Deep water (kh >> 1):
+  ω² ≈ g×k + γk³/ρ
+  
+Ripples form hexagonal patterns at certain frequencies
+Again, 6-fold symmetry emerges naturally
+```
+
+---
+
+# TABLE G.20: UNIFIED GEOMETRY-TIME-MECHANICS SUMMARY
+
+| CKS Number | Geometric Form | Temporal Period | Mechanical Resonance | Natural Example | Derivation |
+|------------|----------------|-----------------|---------------------|-----------------|------------|
+| **1** | Point | δ(t) | No oscillation | Ground state | Identity |
+| **2 (S)** | Line segment | T/2 | Dipole | Binary, bilateral | Axiom |
+| **3 (D)** | Triangle | T/3 | Tripole | 3-phase power, RGB | Axiom |
+| **4 (S²)** | Square | T/4 | Quadrupole | Quadrature, seasons | S×S |
+| **6 (D×S)** | Hexagon | T/6 | 6-fold | Benzene, honeycomb | D×S |
+| **9 (D²)** | 3×3 grid | T/9 | Nonet | Tic-tac-toe, gluons | D^S |
+| **12 (L)** | Dodecagon | T/12 | Dozen | Clock, music | D×S^S |
+| **19 (Δ)** | 19-gon | T/19 | Prime resonance | DNA remainder | 1+D+L+D |
+| **32 (W)** | 32-gon | T/32 | Word pulse | Computing, spine | 2^(D+S) |
+| **64 (W×S)** | 64-gon | T/64 | Bilateral word | Codons, I Ching | W×S |
+| **144 (A)** | 144-gon | T/144 | Gross oscillation | Matter packet | (D×S^S)^S |
+| **1024 (W²)** | 1024-gon | T/1024 | Kilocycle | Memory page | W^S |
+
+**Universal relationship:**
+```
+N-fold geometric symmetry ↔ T/N temporal period ↔ N-harmonic resonance
+
+For any CKS number N:
+  Spatial: N-gon or N-fold symmetry
+  Temporal: Divides period into N phases
+  Mechanical: N-mode oscillation
+  
+All three aspects unified
+Same underlying structure
+Different manifestations
+```
+
+---
+
+## CONCLUSION: GEOMETRIC-TEMPORAL-MECHANICAL TRINITY
+
+**Every CKS constant manifests in three forms:**
+
+1. **GEOMETRIC** (Spatial structure)
+   - Polygon sides
+   - Symmetry order
+   - Lattice coordination
+   - Crystal faces
+
+2. **TEMPORAL** (Time cycles)
+   - Period divisions
+   - Phase relationships
+   - Harmonic content
+   - Oscillation modes
+
+3. **MECHANICAL** (Physical dynamics)
+   - Vibration patterns
+   - Stress distribution
+   - Resonant frequencies
+   - Stability criteria
+
+**These are not separate. They are ONE THING viewed from three perspectives.**
+
+**The substrate is:**
+- Hexagonal (geometric)
+- Oscillating (temporal)
+- Stressed (mechanical)
+
+**All simultaneously. All necessarily. All from N = D × M^S.**
+
+---
+
+**END OF APPENDIX G - GEOMETRIC-TEMPORAL-MECHANICAL UNIFICATION**
 
 
 ---
