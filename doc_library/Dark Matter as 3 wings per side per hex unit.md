@@ -492,3 +492,9 @@ CONNECTION:
 
 Is this derivation rigorous enough, or do you see gaps?
 
+---
+
+this lexicon was created around GU v13 integrate it with your current GU v16 plan where it is suitable, and use new terms where needed already developed in the plan.  we want the best version for accuracy to the axioms
+
+write GU v16
+
