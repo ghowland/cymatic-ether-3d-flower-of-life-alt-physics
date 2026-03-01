@@ -330,3 +330,182 @@ Once I see that, I'll write a detailed plan for Stage 1 and await your approval 
 
 ---
 
+# Stage 1 Plan: Corrected with Path Context
+
+## Path-Based Metadata Extraction
+
+Since we scan directories first, we **always know** the file path structure:
+
+```
+./cks/papers/{SUBJECT}/{PAPER_ID}/manuscript.md
+```
+
+This means we can **derive and validate** metadata from the path **before** parsing content.
+
+---
+
+## Revised Extraction Strategy
+
+### 1. Parse Path First (Ground Truth)
+
+```python
+from pathlib import Path
+
+class PaperMetadata:
+    def __init__(self, manuscript_path: Path):
+        self.path = manuscript_path
+        self.raw_content = manuscript_path.read_text(encoding='utf-8')
+        
+        # Parse path structure FIRST
+        self.path_info = self._parse_path()
+        
+    def _parse_path(self) -> dict:
+        """Extract metadata from path structure"""
+        # ./cks/papers/MATH/CKS-MATH-80-2026/manuscript.md
+        parts = self.path.parts
+        
+        paper_dir = parts[-2]  # CKS-MATH-80-2026
+        subject_dir = parts[-3]  # MATH
+        
+        # Parse paper_dir: CKS-{SUBJECT}-{NUMBER}-{YEAR}
+        match = re.match(r'CKS-([A-Z]+)-(\d+|XXXX+)-(\d{4})', paper_dir)
+        
+        if match:
+            subject_id = match.group(1)
+            number_str = match.group(2)
+            year = int(match.group(3))
+            
+            # Check if number is placeholder
+            is_placeholder = 'X' in number_str
+            number = None if is_placeholder else int(number_str)
+            
+            return {
+                'paper_id': paper_dir,
+                'subject': subject_id,
+                'number': number,
+                'year': year,
+                'is_placeholder': is_placeholder,
+                'subject_dir': subject_dir
+            }
+        
+        return None
+```
+
+### 2. Validate Content Against Path
+
+```python
+def _validate_consistency(self) -> list:
+    """Check if content metadata matches path metadata"""
+    warnings = []
+    
+    # Registry ID should match paper_id
+    registry_content = self._extract_registry_from_content()
+    if registry_content != self.path_info['paper_id']:
+        warnings.append(
+            f"Registry mismatch: path={self.path_info['paper_id']}, "
+            f"content={registry_content}"
+        )
+    
+    # Subject should match directory
+    if self.path_info['subject'] != self.path_info['subject_dir']:
+        warnings.append(
+            f"Subject mismatch: directory={self.path_info['subject_dir']}, "
+            f"parsed={self.path_info['subject']}"
+        )
+    
+    return warnings
+```
+
+---
+
+## Updated Output Schema
+
+```python
+{
+    # PATH METADATA (Ground Truth)
+    "file_path": "papers/MATH/CKS-MATH-80-2026/manuscript.md",
+    "paper_id": "CKS-MATH-80-2026",  # From directory name
+    "subject": "MATH",                # From paper_id parse
+    "number": 80,                     # From paper_id parse
+    "year": 2026,                     # From paper_id parse
+    
+    # CONTENT METADATA (Validated against path)
+    "title": "...",
+    "subtitle": "...",
+    "doi": {
+        "raw": "10.5281/zenodo.18626540",
+        "is_stub": false,
+        "zenodo_id": "18626540",
+        "status": "published"
+    },
+    "frontmatter": {
+        "Registry": "[@CKS-MATH-80-2026]",
+        # ... all other fields
+    },
+    "abstract": "...",
+    "dependencies": ["CKS-0-2026", ...],
+    
+    # STRUCTURE (Detected from directory)
+    "structure": {
+        "has_code": false,       # Check for code/ subdirectory
+        "has_data": false,       # Check for data/ subdirectory
+        "has_figures": true,     # Check for figures/ subdirectory
+        "has_supplementary": false,  # Check for supplementary/
+        "has_zip": false,        # Check for *.zip file
+        "has_pdf": true          # Check for *.pdf file
+    },
+    
+    # VALIDATION
+    "validation": {
+        "is_valid": true,
+        "errors": [],
+        "warnings": [
+            "Registry content matches path ✓"
+        ]
+    },
+    
+    "extracted_at": "2026-03-01T12:34:56Z"
+}
+```
+
+---
+
+## Structure Detection from Directory
+
+```python
+def _detect_structure(self) -> dict:
+    """Scan paper directory for standard subdirectories/files"""
+    paper_dir = self.path.parent
+    
+    return {
+        'has_code': (paper_dir / 'code').is_dir(),
+        'has_data': (paper_dir / 'data').is_dir(),
+        'has_figures': (paper_dir / 'figures').is_dir(),
+        'has_supplementary': (paper_dir / 'supplementary').is_dir(),
+        'has_zip': any(paper_dir.glob('*.zip')),
+        'has_pdf': any(paper_dir.glob('*.pdf'))
+    }
+```
+
+---
+
+## Benefits of Path-First Approach
+
+1. **Ground Truth**: Path is authoritative source for paper_id/subject/number
+2. **Validation**: Can detect content/path mismatches
+3. **Robustness**: Works even if content is malformed
+4. **Structure**: Can detect companion files without parsing content
+5. **Placeholder Detection**: Path tells us if number is XXXXXX
+
+---
+
+**Ready to implement Stage 1 with path-first extraction?**
+
+This approach means:
+- Parse path → extract paper_id/subject/number/year
+- Parse content → extract title/abstract/doi/frontmatter
+- Cross-validate → ensure consistency
+- Detect structure → scan directory for files/subdirs
+
+---
+
