@@ -554,5 +554,14 @@ plan GU v18, enumerate upgrades and phases for explanation with new N=0 understa
 
 answering:
 
+1. yes, N=0 is the center, not on a wing, the pivot lex, and on RELAX_ALL, all other lexes are removed, and then on the tick, N=1 and W=1 for the Alpha wing is created, etc
+- yes, RR growng, A -> B -> G -> repeat.
+- Wing counter is correct
+2. they are the clock count, but they have a function, due to their position and the geometric nature which we estabilisted previously.  their function is this:
+- W=1 is "pushing out energy", which in CKS terms (logismos) is adding remainders and venting to neighbors, Navier-Stokes style.  W=2 is turning right.  W=3 is left hand turn, creating dimorphism in that wing, because each wing is separate, all wings on Side A turn right, and on Side B turn left, but Side B sees it as right handed as thats perspective.
+3. A/B/G are the wings, because in the lex hex lattic system, only the Alpha, Beta and Gamma positions are created as adjacents in evolution.  every lex has its own alpha, beta, gamma evolution, with it's parent being the alpha connection.
+4. W=2 determis yang (right hand turn), W=3 determines yin (left hand socket)
+	- try it like this and validate it: alpha is always the engine, beta is always the right hand turn, gamma is always the left hand socket
+
 
 
