@@ -1,3 +1,5 @@
+CKS-PHYS-22-2026 - Deterministic Pathfinding in the Wing Lattice
+
 
 ---
 
@@ -342,6 +344,81 @@ You are an **Explorer** navigating a **Pre-Compiled Map**.
 *   The "Pathfinding" is an instant dictionary lookup.
 
 **We are not travelers in a vast space; we are users in a perfectly indexed 1,024-unit Database.**
+
+**Q.E.D.**
+
+---
+
+To derive the **CKS Deterministic Pathfinding (The $O(1)$ Registry Seek)**, we must model the substrate as a **Hierarchical B-Tree Dictionary**. This derivation proves that "Location" is a unique key in a pre-compiled state-table, making navigation a **Logic-Speed Index Update** rather than a kinetic displacement.
+
+---
+
+### I. The Axiomatic Basis: The Indexed Manifold
+In the $\mathbb{Q}$-Substrate, every coordinate is a static address within the 1,024-unit Sovereignty hierarchy.
+1.  **Axiom 4 ($\mathbb{Q}$-Substrate):** Every address is a unique rational ratio.
+2.  **Axiom 5 ($N=0$ Pivot):** All addresses are indexed relative to the ground-state origin.
+3.  **Deterministic Turn:** The state of any node $n$ is defined by $\mathcal{S}_n = (\mathcal{I} + n) \pmod L$.
+
+---
+
+### II. Deriving the B-Tree Hierarchy (The "Wing Lattice")
+We define the **Global Registry ($\mathcal{R}$)** as a nested dictionary where each level corresponds to a CKS Sovereignty Tier.
+
+#### 1. The Search Keys
+*   **Key 1 (Tier 2):** Galaxy/Registry Zone (Address range $0 \to W^S \times J^3$).
+*   **Key 2 (Tier 3):** Soliton/Cluster (Address range $0 \to W^S \times J$).
+*   **Key 3 (Tier 4):** 1K Coordination Block (Address range $0 \to 1,024$).
+*   **Key 4 (Lex):** Specific Nucleus ($N=7$ address).
+
+#### 2. The Lookup Complexity
+In a B-Tree with branching factor $W^S (1024)$, the time to find any node among $N$ total nodes is:
+$$ T_{seek} = \log_{1024}(N) $$
+*   For the observable universe ($\approx 10^{80}$ atoms), $T_{seek} \approx 26$ logic operations.
+*   **Result:** Since one **Tick** handles billions of operations per second, $26$ operations occur in the "blanking interval" of our perception.
+*   **The Logic Speed:** To a biological observer, the seek is **$0\text{ms}$**.
+
+---
+
+### III. Deriving "Pathfinding" as Pointer Re-Addressing
+Pathfinding is the transition from $N_{start}$ to $N_{target}$. 
+
+#### 1. The Traditional Path (X-Space)
+$$ \text{Distance} = \sum \Delta x; \quad \text{Time} = \text{Distance} / c $$
+
+#### 2. The Logismos Path (K-Space)
+In K-space, both $N_{start}$ and $N_{target}$ are **Persistent Keys** in the Wing Lattice dictionary.
+*   **The Operation:** `i = Substrate.GetNode(target_id)`
+*   **The Cost:** Zero kinetic energy. The substrate simply switches the **Instruction Header** of your 1,024-unit block from the current address to the target address.
+
+---
+
+### IV. Mathematical Proof: The Deterministic state ($D_s$)
+Because the "Turns" are pre-compiled by the 5 Axioms, we define the **Deterministic Map ($M_d$)**:
+$$ M_d(\mathcal{I}, n) = \text{State of } n \text{ at time } \mathcal{I} $$
+$$ D_s(n) = \text{Substrate\_Table}[n].\text{Evolution}[\mathcal{I} \pmod L] $$
+
+*   **Conclusion:** The substrate does not need to "simulate" or "render" the target node to know where it is. It simply **looks up** the index. Pathfinding is an **Algebraic Extraction**, not a physical search.
+
+---
+
+### V. Summary Table: The Dictionary Lookup Reality
+
+| Feature | X-Space Search | K-Space Dictionary Lookup | CKS Operational Mode |
+| :--- | :--- | :--- | :--- |
+| **Complexity** | $O(N)$ (Search space) | **$O(1)$ (Direct Index)** | DMA (Direct Memory Access) |
+| **Latency** | $d/c$ (Prop. Speed) | **$0\text{ms}$ (Logic Speed)** | The Blanking Interval |
+| **Evolution** | Stochastic/Probabilistic| **Deterministic / Pre-Compiled**| Turn-Chain Modulo |
+| **Constraint**| Physical Obstacles | **Registry Residue ($\epsilon$)** | **Phase-Lock Sync ($\phi$)** |
+
+---
+
+### VI. The "Wing" Constraint: The Residue ($\epsilon$)
+If pathfinding is $0\text{ms}$ and $O(1)$, why can't we "Appear" anywhere?
+*   **The Impedance:** To update the address pointer, the **Information-Body (Ib)** must be "Deselected" at A and "Re-rendered" at B.
+*   **The Residue:** Your accrued **6-9 Twists** and **Egregor Solitons** are "Sticky." They are metadata attached to your current address.
+*   **The Mastery:** A high-sync entity ($\phi \to 1$) reduces their "Metadatal Weight" to near-zero, allowing their registry header to move across the **Wing Lattice** at logic speed.
+
+**We are not finding a way through the lattice; we are updating our index within the pre-compiled machine.**
 
 **Q.E.D.**
 
