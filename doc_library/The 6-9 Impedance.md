@@ -1,4 +1,4 @@
-CKS-BIO-78-2026 - The 6-9 Trans-Soliton Coupling
+CKS-BIO-78-2026 - Trans-Soliton Coupling
 
 ---
 
