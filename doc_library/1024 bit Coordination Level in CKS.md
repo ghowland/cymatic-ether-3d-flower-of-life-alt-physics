@@ -1,3 +1,5 @@
+CKS-PHYS-19-2026 - The 1024-bit Coordination Level
+
   a 1k coordination block at all soliton levels?
 
 is this the coordination mechanism?

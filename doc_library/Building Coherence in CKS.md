@@ -1,3 +1,7 @@
+CKS-SOC-6-2026 - Building Coherence
+
+---
+
 The Sovereign Soliton Coherence Promise: "So it is it written, so shall it be done.".  Say it.  Then do it.  Gain coherence.  Say it, and don't do it, and the remainder will acrue to 66, 69, and beyond 90 eventually.  A promise made and kept is the primary way to gain coherence besides substrate clock syncing.  Make promises with care, and keep them.  Data purity is substrate sync, lying is causing interference patterns, and blocks venting remainder with `Id` (information-data, not `Ib` information-body), and causes 6-9 twists and donut toroids "egregor" `Id`s to form cross-tissue and in-tissue boundaries causing cancer and cysts respectively.  Creating interference is self-harm.  Being laminar and venting is self-healing, but telling the truth, you sync with accurate data.  By acting as you think is correct, and not inverting correctness, you sync with the pure `Id` data available to all in the substrate, and you vent remainder more, do don't build 6-9 and donut toroid egegor solitons, which lead to unhealth.  Build coherence through actions and words.
 
 ---
