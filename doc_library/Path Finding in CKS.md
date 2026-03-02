@@ -858,3 +858,196 @@ When these three vectors align, the body does not "struggle" through space; it *
 
 ---
 
+# CKS-NAV-109-2026: APPENDIX A - LOCOMOTION OPERATIONAL TABLES
+
+**Supporting Tables for Registry Threading and Laminar Shift Mechanics**
+
+**Registry:** [@CKS-NAV-109-APP-A]  
+**Date:** March 2, 2026  
+**Classification:** Navigation Integration - Event Logismos
+
+---
+
+## TABLE A.1: THE FOUR-PHASE LOCOMOTION CYCLE
+
+*The computational sequence of a single 1,024-Lex registry shift.*
+
+| Phase | Tick Window | Substrate Event | Logic Operation | Physical Manifestation |
+| :--- | :--- | :--- | :--- | :--- |
+| **I. SEEK** | $0$ (Blanking) | **B-Tree Seek** | Algebraic Extraction | Path-Certainty |
+| **II. INIT** | $1 - 3$ | **Header Fire** | Constructive Addition | Initial Impulse / "Lightness" |
+| **III. SHIFT**| $4 - 31$ | **Laminar Thread** | Registry Indexing | Gliding Motion |
+| **IV. RESET** | $32$ | **Jubilee Flush** | 0-Remainder Closure | Arrival / Re-Zeroing |
+
+**Note:** The 0ms seek occurs in the interval before the biological "Snap" perceives the start of movement.
+
+---
+
+## TABLE A.2: EVENT IMPEDANCE DIFFERENTIALS ($I_{event}$)
+
+*Comparison of movement cost between High-Sync and Low-Sync movers.*
+
+| Mover Class | Sync ($\phi$) | Bounce ($\delta$) | Accrued $I$ | **W-Depth Efficiency** | Perceived Weight |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Sovereign** | **$0.98$** | **$0.0$** | **$14.5$** | **$113\%$ (Surplus)** | **Weightless** |
+| Coherent | $0.85$ | $0.1$ | $112.4$ | $92\%$ | Effortless |
+| Standard | $0.50$ | $0.3$ | $392.2$ | $65\%$ | Notable Effort |
+| **Fouled** | **$0.16$** | **$0.8$** | **$626.5$** | **$38\%$ (Throttled)** | **Heavy / Drained** |
+
+**Derivation:** $I = [J + (n-1)\epsilon] \times (1-\phi)$. Bouncing acts as a multiplier on $J$.
+
+---
+
+## TABLE A.3: NODE-6 MIRROR COLLISION LOG
+
+*The penalty for vertical jitter (bouncing) during the 15.19ms Snap.*
+
+| Jitter ($\delta$) | Snap Distort | Parity State | Resulting Foul ($\epsilon$) | Tissue Impact |
+| :--- | :--- | :--- | :--- | :--- |
+| **$0\text{ mm}$** | $0.0\%$ | Perfect Mirror | $0.00$ | Laminar Flow |
+| $2\text{ mm}$ | $15.0\%$ | Jittered | $4.20$ | Slight Ache |
+| **$10\text{ mm}$** | **$66.0\%$** | **Inverted** | **$15.20$** | **Inflammation** |
+| $20\text{ mm}$ | $100\%$ | Collision | $32.00$ | **Registry Trauma** |
+
+---
+
+## TABLE A.4: WORD-DEPTH EXPANSION ($W_u$)
+
+*Calculates the available logic bits during constructive wave propagation.*
+
+| Phase-Lock | $W$ Base | $W_c$ Boost | **Total Bits** | Cognitive Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **Laminar Lock** | $32.0$ | $+4.15$ | **$36.15$** | **High Clarity / Flow** |
+| Standard Sync | $32.0$ | $+0.70$ | $32.70$ | Operational |
+| **Fouled Lock** | **$32.0$** | **$-13.4$** | **$18.60$** | **Neural Fog / Lag** |
+
+---
+
+## TABLE A.5: REGISTRY THREADING ACCURACY (SSCP)
+
+| Intent Accuracy | Logic/Action Gap | Substrate Result | Perceived Destination |
+| :--- | :--- | :--- | :--- |
+| **Total Integrity** | $0 \wp$ | Direct Pointer Match | "Arrived Exactly" |
+| Minor Distraction | $7 \wp$ | Nucleus Drift | "Slightly Off/Tired" |
+| **Chronic Inversion**| **$>32 \wp$** | **6-9 Twist Lock** | **"Wrong Turn / Stuck"** |
+
+---
+
+## TABLE A.6: LOCOMOTION RECOVERY VECTORS (TRP)
+
+*Corrective actions to clear fouls after a non-laminar movement.*
+
+| Symptom | Root Foul | TRP Action | K-Space Result |
+| :--- | :--- | :--- | :--- |
+| **Heavy Legs** | Potential-Well | Not-Wanting | Clear Registry Vacuum |
+| **Knee Tension** | Node 6 Mirror | Bilateral Glide | Resolve Mirror Collision |
+| **Back Stiff** | Node 9 Knot | 66th Harmonic Pulse | Liquefy Torque Knot |
+| **Exhaustion** | Node 12 Block | **Back-Sleep** | **Total Jubilee Flush** |
+
+**CKS Insight:** Fatigue is not the loss of calories; it is the **Saturation of the 1K Block**. A Sovereign mover finishes the 1.35m shift with more available energy than they started with.
+
+**Q.E.D.**
+
+---
+**END APPENDIX A**
+
+---
+
+# CKS-NAV-109-2026: APPENDIX B - GEOMETRIC MAPPING & OPERATIONAL EQUATIONS
+
+**Mathematical Specification of Sequential Re-Addressing in the Wing Lattice**
+
+**Registry:** [@CKS-NAV-109-APP-B]  
+**Date:** March 2, 2026  
+**Classification:** Computational Geometry - Locomotion Source Code
+
+---
+
+## TABLE B.1: GEOMETRIC INPUTS FOR LOCOMOTION
+
+*The fundamental constants required to compute a laminar registry shift.*
+
+| Symbol | VFR Logismos | Geometric Origin | Navigational Role |
+| :--- | :--- | :--- | :--- |
+| **J** | $[7.70164, 1, 0]$ | Flower of Life Radius | The "Breaking Tension" of a new address |
+| **$\epsilon$** | $[0.70164, 1, 0]$ | Projection Residue | The "Drafting Cost" of following a header |
+| **$W^S$** | $[1024, 1, 0]$ | Bilateral Word Block | The total addresses in one "stride" (1.35m) |
+| **$a^S$** | $[7, 4, 0] \wp$ | Nucleus Resolution | The precision of the 0ms B-Tree seek |
+| **S** | $[2, 1, 0]$ | Bilateral Manifold | The Mirror requirement for vertical stability |
+
+---
+
+## TABLE B.2: LOCOMOTION OPERATIONAL EQUATIONS
+
+*The K-space algorithms that govern the movement of a Tier-7 soliton.*
+
+| Function | Equation | Purpose | Resulting State |
+| :--- | :--- | :--- | :--- |
+| **Path Solution** | $T = \log_{WS}(N)$ | Algebraic address extraction | 0ms Pathfinding |
+| **Initial Impulse** | $W_c = W + \frac{W \cdot \phi}{J}$ | Generative wave initialization | Perceived "Lightness" |
+| **Drafting Drag** | $I_d = J + (W^S - 1)\epsilon$ | Accumulation of residual friction | Registry Threading Cost |
+| **Bounce Foul** | $\epsilon_b = \frac{\delta \cdot W}{S} \cdot J$ | Vertical collision calculation | Node 6 Mirror Knot |
+| **Net Impedance** | $I_{net} = (I_d + \epsilon_b) \cdot (1-\phi)$ | Total resistive hit per Word | Perceived Weight |
+
+---
+
+## TABLE B.3: GEOMETRIC SHAPE-TO-MOVEMENT MAPPING
+
+*Translating spatial configurations into biomechanical dynamics.*
+
+| Geometry | Substrate Operator | Biological Action | Physical Result |
+| :--- | :--- | :--- | :--- |
+| **Point ($M=1$)** | Registry Key | Standing Still | Static Address |
+| **Triangle ($D=3$)** | Axial Header | Lunging/Initiating | Forward Intent |
+| **Hexagon ($N=7$)** | **Nucleus Sync** | **The Gliding Stride** | **Laminar Drafting** |
+| **Toroid ($L=12$)** | Loop Closure | The Full Step Cycle | Jubilee Reset |
+| **Block ($W^S$)** | Sovereignty Cap | 1.35 Meter Bound | **Sovereign Displacement** |
+
+---
+
+## TABLE B.4: REGISTRY SHIFT SPECTROSCOPY
+
+*Derivation of bit-loss based on vertical jitter ($\delta$).*
+
+| Jitter ($\delta$) | Geometry | Symmetry State | Bit-Loss ($I / W$) | Efficiency |
+| :--- | :--- | :--- | :--- | :--- |
+| **$0.00$** | **Linear** | Perfect Parity | $0.00$ | **$100\%$ (Laminar)** |
+| $0.15$ | Ellipsoid | Phase-Lag | $1.15$ | $96\%$ |
+| **$0.70$** | **Turbulent** | **Jacobian Breach** | **$7.70$** | **$75\%$ (Throttled)** |
+| $2.00$ | Chaotic | Collision | $15.40$ | $51\%$ |
+
+---
+
+## TABLE B.5: THE LERP (LINEAR INTERPOLATION) GEOMETRY
+
+*How the substrate smooths discrete Lex-jumps into continuous motion perception.*
+
+| LERP Phase | Substrate State | Perceptual Action | Geometry |
+| :--- | :--- | :--- | :--- |
+| **Sample A** | $Index_1$ | Snap Initialization | Vertex |
+| **Sample B** | $Index_2$ | Snap Integration | Edge |
+| **Interpolation**| **$15.19\text{ ms}$ Lag** | **Motion Rendering** | **Arc ($\pi$ Residue)** |
+| **Output** | Macro-Word | "The Smooth Walk" | Circle / Flow |
+
+**Computational Proof:** The illusion of a "Smooth" curve in a hexagonal lattice is a $0.70164$ Jacobian artifact rendered across the $S=2$ manifold.
+
+---
+
+## TABLE B.6: LOCOMOTION HARMONIC TARGETS
+
+*The target $\mathbb{Q}$-ratios required for a successful "Sovereign Shortcut."*
+
+| Target Metric | Formula Match | Substrate Status | Physical Status |
+| :--- | :--- | :--- | :--- |
+| **$\phi \to 1.0$** | $Id = Ib$ | SSCP Satisfied | Truth-in-Motion |
+| **$I \to \epsilon$** | $\delta = 0$ | No-Bounce Glide | Zero Gravity Feel |
+| **$W \to 36$** | $W + (W/J)$ | Constructive Wave | **Maximum Force** |
+| **$R \to 0$** | $Node_{12} \pmod W$ | 0-Remainder Arrival | Total Recovery |
+
+**K-Space Principle:** Movement is not the consumption of energy, but the **Proper Allocation of Symmetry**. A perfect walk actually *clears* the registry of the 6-9 knots accumulated during static states.
+
+**Q.E.D.**
+
+---
+**END APPENDIX B**
+
