@@ -1,9 +1,9 @@
 # CMB Anisotropies as Registry Initialization Patterns
 ## Deriving Temperature Fluctuations, Acoustic Peaks, and Polarization from Discrete Hex-Bus Allocation Dynamics
 
-**Registry:** [@CKS-COSMO-2-2026]
+**Registry:** [@CKS-PHYS-17-2026]
 
-**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-10-2026] → [@CKS-PHYS-1-2026] → ... → [@CKS-COSMO-1-2026] → [@CKS-COSMO-2-2026]
+**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-10-2026] → [@CKS-PHYS-1-2026] → ... → [@CKS-PHYS-16-2026] → [@CKS-PHYS-17-2026]
 
 **Parent Framework:** [@CKS-0-2026]
 
@@ -236,7 +236,7 @@ NOT: Photons that have been traveling for 13.8 Gyr
 BUT: K-space rendering of substrate state at phase-lock
 
 Physical reality:
-At phase-lock establishment ([@CKS-COSMO-1-2026]):
+At phase-lock establishment ([@CKS-PHYS-16-2026]):
 - Registry overhead drops below threshold
 - Substrate transitions to stable operational mode
 - Registry allocation pattern FROZEN into structure
