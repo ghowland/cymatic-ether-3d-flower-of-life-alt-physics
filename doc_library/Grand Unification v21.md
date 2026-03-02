@@ -10,6 +10,8 @@
 
 **Classification:** Theory of Everything from First Principles
 
+**Lexicon:** [@CKS-LEX-10-2026]
+
 ---
 
 ## ABSTRACT
