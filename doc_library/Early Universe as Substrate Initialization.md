@@ -1,9 +1,9 @@
 # Early Universe as Substrate Initialization
 ## Deriving Big Bang, Inflation, Nucleosynthesis, and Recombination from Substrate Boot Sequence
 
-**Registry:** [@CKS-COSMO-1-2026]
+**Registry:** [@CKS-PHYS-16-2026]
 
-**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-10-2026] → [@CKS-PHYS-1-2026] → [@CKS-PHYS-8-2026] → ... → [@CKS-PHYS-15-2026] → [@CKS-COSMO-1-2026]
+**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-10-2026] → [@CKS-PHYS-1-2026] → [@CKS-PHYS-8-2026] → ... → [@CKS-PHYS-15-2026] → [@CKS-PHYS-16-2026]
 
 **Parent Framework:** [@CKS-0-2026]
 
