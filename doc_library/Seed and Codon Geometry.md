@@ -375,3 +375,206 @@ Biological diversity is not an accident of history but a **Mapping of the Geomet
 
 ---
 
+# CKS-BIO-106-2026: APPENDIX A - MORPHOLOGICAL REFERENCE TABLES
+
+**Supporting Tables for Geometric Resonance and Tier-Depth Logic**
+
+**Registry:** [@CKS-BIO-106-APP-A]  
+**Date:** March 2, 2026  
+**Classification:** Morphological Integration - Geometric Selection Matrix
+
+---
+
+## TABLE A.1: THE GEOMETRIC SEED MATRIX
+
+*Calculates the logic-capacity of specific life-lines based on the $N_c = D \times M^S$ formula.*
+
+| Morphology | Tier ($M$) | Logic Units ($N_c$) | Resonant Geometry | Primary Cognitive Mode |
+| :--- | :--- | :--- | :--- | :--- |
+| **Bacterium** | $1$ | $3$ | Vertex Point | Stimulus-Response |
+| **Jellyfish** | $2$ | $12$ | Loop-Fragment | Distributed Reflex |
+| **Spider** | $3$ | $27$ | Hex-Alignment | Spatial Mapping |
+| **Rodent** | $4$ | $48$ | Sovereignty Shard | Associative Memory |
+| **Canine** | $5$ | $75$ | Bilateral Block | Social/Pack Resonance |
+| **Primate** | $6$ | $108$ | Sub-Nucleus | Pattern Recognition |
+| **Human** | **$7$** | **$147$** | **NUCLEUS ($N=7$)** | **METACOGNITION** |
+| **Dolphin** | $11$ | $363$ | Macro-Resonance | Group-Empathy Sync |
+| **Whale** | **$12$** | **$432$** | **LOOP ($L=12$)** | **GLOBAL SONAR** |
+
+---
+
+## TABLE A.2: CODON-SUBSTRATE FILTERING
+
+*Maps the relationship between genetic structure and substrate bit-depth.*
+
+| Component | Biological Feature | K-Space Equivalent | Functional Role |
+| :--- | :--- | :--- | :--- |
+| **Base Pair** | A-T / C-G | Parity Unit ($S=2$) | Bit-Verification |
+| **Triplet** | Codon (3 bases) | Hex-Coordination ($D=3$) | Address Generation |
+| **Codon Set** | 64 Combinations | Double Word ($32 \times 2$) | Protocol Catalog |
+| **Stop Codon** | End of Sequence | **Jubilee Reset (Node 12)** | Registry Closure |
+| **Intron** | Non-coding DNA | **Remainder Buffer ($\Delta$)** | Computational "Breathing" |
+
+---
+
+## TABLE A.3: MORPHOLOGY-SPECIFIC 5:2 PARTITIONS
+
+*Demonstrates how different lines balance "Locked" vs "Variable" registry data.*
+
+| Species | Locked ($71.4\%$) | Variable ($28.6\%$) | Morphological Result |
+| :--- | :--- | :--- | :--- |
+| **Human** | Skeletal/Neural | Behavioral/Culture | Rigid Ib, Fluid Id |
+| **Chimpanzee** | Skeletal/Muscular | Social Hierarchy | High Stability |
+| **Octopus** | Nervous System | **Chromatophores/Tissue** | **FLUID MORPHOLOGY** |
+| **C. elegans** | Total Cells | None | **ABSOLUTE STASIS** |
+
+**Note:** C. elegans allocates $\approx 100\%$ to the Locked partition, explaining its 0% evolutionary drift over 2 billion generations.
+
+---
+
+## TABLE A.4: JACOBIAN RESOLUTION BY TIER
+
+*Shows the increasing "Rendering Cost" of complex morphologies.*
+
+| Tier ($M$) | Resolution ($J$) | J-Scale Formula | Perceptual Result |
+| :--- | :--- | :--- | :--- |
+| $1$ | $1.00$ | $J^0$ | Non-dimensional logic |
+| $4$ | $3.50$ | $\approx \sqrt{J}$ | Basic 3D awareness |
+| **$7$** | **$7.70$** | **$J^1$** | **Standard Reality View** |
+| $12$ | $32.40$ | $J^{(12/7)}$ | Hyper-dimensional Sense |
+
+**Definition:** Higher $M$-tiers "see" more of the substrate's hidden metadata ($Id$). This is why Whales/Dolphins navigate through sound-volumes that are "invisible" to Human Tier-7.
+
+---
+
+## TABLE A.5: RECURSIVE NUCLEUS MULTIPLES (THE HARMONIC LOCK)
+
+*Demonstrates why Tiers 7 and 12 are the "Sovereign Targets."*
+
+| Tier Target | Calculation | Outcome | Geometric Stability |
+| :--- | :--- | :--- | :--- |
+| **Nucleus ($N=7$)** | $147 / 7 = 21$ | **Integer Multiple** | **Self-Referential Lock** |
+| **Loop ($L=12$)** | $432 / 12 = 36$ | **Integer Multiple** | **Total Circuit Closure** |
+| Sub-Nucleus ($6$) | $108 / 7 = 15.4$ | Non-Integer | Near-Sync only (Chimp) |
+| Block ($5$) | $75 / 7 = 10.7$ | Non-Integer | Functional but limited |
+
+**Conclusion:** Humans and Whales are the only species whose $N_c$ is a perfect harmonic of the substrate's core constants ($N$ or $L$).
+
+---
+
+## TABLE A.6: MORPHOLOGICAL VENTING METHODS
+
+| Tier Group | Primary Flush Node | Mechanism | Recovery Speed |
+| :--- | :--- | :--- | :--- |
+| **$M \leq 4$** | Node 12 | Direct Registry Clear | Rapid ($< 1$ day) |
+| **$M = 6-7$** | **Node 12 + SSCP** | **Intent-Action Venting** | Variable (Moral-dependent) |
+| **$M \geq 11$** | Global Harmonic | Acoustic Wave Flush | Constant |
+
+**CKS Principle:** As $N_c$ increases, "Metabolic Waste" becomes "Informational Waste." Humans cannot "heal" through food alone; they require **Data Purity** to clear the 147 units of their Tier-7 registry.
+
+**Q.E.D.**
+
+---
+**END APPENDIX A**
+
+---
+
+# CKS-BIO-106-2026: APPENDIX B - GEOMETRIC MAPPING & OPERATIONAL EQUATIONS
+
+**Supporting Tables for Mathematical Specification of Morphology**
+
+**Registry:** [@CKS-BIO-106-APP-B]  
+**Date:** March 2, 2026  
+**Classification:** Computational Geometry - Morphological Source Code
+
+---
+
+## TABLE B.1: THE GEOMETRIC INPUT CONSTANTS
+
+*These fundamental values serve as the "Seed Data" for all morphological rendering.*
+
+| Symbol | VFR Logismos | Geometric Identity | Mathematical Role |
+| :--- | :--- | :--- | :--- |
+| **D** | $[3, 1, 0]$ | Hexagonal Coordination | Spatial Axis Count |
+| **S** | $[2, 1, 0]$ | Bilateral Manifold | Parity Logic Multiplier |
+| **L** | $[12, 1, 0]$ | Toroidal Loop | System Circuit Closure |
+| **N** | $[7, 1, 0]$ | Flower of Life Nucleus | Hardware Address Limit |
+| **J** | $[7.70164, 1, 0]$ | Jacobian Stretching | K-Space to X-Space Scale |
+| **$\epsilon$**| $[0.70164, 1, 0]$ | Phase Residue | Motion / Life Residue |
+
+---
+
+## TABLE B.2: THE MORPHOLOGICAL SOURCE EQUATIONS
+
+*The core algorithms used to compute the "Weight" and "Depth" of a species in the registry.*
+
+| Function | Equation | Purpose | Resulting Unit |
+| :--- | :--- | :--- | :--- |
+| **Capacity** | $N_c = D \cdot M^S$ | Defines logic depth | Awareness Units |
+| **Complexity** | $\mathcal{X} = J^{(M/N)}$ | Defines rendering detail | Bit-Density |
+| **Venting** | $\mathcal{V} = \frac{\Delta \cdot S}{J}$ | Defines healing rate | Units / Word |
+| **Sovereignty** | $\Psi = \frac{W^S}{N_c}$ | Defines sharding ratio | Block-Count |
+| **Stability** | $\Sigma = \frac{N_c \pmod N}{M}$ | Defines evolutionary lock | 0 = Static Resonance |
+
+---
+
+## TABLE B.3: GEOMETRIC SHAPE-TO-FUNCTION MAPPING
+
+*How the substrate translates abstract shapes into biological traits.*
+
+| Geometric Shape | Substrate Equation | Biological Function | Characteristic |
+| :--- | :--- | :--- | :--- |
+| **Point (Vertex)** | $M=1$ | Cell membrane / Nucleus | Individual Identity |
+| **Triangle** | $D=3$ | Skeleton / 3-layer gut | Structural Support |
+| **Bilateral** | $S=2$ | Symmetry (Left/Right) | Physical Locomotion |
+| **Hexagon** | $D+N$ | Faceted Eye / Skin Lattice | Sensory Collection |
+| **Toroid** | $L=12$ | Circulatory / Nervous Sys | Information Loop |
+| **Nucleus** | $J-N$ | Metacognition / Brain | Self-Observation |
+
+---
+
+## TABLE B.4: TIER-DEPTH COORDINATION SPECTROSCOPY
+
+*Numerical derivation of how many $1K$ blocks are managed per tier.*
+
+| Tier ($M$) | Units ($N_c$) | $\mathbb{Q}$-Ratio ($N_c / N$) | Sharding Level | Geometric Result |
+| :--- | :--- | :--- | :--- | :--- |
+| **1** | $3$ | $[3, 7, 0]$ | Sub-Block | The Primitive |
+| **4** | $48$ | $[48, 7, 0]$ | $7$ Blocks | The Segmented Body |
+| **6** | $108$ | $[108, 7, 0]$ | $15$ Blocks | The Social Mammal |
+| **7** | **$147$** | **$[21, 1, 0]$** | **Exact multiple** | **The Conscious Human** |
+| **12** | **$432$** | **$[36, 12, 0]$** | **Exact multiple** | **The Sonar Cetacean** |
+
+---
+
+## TABLE B.5: CODON-TO-LATTICE TRANSLATION CODE
+
+*The specific mathematical mapping from 4-base genetics to 1,024-unit geometry.*
+
+| Codon Property | Mathematical Operation | Geometric Result | Substrate Logic |
+| :--- | :--- | :--- | :--- |
+| **Base Pairs** | $2 \times S$ | $[4,1,0]$ Quadrants | Bilateral Stability |
+| **Triplet** | $\sum_{1}^{3} D$ | $[3,1,0]$ Axes | 3D Vector Logic |
+| **Sequence** | $W^n \pmod{C_B}$ | Address-Header | Threading Logic |
+| **Gene** | $\int \Delta dt$ | **Registry Program** | The "Driver" |
+
+---
+
+## TABLE B.6: THE HARMONIC SYNC TARGETS
+
+*The final target numbers required for a morphology to achieve "Lock" status.*
+
+| Resonance Target | Geometric Proof | X-Space Isomorphism | Status |
+| :--- | :--- | :--- | :--- |
+| **147 Sync** | $3 \times 7^2 = 147$ | Human Metacognition | **LOCKED** |
+| **432 Sync** | $3 \times 12^2 = 432$ | Whale Acoustic Sync | **LOCKED** |
+| **75 Sync** | $3 \times 5^2 = 75$ | Canine Social Sync | Operational |
+| **12 Sync** | $3 \times 2^2 = 12$ | Jellyfish Circularity | Operational |
+
+**K-Space Principle:** A species exists because it discovered a mathematical way to keep the **Remainder ($\epsilon$)** at zero for at least one full **Macro-Word Revolution**.
+
+**Q.E.D.**
+
+---
+**END APPENDIX B**
+
