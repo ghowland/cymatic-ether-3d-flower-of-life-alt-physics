@@ -1,4 +1,4 @@
-CKS-PHYS-21-2026 - Deterministic Pathfinding in the Wing Lattice
+CKS-LEX-12-2026 - Measurement System
 
 
 ---
@@ -1230,6 +1230,90 @@ Every "Physical Reality" (Column 4) is produced by taking the **Geometric Source
 3.  In the **Sovereign state ($R=0$)**, all equations collapse into **Simple Registry Shifts**.
 
 **The universe is 100% Deterministic at the Hardware Layer and 100% Sovereign at the Software Layer.**
+
+**Q.E.D.**
+
+---
+
+This document provides the **Final Unit Calibration** for the **Laminar Locomotion Event**. It maps every geometric phase and operational equation to the **OPS (Omni-Domain Partigen Standard)**.
+
+In this system, we use the **Lex-Tick** ($1\wp$) as the fundamental atomic unit for both Space and Time.
+
+---
+
+### I. THE SPATIOTEMPORAL BASELINE (UNIT: $\wp$)
+
+| Measurement | Substrate Definition | OPS Partigen Count | X-Space Value (Approx) |
+| :--- | :--- | :--- | :--- |
+| **1 Tick** | The Atomic Duration | $1 \wp$ | $4.41 \text{ ps}$ |
+| **1 Lex** | The Atomic Distance | $32 \wp$ | $1.322 \text{ mm}$ |
+| **1 Word** | The Logic Cycle | $32,768 \wp$ | $0.14 \mu\text{s}$ |
+| **1 useful Second**| $32 \times W^S$ | $1,048,576 \wp$ | $\approx 1.05 \text{ Seconds}$ |
+| **1 useful Meter** | $1024 \text{ Lexes}$ | $32,768 \wp$ | $1.353 \text{ Meters}$ |
+
+---
+
+### II. THE LOCOMOTION EVENT MEASUREMENTS
+
+*Tracking a human moving **1 useful Meter** (1,024 Lexes) in **32 Words**.*
+
+| Measurement | Operational Metric | OPS Partigen Count | Physical Identity |
+| :--- | :--- | :--- | :--- |
+| **Total Distance** | $W^S$ (1K Block) | **$32,768 \wp$** | $1.353 \text{ Meters}$ |
+| **Total Duration** | $W$ (32 Words) | **$32,768 \wp$** | $32 \text{ Word-Cycles}$ |
+| **Velocity** | **Unity ($c=1$)** | **$1 \wp / 1 \wp$** | Speed of Light ($c$) |
+| **Pathfinding Lag** | $\log_{WS}(N)$ | **$0 \wp$** | Zero Lag ($0\text{ms}$) |
+| **Perception Lag** | $\tau = J \times S$ | **$3,446 \wp$** | $15.19 \text{ ms}$ (The Snap) |
+| **Drafting Window** | $1 \text{ Word}$ | $1,024 \wp$ | Local Sync Window |
+
+---
+
+### III. IMPEDANCE AND FOUL MEASUREMENTS
+
+*The "Cost" of moving through the Jacobian resolution.*
+
+| Metric | Calculation | OPS Partigen Count | Resulting X-Space State |
+| :--- | :--- | :--- | :--- |
+| **Jacobian Tension**| $J \times \wp$ | **$7.70164 \wp$** | Perceived Gravity/Mass |
+| **Laminar Overflow**| $\epsilon \times \wp$ | **$0.70164 \wp$** | Perceived Flow/Motion |
+| **Max Venting** | $\Delta \times W$ | **$608 \wp$** | Healing capacity per Word |
+| **6-Mirror Collision**| $(16 \cdot J) \times \wp$ | **$123.22 \wp$** | Joint Shock / Inflammation |
+| **R-Closure Knot** | $69 \times \wp$ | **$69 \wp$** | **Registry Knot (Cyst)** |
+
+---
+
+### IV. THE "SOVEREIGN SHIFT" TOTALS
+
+*What the substrate calculates for the duration of the 1.35m walk.*
+
+| Data Point | Formula | OPS Partigen Count | Meaning |
+| :--- | :--- | :--- | :--- |
+| **Pure Shift Logic** | $W \times C_B$ | **$32,768 \wp$** | Total Logic required |
+| **High-Sync Drag** | $J + (1023 \cdot \epsilon)$ | **$725.47 \wp$** | Cost for the Sovereign |
+| **Low-Sync Drag** | $1024 \cdot J$ | **$7,886.47 \wp$** | Cost for the NPC ($11\times$ more) |
+| **Unvented Residue** | $(Drag - \Delta)$ | **$0 \wp$** | Total Purity (Healthy) |
+
+---
+
+### V. COMPARATIVE DOMAIN MEASUREMENTS
+
+| Standard Unit | Logismos Unit | Partigen Value | CKS Ratio |
+| :--- | :--- | :--- | :--- |
+| **1.0 mm** | $0.75 \text{ Lex}$ | $24 \wp$ | Fractional Spacing |
+| **1.0 ms** | $226.7 \text{ Ticks}$ | $227 \wp$ | 66th Harmonic Sync |
+| **1.353 m** | **1 Block** | **$32,768 \wp$** | **The Standard Building Unit** |
+| **1.0s Useful** | **1 Macro-Word** | **$32,768 \wp$** | **The Standard Time Unit** |
+
+---
+
+### THE UNIFIED MEASUREMENT IDENTITY:
+In the **OPS Standard**, the number **$32,768$ ($2^{15}$)** is the **Universal Macro-Constant**. 
+*   It is the distance of a **Step** ($1.35\text{m}$).
+*   It is the duration of a **Word** ($1.0\text{s}$ useful).
+*   It is the capacity of a **Cluster** ($32$ blocks).
+
+**Every measurement is a whole integer or simple ℚ-ratio of Partigens.**
+**$32,768 \wp$ in Space = $32,768 \wp$ in Time = Absolute Unity ($c=1$).**
 
 **Q.E.D.**
 
