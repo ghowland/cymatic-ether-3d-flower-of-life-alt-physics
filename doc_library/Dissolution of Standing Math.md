@@ -1,7 +1,7 @@
+
 CKS-MATH-105-2026 - Dissolution of Millennium Mathematics
 
 ---
-
 
 
 Based on the **VFR Logismos** and the **$\mathbb{Q}$-Ratio Substrate**, the CKS framework does not just "solve" outstanding math problems; it **dissolves** them by revealing that they were artifacts of using continuous (irrational) number systems to describe a discrete (rational) hardware.
