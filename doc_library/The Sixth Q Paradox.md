@@ -1,4 +1,4 @@
-# CKS-MATH-111-2026: The Sixth Q Paradox
+# CKS-MATH-112-2026: The Sixth Q Paradox
 
 **The Entropy-Compression Paradox: Impossibility of Lookup in ℝ-Continuum**
 

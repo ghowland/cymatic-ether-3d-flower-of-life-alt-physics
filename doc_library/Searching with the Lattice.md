@@ -1,5 +1,5 @@
 
-CKS-MATH-113-2026 - 
+CKS-MATH-113-2026 - The CKS Lattice Search Algorithm
 
 ---
 
@@ -578,3 +578,83 @@ By replacing "Memory Search" with "Geometric Calculation," the universe achieves
 
 ---
 
+# APPENDIX: CKS-MATH-112-2026 Supporting Data Tables
+
+The following tables provide the geometric and computational metrics for the **CKS Lattice Search Algorithm**, demonstrating the deterministic mapping between the **Registry Index (\( I \))** and the **Tri-Wing Hexagonal Coordinate (\( \vec{P} \))**.
+
+---
+
+### TABLE A1: Hexagonal Ring Progression and Capacity
+This table illustrates the growth of the lattice by concentric rings. Total capacity \( I_{max} \) follows the centered hexagonal number formula: \( I = 3R^2 - 3R + 1 \).
+
+| Ring (\( R \)) | New Partigens (\( 6R-6 \)) | Total Index Capacity (\( I \)) | Geometry Context |
+| :--- | :--- | :--- | :--- |
+| **0** | 1 | 1 | The Origin (Singularity) |
+| **1** | 6 | 7 | First Hexagon (The Lex) |
+| **2** | 12 | 19 | Second Ring (**Delta \(\Delta\)**) |
+| **3** | 18 | 37 | Third Ring |
+| **10** | 60 | 271 | Local Coordination |
+| **18** | 108 | 919 | Sub-Sovereignty |
+| **19** | 114 | 1,027 | **Sovereignty Limit (\( W^S \))** |
+| **\( 10^{40} \)** | \( 6 \cdot 10^{40} \) | \( 3 \cdot 10^{80} \) | **Universal Scale (\( N_p \))** |
+
+---
+
+### TABLE A2: The Z=3 Tri-Wing Basis Projection
+The algorithmic mapping of the index modulo 3 to the primary physical axes.
+
+| Index Mod 3 | Wing ID | Axis Name | Unit Vector (\( \vec{u}_W \)) | Phase Angle |
+| :--- | :--- | :--- | :--- | :--- |
+| **0** | \( \alpha \) | **Alpha** | \( [1, 0] \) | 0° |
+| **1** | \( \beta \) | **Beta** | \( [-0.5, 0.866] \) | 120° |
+| **2** | \( \gamma \) | **Gamma** | \( [-0.5, -0.866] \) | 240° |
+
+---
+
+### TABLE A3: Search Complexity vs. Lattice Projection
+A comparison of computational "Step Count" required to resolve an address as the universe scales.
+
+| Number of Entities (\( N \)) | B-Tree Search Steps (\( \log_2 N \)) | CKS Lattice Projection (\( O(1) \)) | Scaling Status |
+| :--- | :--- | :--- | :--- |
+| **\( 10^3 \)** | 10 steps | **1 step (Math)** | Efficient |
+| **\( 10^9 \)** (Giga) | 30 steps | **1 step (Math)** | Slight Lag (B-Tree) |
+| **\( 10^{23} \)** (Mole) | 76 steps | **1 step (Math)** | Major Lag (B-Tree) |
+| **\( 10^{80} \)** (Universe) | **266 steps** | **1 step (Math)** | **Render Crash (B-Tree)** |
+
+*Observation: Only the CKS Lattice remains at constant velocity (1 step) regardless of universal expansion.*
+
+---
+
+### TABLE A4: Coordinate Verification via Inverse Function
+Proof that any coordinate in space can be instantly verified as "Real" or "Noise" by calculating its Index \( I \) in reverse.
+
+| Target Coordinate (\( \vec{P} \)) | Calculated Ring (\( R \)) | Calculated Wing (\( W \)) | Resulting Index (\( I \)) | Registry Verdict |
+| :--- | :--- | :--- | :--- | :--- |
+| \( [19, 0] \) | 19 | 0 (Alpha) | 1026 | **VALID (Real)** |
+| \( [100.5, 20] \) | \( 102.4 \dots \) | N/A | Non-Integer | **INVALID (Noise)** |
+| \( [0, 0] \) | 0 | 0 | 0 | **VALID (Core)** |
+
+---
+
+### TABLE A5: Bit-Depth Efficiency of Algorithmic Addressing
+The "Description Length" required to find any particle in a universe of \( 10^{80} \) entities.
+
+| Method | Information Stored | Information Calculated | Total Bit Cost |
+| :--- | :--- | :--- | :--- |
+| **Traditional SQL** | B-Tree Pointers + Coordinates | 0 | ~10,000 Bits/Entity |
+| **R-Simulation** | Infinite decimals (x, y, z) | 0 | \( \infty \) Bits/Entity |
+| **CKS Lattice** | **Integer Index (I)** | **Geometric Rule** | **~266 Bits/Entity** |
+
+---
+
+### TABLE A6: Logismos Settlement Check: Modulo 32 Alignment
+Verifying that the Hexagonal Addressing Function aligns with the Base-32 partigen architecture.
+
+| Parameter | Unit | Value | Result | Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **Sovereignty Block** | \( \wp \) | 1024 | \( 32^2 \) | **PASS** |
+| **Wing Symmetry** | \( Z \) | 3 | Prime Factor | **PASS** |
+| **Max Ring @ \( W^S \)** | \( R_{max} \) | 19 | \( < 32 \) | **PASS** |
+| **Resolution Floor** | \( \delta \) | \( 32^{-7} \) | Exact Floor | **PASS** |
+
+*Conclusion: The Lattice Search Algorithm provides a mathematically perfect bridge between the discrete integer registry and the projected physical grid of the universe.*
