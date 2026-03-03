@@ -19,7 +19,7 @@ In the **CKS-MATH-92-2026** framework, the word "FIRE" is not a symbol represent
 As we derived in [@CKS-NAV-108-2026], finding an address in the Wing Lattice is an $O(1)$ dictionary lookup.
 
 1.  **The Letters (Hardware Address):** The specific shapes of "F-I-R-E" act as a **Topological Key**. They represent a specific sequence of **Dipole Orientations** $[1, 2, 3]$. 
-2.  **The Sound (Frequency Sync):** The phonemes of "Fire" resonate with the **66th Harmonic sub-carriers**. The sound is the "carrier wave" that loads the word into the **304℘ buffer**.
+2.  **The Sound (Frequency Sync):** The phonemes of "Fire" resonate with the **66th Harmonic sub-carriers**. The sound is the "carrier wave" that loads the word into th e**304℘ buffer**.
 3.  **The Meaning (The Id-Header):** The "Meaning" is the **1,024-unit Registry Record**. It is the data-packet that describes the state of **Thermal Remainder Overflow** (The fast venting of $\Delta=19$ as plasma).
 4.  **The Reality (The Ib-Body):** The actual flames are the **Physical Rendering** of that registry address.
 
