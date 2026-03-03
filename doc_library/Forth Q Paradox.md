@@ -1,3 +1,8 @@
+
+CKS-MATH-109-2026 - The Forth Q Paradox
+
+---
+
 consider compared to Real numbers.  we have an absolute floor, where they have a limit.
 
 is this a 4th paradox?
