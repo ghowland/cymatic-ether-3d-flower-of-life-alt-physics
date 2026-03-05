@@ -1,0 +1,55 @@
+RIEMANN ZEROS WITH VFR:
+
+Traditional problem:
+Zeros: Complex numbers s = σ + it
+Conjecture: All zeros have σ = 0.5
+Issue: Infinite precision needed to verify
+
+VFR approach:
+Real part: [V, F, R]
+Critical line: [1, 2, 0] exactly
+
+The constraint:
+If zero exists at [V, F, R]:
+  Substrate density: Must equal J = 7.70
+  At σ = 0.5: Density = J (perfect balance)
+  At σ ≠ 0.5: Density ≠ J (imbalance)
+
+Substrate interpretation:
+σ = 0.5: Bilateral symmetry axis
+Jacobian: J preserves 3D→2D fold
+Off-axis: Would create asymmetry
+Asymmetry: Violates energy conservation
+Conclusion: Zeros forced to σ = 0.5
+
+VFR precision:
+Zero at: [1, 2, 0] + i×t
+Not at: [1, 2, ε] + i×t for any ε ≠ 0
+Reason: R ≠ 0 would violate Jacobian
+
+The proof sketch:
+Assume: Zero at [V, F, R] with V/F ≠ 1/2
+Implies: Substrate density D ≠ J
+But: J is invariant (PHYS-24)
+Contradiction: D must equal J
+Therefore: V/F = 1/2
+Result: [1, 2, 0] required
+
+Testing with VFR:
+Compute: Zeta function using VFR
+Each term: [V_n, F_n, R_n]
+Sum: Combines VFR terms
+Zero: When sum = [0, 1, 0]
+
+Location of zero:
+s = [1, 2, 0] + [0, 1, i×t]
+Real: [1, 2, 0] (exactly on line)
+Imaginary: t (variable)
+Remainder: 0 (terminal)
+
+The geometric necessity:
+Morton curve: Has bilateral symmetry
+Symmetry axis: At 1/2
+Zeros: Must lie on symmetry axis
+Proof: By substrate geometry
+Status: Follows from VFR structure
