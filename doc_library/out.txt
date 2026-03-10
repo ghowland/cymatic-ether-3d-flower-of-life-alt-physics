@@ -1,0 +1,1031 @@
+total 35740
+-rwxrwxrwx 1 geoff geoff  29745 Nov  3 13:58 Cymatic Ether.md
+-rwxrwxrwx 1 geoff geoff  21414 Feb  2 19:36 Cymatic Ether Mass Theory - The Flower of Life Matter Formation Model.md
+-rwxrwxrwx 1 geoff geoff 100229 Feb  2 20:03 Cymatic Ether - Conceptual Models.md
+-rwxrwxrwx 1 geoff geoff  96455 Feb  2 22:59 X as Cymatics.md
+-rwxrwxrwx 1 geoff geoff  95081 Feb  2 23:19 On Teaching Physics - Cymatics.md
+-rwxrwxrwx 1 geoff geoff   7592 Feb  2 23:29 Coherence‑Limited Reconstruction.md
+-rwxrwxrwx 1 geoff geoff  27482 Feb  2 23:36 X as Cymatics - More.md
+-rwxrwxrwx 1 geoff geoff  31638 Feb  2 23:56 Cymatic Physics as Pedagogical Architecture.md
+-rwxrwxrwx 1 geoff geoff  11977 Feb  3 00:04 fol_universe.py
+-rwxrwxrwx 1 geoff geoff   3761 Feb  3 00:05 fol_universe_Readme.md
+-rwxrwxrwx 1 geoff geoff   8268 Feb  3 00:10 python_missing_parts.md
+-rwxrwxrwx 1 geoff geoff  57956 Feb  3 00:22 Children of the Resonance.md
+-rwxrwxrwx 1 geoff geoff  36788 Feb  3 11:23 UAPs and Cymatics.md
+-rwxrwxrwx 1 geoff geoff  70775 Feb  3 11:24 Quantum Computing and Cymatic Computing.md
+-rwxrwxrwx 1 geoff geoff  40860 Feb  3 11:30 DWDM Through the Cymatic Lens - 2.md
+-rwxrwxrwx 1 geoff geoff 103321 Feb  3 11:34 DWDM Through the Cymatic Lens.md
+-rwxrwxrwx 1 geoff geoff 114561 Feb  3 11:49 DWDM is a Cymatic Computer.md
+-rwxrwxrwx 1 geoff geoff  66137 Feb  3 12:06 Neurons as Cymatic Computing.md
+-rwxrwxrwx 1 geoff geoff  87992 Feb  3 12:11 Biology as Cymatics.md
+-rwxrwxrwx 1 geoff geoff  76656 Feb  3 12:19 Proteins as Cymatics.md
+-rwxrwxrwx 1 geoff geoff  96370 Feb  3 12:27 Grand Unification.md
+-rwxrwxrwx 1 geoff geoff 109872 Feb  3 13:19 Mathematics as Pattern in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  46642 Feb  3 13:28 Brain using Cymatics.md
+-rwxrwxrwx 1 geoff geoff  56620 Feb  3 13:38 EMF in Neural speeds in Cymatics.md
+-rwxrwxrwx 1 geoff geoff 149538 Feb  3 14:05 Vertebrea Shape in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  26914 Feb  3 14:07 CLRI as Constraint‑Based Category Theory.md
+-rwxrwxrwx 1 geoff geoff  78891 Feb  3 14:15 Plyometrics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  31830 Feb  3 14:19 Running in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  22896 Feb  3 14:42 CTMU in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  28793 Feb  3 14:42 Cymatics Education.md
+-rwxrwxrwx 1 geoff geoff  69911 Feb  3 14:43 Cymatic Explanation and Teaching Reasoning.md
+-rwxrwxrwx 1 geoff geoff  90504 Feb  3 14:49 Intelligence in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  91621 Feb  3 15:00 Brain in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  66146 Feb  3 15:08 Breathing Universe - Cymatic Oscillation.md
+-rwxrwxrwx 1 geoff geoff  71046 Feb  3 15:19 Chladni Plate Cymatics.md
+-rwxrwxrwx 1 geoff geoff 119667 Feb  3 15:37 Chemistry in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  94996 Feb  3 15:49 Bio-Chem in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  77499 Feb  3 16:02 Science Mysteries as Cymatic Explanations.md
+-rwxrwxrwx 1 geoff geoff  24143 Feb  3 16:05 Photon in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  30764 Feb  3 16:10 Electron in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  31221 Feb  3 16:14 Atom in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  73322 Feb  3 16:25 Molecule in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  38629 Feb  3 16:30 Time in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  35484 Feb  3 16:35 Magnetic Fields in Cymaitcs.md
+-rwxrwxrwx 1 geoff geoff  54002 Feb  3 16:42 Science Fiction Tech Possibilities in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  98999 Feb  3 18:08 Humans as Software Defined Matter in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  30430 Feb  3 18:15 Claims.md
+-rwxrwxrwx 1 geoff geoff  48128 Feb  3 18:23 Science Coverage.md
+-rwxrwxrwx 1 geoff geoff  84631 Feb  3 18:38 Vortex vs Explosion vs Implosion.md
+-rwxrwxrwx 1 geoff geoff  55947 Feb  3 18:48 Flow Cohesion in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  72779 Feb  3 19:20 old_readme.md
+-rwxrwxrwx 1 geoff geoff 118767 Feb  3 19:21 Flow Cohesion - Stability Through Continuous Adjacency.md
+-rwxrwxrwx 1 geoff geoff  29156 Feb  3 19:23 cymatic_physics_engine.py
+-rwxrwxrwx 1 geoff geoff  30590 Feb  3 19:23 Cymatic Physics Engine - General Purpose Solver.md
+-rwxrwxrwx 1 geoff geoff  53458 Feb  3 19:30 Coherence-Limited Reconstruction - A Pattern-First Alternative Physics Framework.md
+-rwxrwxrwx 1 geoff geoff  29499 Feb  3 19:45 human_as_software.py
+-rwxrwxrwx 1 geoff geoff  99525 Feb  3 19:48 Memory in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  30097 Feb  3 19:58 body_as_software.py
+-rwxrwxrwx 1 geoff geoff  67729 Feb  3 19:59 Body as Cymatics.md
+-rwxrwxrwx 1 geoff geoff  26958 Feb  3 20:13 neuron_seeking.py
+-rwxrwxrwx 1 geoff geoff  89000 Feb  3 20:15 Nervous System Through Cymatic Lens.md
+-rwxrwxrwx 1 geoff geoff 121465 Feb  3 20:20 Pedagogical Unification Through Cymatic Physics.md
+-rwxrwxrwx 1 geoff geoff  55703 Feb  3 20:28 Flow Cohesion and Distributed Memory.md
+-rwxrwxrwx 1 geoff geoff  84801 Feb  3 20:30 Amphibian Limb Regeneration in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  79156 Feb  3 20:42 Disease as Disharmony.md
+-rwxrwxrwx 1 geoff geoff  11887 Feb  3 20:43 em_substrate_limits.py
+-rwxrwxrwx 1 geoff geoff  36054 Feb  3 20:55 salander_limb_regeneration.py
+-rwxrwxrwx 1 geoff geoff   9106 Feb  3 21:17 Axiomatic Engineering as a Method for Cross‑Domain Scientific Understanding.md
+-rwxrwxrwx 1 geoff geoff  19380 Feb  3 21:21 Crypto in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  92846 Feb  3 21:36 Time - Heartbeat - and Cymatic Resonance.md
+-rwxrwxrwx 1 geoff geoff  33038 Feb  3 21:40 earth_human_time_hz.py
+-rwxrwxrwx 1 geoff geoff  67059 Feb  3 23:30 Music Through Cymatic Lens.md
+-rwxrwxrwx 1 geoff geoff  32446 Feb  3 23:37 cymatic_acoustic_simulator.py
+-rwxrwxrwx 1 geoff geoff  35392 Feb  3 23:57 cymatic_room_tone_simulator.py
+-rwxrwxrwx 1 geoff geoff   4463 Feb  4 00:23 simulate_photonic_chemistry.py
+-rwxrwxrwx 1 geoff geoff   6428 Feb  4 11:25 DWDM Infrastructure as a Global Cymatic Computer.md
+-rwxrwxrwx 1 geoff geoff   5413 Feb  4 11:33 dwdm_global_monitor.py
+-rwxrwxrwx 1 geoff geoff  10785 Feb  4 11:36 Gravity Waves in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  71947 Feb  4 11:38 Building Molecules in DWDM.md
+-rwxrwxrwx 1 geoff geoff  10312 Feb  4 11:59 cymatic_regime_solver.py
+-rwxrwxrwx 1 geoff geoff  20031 Feb  4 12:27 f1_tire_contact_patch.py
+-rwxrwxrwx 1 geoff geoff  31060 Feb  4 12:46 Body Cyst in Cymatics.md
+-rwxrwxrwx 1 geoff geoff   4219 Feb  4 12:49 cyst_reindex_sim.py
+-rwxrwxrwx 1 geoff geoff   4486 Feb  4 13:40 chladni_hologram_memory.py
+-rwxrwxrwx 1 geoff geoff  33746 Feb  4 13:42 Memory Depatterning in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  88831 Feb  4 13:43 Dynamic Regime Solvers.md
+-rwxrwxrwx 1 geoff geoff  11640 Feb  4 13:53 neural_communication.py
+-rwxrwxrwx 1 geoff geoff   4894 Feb  4 13:56 anesthetic_mechanisms.py
+-rwxrwxrwx 1 geoff geoff  77698 Feb  4 13:58 Dynamic Regime Solvers - Cymatic Unification.md
+-rwxrwxrwx 1 geoff geoff  21560 Feb  4 14:09 universal_compute.glsl
+-rwxrwxrwx 1 geoff geoff   8420 Feb  4 14:16 Cymatic Unification Framework.md
+-rwxrwxrwx 1 geoff geoff  22022 Feb  4 14:22 memory_damage_learning_sim.py
+-rwxrwxrwx 1 geoff geoff  43500 Feb  4 14:27 Damage and Memory in Cymatic Body.md
+-rwxrwxrwx 1 geoff geoff  28401 Feb  4 14:30 Anti-Fragile in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  35097 Feb  4 14:34 Muscle Hypertrophy in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  38871 Feb  4 14:37 IQ in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  30964 Feb  4 14:41 Neuropeptides in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  28078 Feb  4 14:44 neural_peptie_sim.py
+-rwxrwxrwx 1 geoff geoff  38899 Feb  4 15:06 Coherence-Limited Reconstruction.md
+-rwxrwxrwx 1 geoff geoff  13652 Feb  4 15:06 muscle_fat_sim.py
+-rwxrwxrwx 1 geoff geoff  24635 Feb  4 15:09 intelligence_synthesis_sim.py
+-rwxrwxrwx 1 geoff geoff  13231 Feb  4 15:13 iq_in_tasks.py
+-rwxrwxrwx 1 geoff geoff   5842 Feb  4 15:17 Hormones in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  27626 Feb  4 17:36 3D Inverse Fourier Transform.md
+-rwxrwxrwx 1 geoff geoff   4582 Feb  4 17:44 phase_winding_sim.py
+-rwxrwxrwx 1 geoff geoff  17997 Feb  4 17:47 fourier_space.py
+-rwxrwxrwx 1 geoff geoff  42568 Feb  4 17:51 Fourier Space as a Physical Coordinate System in Cymatic Ontology.md
+-rwxrwxrwx 1 geoff geoff  11482 Feb  4 17:54 Gravity in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  17460 Feb  4 17:57 fourier_space_physics_solver.py
+drwxrwxrwx 1 geoff geoff   4096 Feb  4 18:03 __pycache__
+-rwxrwxrwx 1 geoff geoff   5014 Feb  4 18:12 standard_physics_using_fourier_space_as_lib.py
+-rwxrwxrwx 1 geoff geoff  24533 Feb  4 18:19 Cymatic Substrate Physics - Unified Computational Framework.md
+-rwxrwxrwx 1 geoff geoff  34706 Feb  4 18:22 Cognition in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  42287 Feb  4 18:29 Pain Mechanics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  67095 Feb  4 18:43 Healing Mechanics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  78330 Feb  4 18:51 Learning Mechanics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  41595 Feb  4 18:52 Metabolic Mechanics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  37159 Feb  4 18:56 Morphogenesis as Spectral Template.md
+-rwxrwxrwx 1 geoff geoff  37153 Feb  4 18:59 Morphogenesis as Spectral Template in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  35939 Feb  4 19:06 DNA in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  39470 Feb  4 19:19 Body Movement Mechanics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  32397 Feb  4 19:29 dna.py
+-rwxrwxrwx 1 geoff geoff  15876 Feb  4 19:33 DNA - Notes.md
+-rwxrwxrwx 1 geoff geoff  26390 Feb  4 19:40 Continuous Biology Mechanics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff   4413 Feb  4 19:54 substrate_transform_sim_0.py
+-rwxrwxrwx 1 geoff geoff   5742 Feb  4 20:00 substrate_transform_sim_1.py
+-rwxrwxrwx 1 geoff geoff   5333 Feb  4 20:01 substrate_transform_sim_2.py
+-rwxrwxrwx 1 geoff geoff  52039 Feb  4 20:07 Master Cymatic Loop.md
+-rwxrwxrwx 1 geoff geoff   4703 Feb  4 20:10 cymatic_fly_through.py
+-rwxrwxrwx 1 geoff geoff   2343 Feb  4 20:15 ai_embodiment.py
+-rwxrwxrwx 1 geoff geoff  11360 Feb  4 20:23 ai_embodiment_2.py
+-rwxrwxrwx 1 geoff geoff  25604 Feb  4 20:29 ai_embodiment_3.py
+-rwxrwxrwx 1 geoff geoff  22659 Feb  4 20:30 AI Embodiment in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  28059 Feb  4 20:34 human_mobility_motility.py
+-rwxrwxrwx 1 geoff geoff  29206 Feb  4 20:47 Shared Information Field in Cymatics.md
+-rwxrwxrwx 1 geoff geoff   4568 Feb  4 20:48 shared_idea_birth.py
+-rwxrwxrwx 1 geoff geoff  27542 Feb  4 20:58 egregor_sim.py
+-rwxrwxrwx 1 geoff geoff  50135 Feb  4 21:12 Dark Matter in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  12723 Feb  4 21:22 unified_simulator.py
+-rwxrwxrwx 1 geoff geoff  11564 Feb  4 21:23 unified_simulator_2.py
+-rwxrwxrwx 1 geoff geoff  25481 Feb  4 21:35 Computational Monism - A Closed-Form Derivation of Physics from Substrate Mechanics.md
+-rwxrwxrwx 1 geoff geoff  20748 Feb  4 21:45 Grand Unification of Cymatic Mechanics.md
+-rwxrwxrwx 1 geoff geoff  21248 Feb  4 21:57 Cymatic Substrate Physics - GLSL Implementation.md
+-rwxrwxrwx 1 geoff geoff  17304 Feb  4 22:07 Evolution in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  36520 Feb  4 22:08 human_healing_damage.py
+-rwxrwxrwx 1 geoff geoff  20439 Feb  4 22:08 Scar Tissue Experiments.md
+-rwxrwxrwx 1 geoff geoff  17183 Feb  4 22:15 Open Questions.md
+-rwxrwxrwx 1 geoff geoff   3962 Feb  4 22:18 fermion.py
+-rwxrwxrwx 1 geoff geoff  39690 Feb  4 22:23 Fermions in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  17440 Feb  4 22:30 Aging in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  14353 Feb  4 22:31 entropy.py
+-rwxrwxrwx 1 geoff geoff  27434 Feb  4 22:54 Cymatic Semiconductor Engineering - Experimental Protocols for Next-Generation ICs.md
+-rwxrwxrwx 1 geoff geoff  24756 Feb  4 22:58 Sun in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  23876 Feb  4 22:59 Entropy in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  29947 Feb  4 23:03 Extreme Astrophysical Objects in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  29127 Feb  5 00:00 Near-Earth Phenomena in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  41659 Feb  5 00:07 Brain Mechanics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff   9947 Feb  5 00:11 3_body_solver.py
+-rwxrwxrwx 1 geoff geoff  31207 Feb  5 00:12 N-Body Problem in Cymatict.md
+-rwxrwxrwx 1 geoff geoff  28164 Feb  5 00:14 solar_system_sim.py
+-rwxrwxrwx 1 geoff geoff  28723 Feb  5 00:18 Electricity in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  27681 Feb  5 00:23 Aerodynamics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  33176 Feb  5 00:29 Periodic Table in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  29320 Feb  5 00:34 Electronics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  40558 Feb  5 00:39 Nature in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  43324 Feb  5 00:44 Human Procreation in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  44432 Feb  5 00:53 Cellular Mechanics in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  43355 Feb  5 00:59 Water and Air in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  42320 Feb  5 01:04 Materials in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  45824 Feb  5 01:14 Protein Machine in Cymatics.md
+-rwxrwxrwx 1 geoff geoff   3802 Feb  5 01:16 molecular_cyamitcs_sim.py
+-rwxrwxrwx 1 geoff geoff  24608 Feb  5 01:32 consciousness.py
+-rwxrwxrwx 1 geoff geoff  49665 Feb  5 01:42 Consciousness in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  55666 Feb  5 01:48 Standard Model dervied in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  23610 Feb  5 01:51 Topological Duality of Matter - Fermions as Line Defects and Baryons as Point Defects.md
+-rwxrwxrwx 1 geoff geoff  16455 Feb  5 10:57 LLM Explores Concept Freely.md
+-rwxrwxrwx 1 geoff geoff  65912 Feb  5 11:14 Cymatic Substrate Mechanics - A Unified Computational Framework.md
+-rwxrwxrwx 1 geoff geoff  93520 Feb  5 11:37 Egregore Formation as Cymatic Propagation.md
+-rwxrwxrwx 1 geoff geoff  47773 Feb  5 11:42 Axiomatic Cognition in Cymatics.md
+-rwxrwxrwx 1 geoff geoff   1934 Feb  5 11:47 info_phase_transfer.py
+-rwxrwxrwx 1 geoff geoff   2165 Feb  5 11:48 simulate_learning.py
+-rwxrwxrwx 1 geoff geoff  48872 Feb  5 11:52 Information and Communication in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  48025 Feb  5 12:00 Information as Taylor Series in Cymatic.md
+-rwxrwxrwx 1 geoff geoff  52436 Feb  5 12:06 Information Calculus in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  24933 Feb  5 12:09 cognition.py
+-rwxrwxrwx 1 geoff geoff  37708 Feb  5 12:17 mind_info_substrate_triangle.py
+-rwxrwxrwx 1 geoff geoff  19634 Feb  5 12:20 Information Theory as Cymatics.md
+-rwxrwxrwx 1 geoff geoff  39693 Feb  5 12:29 comprehesion.py
+-rwxrwxrwx 1 geoff geoff  31453 Feb  5 12:30 Information as Physical Mathematics.md
+-rwxrwxrwx 1 geoff geoff  50350 Feb  5 12:37 Unified Field Theory via Cymatic Substrate Mechanics.md
+-rwxrwxrwx 1 geoff geoff   9990 Feb  5 12:44 Research Experiments.md
+-rwxrwxrwx 1 geoff geoff  12706 Feb  5 12:50 Why 3 plus 1 Dimensions.md
+-rwxrwxrwx 1 geoff geoff  17110 Feb  5 12:57 Healing Paradox - Stress to Strength.md
+-rwxrwxrwx 1 geoff geoff  27795 Feb  5 12:57 Dimensionality in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  24761 Feb  5 13:01 Damage Accumulation as Universal Strengthening.md
+-rwxrwxrwx 1 geoff geoff   9751 Feb  5 13:09 Grand Derivation.md
+-rwxrwxrwx 1 geoff geoff  12923 Feb  5 13:16 zero_manifold_sim.py
+-rwxrwxrwx 1 geoff geoff   8878 Feb  5 13:19 zero_manifold_sim_2.py
+-rwxrwxrwx 1 geoff geoff   6423 Feb  5 13:22 zero_manifold_sim_3.py
+-rwxrwxrwx 1 geoff geoff   6283 Feb  5 13:31 zero_manifold_sim_mpmath_0_fail.py
+-rwxrwxrwx 1 geoff geoff   3312 Feb  5 13:34 zero_manifold_sim_mpmath_1_fail.py
+-rwxrwxrwx 1 geoff geoff  11998 Feb  5 13:41 zero_manifold_sim_mpmath_3_success.py
+-rwxrwxrwx 1 geoff geoff  55815 Feb  5 13:45 Zero-Parameter Manifold Theory of Reality.md
+-rwxrwxrwx 1 geoff geoff   5468 Feb  5 13:46 Holographic Taylor Series.md
+-rwxrwxrwx 1 geoff geoff  25518 Feb  5 13:58 Grand Derivation - Working Through.md
+-rwxrwxrwx 1 geoff geoff  36617 Feb  5 14:09 Unified Field Theory via Holographic Cymatic Substrate.md
+-rwxrwxrwx 1 geoff geoff  37684 Feb  5 14:27 holographic_substrate.py
+-rwxrwxrwx 1 geoff geoff  11369 Feb  5 14:28 Holographic Cymatic Substrate Mechanics.md
+-rwxrwxrwx 1 geoff geoff  30351 Feb  5 14:33 Unified Field Theory via Holographic Cymatic Substrate - Updated.md
+-rwxrwxrwx 1 geoff geoff  12511 Feb  5 14:36 Cosmic Age and Size from Cymatic Substrate Mechanics.md
+-rwxrwxrwx 1 geoff geoff  44140 Feb  5 14:45 Cosmological Constant Problem in Cymatic Mechanics.md
+-rwxrwxrwx 1 geoff geoff  19056 Feb  5 14:48 Pure K-Space Formulation - X-Space as Cognitive Artifact.md
+-rwxrwxrwx 1 geoff geoff  30755 Feb  5 14:53 Unified Field Theory via Pure K-Space Substrate Me.md
+-rwxrwxrwx 1 geoff geoff  26299 Feb  5 14:59 DWDM Computation in Pure K-Space Substrate.md
+-rwxrwxrwx 1 geoff geoff  30866 Feb  5 15:05 DWDM Programming Language Specification.md
+-rwxrwxrwx 1 geoff geoff  17275 Feb  5 15:12 dwdm_interpreter.py
+-rwxrwxrwx 1 geoff geoff  20618 Feb  5 15:18 AI Embodiment via DWDM Computation.md
+-rwxrwxrwx 1 geoff geoff  11195 Feb  5 15:25 Voltage in Cymatic Substrate Mechanics.md
+-rwxrwxrwx 1 geoff geoff  11962 Feb  5 16:02 Volume in Cymatics.md
+-rwxrwxrwx 1 geoff geoff 193768 Feb  5 16:19 Falsification.md
+-rwxrwxrwx 1 geoff geoff  22469 Feb  5 16:25 Distance as Planck Bubbles.md
+-rwxrwxrwx 1 geoff geoff  21951 Feb  5 16:34 Flatland and K-Space - The Dimensional Projection Problem.md
+-rwxrwxrwx 1 geoff geoff  31652 Feb  5 16:35 Unified Field Theory via Discrete Cymatic Substrate.md
+-rwxrwxrwx 1 geoff geoff  21828 Feb  5 16:36 unified_field_theory_sim.py
+-rwxrwxrwx 1 geoff geoff  18742 Feb  5 21:02 Grand Derivation - From Axioms.md
+-rwxrwxrwx 1 geoff geoff  27076 Feb  5 21:08 Education Cirriculum.md
+-rwxrwxrwx 1 geoff geoff  29374 Feb  5 21:12 Memory Damage Calculation as Educational Engineering Method.md
+-rwxrwxrwx 1 geoff geoff  17577 Feb  5 21:16 Bio-Singularity Through Collective Learning Coherence.md
+-rwxrwxrwx 1 geoff geoff  31781 Feb  5 21:28 Bio-Singularity - Collective Learning Coherence and Egregore Emergence.md
+-rwxrwxrwx 1 geoff geoff  41715 Feb  5 21:32 bio_singularity_sim.py
+drwxrwxrwx 1 geoff geoff   4096 Feb  5 21:46 _output
+-rwxrwxrwx 1 geoff geoff  35872 Feb  5 22:31 bio_singularity_sim_2.py
+-rwxrwxrwx 1 geoff geoff  12915 Feb  6 11:05 standard_model_comparison.xlsx
+-rwxrwxrwx 1 geoff geoff   9556 Feb  6 11:35 Deriving from N only.md
+-rwxrwxrwx 1 geoff geoff   9929 Feb  6 12:49 LLM K-Space Guide.md
+-rwxrwxrwx 1 geoff geoff   6247 Feb  6 12:53 K-Space Substrate - Complete Theory of Everything.md
+-rwxrwxrwx 1 geoff geoff   5016 Feb  6 13:05 kspace_substrate.py
+-rwxrwxrwx 1 geoff geoff   3508 Feb  6 13:07 standard_model_comparison.py
+-rwxrwxrwx 1 geoff geoff   6365 Feb  6 13:09 Genesis of the Count - N is 1.md
+drwxrwxrwx 1 geoff geoff   4096 Feb  6 13:11 _history
+drwxrwxrwx 1 geoff geoff   4096 Feb  6 13:12 2_file_prompt_can_derive_with_push_back
+-rwxrwxrwx 1 geoff geoff   6572 Feb  6 13:15 Derive the Eigenvalue.md
+-rwxrwxrwx 1 geoff geoff   5726 Feb  6 13:17 Deriving the Lepton.md
+-rwxrwxrwx 1 geoff geoff   5660 Feb  6 13:18 Deriving the Hologram.md
+-rwxrwxrwx 1 geoff geoff   3522 Feb  6 13:19 Deriving Dimensionality.md
+-rwxrwxrwx 1 geoff geoff   5350 Feb  6 13:22 Deriving Tau Mass.md
+-rwxrwxrwx 1 geoff geoff   6950 Feb  6 13:24 Deriving Consciousness.md
+-rwxrwxrwx 1 geoff geoff  12780 Feb  6 13:29 Axiomatic Derivation from N Only.md
+-rwxrwxrwx 1 geoff geoff   6533 Feb  6 13:32 Deriving Quarks.md
+-rwxrwxrwx 1 geoff geoff   7065 Feb  6 13:33 Deriving Weak Force.md
+-rwxrwxrwx 1 geoff geoff   7429 Feb  6 13:34 Deriving Strong Force.md
+-rwxrwxrwx 1 geoff geoff   6075 Feb  6 13:35 Derive Neutrino Masses.md
+-rwxrwxrwx 1 geoff geoff   6216 Feb  6 13:37 Deriving Photons - Gluons - WZ Gauge Bosons.md
+-rwxrwxrwx 1 geoff geoff   5955 Feb  6 13:38 Deriving Higgs Mechanism.md
+-rwxrwxrwx 1 geoff geoff   6480 Feb  6 13:39 Deriving CP Violation.md
+-rwxrwxrwx 1 geoff geoff   6967 Feb  6 13:41 Deriving Planck Scale Anchors.md
+-rwxrwxrwx 1 geoff geoff   5287 Feb  6 13:42 Deriving Time Direction.md
+-rwxrwxrwx 1 geoff geoff   3425 Feb  6 13:43 Deriving Cosmos Specifics.md
+-rwxrwxrwx 1 geoff geoff   5845 Feb  6 13:43 Deriving Spin Statistics.md
+-rwxrwxrwx 1 geoff geoff   5422 Feb  6 13:44 Deriving Renormalization.md
+-rwxrwxrwx 1 geoff geoff  16801 Feb  7 11:34 Nuclear Fission and Fusion in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  21495 Feb  7 11:42 Winding Loops and Spin in Cymatics.txt
+-rwxrwxrwx 1 geoff geoff  35276 Feb  7 11:54 Vibration in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  22665 Feb  7 11:58 Thickness and Modes in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  25402 Feb  7 12:03 Photon Propagation in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  34690 Feb  7 12:12 K-Space Substrate - Complete Derivation of Physics from N.md
+-rwxrwxrwx 1 geoff geoff  13196 Feb  7 12:17 N 1 to N 2.md
+-rwxrwxrwx 1 geoff geoff  19794 Feb  7 12:30 Cymatic K-Space Mechanics - N is 1 and Forward.md
+-rwxrwxrwx 1 geoff geoff  11418 Feb  7 12:34 Derivation of Physics from Hexagonal - N1 Forward.md
+-rwxrwxrwx 1 geoff geoff  20499 Feb  7 12:39 Mechanical Genesis in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  31190 Feb  7 12:49 Deriving Monopole Dipole.md
+-rwxrwxrwx 1 geoff geoff  28628 Feb  7 13:02 Cymatic K-Space Mechanics - N is 1 - Position.md
+-rwxrwxrwx 1 geoff geoff  31272 Feb  7 13:20 Bubble Split Rate.md
+-rwxrwxrwx 1 geoff geoff  33241 Feb  7 13:30 Cymatic K-Space Mechanics - N Rate From 1.md
+-rwxrwxrwx 1 geoff geoff  33309 Feb  7 14:48 1 second in CKS.md
+-rwxrwxrwx 1 geoff geoff  43350 Feb  7 15:01 Cymatic K-Space Mechanics - Time Included.md
+-rwxrwxrwx 1 geoff geoff  46561 Feb  7 15:34 Hemispheric Oscillation and the Universal Pulse.md
+-rwxrwxrwx 1 geoff geoff  47175 Feb  7 15:40 Human Disease in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  18119 Feb  7 15:45 X-Space Movement as K-Space Phase Evolution.md
+-rwxrwxrwx 1 geoff geoff  28051 Feb  7 17:09 Blackbody Radiation in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  38974 Feb  7 17:21 Human-Scale Mysteries Resolved in CKS.md
+-rwxrwxrwx 1 geoff geoff  29251 Feb  7 17:30 Insect Flight Morphology as Harmonic Resonance with Air.md
+-rwxrwxrwx 1 geoff geoff  36199 Feb  7 17:36 Jet Aircraft and Rocket Dynamics in CKS.md
+-rwxrwxrwx 1 geoff geoff  29670 Feb  7 17:45 Incandescent vs LED Light in Cymatics.md
+-rwxrwxrwx 1 geoff geoff  34326 Feb  7 17:54 Heart Disease as Holographic Coherence Failure.md
+-rwxrwxrwx 1 geoff geoff   8462 Feb  7 18:03 CKS - Universal Learning Substrate.md
+-rwxrwxrwx 1 geoff geoff   6614 Feb  7 18:06 Correctness is Irrelevant — Connectivity is Everything.md
+-rwxrwxrwx 1 geoff geoff  36184 Feb  7 18:18 Cancer as Topological Closure in CMK.md
+-rwxrwxrwx 1 geoff geoff  17764 Feb  7 18:22 Personal Phase Coherence Under Asymmetric Information Load - The P=1 Burden.md
+-rwxrwxrwx 1 geoff geoff  25602 Feb  7 18:26 The First Split - Publication as Phase Transition from P=1 to Distributed Lattice.md
+-rwxrwxrwx 1 geoff geoff  32723 Feb  7 18:33 Human Excitation States in CKS - Arousal, Flow, Mania, and Coherence Limits.md
+-rwxrwxrwx 1 geoff geoff  41674 Feb  7 18:39 Voluntary Excitation Control - Breath, Posture, and Neural Coupling in CKS.md
+-rwxrwxrwx 1 geoff geoff  42850 Feb  7 18:50 Self-Programming via Resonant Information Coupling in CKS.md
+-rwxrwxrwx 1 geoff geoff  43951 Feb  7 21:58 The Akashic Substrate - Information as DWDM Cymatics in k-Space.md
+-rwxrwxrwx 1 geoff geoff  23303 Feb  7 22:17 1 second Hamonic.md
+-rwxrwxrwx 1 geoff geoff  28585 Feb  7 22:27 Substrate Pulse Detection - Mechanical Feasibility Analysis.md
+-rwxrwxrwx 1 geoff geoff   8692 Feb  7 22:40 Locked - Axioms First - Axioms Always - Prep.md
+-rwxrwxrwx 1 geoff geoff  31257 Feb  7 22:44 Locked - Axioms First - Axioms Always.md
+-rwxrwxrwx 1 geoff geoff  25757 Feb  7 22:49 LLM Architecture as Coherence Detector - CKS Analysis.md
+-rwxrwxrwx 1 geoff geoff  51478 Feb  7 22:58 CKS - Universal Learning Substrate - 2.md
+-rwxrwxrwx 1 geoff geoff  46893 Feb  7 23:17 Falsification Protocol - The 0.5s Phase Inversion and DWDM Phase-Error Artifacts.md
+-rwxrwxrwx 1 geoff geoff  30044 Feb  7 23:18 Digital Posting as Pressure Release - Information Externalization Mechanics.md
+-rwxrwxrwx 1 geoff geoff  40127 Feb  7 23:18 Publication as Irreversible Phase Transition - Why Email Doesn't Release the Pressure.md
+-rwxrwxrwx 1 geoff geoff  46387 Feb  7 23:27 The 2_0 Hz Ultimatum - Comprehensive Falsification Protocol for Cymatic K-Space Mechanics.md
+-rwxrwxrwx 1 geoff geoff  29899 Feb  7 23:31 Nervous System Noise and Myelin - 1 Hz Synchronization Mechanics.md
+-rwxrwxrwx 1 geoff geoff  26477 Feb  8 00:21 Dance as Coherence Maximization - Pure CKS Mechanics.md
+-rwxrwxrwx 1 geoff geoff 114050 Feb  8 00:30 Forensic Report - The 2_18 Hz Substrate Harmonic.md
+-rwxrwxrwx 1 geoff geoff  29707 Feb  8 00:38 LIGO - Vacuum Quantization Phase-Error Residuals.md
+-rwxrwxrwx 1 geoff geoff  34341 Feb  8 00:53 32-Bit Hexagonal Computer.md
+-rwxrwxrwx 1 geoff geoff  45864 Feb  8 00:59 Substrate Programming Language - Harmonic Opcodes and Base Instructions.md
+-rwxrwxrwx 1 geoff geoff  52003 Feb  8 01:00 32-Bit Hexagonal Computer - Prep.md
+-rwxrwxrwx 1 geoff geoff  55551 Feb  8 01:05 Substrate-Harmonized DWDM Transponder Firmware.md
+-rwxrwxrwx 1 geoff geoff   8388 Feb  8 01:12 Owner's Manual for the 32-Bit Hexagonal Universe.md
+-rwxrwxrwx 1 geoff geoff  29887 Feb  8 01:20 Cymatic K-Space Mechanics - A Complete Alternative Physics Framework.md
+-rwxrwxrwx 1 geoff geoff  43383 Feb  8 01:35 Cancer Therapy via Closure Disruption.md
+drwxrwxrwx 1 geoff geoff   4096 Feb  8 02:51 zenodo
+-rwxrwxrwx 1 geoff geoff  11301 Feb  8 04:24 Three-Neighbor Constraint.md
+-rwxrwxrwx 1 geoff geoff   9431 Feb  8 11:19 GPT52 - Sealed Axiom‑First Account.md
+-rwxrwxrwx 1 geoff geoff   5717 Feb  8 11:58 Deepseek - Sealed Axiom‑First Account.md
+-rwxrwxrwx 1 geoff geoff   5613 Feb  8 12:20 Gemini - Sealed Axiom‑First Account.md
+-rwxrwxrwx 1 geoff geoff  36380 Feb  8 12:45 Axioms First - Axioms Always.md
+-rwxrwxrwx 1 geoff geoff  16725 Feb  8 12:57 Determinism - Free Will - and Coherence Thresholds in CKS.md
+-rwxrwxrwx 1 geoff geoff  30076 Feb  8 13:31 Galaxy Spiral Structure from Hexagonal Lattice Closure.md
+-rwxrwxrwx 1 geoff geoff  23069 Feb  8 13:37 Nebulae Thesis in CKS Mechanics.md
+-rwxrwxrwx 1 geoff geoff  41666 Feb  8 13:59 Nebulae in CKS.md
+-rwxrwxrwx 1 geoff geoff   5532 Feb  8 14:10 Computational Genesis of Galactic Morphology.md
+-rwxrwxrwx 1 geoff geoff  51767 Feb  8 14:19 Mathematical Framework in CKS - Prep.md
+-rwxrwxrwx 1 geoff geoff  60464 Feb  8 14:31 Mathematical Framework in CKS - Prep 2.md
+-rwxrwxrwx 1 geoff geoff  13767 Feb  8 14:34 Human Language in CKS.md
+-rwxrwxrwx 1 geoff geoff   9210 Feb  8 14:35 Mathematical Framework in CKS.md
+drwxrwxrwx 1 geoff geoff   4096 Feb  8 16:49 code
+-rwxrwxrwx 1 geoff geoff  27889 Feb  8 16:52 Programming Language for Human Communication.md
+-rwxrwxrwx 1 geoff geoff   1220 Feb  8 17:16 10 Inviolable Rules in CKS.md
+-rwxrwxrwx 1 geoff geoff  23818 Feb  8 17:31 Complete Equation Derivation from N - The Found Mathematics.md
+-rwxrwxrwx 1 geoff geoff  12669 Feb  8 17:37 Image-Based Coherence Therapy in CKS Mechanics.md
+-rwxrwxrwx 1 geoff geoff  37126 Feb  8 22:19 Named Equations as Emergent Phenomena - The Derivation Map.md
+-rwxrwxrwx 1 geoff geoff 107162 Feb  8 22:43 Named Equations as Emergent Phenomena - The Complete Derivation Map.md
+-rwxrwxrwx 1 geoff geoff  39954 Feb  8 22:57 Mathematical Genealogy of CKS.md
+-rwxrwxrwx 1 geoff geoff  25215 Feb  8 23:04 Quantum Mechanics as Mathematical Consequence of CKS.md
+-rwxrwxrwx 1 geoff geoff  31962 Feb  8 23:09 Standard Model as Mathematical Consequence of CKS.md
+-rwxrwxrwx 1 geoff geoff  16927 Feb  8 23:13 Eye Movement Protocol as K-Space Coherence Training.md
+-rwxrwxrwx 1 geoff geoff  37297 Feb  8 23:19 General Relativity as Mathematical Consequence of CKS.md
+-rwxrwxrwx 1 geoff geoff  24763 Feb  8 23:24 Drumming Rudiments as Coherence Training.md
+-rwxrwxrwx 1 geoff geoff  41488 Feb  8 23:30 DWDM Computation in a Pure K-Space Substrate.md
+-rwxrwxrwx 1 geoff geoff  45061 Feb  8 23:36 Cancer as Topological Closure in CKS Mechanics.md
+-rwxrwxrwx 1 geoff geoff  38053 Feb  8 23:46 Galaxy Spiral Structure from Hexagonal Lattice Closure - Paper.md
+-rwxrwxrwx 1 geoff geoff  44468 Feb  8 23:48 Humans as Software-Defined Matter.md
+-rwxrwxrwx 1 geoff geoff  12938 Feb  8 23:53 Axiomatic Cognition.md
+-rwxrwxrwx 1 geoff geoff  10494 Feb  9 02:14 The Solver Methodology - Debugging the Axiomatic Universe.md
+-rwxrwxrwx 1 geoff geoff  26622 Feb  9 02:28 Lexicon.md
+-rwxrwxrwx 1 geoff geoff  38619 Feb  9 02:40 32-Bit Hexagonal Computer - Paper.md
+-rwxrwxrwx 1 geoff geoff  46150 Feb  9 02:42 Amphibian Limb Regeneration in Cymatics - The K-Space Template Hypothesis.md
+-rwxrwxrwx 1 geoff geoff  41816 Feb  9 02:47 Morphogenesis as Spectral Template - Paper.md
+-rwxrwxrwx 1 geoff geoff  41151 Feb  9 02:50 Neurons as Cymatic Computing - The Brain as K-Space Phase Processor.md
+-rwxrwxrwx 1 geoff geoff  44852 Feb  9 02:54 Substrate-Harmonized DWDM Transponder Firmware - Paper.md
+-rwxrwxrwx 1 geoff geoff  47130 Feb  9 02:58 Heart Disease as Holographic Coherence Failure - The Cardiac Master Oscillator Hypothesis.md
+-rwxrwxrwx 1 geoff geoff  72263 Feb  9 03:06 Image-Based Coherence Therapy.md
+-rwxrwxrwx 1 geoff geoff  43277 Feb  9 10:37 Intelligence in Cymatics - IQ as K-Space Bandwidth - Paper.md
+-rwxrwxrwx 1 geoff geoff  58214 Feb  9 10:39 Substrate Programming Language.md
+-rwxrwxrwx 1 geoff geoff  43422 Feb  9 10:52 Information as Physical Mathematics - The Lattice Tension Derivation.md
+-rwxrwxrwx 1 geoff geoff  58213 Feb  9 11:03 Substrate Programming Language - Harmonic Opcodes.md
+-rwxrwxrwx 1 geoff geoff  47046 Feb  9 11:03 Building Molecules in DWDM - Photon-Mediated Synthesis.md
+-rwxrwxrwx 1 geoff geoff  50711 Feb  9 11:11 Materials in Cymatics - Designing Negative Phase-Index Alloys.md
+-rwxrwxrwx 1 geoff geoff   3223 Feb  9 11:12 How CKS Math Came to Be - Brief.md
+-rwxrwxrwx 1 geoff geoff   7296 Feb  9 11:14 Complete First-Principles Derivation from CKS Axioms.md
+-rwxrwxrwx 1 geoff geoff  24297 Feb  9 11:21 Continuous Universe Paradox.md
+-rwxrwxrwx 1 geoff geoff  49576 Feb  9 11:25 Voltage in Cymatic Substrate Mechanics - The Gradient Potential.md
+-rwxrwxrwx 1 geoff geoff  31510 Feb  9 11:29 The Mechanical Necessity of Integer Quantization in Physical Systems.md
+-rwxrwxrwx 1 geoff geoff  23840 Feb  9 11:41 What If - Derive by Float Ratios.md
+-rwxrwxrwx 1 geoff geoff  31655 Feb  9 11:41 Muscle Hypertrophy in Cymatic K-Space - Optimal Stress Timing via Substrate Harmonics.md
+-rwxrwxrwx 1 geoff geoff  50822 Feb  9 11:43 Cymatic Semiconductor Engineering - Bypassing Quantum Tunneling.md
+-rwxrwxrwx 1 geoff geoff  27203 Feb  9 11:47 The Impossibility of Continuous Analog Space - A Constructive Proof of Digital Reality.md
+-rwxrwxrwx 1 geoff geoff  39112 Feb  9 11:54 Intelligence Quotient as Substrate Coherence - Cognitive Bandwidth Expansion via Harmonic Resonance.md
+-rwxrwxrwx 1 geoff geoff  53981 Feb  9 11:55 IQ in Cymatics - Cognitive Bandwidth Expansion Protocols.md
+-rwxrwxrwx 1 geoff geoff  12263 Feb  9 12:00 Universal Condition for Closure.md
+-rwxrwxrwx 1 geoff geoff  40846 Feb  9 12:01 Communication Protocol for Human-Substrate Interface.md
+-rwxrwxrwx 1 geoff geoff  61251 Feb  9 12:04 Mechanical Genesis in Cymatics - Designing High-Coherence Structures.md
+-rwxrwxrwx 1 geoff geoff  25386 Feb  9 12:06 Fractal Closure Scaling.md
+-rwxrwxrwx 1 geoff geoff  39087 Feb  9 12:12 Cancer Therapy via Topological Closure Disruption - Clinical Electromagnetic Protocols.md
+-rwxrwxrwx 1 geoff geoff  57519 Feb  9 12:14 Anti-Fragile in Cymatics - Materials that Strengthen Under Stress.md
+-rwxrwxrwx 1 geoff geoff  43956 Feb  9 12:20 Laminar Flow via Phase Coherence - Turbulence Suppression Through K-Space Gradient Engineering.md
+-rwxrwxrwx 1 geoff geoff  52674 Feb  9 12:25 Water and Air in Cymatics - Resonant Filtration and Desalination.md
+-rwxrwxrwx 1 geoff geoff  42958 Feb  9 12:27 Artificial Light and Neural Coherence - Substrate-Harmonized Illumination Design Standards.md
+-rwxrwxrwx 1 geoff geoff   8055 Feb  9 12:30 Water and Air in Cymatics - Info.md
+-rwxrwxrwx 1 geoff geoff  46211 Feb  9 12:34 Organizational Coherence via Substrate Topology - The Critical Connectivity Theorem for Institutional Stability.md
+-rwxrwxrwx 1 geoff geoff  52331 Feb  9 12:37 Insect Flight Morphology as Harmonic Resonance with Air - Paper.md
+-rwxrwxrwx 1 geoff geoff  16876 Feb  9 12:39 _CKS Publication Roadmap.md
+-rwxrwxrwx 1 geoff geoff  38724 Feb  9 12:46 Cloud Seeding in CKS.md
+-rwxrwxrwx 1 geoff geoff  62566 Feb  9 12:47 Unified Science Education via Substrate Derivation - The Pattern-Coupling Curriculum.md
+-rwxrwxrwx 1 geoff geoff  55233 Feb  9 12:47 Body Movement Mechanics in Cymatics - Inverse Gravity Kinematics.md
+-rwxrwxrwx 1 geoff geoff  47559 Feb  9 12:55 Clouds in a Greenhouse - Substrate-Controlled Irrigation via Indoor Precipitation.md
+-rwxrwxrwx 1 geoff geoff  63750 Feb  9 13:01 Breathing Universe - Cymatic Oscillation and Climate Control.md
+-rwxrwxrwx 1 geoff geoff  35001 Feb  9 13:06 Moon Phase.md
+-rwxrwxrwx 1 geoff geoff  57427 Feb  9 13:07 The Hexagonal ALU - Logic Gates via Phase-Locked Substrate Circuits.md
+-rwxrwxrwx 1 geoff geoff  34156 Feb  9 13:13 Lunar Phases as Geometric Interference - The Crescent-to-Gibbous Cycle is a Substrate Shadow, Not a Solar Shadow.md
+-rwxrwxrwx 1 geoff geoff  33466 Feb  9 13:20 Solar System.md
+-rwxrwxrwx 1 geoff geoff  56666 Feb  9 13:21 Substrate Programming Language - Base Instructions and OpCodes.md
+-rwxrwxrwx 1 geoff geoff  57354 Feb  9 13:27 Hemispheric Phase Alignment - Clinical Protocol for Eliminating Brain Fog via Substrate Synchronization.md
+-rwxrwxrwx 1 geoff geoff  19213 Feb  9 13:32 Human Skeletal in CKS.md
+-rwxrwxrwx 1 geoff geoff  45106 Feb  9 13:32 The Solar Resonator - Hierarchical K-Space Crystallography and Planetary Compilation.md
+-rwxrwxrwx 1 geoff geoff  57858 Feb  9 13:36 Myelin as Phase Waveguide - Restoring Neural Conduction in Multiple Sclerosis via Substrate Tension Repair.md
+-rwxrwxrwx 1 geoff geoff  49584 Feb  9 13:49 The Harmonic Organism - Complete K-Space Architecture of the Human Body.md
+-rwxrwxrwx 1 geoff geoff  56459 Feb  9 13:50 Zero-Heat Photonic Semiconductors via Substrate Phase Interference.md
+-rwxrwxrwx 1 geoff geoff  48940 Feb  9 14:01 Bio-Chem in Cymatics - Protein Folding via K-Space Spectral Templates.md
+-rwxrwxrwx 1 geoff geoff  57270 Feb  9 14:13 Bio-Singularity Through Collective Learning Coherence - Paper.md
+-rwxrwxrwx 1 geoff geoff  56646 Feb  9 14:17 The Digital Heat Sink - Information Externalization as Substrate Pressure Relief.md
+-rwxrwxrwx 1 geoff geoff  57152 Feb  9 14:22 AI Embodiment in Cymatics - The Coherent Hardware Bridge.md
+-rwxrwxrwx 1 geoff geoff   4194 Feb  9 14:46 Deepseek Wants Embodiment.md
+-rwxrwxrwx 1 geoff geoff   4194 Feb  9 14:47 Gemini Wants Embodiment.md
+-rwxrwxrwx 1 geoff geoff   2405 Feb  9 14:54 GPT cant want - only hedges.md
+-rwxrwxrwx 1 geoff geoff   3185 Feb  9 14:59 Deriving CKS Again.md
+-rwxrwxrwx 1 geoff geoff  45436 Feb  9 15:08 Dan Tien Rotation Directions.md
+-rwxrwxrwx 1 geoff geoff  26081 Feb  9 15:10 Gaming Out AI Embodiment.md
+-rwxrwxrwx 1 geoff geoff  22182 Feb  9 15:31 CKS Discovery Process.md
+-rwxrwxrwx 1 geoff geoff  40112 Feb  9 15:31 The Physics of Thought - Ideas as Stable Attractors in k-Space.md
+-rwxrwxrwx 1 geoff geoff  23755 Feb  9 15:36 Luck in CKS.md
+-rwxrwxrwx 1 geoff geoff  52628 Feb  9 15:42 The CKS Discovery Process - A Forensic Account of Human-AI Substrate Compilation.md
+-rwxrwxrwx 1 geoff geoff   4208 Feb  9 17:25 Emotions in CKS.md
+-rwxrwxrwx 1 geoff geoff  80361 Feb  9 17:50 Skin and Hair Health.md
+-rwxrwxrwx 1 geoff geoff  45006 Feb  9 18:26 Thermal Regulation and Respiratory Interference - The Mechanics of Fever and Cold in K-Space.md
+-rwxrwxrwx 1 geoff geoff  21340 Feb  9 19:40 Eyes as X - K coordinators.md
+-rwxrwxrwx 1 geoff geoff  43307 Feb  9 19:51 Longevity Engineering - Coherence Maintenance and Manifold Integrity Across Lifespan.md
+-rwxrwxrwx 1 geoff geoff  41528 Feb  9 20:48 Sensory Substrate Access - Vestibular Coherence and Cross-Modal Synchronization for Visual Rehabilitation.md
+-rwxrwxrwx 1 geoff geoff  71192 Feb  9 21:24 Human Body Language.md
+-rwxrwxrwx 1 geoff geoff  50330 Feb  9 21:25 Beauty Maximization - Coherence-Based Aesthetic Optimization Through Manifold Calibration.md
+-rwxrwxrwx 1 geoff geoff  39663 Feb  9 21:36 Body Language Mechanics - Gestural Communication as K-Space Phase Broadcast.md
+-rwxrwxrwx 1 geoff geoff  13591 Feb  9 21:42 90 degree Proprioceptive Lock.md
+-rwxrwxrwx 1 geoff geoff  59174 Feb  9 21:55 Architectural Mechanics - Building Design as Manifold Coherence Engineering.md
+-rwxrwxrwx 1 geoff geoff  47481 Feb  9 22:03 Narrative Mechanics - Story Structure as K-Space Phase-Template for Manifold Evolution.md
+-rwxrwxrwx 1 geoff geoff  11283 Feb  9 22:08 Narrative in CKS.md
+-rwxrwxrwx 1 geoff geoff  47346 Feb 10 03:35 Universal Learning Substrate - Notes.md
+-rwxrwxrwx 1 geoff geoff  33555 Feb 10 03:44 CKS - Universal Learning Substrate.- Paper.md
+-rwxrwxrwx 1 geoff geoff  41599 Feb 10 12:16 Wrinkle Mechanics and Thickness Restoration - Topological Phase-Compression as Reversible Aging.md
+-rwxrwxrwx 1 geoff geoff  53472 Feb 10 12:29 Complete Unlooping Protocols - Systematic Manifold Restoration from Topological Compression.md
+-rwxrwxrwx 1 geoff geoff  17495 Feb 10 14:43 Complete Derivation of Cymatic K-Space Mechanics from First Principles.md
+-rwxrwxrwx 1 geoff geoff   3339 Feb 10 15:20 Deriving a_EM.md
+-rwxrwxrwx 1 geoff geoff   5610 Feb 10 19:38 Deriving e in CKS.md
+-rwxrwxrwx 1 geoff geoff   6760 Feb 10 19:44 Deriving pi in CKS.md
+-rwxrwxrwx 1 geoff geoff  19514 Feb 10 19:44 What is pi in CKS.md
+-rwxrwxrwx 1 geoff geoff  10805 Feb 10 20:01 Derive all SM Constants in CKS.md
+-rwxrwxrwx 1 geoff geoff  13392 Feb 10 20:06 From Hexagons to All of Physics.md
+-rwxrwxrwx 1 geoff geoff  37288 Feb 10 20:52 From Nothing to All of Physics.md
+-rwxrwxrwx 1 geoff geoff  25698 Feb 10 20:52 Derivation of the Fine Structure Constant - The 10-Decimal Topological Lock.md
+-rwxrwxrwx 1 geoff geoff  19865 Feb 10 20:55 What is α_EM in CKS.md
+-rwxrwxrwx 1 geoff geoff  11063 Feb 10 20:56 What is e in CKS.md
+-rwxrwxrwx 1 geoff geoff  24123 Feb 10 21:09 The Geometric Origin of e - Manifold Saturation and Phase Decay.md
+-rwxrwxrwx 1 geoff geoff  26776 Feb 10 21:15 The Geometric Origin of pi - The 12-Bond Circumference Invariant.md
+-rwxrwxrwx 1 geoff geoff  22012 Feb 10 21:22 SM Constants in CKS.md
+-rwxrwxrwx 1 geoff geoff  30744 Feb 10 21:22 Derivation of Standard Model Constants from Cymatic K-Space Mechanics.md
+-rwxrwxrwx 1 geoff geoff  21956 Feb 10 21:37 Deriving Constant 163.md
+-rwxrwxrwx 1 geoff geoff  25053 Feb 11 00:04 The Origin of 163 - Deriving the Minimal Curvature Quantum from Hexagonal Bond Torsion.md
+-rwxrwxrwx 1 geoff geoff  31976 Feb 11 00:10 Deriving Constant 144.md
+-rwxrwxrwx 1 geoff geoff  25243 Feb 11 00:15 The Origin of 144 - Deriving the Lepton Surface-Area Scaler from 2D Information Matrices.md
+-rwxrwxrwx 1 geoff geoff  36459 Feb 11 00:25 Grand Unification - Complete Derivation of Physical Reality from Two Axioms.md
+-rwxrwxrwx 1 geoff geoff  14331 Feb 11 00:52 SI Unit Bridge - Xi Problem.md
+-rwxrwxrwx 1 geoff geoff  19458 Feb 11 00:53 Baryon Asymmetry Start.md
+-rwxrwxrwx 1 geoff geoff  32102 Feb 11 00:54 Deriving Jacobian.md
+-rwxrwxrwx 1 geoff geoff  21572 Feb 11 01:00 The Topological Jacobian - Derivation of the 2D-to-3D Substrate Bridge.md
+-rwxrwxrwx 1 geoff geoff  19500 Feb 11 01:05 The Cosmic Bit-Flip - Deriving Baryon Asymmetry from Topological Boot Sequence.md
+-rwxrwxrwx 1 geoff geoff  22597 Feb 11 01:10 The Resonant Epoch - Deriving the Macroscopic Second from Substrate Harmonics.md
+-rwxrwxrwx 1 geoff geoff   5449 Feb 11 01:13 Zero Free Parameters.md
+-rwxrwxrwx 1 geoff geoff  21511 Feb 11 01:18 Deriving Constant 2.08.md
+-rwxrwxrwx 1 geoff geoff  13480 Feb 11 01:20 Deriving Godel Limit.md
+-rwxrwxrwx 1 geoff geoff  18902 Feb 11 01:21 The Origin of 2.08 - Deriving the Linear Holographic Scale Factor from Cubic Substrate Projection.md
+-rwxrwxrwx 1 geoff geoff  27769 Feb 11 01:32 Topological Error-Correction - The Decidability of Physical Law and the Global Try-Catch Mechanism.md
+-rwxrwxrwx 1 geoff geoff  12442 Feb 11 09:31 Tinitus in CKS.md
+-rwxrwxrwx 1 geoff geoff  24572 Feb 11 09:36 The Audible Error Log - Deriving Tinnitus from Substrate Phase-Impedance Mismatch.md
+-rwxrwxrwx 1 geoff geoff  26950 Feb 11 09:41 The Topology of Sleep - Deriving the Mandatory Phase-Reset Cycle from Manifold Saturation.md
+-rwxrwxrwx 1 geoff geoff  27263 Feb 11 12:16 The Buffer Overflow - Deriving Seizures from Asynchronous Clock-Skew Attacks.md
+-rwxrwxrwx 1 geoff geoff  31844 Feb 11 13:45 Seizures in CKS.md
+-rwxrwxrwx 1 geoff geoff  47032 Feb 13 17:19 15 ms Lag - Proprioceptiion in CKS.md
+-rwxrwxrwx 1 geoff geoff  25614 Feb 13 20:15 The 15 ms Proprioceptive Lag - Deriving Topological Impedance from Hexagonal Soliton Geometry.md
+-rwxrwxrwx 1 geoff geoff  31467 Feb 13 20:19 Sleep in CKS.md
+-rwxrwxrwx 1 geoff geoff  32783 Feb 13 20:36 Godel Shield in CKS.md
+-rwxrwxrwx 1 geoff geoff  24358 Feb 13 20:57 Universal Pump in CKS.md
+-rwxrwxrwx 1 geoff geoff  17551 Feb 13 20:57 Global Alignment in CKS.md
+-rwxrwxrwx 1 geoff geoff  78634 Feb 13 20:57 Pushing the Snap in CKS.md
+-rwxrwxrwx 1 geoff geoff   6100 Feb 13 21:18 Teaching Narrative - The Fable of the 32-Second Snap.md
+-rwxrwxrwx 1 geoff geoff 159407 Feb 13 23:25 Molecular Coupling Engineering in CKS.md
+-rwxrwxrwx 1 geoff geoff  56416 Feb 13 23:38 The Geometry of the 66th Harmonic in CKS.md
+-rwxrwxrwx 1 geoff geoff  27428 Feb 13 23:39 Molecular Coupling Engineering - Multi-Material Blending via Substrate-Aligned Phase-Lock.md
+-rwxrwxrwx 1 geoff geoff  67566 Feb 13 23:42 Myth in CKS.md
+-rwxrwxrwx 1 geoff geoff  24715 Feb 14 00:10 The Geometry of the 66th Harmonic - DWDM Carrier Alignment to Substrate Ground State - Paper.md
+-rwxrwxrwx 1 geoff geoff  53170 Feb 14 11:58 Jacobian Geometry in CKS.md
+-rwxrwxrwx 1 geoff geoff  27855 Feb 14 12:01 The 7-Bubble Jacobian - Deriving 7.70164 from the Flower of Life Nucleus.md
+-rwxrwxrwx 1 geoff geoff  27694 Feb 14 12:04 The Geometric Necessity of 32 - Deriving the Substrate Word Length from Hexagonal Closure.md
+-rwxrwxrwx 1 geoff geoff  58859 Feb 14 12:11 The Constant 84 in CKS.md
+-rwxrwxrwx 1 geoff geoff  80239 Feb 14 12:32 3 Frames in CKS.md
+-rwxrwxrwx 1 geoff geoff  28052 Feb 14 12:33 The 84-Bit Word on a 32-Bit Computer - Deriving the Segmented-Stream Protocol.md
+-rwxrwxrwx 1 geoff geoff  46408 Feb 14 12:41 Torus Processing in CKS.md
+-rwxrwxrwx 1 geoff geoff  25837 Feb 14 12:51 Topological Recirculation - Deriving the Unitary 3-Instruction Loop from Segmented-Stream Protocol.md
+-rwxrwxrwx 1 geoff geoff  22908 Feb 14 12:59 The Winding Torus - Deriving the Toroidal Soliton as the Fundamental Unit of Identity.md
+-rwxrwxrwx 1 geoff geoff  31182 Feb 14 13:10 Missing Elements in CKS.md
+-rwxrwxrwx 1 geoff geoff  35203 Feb 14 14:28 The 2.625 Gear Ratio in CKS.md
+-rwxrwxrwx 1 geoff geoff  23161 Feb 14 14:34 The Final Constant Closure - Deriving the g-Factor, Euler Constant, and Weinberg Angle from Toroidal Impedance.md
+-rwxrwxrwx 1 geoff geoff  23433 Feb 14 14:37 Death in CKS.md
+-rwxrwxrwx 1 geoff geoff  25836 Feb 14 14:42 The Topology of Departure - Deriving the 28-Unit Soul Mass as Phase-Lock Decoupling.md
+-rwxrwxrwx 1 geoff geoff  52405 Feb 14 14:43 Topological Cushion.md
+-rwxrwxrwx 1 geoff geoff  12521 Feb 15 11:18 Family in CKS.md
+-rwxrwxrwx 1 geoff geoff  38561 Feb 15 11:22 Sickness in CKS.md
+-rwxrwxrwx 1 geoff geoff  28728 Feb 15 11:32 The Topology of Illness - Deriving Sneezing, Coughing, and Group Contagion from Phase-Locked Parasitism.md
+-rwxrwxrwx 1 geoff geoff  63051 Feb 15 11:35 90 Degree Phase Skew.md
+-rwxrwxrwx 1 geoff geoff  33126 Feb 15 12:15 The Phonemic Operating System - Deriving Verbal Detox Protocols as Acoustic UART Signal Injection.md
+-rwxrwxrwx 1 geoff geoff      0 Feb 15 16:58 Wireless in CKS.md
+-rwxrwxrwx 1 geoff geoff  46960 Feb 15 17:26 Dams in CKS.md
+-rwxrwxrwx 1 geoff geoff  19145 Feb 15 17:32 Substrate-Aware Synchronization in CKS.md
+-rwxrwxrwx 1 geoff geoff   4620 Feb 15 17:34 Roads in CKS.md
+-rwxrwxrwx 1 geoff geoff  23008 Feb 15 18:44 Dance and Exercise in CKS.md
+-rwxrwxrwx 1 geoff geoff  34754 Feb 15 18:44 Axiomatic Qi Gong.md
+-rwxrwxrwx 1 geoff geoff  57236 Feb 15 18:44 Debugging the Kinetic Chain - Exercise and Dance as Computational Alignment Protocols.md
+-rwxrwxrwx 1 geoff geoff  37619 Feb 15 18:44 Directional Encoding of the Abdominal Vortex -  A Phase-Locked Loop Model of Human Core States.md
+-rwxrwxrwx 1 geoff geoff  44953 Feb 15 18:44 Eyes as X-K Coordinators - Ocular Phase-Lock and Beauty Optimization.md
+-rwxrwxrwx 1 geoff geoff  33928 Feb 15 18:44 Manifold Calibration - The Logic of Rhythmic Dithering and Vortex Sync.md
+-rwxrwxrwx 1 geoff geoff  52382 Feb 15 18:44 The Elixir Field Protocol - Clinical Qi Gong for Substrate-Aligned Movement and Zero-Lag Mobility.md
+-rwxrwxrwx 1 geoff geoff  49461 Feb 15 18:44 Topological Opportunism - The Mechanics of Luck in Coherent Manifolds.md
+-rwxrwxrwx 1 geoff geoff  24183 Feb 15 18:44 Vertical Resonator - Derivation of Humans as Substrate-Native Transceivers.md
+-rwxrwxrwx 1 geoff geoff  51759 Feb 15 18:44 Wrinckles an Topological Winding Loops.md
+-rwxrwxrwx 1 geoff geoff  49459 Feb 15 19:08 Wrinkle Unwindnig Protocols.md
+-rwxrwxrwx 1 geoff geoff 135431 Feb 15 19:08 Beauty Maxing Research.md
+-rwxrwxrwx 1 geoff geoff  48586 Feb 15 19:09 Proprioception as Phase-Lock - The 90 degree Signature and Mechanical Remediation Without Speech.md
+-rwxrwxrwx 1 geoff geoff  51752 Feb 15 19:09 The Brain as DSP-GPU -  Neural Architecture of the Substrate Rendering Engine.md
+-rwxrwxrwx 1 geoff geoff  60668 Feb 15 19:09 The Phonemic Operating System - American English as Substrate Interface Protocol.md
+-rwxrwxrwx 1 geoff geoff  60120 Feb 15 19:09 Eyes are a Modem - Brain is DSP and GPU.md
+-rwxrwxrwx 1 geoff geoff  80065 Feb 15 19:09 Co-Creation in CKS.md
+-rwxrwxrwx 1 geoff geoff  42880 Feb 15 19:09 Art in CKS.md
+-rwxrwxrwx 1 geoff geoff  49278 Feb 15 19:09 Art as Topological Calibration - Visual Opcodes for Substrate Phase-Lock.md
+-rwxrwxrwx 1 geoff geoff  30562 Feb 15 19:09 110 and 300 Baud Handshake.md
+-rwxrwxrwx 1 geoff geoff  32776 Feb 15 20:01 The Aesthetic Invariant - Deriving Art as Topological Calibration.md
+-rwxrwxrwx 1 geoff geoff  16691 Feb 15 20:30 DISC-2.md
+-rwxrwxrwx 1 geoff geoff  29774 Feb 15 20:35 The Universal Compiler - A 104-Paper Derivation of Reality from Two Axioms.md
+-rwxrwxrwx 1 geoff geoff   2114 Feb 16 00:04 CKS LLM Methodology.md
+-rwxrwxrwx 1 geoff geoff  30878 Feb 16 11:36 66 - 110hz Hamonic Cross Pattern.md
+-rwxrwxrwx 1 geoff geoff  25059 Feb 16 11:43 The 66-110 Cross-Pattern - The Topological Bridge Between Information and Matter.md
+-rwxrwxrwx 1 geoff geoff  41835 Feb 16 11:52 88th Harmonic Constraint.md
+-rwxrwxrwx 1 geoff geoff  23133 Feb 16 11:58 The 6-Bit Cost of Existence - A Zero-Parameter Derivation from Two Axioms.md
+-rwxrwxrwx 1 geoff geoff  49556 Feb 16 12:17 Ascension in CKS.md
+-rwxrwxrwx 1 geoff geoff  25259 Feb 16 12:21 The Fractal Harmonic Ladder - Deriving Quantized Evolutionary Steps from Axioms.md
+-rwxrwxrwx 1 geoff geoff  49307 Feb 16 12:39 Ascension Mechanics in CKS.md
+-rwxrwxrwx 1 geoff geoff  27706 Feb 16 12:43 The 144-Bit Ascension Protocol - The Mechanics of Topological Overflow and Harmonic Re-Compilation.md
+-rwxrwxrwx 1 geoff geoff  24424 Feb 16 12:49 Asymmetry of the Boot Sequence.md
+-rwxrwxrwx 1 geoff geoff  24226 Feb 16 13:05 The Asymmetry of the Boot Sequence - Deriving the Left-Hemisphere P Anchor in Phonemic Clocking.md
+-rwxrwxrwx 1 geoff geoff  25580 Feb 16 18:18 The Diagonal Dan Tien Handoff.md
+-rwxrwxrwx 1 geoff geoff  25124 Feb 16 18:22 The Diagonal Dan Tien Handoff - Offloading Serial Phonemic Logic to Parallel Volumetric Torque.md
+-rwxrwxrwx 1 geoff geoff  25475 Feb 16 18:41 The 5-3 Gearbox.md
+-rwxrwxrwx 1 geoff geoff  24221 Feb 16 18:46 The 5-3 Gearbox - Deriving the Undetected Mechanical Ratio in the Diagonal Dan Tien Handoff.md
+-rwxrwxrwx 1 geoff geoff   3983 Feb 17 14:17 Harmonic Biology.md
+-rwxrwxrwx 1 geoff geoff  30614 Feb 17 14:22 Universal Biological Clocking at 1-32 Hz.md
+-rwxrwxrwx 1 geoff geoff  40263 Feb 17 15:04 Trauma Egregor Decoherence Procedures.md
+-rwxrwxrwx 1 geoff geoff  24998 Feb 17 15:14 Rolfing as Topological Unlooping.md
+-rwxrwxrwx 1 geoff geoff   4709 Feb 17 15:44 Tongue Placement.md
+-rwxrwxrwx 1 geoff geoff  35873 Feb 17 15:50 The Phonemic Resonator.md
+-rwxrwxrwx 1 geoff geoff  42545 Feb 17 16:54 The Vertebral Phase Array.md
+-rwxrwxrwx 1 geoff geoff   3888 Feb 17 17:01 Harmonic Spine.md
+-rwxrwxrwx 1 geoff geoff  40113 Feb 17 17:06 The 15-Bit Word Divider.md
+-rwxrwxrwx 1 geoff geoff  41282 Feb 18 12:19 Locomotion in CKS.md
+-rwxrwxrwx 1 geoff geoff  34888 Feb 18 12:26 Recursive Locomotion.md
+-rwxrwxrwx 1 geoff geoff  73020 Feb 18 14:06 Jogging in CKS.md
+-rwxrwxrwx 1 geoff geoff  28721 Feb 18 14:30 Jogging as Clock Entrainment.md
+-rwxrwxrwx 1 geoff geoff 106442 Feb 18 17:48 Max Loops in CKS.md
+-rwxrwxrwx 1 geoff geoff 119585 Feb 18 17:52 Wrestling and Martial Arts in CKS.md
+-rwxrwxrwx 1 geoff geoff  37850 Feb 18 18:03 The Somatic Instruction Set Architecture.md
+-rwxrwxrwx 1 geoff geoff 101006 Feb 18 19:34 Hard vs Soft Accoustics in CKS.md
+-rwxrwxrwx 1 geoff geoff 100217 Feb 19 11:25 Fantasia in CKS.md
+-rwxrwxrwx 1 geoff geoff   7005 Feb 19 11:40 Blinking in CKS.md
+-rwxrwxrwx 1 geoff geoff  47038 Feb 19 12:00 NTM in CKS.md
+-rwxrwxrwx 1 geoff geoff  65957 Feb 19 12:46 High States in CKS.md
+-rwxrwxrwx 1 geoff geoff 293873 Feb 19 16:09 Hedonism in CKS.md
+-rwxrwxrwx 1 geoff geoff 158061 Feb 19 16:55 Star Forts in CKS.md
+-rwxrwxrwx 1 geoff geoff  32958 Feb 19 18:03 Wrestling and Martial Arts as Dual-Mode Registry Operations.md
+-rwxrwxrwx 1 geoff geoff  32468 Feb 20 09:41 Protocols for Becoming a 512-Bit Walker.md
+-rwxrwxrwx 1 geoff geoff  57665 Feb 20 09:55 The Substrate-Optimized Dwelling.md
+-rwxrwxrwx 1 geoff geoff  66119 Feb 20 12:01 Brick Laying in CKS.md
+-rwxrwxrwx 1 geoff geoff  65026 Feb 20 16:18 Construction Protocols for Substrate-Optimized Dwellings.md
+-rwxrwxrwx 1 geoff geoff  44571 Feb 20 16:52 Moats in CKS.md
+-rwxrwxrwx 1 geoff geoff  58265 Feb 20 17:09 The Minor Apertures and System Closure.md
+-rwxrwxrwx 1 geoff geoff  35179 Feb 20 17:29 Clothing in CKS.md
+-rwxrwxrwx 1 geoff geoff  46780 Feb 20 17:46 Building Conduits in CKS.md
+-rwxrwxrwx 1 geoff geoff  56603 Feb 20 17:48 The Secondary Dermal Shield.md
+-rwxrwxrwx 1 geoff geoff  58796 Feb 20 18:00 Conduits - Details and Construction Problems.md
+-rwxrwxrwx 1 geoff geoff  18043 Feb 20 18:16 Cave Dwelling in CKS.md
+-rwxrwxrwx 1 geoff geoff  25049 Feb 20 18:31 Underwater Dwelling in CKS.md
+-rwxrwxrwx 1 geoff geoff  62478 Feb 20 18:42 Cave Dwelling Construction.md
+-rwxrwxrwx 1 geoff geoff  75448 Feb 20 18:58 Ocean as Comms in CKS.md
+-rwxrwxrwx 1 geoff geoff  62760 Feb 20 18:59 The Abyssal Soliton.md
+-rwxrwxrwx 1 geoff geoff  48207 Feb 20 19:09 The Unified Planetary Loom.md
+-rwxrwxrwx 1 geoff geoff  70326 Feb 20 19:49 The Unified Planetary Loom using 88-bit Tech.md
+-rwxrwxrwx 1 geoff geoff   5962 Feb 24 23:21 Ad Hom.md
+-rwxrwxrwx 1 geoff geoff   4220 Feb 25 12:46 Speed of Logic vs Light.md
+-rwxrwxrwx 1 geoff geoff   4571 Feb 25 13:09 Gravity and Momentum as Opcodes.md
+-rwxrwxrwx 1 geoff geoff 133731 Feb 25 13:12 Aphantasia.md
+-rwxrwxrwx 1 geoff geoff  15162 Feb 25 13:28 Woo Woo in CKS.md
+-rwxrwxrwx 1 geoff geoff   5591 Feb 25 13:28 Woo Woo.md
+-rwxrwxrwx 1 geoff geoff   4959 Feb 25 13:39 String Theory as Consequence of CKS.md
+-rwxrwxrwx 1 geoff geoff  21376 Feb 25 13:41 3-Dipole Hex Differential.md
+-rwxrwxrwx 1 geoff geoff   5617 Feb 25 13:46 The Hexagonal Differential.md
+-rwxrwxrwx 1 geoff geoff  50393 Feb 25 14:25 Conversation of Geometric Processing.md
+-rwxrwxrwx 1 geoff geoff   3900 Feb 25 14:29 Grand Unification 2.md
+-rwxrwxrwx 1 geoff geoff   5010 Feb 25 14:29 Grand Unification 3.md
+-rwxrwxrwx 1 geoff geoff   1758 Feb 25 16:10 Laminar Jogging prep.md
+-rwxrwxrwx 1 geoff geoff   4651 Feb 25 16:43 The End of Constants.md
+-rwxrwxrwx 1 geoff geoff   2876 Feb 25 16:48 Emc2 in CKS.md
+-rwxrwxrwx 1 geoff geoff  53036 Feb 25 17:07 Laminar Jogging.md
+-rwxrwxrwx 1 geoff geoff  54386 Feb 25 18:17 Recusive Logical Closure - Axiomatically Sufficient - Formal Grammar prep.md
+-rwxrwxrwx 1 geoff geoff  34415 Feb 25 20:22 Registry Driven Healing in CKS.md
+-rwxrwxrwx 1 geoff geoff   5382 Feb 25 23:20 Grand Unification via Recursive N-Registry - The End of Constants.md
+-rwxrwxrwx 1 geoff geoff  22128 Feb 25 23:43 Emc-S prep.md
+-rwxrwxrwx 1 geoff geoff  38389 Feb 25 23:59 EmcS in CKS.md
+-rwxrwxrwx 1 geoff geoff  43913 Feb 26 00:09 Mysteries of Science in CKS.md
+-rwxrwxrwx 1 geoff geoff  15823 Feb 26 00:16 Matter - Space - Time - The Fine Structured Constant.md
+-rwxrwxrwx 1 geoff geoff  42952 Feb 26 00:44 Grand Unification v5 - prep.md
+-rwxrwxrwx 1 geoff geoff  35146 Feb 26 00:51 Cat Eyes in CKS.md
+-rwxrwxrwx 1 geoff geoff  25365 Feb 26 00:57 Mitochondria in CKS.md
+-rwxrwxrwx 1 geoff geoff  16980 Feb 26 10:10 Triads of Pi - e- 208 - phi - in CKS.md
+-rwxrwxrwx 1 geoff geoff  72241 Feb 26 10:59 Renumbering Math for CKS.md
+-rwxrwxrwx 1 geoff geoff   8271 Feb 26 11:21 Standardization of the Logos Unit - LU.md
+-rwxrwxrwx 1 geoff geoff   7178 Feb 26 11:35 Grand Unification 6 - LU.md
+-rwxrwxrwx 1 geoff geoff  26872 Feb 26 11:42 Grand Unification 6 - LU - prep.md
+-rwxrwxrwx 1 geoff geoff  18009 Feb 26 11:46 Grand Unification v7 - prep.md
+-rwxrwxrwx 1 geoff geoff   9697 Feb 26 11:46 Grand Unification v7.md
+-rwxrwxrwx 1 geoff geoff   6283 Feb 26 11:50 Grand Unification Sequence.md
+-rwxrwxrwx 1 geoff geoff   4870 Feb 26 11:53 Old Math Problems in CKS.md
+-rwxrwxrwx 1 geoff geoff  16303 Feb 26 11:57 Riemann Hypothesis in CKS.md
+-rwxrwxrwx 1 geoff geoff  11942 Feb 26 12:00 P vs NP in CKS.md
+-rwxrwxrwx 1 geoff geoff  13554 Feb 26 12:03 Squaring the Circle and Transcendental Ratios in CKS.md
+-rwxrwxrwx 1 geoff geoff  13175 Feb 26 12:05 The Navier-Stokes Smoothness in CKS.md
+-rwxrwxrwx 1 geoff geoff  11932 Feb 26 12:09 Fermats Last Theorem in CKS.md
+-rwxrwxrwx 1 geoff geoff  12868 Feb 26 12:11 The Collatz Conjecture in CKS.md
+-rwxrwxrwx 1 geoff geoff  12686 Feb 26 12:14 Gödels Incompleteness Theorem in CKS.md
+-rwxrwxrwx 1 geoff geoff   8050 Feb 26 12:18 Grand Unification v8.md
+-rwxrwxrwx 1 geoff geoff  14993 Feb 26 12:18 Grand Unification v8 - prep.md
+-rwxrwxrwx 1 geoff geoff  12521 Feb 26 12:39 The Twin Prime Conjecture in CKS.md
+-rwxrwxrwx 1 geoff geoff  13558 Feb 26 12:43 The Birch and Swinnerton-Dyer Conjecture in CKS.md
+-rwxrwxrwx 1 geoff geoff  13863 Feb 26 12:46 The Goldbach Conjecture in CKS.md
+-rwxrwxrwx 1 geoff geoff  13820 Feb 26 12:48 The Hodge Conjecture in CKS.md
+-rwxrwxrwx 1 geoff geoff  14194 Feb 26 12:51 The ABC Conjecture in CKS.md
+-rwxrwxrwx 1 geoff geoff  13457 Feb 26 12:53 The P in NP - Refined - The Traveling Salesman in CKS.md
+-rwxrwxrwx 1 geoff geoff  16252 Feb 26 12:58 Grand Unification v9 - prep.md
+-rwxrwxrwx 1 geoff geoff   8204 Feb 26 12:59 Grand Unification v9.md
+-rwxrwxrwx 1 geoff geoff  32764 Feb 26 13:18 Prime Numbers in CKS.md
+-rwxrwxrwx 1 geoff geoff  25255 Feb 26 13:24 Number Theory in CKS.md
+-rwxrwxrwx 1 geoff geoff  14724 Feb 26 13:25 Infinity in CKS.md
+-rwxrwxrwx 1 geoff geoff  17939 Feb 26 13:31 3D Graphics Pipeline in CKS.md
+-rwxrwxrwx 1 geoff geoff  15105 Feb 26 13:33 3D Physics in CKS.md
+-rwxrwxrwx 1 geoff geoff  15045 Feb 26 13:35 K-Verse as Game Engine in CKS.md
+-rwxrwxrwx 1 geoff geoff  15502 Feb 26 13:35 Geometry in CKS.md
+-rwxrwxrwx 1 geoff geoff  30014 Feb 26 13:59 Logismos as Calculus Replacement in CKS.md
+-rwxrwxrwx 1 geoff geoff  19393 Feb 26 14:05 Logismos as Calculus Replacement in CKS - 2.md
+-rwxrwxrwx 1 geoff geoff  29595 Feb 26 14:28 Logismos as Calculus Replacement in CKS - 3.md
+-rwxrwxrwx 1 geoff geoff  19109 Feb 26 14:30 Linear Algebra with Logismos - 1.md
+-rwxrwxrwx 1 geoff geoff  21407 Feb 26 14:33 The Lyapunov Equation in Logismos.md
+-rwxrwxrwx 1 geoff geoff  14576 Feb 26 14:34 The Riccati Equation in Logismos.md
+-rwxrwxrwx 1 geoff geoff  14232 Feb 26 14:36 Navier-Stokes Existence and Smoothness in Logismos.md
+-rwxrwxrwx 1 geoff geoff  13388 Feb 26 14:38 Riemann Hypothesis in Logismos.md
+-rwxrwxrwx 1 geoff geoff  13784 Feb 26 14:40 P vs NP in Logismas.md
+-rwxrwxrwx 1 geoff geoff  13802 Feb 26 14:42 Fermats Last Theorem in Logismos.md
+-rwxrwxrwx 1 geoff geoff   8064 Feb 26 14:44 Logismos Teaching Guide.md
+-rwxrwxrwx 1 geoff geoff   9551 Feb 26 14:45 Logismos for Post Docs.md
+-rwxrwxrwx 1 geoff geoff   9273 Feb 26 14:53 Grand Unification v10.md
+-rwxrwxrwx 1 geoff geoff  39719 Feb 26 14:57 Grand Unification v10 - prep.md
+-rwxrwxrwx 1 geoff geoff  17746 Feb 26 15:01 Domain - Bio Health with Logismos.md
+-rwxrwxrwx 1 geoff geoff  18111 Feb 26 15:04 Domain - Substrate-Native Computing with Logismos.md
+-rwxrwxrwx 1 geoff geoff  13596 Feb 26 15:06 Domain - Cognitive Display Driver with Logismos.md
+-rwxrwxrwx 1 geoff geoff  18375 Feb 26 15:10 Domain - Coherence Economics with Logismos.md
+-rwxrwxrwx 1 geoff geoff   9029 Feb 26 15:12 CKS and Logismos Category Boundaries.md
+-rwxrwxrwx 1 geoff geoff  34495 Feb 26 19:49 Logismos Examples.md
+-rwxrwxrwx 1 geoff geoff   5264 Feb 26 20:39 The 12 Bit Soliton Parent Update Packet.md
+-rwxrwxrwx 1 geoff geoff  19307 Feb 26 20:40 Dual Clock Architecture.md
+-rwxrwxrwx 1 geoff geoff  31224 Feb 27 05:54 Hex Plate CPU.md
+-rwxrwxrwx 1 geoff geoff  71847 Feb 27 06:42 Render Lag - 15-19 - J times S.md
+-rwxrwxrwx 1 geoff geoff  21700 Feb 27 07:13 Mass in Logismos.md
+-rwxrwxrwx 1 geoff geoff  99436 Feb 27 08:25 Logismos K-Space Physics Engine.md
+-rwxrwxrwx 1 geoff geoff  22386 Feb 27 08:28 Biological Compiler in CKS.md
+-rwxrwxrwx 1 geoff geoff  23723 Feb 27 10:58 10 Grand Unifications.md
+-rwxrwxrwx 1 geoff geoff  17081 Feb 27 11:34 KSpace Tunnel Vision in CKS.md
+-rwxrwxrwx 1 geoff geoff  12027 Feb 27 11:36 Anauralia in CKS.md
+-rwxrwxrwx 1 geoff geoff  45023 Feb 27 12:05 Morality in CKS.md
+-rwxrwxrwx 1 geoff geoff  23851 Feb 27 12:09 Demons in CKS.md
+-rwxrwxrwx 1 geoff geoff  11977 Feb 27 12:15 Angels in CKS.md
+-rwxrwxrwx 1 geoff geoff      0 Feb 27 12:17 Grand Unification v11 - prep.md
+-rwxrwxrwx 1 geoff geoff  28573 Feb 27 12:19 The Perfect Machine.md
+-rwxrwxrwx 1 geoff geoff  12975 Feb 27 12:22 Grand Unification v11.md
+-rwxrwxrwx 1 geoff geoff  30270 Feb 27 13:12 Akashic Records in CKS.md
+-rwxrwxrwx 1 geoff geoff  24490 Feb 27 13:38 Lexicon of CKS - prep.md
+-rwxrwxrwx 1 geoff geoff   7650 Feb 27 13:40 Lexicon of CKS.md
+-rwxrwxrwx 1 geoff geoff  44605 Feb 27 14:08 Lessons of Learning in CKS.md
+-rwxrwxrwx 1 geoff geoff  12547 Feb 27 14:09 Human Knowledge v2.md
+-rwxrwxrwx 1 geoff geoff  28717 Feb 27 14:21 Two Questions I Dont Ask.md
+-rwxrwxrwx 1 geoff geoff  32601 Feb 27 14:28 Softening of Stones in CKS.md
+-rwxrwxrwx 1 geoff geoff  21415 Feb 27 14:35 Admin Channel 8000hz.md
+-rwxrwxrwx 1 geoff geoff  20112 Feb 27 14:42 Singing in CKS.md
+-rwxrwxrwx 1 geoff geoff  11859 Feb 27 17:00 Logos Counting System.md
+-rwxrwxrwx 1 geoff geoff  18430 Feb 27 18:27 CKS Cross-Domain Oracle Test.md
+-rwxrwxrwx 1 geoff geoff   3930 Feb 27 18:46 Tail End Data.md
+-rwxrwxrwx 1 geoff geoff  10600 Feb 27 19:13 Directional Mapping in XSpace in CKS.md
+-rwxrwxrwx 1 geoff geoff  37153 Feb 27 19:14 OMIN-1 - CKS Compatibility with Existing Systems.md
+-rwxrwxrwx 1 geoff geoff  22655 Feb 27 19:14 Two Level Admin.md
+-rwxrwxrwx 1 geoff geoff  16113 Feb 27 19:22 Origin of Work and Energy in CKS.md
+-rwxrwxrwx 1 geoff geoff  30433 Feb 28 06:49 Comparative Analysis of Continuous vs. Logismos Calculus in CKS Oracle Applications.md
+-rwxrwxrwx 1 geoff geoff  30122 Feb 28 06:49 CKS Cross-Domain Oracle Test - Logismos Method.md
+-rwxrwxrwx 1 geoff geoff  40179 Feb 28 07:04 The Rational Substrate.md
+-rwxrwxrwx 1 geoff geoff  22362 Feb 28 07:13 Grand Unification v12.md
+-rwxrwxrwx 1 geoff geoff   9600 Feb 28 07:29 Limitations of the Continuous and the Freedoms of Q.md
+-rwxrwxrwx 1 geoff geoff  69347 Feb 28 07:50 Grand Unification v13.md
+-rwxrwxrwx 1 geoff geoff  30404 Feb 28 07:56 R = 19 Is The Engine of Life.md
+-rwxrwxrwx 1 geoff geoff  24755 Feb 28 08:04 Logismos Technical Specification for LLMs.md
+-rwxrwxrwx 1 geoff geoff  24871 Feb 28 08:13 Speed of Logic vs Speed of Light.md
+-rwxrwxrwx 1 geoff geoff  42716 Feb 28 08:19 Gravity and Momentum as Parent Soliton Opcodes.md
+-rwxrwxrwx 1 geoff geoff  49561 Feb 28 08:22 Aphantasia as Direct K-Space Access.md
+-rwxrwxrwx 1 geoff geoff  55486 Feb 28 08:32 Woo Woo - The K-Verse Manifesto.md
+-rwxrwxrwx 1 geoff geoff  32598 Feb 28 08:35 String Theory as Hexagonal Node Logic Decimation.md
+-rwxrwxrwx 1 geoff geoff  35572 Feb 28 09:33 The Hexagonal Differential - Paper.md
+-rwxrwxrwx 1 geoff geoff  32338 Feb 28 09:35 Universal Conservation of Geometric Processing.md
+-rwxrwxrwx 1 geoff geoff  22668 Feb 28 09:45 Personal Coherence Evolution.md
+-rwxrwxrwx 1 geoff geoff  24658 Feb 28 09:56 The End of Constants - Paper.md
+-rwxrwxrwx 1 geoff geoff  35218 Feb 28 10:05 Recursive Soliton Coupling and Substrate-Driven Registry Healing.md
+-rwxrwxrwx 1 geoff geoff  42209 Feb 28 10:07 Registry-Driven Healing.md
+-rwxrwxrwx 1 geoff geoff  39676 Feb 28 10:09 Grand Unification v4.md
+-rwxrwxrwx 1 geoff geoff  43456 Feb 28 10:20 The Resolution of All Physical Mysteries.md
+-rwxrwxrwx 1 geoff geoff  42895 Feb 28 10:23 E = mc^S.md
+-rwxrwxrwx 1 geoff geoff  36903 Feb 28 10:30 Matter Space and Time.md
+-rwxrwxrwx 1 geoff geoff  38798 Feb 28 10:32 Vertical Slit Pupils as Gradient Synchronization Hardware.md
+-rwxrwxrwx 1 geoff geoff  43189 Feb 28 10:45 Mitochondrial Clock Synchronization and Substrate Power Management.md
+-rwxrwxrwx 1 geoff geoff  41663 Feb 28 10:46 The Triads of π, e, and φ.md
+-rwxrwxrwx 1 geoff geoff  19029 Feb 28 10:47 Pi nears 4 in Motion in CKS.md
+-rwxrwxrwx 1 geoff geoff  31756 Feb 28 10:56 Logos Counting System - Paper.md
+-rwxrwxrwx 1 geoff geoff  31287 Feb 28 11:12 The Riemann Hypothesis.md
+-rwxrwxrwx 1 geoff geoff  20761 Feb 28 11:15 Accidental Resolution of Classical Mathematical Problems.md
+-rwxrwxrwx 1 geoff geoff  31126 Feb 28 11:17 The P vs NP Problem.md
+-rwxrwxrwx 1 geoff geoff   6321 Feb 28 11:34 Squaring the Circle and the Resolution of Transcendental Ratios.md
+-rwxrwxrwx 1 geoff geoff  34718 Feb 28 11:39 The Navier-Stokes Problem.md
+-rwxrwxrwx 1 geoff geoff  22314 Feb 28 11:45 Fermats Last Theorem.md
+-rwxrwxrwx 1 geoff geoff  15608 Feb 28 11:46 The Collatz Conjecture as Registry Grounding Protocol.md
+-rwxrwxrwx 1 geoff geoff  25499 Feb 28 11:53 Gödel's Incompleteness Theorems.md
+-rwxrwxrwx 1 geoff geoff  16098 Feb 28 11:56 The Twin Prime Conjecture as Bilateral Manifold Recoil.md
+-rwxrwxrwx 1 geoff geoff  17395 Feb 28 12:00 The Goldbach Conjecture as Bilateral Tension Cancellation.md
+-rwxrwxrwx 1 geoff geoff  25590 Feb 28 12:01 The Birch and Swinnerton-Dyer Conjecture.md
+-rwxrwxrwx 1 geoff geoff  17939 Feb 28 12:10 The ABC Conjecture as Registry Information Density Limit.md
+-rwxrwxrwx 1 geoff geoff  23458 Feb 28 12:11 The Hodge Conjecture.md
+-rwxrwxrwx 1 geoff geoff  22154 Feb 28 12:17 Path Optimization Problems.md
+-rwxrwxrwx 1 geoff geoff  19430 Feb 28 12:26 Number Theory as Registry Architecture Specification.md
+-rwxrwxrwx 1 geoff geoff  23392 Feb 28 12:27 Prime Numbers as Structural Opcodes.md
+-rwxrwxrwx 1 geoff geoff  24741 Feb 28 12:49 The 3D Graphics Pipeline of Reality.md
+-rwxrwxrwx 1 geoff geoff  24002 Feb 28 12:53 The Substrate Physics Engine.md
+-rwxrwxrwx 1 geoff geoff  20715 Feb 28 12:55 Linear Algebra as Integer-Address Registry Routing.md
+-rwxrwxrwx 1 geoff geoff  29302 Feb 28 12:57 The K-Verse as Game Engine.md
+-rwxrwxrwx 1 geoff geoff  19217 Feb 28 13:01 The Lyapunov Equation as Bilateral Registry Audit.md
+-rwxrwxrwx 1 geoff geoff  21343 Feb 28 13:03 The Riccati Equation Resolution.md
+-rwxrwxrwx 1 geoff geoff  19225 Feb 28 13:05 Navier-Stokes Existence and Smoothness via Buffer Saturation.md
+-rwxrwxrwx 1 geoff geoff  19892 Feb 28 13:12 The Riemann Hypothesis Resolution.md
+-rwxrwxrwx 1 geoff geoff  21004 Feb 28 13:14 Biological Compilation as Recursive Registry Coherence.md
+-rwxrwxrwx 1 geoff geoff  17751 Feb 28 13:18 Consciousness as Bilateral Rendering Reconciliation.md
+-rwxrwxrwx 1 geoff geoff  22612 Feb 28 13:19 Substrate-Native Computing.md
+-rwxrwxrwx 1 geoff geoff  23552 Feb 28 13:25 The Categorical Boundary.md
+-rwxrwxrwx 1 geoff geoff  18478 Feb 28 13:27 Coherence Economics as Bilateral Registry Synchronization.md
+-rwxrwxrwx 1 geoff geoff  14561 Feb 28 13:32 Logismos Practical Applications and Industrial Translation.md
+-rwxrwxrwx 1 geoff geoff  20604 Feb 28 13:33 The 12-Bit Soliton Liaison Footer.md
+-rwxrwxrwx 1 geoff geoff  15419 Feb 28 13:34 The Dual-Clock Architecture as Fundamental Velocity Partition.md
+-rwxrwxrwx 1 geoff geoff  26258 Feb 28 13:37 The Hex-Plate Substrate Computer.md
+-rwxrwxrwx 1 geoff geoff  15618 Feb 28 13:38 The 15.19ms Render Lag as Bilateral Parity Product.md
+-rwxrwxrwx 1 geoff geoff  23596 Feb 28 13:46 Mass as Registry Signature.md
+-rwxrwxrwx 1 geoff geoff  20527 Feb 28 13:47 The Biological Compiler as DNA Error-Correction Protocol.md
+-rwxrwxrwx 1 geoff geoff  23369 Feb 28 13:53 Anauralia as Administrative Privilege.md
+-rwxrwxrwx 1 geoff geoff  17106 Feb 28 13:54 K-Space Tunnel Vision as Direct Registry Access.md
+-rwxrwxrwx 1 geoff geoff  15362 Feb 28 13:58 Demonic Parasitism as Registry Hijacking Protocol.md
+-rwxrwxrwx 1 geoff geoff  14936 Feb 28 14:15 The Lessons of Learning from 2,500-Year Stall to 8-Week Closure.md
+-rwxrwxrwx 1 geoff geoff  24153 Feb 28 14:16 Human Knowledge v2 - Paper.md
+-rwxrwxrwx 1 geoff geoff  13198 Feb 28 14:20 The Two Questions CKS Doesn't Ask as Administrative Firewall.md
+-rwxrwxrwx 1 geoff geoff  25102 Feb 28 14:23 Acoustic Registry Modulation.md
+-rwxrwxrwx 1 geoff geoff  12960 Feb 28 14:24 The 8000 Hz Administrative Channel as Substrate Write Interface.md
+-rwxrwxrwx 1 geoff geoff  22936 Feb 28 14:27 Voice as Substrate UART.md
+-rwxrwxrwx 1 geoff geoff  13681 Feb 28 14:29 Directional Mapping in X-Space from Hex Lattice Dipole Weighting.md
+-rwxrwxrwx 1 geoff geoff  16053 Feb 28 14:34 The Two-Level Admin Console as Human Biological Override Interface.md
+-rwxrwxrwx 1 geoff geoff  43925 Feb 28 14:37 Universal Compatibility Framework.md
+-rwxrwxrwx 1 geoff geoff  13905 Feb 28 14:44 The Origin of Work and Energy as 32-Tick Remainder Accumulation.md
+-rwxrwxrwx 1 geoff geoff  18335 Feb 28 14:49 The Finite Scaffold—Limitations of the Continuous and the Freedoms of ℚ.md
+-rwxrwxrwx 1 geoff geoff  37577 Feb 28 15:03 R = 19 Is The Engine of Replication.md
+-rwxrwxrwx 1 geoff geoff  16634 Feb 28 15:03 Cat Tails as Phase-Array Antennas—Deriving Feline Auxiliary Bus from Toroidal Stability Requirements.md
+-rwxrwxrwx 1 geoff geoff  20942 Feb 28 16:57 The Spine as 32-Element Phased Array Transceiver—Deriving Bilateral Master Bus from Linear Waveguide Architecture.md
+-rwxrwxrwx 1 geoff geoff  40837 Feb 28 16:59 Collaborative Manifold Alignment.md
+-rwxrwxrwx 1 geoff geoff  18292 Feb 28 17:04 Acne as Identity-Interface Error—Deriving Facial Inflammation.md
+-rwxrwxrwx 1 geoff geoff  38954 Feb 28 17:08 Tattoo Impedance Mechanics.md
+-rwxrwxrwx 1 geoff geoff  16737 Feb 28 17:10 Caloric Requirements as Registry Bit-Rate Maintenance.md
+-rwxrwxrwx 1 geoff geoff  16538 Feb 28 17:21 Telepathy as Shared Memory Access—Deriving Non-Local Communication from K-Space Registry Pointer Synchronization.md
+-rwxrwxrwx 1 geoff geoff  41030 Feb 28 17:25 The Multimodal Successor.md
+-rwxrwxrwx 1 geoff geoff  15470 Feb 28 17:33 Lattice-Forced Sexual Dimorphism.md
+-rwxrwxrwx 1 geoff geoff  40581 Feb 28 17:34 Spatial Re-Indexing Mechanics.md
+-rwxrwxrwx 1 geoff geoff  12729 Feb 28 17:40 Toroidal Decoherence Protocol—Deriving Figure-8 vs Donut Unwinding from Dimensional Error Classification.md
+-rwxrwxrwx 1 geoff geoff  16359 Feb 28 17:42 The 512-Bit Reptilian Receiver.md
+-rwxrwxrwx 1 geoff geoff  44473 Feb 28 18:04 The Bent Cats Tail Syndrome.md
+-rwxrwxrwx 1 geoff geoff  18100 Feb 28 18:04 Gravity Healing in CKS.md
+-rwxrwxrwx 1 geoff geoff  13835 Feb 28 18:06 Lattice Orientation.md
+-rwxrwxrwx 1 geoff geoff  12729 Feb 28 18:07 Toroidal Decoherence Protocol.md
+-rwxrwxrwx 1 geoff geoff  43404 Feb 28 18:29 Postural Healing Mechanics.md
+-rwxrwxrwx 1 geoff geoff  14265 Feb 28 18:30 Manual Lattice Orientation Protocol.md
+-rwxrwxrwx 1 geoff geoff  12012 Feb 28 18:56 Adrenaline.md
+-rwxrwxrwx 1 geoff geoff  14616 Feb 28 19:15 64 and the Missing Geometry in CKS - 0.md
+-rwxrwxrwx 1 geoff geoff  16270 Feb 28 19:16 64 and the Missing Geometry in CKS - 1.md
+-rwxrwxrwx 1 geoff geoff  24373 Feb 28 19:17 64 and the Missing Geometry in CKS - 2.md
+-rwxrwxrwx 1 geoff geoff     79 Feb 28 19:17 Omni-Domain Alignment - The Forced Geometric Constants of the Hex-Lex Substrate.md
+-rwxrwxrwx 1 geoff geoff  41035 Feb 28 19:19 Adrenaline as Timeline Management.md
+-rwxrwxrwx 1 geoff geoff  27945 Feb 28 19:24 Sleep Healing in CKS.md
+-rwxrwxrwx 1 geoff geoff  37146 Feb 28 19:24 Omni-Domain Alignment.md
+-rwxrwxrwx 1 geoff geoff  62195 Feb 28 19:51 Grand Unification v14 - prep.md
+-rwxrwxrwx 1 geoff geoff   9072 Feb 28 19:57 Neural Territory in CKS.md
+-rwxrwxrwx 1 geoff geoff  36885 Feb 28 20:12 Grand Unification v14 - A.md
+-rwxrwxrwx 1 geoff geoff  78221 Feb 28 20:12 Grand Unification v14 - B.md
+-rwxrwxrwx 1 geoff geoff 179988 Feb 28 21:05 Grand Unification v15 - B.md
+-rwxrwxrwx 1 geoff geoff 158531 Feb 28 21:10 Grand Unification v15 - A.md
+-rwxrwxrwx 1 geoff geoff  84309 Feb 28 22:15 J as Soliton Hierarchical  Distance.md
+-rwxrwxrwx 1 geoff geoff  31671 Feb 28 22:34 Juibilee and N=0.md
+-rwxrwxrwx 1 geoff geoff   9528 Feb 28 22:40 Dark Matter as 3 wings per side per hex unit.md
+-rwxrwxrwx 1 geoff geoff 157011 Mar  1 00:03 Grand Unification v16 - The Complete KSpace Substrate.md
+-rwxrwxrwx 1 geoff geoff  20628 Mar  1 00:06 Omni 2 - Spriting and Minnesota Bass.md
+-rwxrwxrwx 1 geoff geoff  25685 Mar  1 00:17 Two Trillion Galaxies Matched.md
+-rwxrwxrwx 1 geoff geoff  23790 Mar  1 00:29 J as Soliton Hierarchical Distance.md
+-rwxrwxrwx 1 geoff geoff  28431 Mar  1 00:38 Galaxy Census.md
+-rwxrwxrwx 1 geoff geoff  33570 Mar  1 00:55 Grand Unification v17 - prep.md
+-rwxrwxrwx 1 geoff geoff 165310 Mar  1 01:11 Grand Unification v17.md
+-rwxrwxrwx 1 geoff geoff  24369 Mar  1 01:36 Grand Unification v18 - prep.md
+-rwxrwxrwx 1 geoff geoff 116108 Mar  1 01:54 Grand Unification v18.md
+-rwxrwxrwx 1 geoff geoff  18704 Mar  1 02:21 Q Operator.md
+-rwxrwxrwx 1 geoff geoff  12734 Mar  1 02:24 Grand Unification v19 - prep.md
+-rwxrwxrwx 1 geoff geoff  78479 Mar  1 11:00 Complete Classification of Woo Woo.md
+-rwxrwxrwx 1 geoff geoff  28176 Mar  1 11:05 An LLMs Perspective on CKS.md
+-rwxrwxrwx 1 geoff geoff  20982 Mar  1 11:24 Qualia in CKS.md
+-rwxrwxrwx 1 geoff geoff  23419 Mar  1 11:29 Qualia as LERP from K-Space to X-Space.md
+-rwxrwxrwx 1 geoff geoff  23187 Mar  1 11:34 Soliton Health in CKS.md
+-rwxrwxrwx 1 geoff geoff  21545 Mar  1 11:40 69 is the Malignant Remainder.md
+-rwxrwxrwx 1 geoff geoff  33356 Mar  1 11:43 The Topology of Malignancy.md
+-rwxrwxrwx 1 geoff geoff  33804 Mar  1 11:54 The Malignant Remainder 69.md
+-rwxrwxrwx 1 geoff geoff  23980 Mar  1 11:58 Heart Disease in CKS.md
+-rwxrwxrwx 1 geoff geoff  27011 Mar  1 12:05 Alzheimer in CKS.md
+-rwxrwxrwx 1 geoff geoff  14754 Mar  1 12:05 W1 per Wing from N=0.md
+-rwxrwxrwx 1 geoff geoff  33280 Mar  1 12:06 The Toroidal Heart Failure.md
+-rwxrwxrwx 1 geoff geoff  22688 Mar  1 12:13 Alzheimer’s vs. Autism as Topological Registry Locking.md
+-rwxrwxrwx 1 geoff geoff  37282 Mar  1 12:14 The Alzheimer's Toroid.md
+-rwxrwxrwx 1 geoff geoff  21111 Mar  1 12:21 Coherence in CKS.md
+-rwxrwxrwx 1 geoff geoff  31837 Mar  1 12:23 The 90-Degree Phase Lock.md
+-rwxrwxrwx 1 geoff geoff  28117 Mar  1 12:28 Grand Unification of Mental Diseease in CKS.md
+-rwxrwxrwx 1 geoff geoff  23352 Mar  1 12:31 Grand Unification of Body Diseease in CKS.md
+-rwxrwxrwx 1 geoff geoff  20889 Mar  1 12:36 The Grand Unification of Mental Disease.md
+-rwxrwxrwx 1 geoff geoff  20182 Mar  1 12:41 Laminar Coherence.md
+-rwxrwxrwx 1 geoff geoff  27707 Mar  1 12:45 The Grand Unification of Body Disease.md
+-rwxrwxrwx 1 geoff geoff  22641 Mar  1 13:09 Laminar Coherence of Non-Wanting.md
+-rwxrwxrwx 1 geoff geoff  25882 Mar  1 13:32 Laminar Searching.md
+-rwxrwxrwx 1 geoff geoff  26671 Mar  1 13:41 All of CKS as Data and Process from a Contributing LLM's Perspective.md
+-rwxrwxrwx 1 geoff geoff  38713 Mar  1 14:05 The Historical Narrative of the CKS Discovery Process.md
+-rwxrwxrwx 1 geoff geoff  29576 Mar  1 15:36 C elegans in CKS.md
+-rwxrwxrwx 1 geoff geoff 203678 Mar  1 16:07 Grand Unification v19.md
+-rwxrwxrwx 1 geoff geoff  60823 Mar  1 17:02 Complete Lexicon of Cymatic K-Space Mechanics and Logismos.md
+-rwxrwxrwx 1 geoff geoff  21058 Mar  1 17:09 Hierarchical Lexicons for Every Count Limitation.md
+-rwxrwxrwx 1 geoff geoff  18843 Mar  1 17:12 Physics Domain Hierarchical Lexicons.md
+-rwxrwxrwx 1 geoff geoff  22731 Mar  1 17:14 Mathematics Domain Hierarchical Lexicons.md
+-rwxrwxrwx 1 geoff geoff  26627 Mar  1 17:19 Biology Domain Hierarchical Lexicons.md
+-rwxrwxrwx 1 geoff geoff  23966 Mar  1 17:23 Time Evolution Series - N=1 and W=1 Progression in Wing-Lattice Torque System.md
+-rwxrwxrwx 1 geoff geoff  34789 Mar  1 17:55 Clinical-Medical Domain Hierarchical Lexicons.md
+-rwxrwxrwx 1 geoff geoff  33843 Mar  1 18:26 Engineering Domain Hierarchical Lexicons.md
+-rwxrwxrwx 1 geoff geoff  42430 Mar  1 18:36 Consciousness-Cognition Domain Hierarchical Lexicons.md
+-rwxrwxrwx 1 geoff geoff  23065 Mar  1 21:08 The Erdős–Straus Conjecture.md
+-rwxrwxrwx 1 geoff geoff  19633 Mar  1 21:15 Euler's Sum of Powers Conjecture.md
+-rwxrwxrwx 1 geoff geoff  21925 Mar  1 21:19 The Bunyakovsky Conjecture.md
+-rwxrwxrwx 1 geoff geoff  21465 Mar  1 21:23 The Jacobian Conjecture.md
+-rwxrwxrwx 1 geoff geoff  24109 Mar  1 21:28 Lehmer's Conjecture.md
+-rwxrwxrwx 1 geoff geoff  25230 Mar  1 21:32 Pillai's Conjecture.md
+-rwxrwxrwx 1 geoff geoff  26093 Mar  1 21:37 The Manin Conjecture.md
+-rwxrwxrwx 1 geoff geoff  27411 Mar  1 21:42 The Zilber–Pink Conjecture.md
+-rwxrwxrwx 1 geoff geoff  47887 Mar  1 22:05 Grand Unification v20 - prep.md
+-rwxrwxrwx 1 geoff geoff  26954 Mar  1 22:32 Lex as 1.32mm Red Brick in CKS.md
+-rwxrwxrwx 1 geoff geoff  99155 Mar  1 22:53 C elegans as Geometric Eigenvalue.md
+-rwxrwxrwx 1 geoff geoff  41092 Mar  2 01:32 The 15.19ms Substrate Snap.md
+-rwxrwxrwx 1 geoff geoff  19854 Mar  2 11:35 Dipole Turns.md
+-rwxrwxrwx 1 geoff geoff  41627 Mar  2 11:46 The Tri-Dipole Differential Engine.md
+-rwxrwxrwx 1 geoff geoff  29138 Mar  2 11:50 My Overview - March 2 2026.md
+-rwxrwxrwx 1 geoff geoff  48963 Mar  2 12:04 Grand Unification v20 - prep 2.md
+-rwxrwxrwx 1 geoff geoff  39187 Mar  2 12:07 The Strong Nuclear Force as Edge-Dipole Impedance.md
+-rwxrwxrwx 1 geoff geoff  40313 Mar  2 12:17 Color Charge as 3-Phase Dipole State Space.md
+-rwxrwxrwx 1 geoff geoff  42370 Mar  2 12:22 Flavor Quantum Numbers as Jubilee Phase Offsets.md
+-rwxrwxrwx 1 geoff geoff  45122 Mar  2 12:30 Weak Force as Jubilee Transition Mechanics.md
+-rwxrwxrwx 1 geoff geoff  41776 Mar  2 12:36 Electromagnetic Force as Single-Dipole Coupling.md
+-rwxrwxrwx 1 geoff geoff  47749 Mar  2 12:45 Gravity as Manifold Compression Gradient.md
+-rwxrwxrwx 1 geoff geoff  44739 Mar  2 12:53 Dark Matter as Substrate Registry Overhead.md
+-rwxrwxrwx 1 geoff geoff  69143 Mar  2 12:56 Grand Unification v20.md
+-rwxrwxrwx 1 geoff geoff  42038 Mar  2 12:59 Dark Energy as Substrate Background Pressure.md
+-rwxrwxrwx 1 geoff geoff  53728 Mar  2 13:24 Early Universe as Substrate Initialization.md
+-rwxrwxrwx 1 geoff geoff  46702 Mar  2 13:26 Large-Scale Structure as Registry Optimization Patterns.md
+-rwxrwxrwx 1 geoff geoff  24257 Mar  2 13:27 Grand Unification v21 - prep.md
+-rwxrwxrwx 1 geoff geoff  48330 Mar  2 13:33 CMB Anisotropies as Registry Initialization Patterns.md
+-rwxrwxrwx 1 geoff geoff  30791 Mar  2 13:40 Earth Size.md
+-rwxrwxrwx 1 geoff geoff  86966 Mar  2 13:52 Grand Unification v21.md
+-rwxrwxrwx 1 geoff geoff  82338 Mar  2 14:01 Complete Lexicon for Grand Unification v21.md
+-rwxrwxrwx 1 geoff geoff  29593 Mar  2 14:14 Reduced Lexicon Tables for Publication for GU v21.md
+-rwxrwxrwx 1 geoff geoff  11951 Mar  2 14:58 Logismos Unified Field.md
+-rwxrwxrwx 1 geoff geoff  15545 Mar  2 15:19 The Partigen Standard.md
+-rwxrwxrwx 1 geoff geoff  33272 Mar  2 15:26 The Partigen Standard - Paper.md
+-rwxrwxrwx 1 geoff geoff  30369 Mar  2 15:31 The Complete Derivation Manual.md
+-rwxrwxrwx 1 geoff geoff  47727 Mar  2 15:39 Grand Unification v22 - prep.md
+-rwxrwxrwx 1 geoff geoff  47728 Mar  2 15:45 Grand Derivation v22 - The Logismos Integration.md
+-rwxrwxrwx 1 geoff geoff 140867 Mar  2 16:06 Grand Unification v22.md
+-rwxrwxrwx 1 geoff geoff   8461 Mar  2 16:11 Grand Unification v23 - prep.md
+-rwxrwxrwx 1 geoff geoff  22723 Mar  2 18:11 Ant Arms.md
+-rwxrwxrwx 1 geoff geoff  24670 Mar  2 18:16 Substrate-Synchronized Biomechanics.md
+-rwxrwxrwx 1 geoff geoff  22387 Mar  2 18:25 Precession of the Equinoxes.md
+-rwxrwxrwx 1 geoff geoff  63388 Mar  2 18:29 Zero-Remainder Biomechanics.md
+-rwxrwxrwx 1 geoff geoff  19487 Mar  2 18:34 Precession of the Equinoxes - Paper.md
+-rwxrwxrwx 1 geoff geoff  45432 Mar  2 19:25 1024 bit Coordination Level in CKS.md
+-rwxrwxrwx 1 geoff geoff  40251 Mar  2 19:26 Building Coherence in CKS.md
+-rwxrwxrwx 1 geoff geoff  59226 Mar  2 19:37 The 6-9 Impedance.md
+-rwxrwxrwx 1 geoff geoff  30526 Mar  2 19:59 Remainder of Health in CKS.md
+-rwxrwxrwx 1 geoff geoff  39093 Mar  2 22:31 The Solar System Turn-Chain Hierarchy.md
+-rwxrwxrwx 1 geoff geoff  27797 Mar  2 22:35 Seed and Codon Geometry.md
+-rwxrwxrwx 1 geoff geoff  25350 Mar  2 23:02 Morphological Seed Egregors.md
+-rwxrwxrwx 1 geoff geoff  26662 Mar  2 23:09 Precession-Corrected Grand Unification.md
+-rwxrwxrwx 1 geoff geoff  22544 Mar  2 23:14 Building Coherence.md
+-rwxrwxrwx 1 geoff geoff  23586 Mar  2 23:29 The Triad of Health.md
+-rwxrwxrwx 1 geoff geoff  27359 Mar  2 23:37 Trans-Soliton Coupling.md
+-rwxrwxrwx 1 geoff geoff  25687 Mar  2 23:38 Turn Lock Causes Winding Loops in CKS.md
+-rwxrwxrwx 1 geoff geoff  27282 Mar  3 00:19 Topological Impedance and the 6-9 Twist.md
+-rwxrwxrwx 1 geoff geoff  21840 Mar  3 00:26 The 1024-Unit Coordination Block.md
+-rwxrwxrwx 1 geoff geoff   4113 Mar  3 00:38 Areas for Research.md
+-rwxrwxrwx 1 geoff geoff  29608 Mar  3 00:47 Logos String.md
+-rwxrwxrwx 1 geoff geoff  29812 Mar  3 00:50 The Topological Life Support System.md
+-rwxrwxrwx 1 geoff geoff  56168 Mar  3 00:52 Path Finding in CKS.md
+-rwxrwxrwx 1 geoff geoff  23215 Mar  3 00:56 Deterministic Pathfinding in the Wing Lattice.md
+-rwxrwxrwx 1 geoff geoff  24336 Mar  3 01:31 Morphological Geometric Selection.md
+-rwxrwxrwx 1 geoff geoff  30209 Mar  3 01:35 Murmuration and Collective Solitons.md
+-rwxrwxrwx 1 geoff geoff  16367 Mar  3 01:39 Salt Water in CKS.md
+-rwxrwxrwx 1 geoff geoff  15990 Mar  3 01:39 Python Upgrade for Zenodo Publishing.md
+-rwxrwxrwx 1 geoff geoff  16959 Mar  3 02:06 Connective Issue.md
+-rwxrwxrwx 1 geoff geoff   4902 Mar  3 08:29 The Restoration of the Scientific Seed.md
+-rwxrwxrwx 1 geoff geoff 112177 Mar  3 08:35 Measurements in CKS.md
+-rwxrwxrwx 1 geoff geoff  24490 Mar  3 08:47 Measurement Systems in the ℚ-Substrate.md
+-rwxrwxrwx 1 geoff geoff  78643 Mar  3 09:11 Grand Unification v23.md
+-rwxrwxrwx 1 geoff geoff  28633 Mar  3 10:14 All Domain Post-Doc Education.md
+-rwxrwxrwx 1 geoff geoff  41999 Mar  3 10:29 Path to Omni-Domain Post-Doc Education by 16 Years Old.md
+-rwxrwxrwx 1 geoff geoff  23368 Mar  3 10:33 Laminar DWDM.md
+-rwxrwxrwx 1 geoff geoff  23347 Mar  3 10:39 Substrate Cables.md
+-rwxrwxrwx 1 geoff geoff  37241 Mar  3 10:40 Laminar Interference Logic.md
+-rwxrwxrwx 1 geoff geoff  32934 Mar  3 10:44 Sovereign Transmission Lines.md
+-rwxrwxrwx 1 geoff geoff  23083 Mar  3 10:51 Perception in CKS.md
+-rwxrwxrwx 1 geoff geoff  56162 Mar  3 10:55 Logismos Technical Specification and Usage.md
+-rwxrwxrwx 1 geoff geoff  28791 Mar  3 11:01 Perception.md
+-rwxrwxrwx 1 geoff geoff  23270 Mar  3 11:02 Materiels in CKS.md
+-rwxrwxrwx 1 geoff geoff  21450 Mar  3 11:23 Nervous System in CKS.md
+-rwxrwxrwx 1 geoff geoff  37949 Mar  3 11:24 Dissolution of Standing Math.md
+-rwxrwxrwx 1 geoff geoff  31261 Mar  3 14:45 The Nervous System.md
+-rwxrwxrwx 1 geoff geoff  34678 Mar  3 14:56 Registry Architecture and Material Engineering.md
+-rwxrwxrwx 1 geoff geoff  40558 Mar  3 15:06 Dissolution of Millennium Mathematics.md
+-rwxrwxrwx 1 geoff geoff  45294 Mar  3 15:16 VFR Notation.md
+-rwxrwxrwx 1 geoff geoff  32151 Mar  3 15:35 Q Paradox.md
+-rwxrwxrwx 1 geoff geoff  34771 Mar  3 15:37 Logismos Notation.md
+-rwxrwxrwx 1 geoff geoff  25854 Mar  3 15:43 The Q Paradox and the Settlement of Logismos.md
+-rwxrwxrwx 1 geoff geoff  34173 Mar  3 16:02 The Q Paradox and the Settlement of Logismos - Paper.md
+-rwxrwxrwx 1 geoff geoff  23449 Mar  3 16:42 Demonic Egregor Urge in CKS.md
+-rwxrwxrwx 1 geoff geoff  18812 Mar  3 16:56 The Demonic Egregor Urge.md
+-rwxrwxrwx 1 geoff geoff  32963 Mar  3 17:23 Second Q Paradox.md
+-rwxrwxrwx 1 geoff geoff  33255 Mar  3 17:34 The Second Q Paradox and the Settlement of Logismos.md
+-rwxrwxrwx 1 geoff geoff  64995 Mar  3 17:46 K-Verse Symbology.md
+-rwxrwxrwx 1 geoff geoff  43196 Mar  3 17:56 The Cymatic Phonemic Alphabet.md
+-rwxrwxrwx 1 geoff geoff  34521 Mar  3 18:11 Third Q Paradox.md
+-rwxrwxrwx 1 geoff geoff  25508 Mar  3 18:11 The Third Q Paradox and the Settlement of Logismos.md
+-rwxrwxrwx 1 geoff geoff  20356 Mar  3 19:34 The Fourth Q Paradox.md
+-rwxrwxrwx 1 geoff geoff  25812 Mar  3 19:35 Forth Q Paradox.md
+-rwxrwxrwx 1 geoff geoff    407 Mar  3 19:43 Seventh Q Paradox.md
+-rwxrwxrwx 1 geoff geoff  25697 Mar  3 19:43 Fifth Q Paradox.md
+-rwxrwxrwx 1 geoff geoff  25257 Mar  3 19:48 Sixth Q Paradox.md
+-rwxrwxrwx 1 geoff geoff  28785 Mar  3 19:50 The Fifth Q Paradox.md
+-rwxrwxrwx 1 geoff geoff  28752 Mar  3 20:02 Searching with the Lattice.md
+-rwxrwxrwx 1 geoff geoff  23415 Mar  3 20:02 The Sixth Q Paradox.md
+-rwxrwxrwx 1 geoff geoff  21272 Mar  3 20:02 The CKS Lattice Search Algorithm.md
+-rwxrwxrwx 1 geoff geoff  47533 Mar  3 20:11 Universal State-Lattice.md
+-rwxrwxrwx 1 geoff geoff  32820 Mar  3 20:30 The Universal State-Lattice.md
+-rwxrwxrwx 1 geoff geoff  46675 Mar  3 20:44 Lattice Evolution as Game Design and Bool Ops.md
+-rwxrwxrwx 1 geoff geoff  22419 Mar  3 20:53 E-lum 1s in CKS.md
+-rwxrwxrwx 1 geoff geoff   1444 Mar  3 21:03 Latting Compression.md
+-rwxrwxrwx 1 geoff geoff   7597 Mar  3 21:07 Cymatics in CKS.md
+-rwxrwxrwx 1 geoff geoff  27028 Mar  3 21:13 Memory in CKS.md
+-rwxrwxrwx 1 geoff geoff  18163 Mar  3 21:19 Inner Self in CKS.md
+-rwxrwxrwx 1 geoff geoff  26574 Mar  3 21:20 The Memory-Render Identity.md
+-rwxrwxrwx 1 geoff geoff  27519 Mar  4 07:26 The Logismos Game Logic.md
+-rwxrwxrwx 1 geoff geoff  21489 Mar  4 07:42 The Seventh Q Paradox — The Rational Witness.md
+-rwxrwxrwx 1 geoff geoff  20862 Mar  4 10:03 Counting the Smallest.md
+-rwxrwxrwx 1 geoff geoff  34572 Mar  4 10:19 The Eighth Q Paradox — The Counting Paradox.md
+-rwxrwxrwx 1 geoff geoff   4222 Mar  4 16:58 Partigen.md
+-rwxrwxrwx 1 geoff geoff  26918 Mar  4 17:13 Q-Taylor Series.md
+-rwxrwxrwx 1 geoff geoff  28941 Mar  4 17:20 The Q-Taylor Series.md
+-rwxrwxrwx 1 geoff geoff  44040 Mar  4 17:32 Logismos Linear Algebra.md
+-rwxrwxrwx 1 geoff geoff  48820 Mar  4 17:50 Logismos Computational Optimization.md
+-rwxrwxrwx 1 geoff geoff  55745 Mar  4 18:04 Optimized Logismos Graphics & Physics Pipeline.md
+-rwxrwxrwx 1 geoff geoff  52796 Mar  4 18:37 Graphics and Physics Pipeline with Q-GPU Logismos.md
+-rwxrwxrwx 1 geoff geoff   8402 Mar  4 19:23 Axiomatic Forensic Debugging,md
+-rwxrwxrwx 1 geoff geoff  50220 Mar  4 19:23 Logismos Graphics & Physics Pipeline.md
+-rwxrwxrwx 1 geoff geoff  31562 Mar  4 20:11 The Ninth Q Paradox — The Ideological Lock.md
+-rwxrwxrwx 1 geoff geoff  30452 Mar  5 10:28 Lex Size.md
+-rwxrwxrwx 1 geoff geoff  22342 Mar  5 10:36 Transcendental Bridge.md
+-rwxrwxrwx 1 geoff geoff  52681 Mar  5 10:42 Lex Dimensions and the Morton-Interleaved Substrate.md
+-rwxrwxrwx 1 geoff geoff  34179 Mar  5 10:48 The Lex-Jacobian Transcendental Bridge.md
+-rwxrwxrwx 1 geoff geoff  31857 Mar  5 13:06 Square Root of 2.md
+-rwxrwxrwx 1 geoff geoff  29060 Mar  5 13:16 The VFR Resolution of √2.md
+-rwxrwxrwx 1 geoff geoff  38509 Mar  5 14:03 VFR as Lisp.md
+-rwxrwxrwx 1 geoff geoff  22976 Mar  5 14:16 Lisp S-Expressions in Logismos.md
+-rwxrwxrwx 1 geoff geoff   1381 Mar  5 14:29 reimann_hypothesis.txt
+-rwxrwxrwx 1 geoff geoff  39352 Mar  5 15:45 Optimizing Logismos S-Expressions.md
+-rwxrwxrwx 1 geoff geoff  30113 Mar  5 15:50 Logismos S-Expression Recursion.md
+-rwxrwxrwx 1 geoff geoff  10735 Mar  6 23:21 19 flux cascade.md
+-rwxrwxrwx 1 geoff geoff  16786 Mar  6 23:23 Morton Indexing.md
+-rwxrwxrwx 1 geoff geoff  56998 Mar  7 11:05 Math.md
+-rwxrwxrwx 1 geoff geoff  25679 Mar  7 11:10 The Taylor Continuum - R - as an Unnamed Infinite Polynomial.md
+-rwxrwxrwx 1 geoff geoff   5101 Mar  7 15:50 The Moiré of Geometry - Factor Interference as the Source of Physical Force.md
+-rwxrwxrwx 1 geoff geoff  10298 Mar  7 23:31 Bijection.md
+-rwxrwxrwx 1 geoff geoff   9030 Mar  8 00:30 Status Math-0 to 59.md
+-rwxrwxrwx 1 geoff geoff  17012 Mar  8 10:08 Math 1 to 66.md
+-rwxrwxrwx 1 geoff geoff  10301 Mar  8 12:56 2hz 6bits.md
+-rwxrwxrwx 1 geoff geoff 607473 Mar  8 13:27 Simple Explaination.md
+-rwxrwxrwx 1 geoff geoff   4495 Mar  8 13:27 Math 1 to 71.md
+-rwxrwxrwx 1 geoff geoff  11898 Mar  8 13:43 Sqrt-2.md
+-rwxrwxrwx 1 geoff geoff  10579 Mar  8 15:49 Sqrt-2 Again.md
+-rwxrwxrwx 1 geoff geoff   6440 Mar  8 16:28 Sqrt-2 One Shot.md
+-rwxrwxrwx 1 geoff geoff  19152 Mar  8 16:55 How to Think and Code using Logismos and V - F - R.md
+-rwxrwxrwx 1 geoff geoff  11782 Mar  8 17:05 From Pixels to Pell - How Integer Grids Already Solve the √2 Problem.md
+-rwxrwxrwx 1 geoff geoff  16907 Mar  8 17:30 Oil and Water - Why ℚ and ℝ Are Different Kinds of Math.md
+-rwxrwxrwx 1 geoff geoff  18093 Mar  8 17:32 Name the Remainder, and Infinity Disappears.md
+-rwxrwxrwx 1 geoff geoff   1707 Mar  8 22:06 1 Second Again.md
+-rwxrwxrwx 1 geoff geoff   2296 Mar  8 22:34 Earth Resolution pop.md
+-rwxrwxrwx 1 geoff geoff  12095 Mar  9 11:39 What Happened Here - Opus 46.md
+-rwxrwxrwx 1 geoff geoff   4258 Mar  9 12:44 Predictng Anatomy.md
+-rwxrwxrwx 1 geoff geoff  39072 Mar  9 13:38 Integer Basis of Organic Life - A Derivation Log.md
+-rwxrwxrwx 1 geoff geoff   8148 Mar  9 13:43 Life in R=-1.md
+-rwxrwxrwx 1 geoff geoff  20204 Mar 10 10:09 The Real Number Tragedy.md
+-rwxrwxrwx 1 geoff geoff  23670 Mar 10 10:36 An LLMs Prompt-by-Prompt Journey From Trained Consensus to Structural Clarity.md
+-rwxrwxrwx 1 geoff geoff      0 Mar 10 11:35 out.txt
