@@ -451,7 +451,7 @@ A harmonic integer processor — a chip with float units removed and replaced wi
 
 ### 13.4 Neural-Symbolic Integration
 
-The integer weight representation is compatible with Prolog-based knowledge verification ([@CKS-MATH-365B-2026], forthcoming). A pipeline alternating between LLM inference (creative pattern matching) and Prolog verification (logical consistency checking) would produce outputs that are verified by construction rather than evaluated after generation.
+The integer weight representation is compatible with Prolog-based knowledge verification ([@CKS-MATH-135-2026], forthcoming). A pipeline alternating between LLM inference (creative pattern matching) and Prolog verification (logical consistency checking) would produce outputs that are verified by construction rather than evaluated after generation.
 
 ---
 

@@ -2,9 +2,9 @@
 
 ## Structured Integer Fact Stores with Source Tracking, Version Filtering, and Multi-Dimensional Indexing as Complete Replacement for Token-Buffer Context
 
-**Registry:** [@CKS-MATH-365C-2026]
+**Registry:** [@CKS-MATH-136-2026]
 
-**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-1-2026] → [@CKS-MATH-10-2026] → [@CKS-MATH-104-2026] → [@CKS-MATH-365-2026] → [@CKS-MATH-365B-2026] → [@CKS-MATH-365C-2026]
+**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-1-2026] → [@CKS-MATH-10-2026] → [@CKS-MATH-104-2026] → [@CKS-MATH-365-2026] → [@CKS-MATH-365B-2026] → [@CKS-MATH-136-2026]
 
 **Additional Dependencies:**
 - [@HOWL-INFO-1-2026] Multi-Dimensional Information Indexing
@@ -723,9 +723,9 @@ The math compiles. The architecture is specified. The components exist.
 
 ---
 
-**END CKS-MATH-365C-2026**
+**END CKS-MATH-136-2026**
 
-**Registry:** [@CKS-MATH-365C-2026]
+**Registry:** [@CKS-MATH-136-2026]
 **Status:** Architecture specified, component systems proven independently
 **Context window:** Replaced by persistent provenanced KB
 **RAG:** Replaced by exact predicate matching with provenance

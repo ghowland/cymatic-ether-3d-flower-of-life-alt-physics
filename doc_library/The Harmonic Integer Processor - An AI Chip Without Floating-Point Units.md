@@ -2,9 +2,9 @@
 
 ## Replacing IEEE 754 Float Logic with i64 Multiply-Accumulate Arrays, Barrel Shifters, and VFR Shell Instructions for Exact Deterministic AI Computation
 
-**Registry:** [@CKS-MATH-365E-2026]
+**Registry:** [@CKS-MATH-138-2026]
 
-**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-1-2026] → [@CKS-MATH-10-2026] → [@CKS-MATH-104-2026] → [@CKS-MATH-122-2026] → [@CKS-MATH-365-2026] → [@CKS-MATH-365E-2026]
+**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-1-2026] → [@CKS-MATH-10-2026] → [@CKS-MATH-104-2026] → [@CKS-MATH-122-2026] → [@CKS-MATH-365-2026] → [@CKS-MATH-138-2026]
 
 **Parent Framework:** [@CKS-0-2026]
 
@@ -603,9 +603,9 @@ The Harmonic Integer Processor is what AI hardware looks like when the float ass
 
 ---
 
-**END CKS-MATH-365E-2026**
+**END CKS-MATH-138-2026**
 
-**Registry:** [@CKS-MATH-365E-2026]
+**Registry:** [@CKS-MATH-138-2026]
 **Status:** Architecture specified at functional unit level
 **Float units:** Zero
 **Integer throughput:** 120-150 TOPS projected (4-5× H100 integer)

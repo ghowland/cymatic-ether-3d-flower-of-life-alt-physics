@@ -2,9 +2,9 @@
 
 ## Eliminating Hallucination by Construction via Provenanced Integer Knowledge Bases, Triveritas Evaluation, and Adaptive Goal Decomposition
 
-**Registry:** [@CKS-MATH-365B-2026]
+**Registry:** [@CKS-MATH-135-2026]
 
-**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-1-2026] → [@CKS-MATH-10-2026] → [@CKS-MATH-104-2026] → [@CKS-MATH-118-2026] → [@CKS-MATH-365-2026] → [@CKS-MATH-365B-2026]
+**Series Path:** [@CKS-0-2026] → [@CKS-MATH-0-2026] → [@CKS-MATH-1-2026] → [@CKS-MATH-10-2026] → [@CKS-MATH-104-2026] → [@CKS-MATH-118-2026] → [@CKS-MATH-365-2026] → [@CKS-MATH-135-2026]
 
 **Additional Dependencies:**
 - [@HOWL-INFO-1-2026] Multi-Dimensional Information Indexing
@@ -910,7 +910,7 @@ The math compiles. The code runs. The architecture is specified.
 
 ---
 
-**END CKS-MATH-365B-2026**
+**END CKS-MATH-135-2026**
 
 **Registry:** [@CKS-MATH-365B-2026]
 **Status:** Architecture specified, component systems proven independently
