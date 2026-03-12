@@ -1,0 +1,212 @@
+### 1. The Cymatic State Buffer (NUMA-Aligned)
+You will need a per-ContentRect or per-Zone buffer. This is "The Substrate."
+
+```zig
+// Parallel to your SVDAG, but stores dynamic wave data
+pub const CymaticSubstrate = struct {
+    // Current displacement (Matter offset)
+    field: []f32, 
+    // Flow vectors (Momentum)
+    velocity: []@Vector(3, f32),
+    // Glue/Cohesion (Vorticity)
+    circulation: []@Vector(3, f32),
+    
+    // Links back to your SVE components
+    box_id: i32,
+    resolution: u32, // e.g. 256 for Depth 8
+};
+```
+
+### 2. The Unified Thread Workload
+In your `WorkDistribution`, you create a pipeline that treats the **ContentRect** as a simulation grid.
+
+#### Step A: Substrate Update (Physics)
+This happens in your `CymaticUpdate` Workload. Each thread takes a `WorkBatch` representing a "slice" of the $N^3$ grid.
+
+```zig
+pub fn calculateCymaticStep(batch: WorkBatch) void {
+    // 1. COMPUTE LAPLACIAN (Curvature)
+    // Access neighbors in the contiguous SVDAG-aligned substrate array
+    // Laplacian = (Left + Right + Top + Bottom + Front + Back - 6*Center)
+    const laplacian = computeLaplacianSIMD(batch.input_data_ptr);
+
+    // 2. APPLY ELASTIC FORCE
+    // Stiffness is derived from your SVDAG Leaf Material
+    const stiffness = getStiffnessFromLeaf(batch.aux_data_ptr_a);
+    const force = laplacian * stiffness;
+
+    // 3. FLOW COHESION (Circulation)
+    // Update velocity using the force + pressure gradient
+    // This is where "Solid" behavior emerges from waves
+    updateVelocitySIMD(batch.velocity_ptr, force, batch.dt);
+    
+    // 4. DESTRUCTION CHECK (Yield)
+    const pressure = @abs(laplacian);
+    if (pressure > batch.yield_threshold) {
+        flipSVDAGBit(batch.svdag_ptr, batch.current_index); // Matter becomes Air
+    }
+}
+```
+
+#### Step B: Volumetric Rendering (Discovery)
+As the renderer (SVE) drills the SVDAG, it now "samples" the Cymatic state to modulate the signal.
+
+```zig
+fn shadeCymaticHit(hit: BeamHit, cell: *RadianceCell) rl.Color {
+    const substrate = getSubstrateAt(hit.world_pos);
+    
+    // 1. DISPLACEMENT JITTER
+    // Offset the hit position by the cymatic displacement for "vibration"
+    const jittered_pos = hit.world_pos + substrate.field[hit.idx];
+    
+    // 2. RADIANCE MODULATION
+    // Use the pressure/displacement to flicker the luminance_target
+    const mod = 1.0 + (substrate.field[hit.idx] * 0.1);
+    cell.target_radiance = colorScale(cell.target_radiance, mod);
+
+    // 3. EPOCH SYNC
+    // If substrate moved, the light MUST be dirty
+    if (substrate.moved) cell.last_geometry_epoch += 1;
+
+    return cell.resolveSignal();
+}
+```
+
+### 3. Broad-Phase & Dispatch Logic
+Your `FrameCoordinator` manages the synchronization between the Physics simulation and the Render beams.
+
+1.  **Cymatic Dispatch:** Use `WorkDistribution` to split the `ContentRect` into 3D chunks (e.g., $32^3$ voxels per batch). Pin these to threads sharing the same **NUMA Node** as the `SVDAG` data.
+2.  **Double Buffering:** 
+    *   Thread reads `State_N` (Input Path).
+    *   Thread writes `State_N+1` (Output Path).
+    *   This ensures the renderer always sees a stable, non-tearing field.
+3.  **The "Hot Zone" Gate:**
+    *   `if (rect.is_active)`: Run Cymatic Workload.
+    *   `else`: Skip. The SVDAG remains static.
+
+### 4. Physics/SVDAG Coupling (The Interaction)
+When a player applies an impulse (collision or movement):
+
+```zig
+pub fn applyCymaticImpulse(rect: *ContentRect, impulse: CymaticImpulse) void {
+    const local_pos = worldToLocal(rect, impulse.origin);
+    const idx = posToIndex(local_pos);
+    
+    // Add velocity directly to the substrate field
+    rect.substrate.velocity[idx] += impulse.direction * impulse.magnitude;
+    
+    // Mark as active so the Thread Module starts processing this box
+    rect.is_active = true;
+    global_radiance_state.geometry_epoch += 1;
+}
+```
+
+### 5. Summary of Thread Execution Order
+1.  **Sync Point:** Finalize previous frame's accumulation.
+2.  **Physics Phase:** Execute `CymaticStep` workloads on all `active` ContentRects.
+    *   Updates `velocity` and `field` arrays.
+    *   Flips SVDAG bits if `yield_strength` is exceeded.
+3.  **Trace Phase:** Execute SVE Beam-Silo workloads.
+    *   Beams drill the (potentially modified) SVDAG.
+    *   `shadeHit` reads the new `field` values to jitter/modulate light.
+4.  **Resolve Phase:** Execute `RadianceCell` LERP/Snap logic.
+5.  **Output:** Splat to Framebuffer.
+
+### Performance Wins in Zig 0.15.1:
+*   **SIMD:** `@Vector(8, f32)` allows you to calculate the Laplacian for 8 cells in a single instruction.
+*   **NUMA:** By keeping the `CymaticSubstrate` and `SVDAGNodePool` in the same `MemoryDomain`, you avoid the 50-100ns penalty of cross-socket memory access.
+*   **Zero Latency Collision:** Since the SVDAG *is* the density field, a "collision" is just a high-pressure spike in the substrate. No GJK/EPA algorithms are needed.
+
+
+---
+
+
+To adapt your **Cymatic/SVE Engine** for 2D (a "Cymatic-Box2D"), you simplify the 3D grid into a **Single-Layer Pixel Substrate**. Instead of drilling a 3D SVDAG, you use your `ContentRect` as a 2D simulation patch where "rigid bodies" are just high-density islands floating in the field.
+
+### 1. The 2D Substrate Struct
+You use your contiguous array logic but flatten the indexing.
+
+```zig
+pub const Substrate2D = struct {
+    // 2D Grids (Width * Height)
+    density: []f32,      // Matter Map (High = Solid, 0 = Air/Vacuum)
+    velocity: []@Vector(2, f32), // Momentum (X, Y)
+    pressure: []f32,     // Scalar field (Waves/Compression)
+    
+    width: u32,
+    height: u32,
+    cell_size: f32,      // Meters per pixel
+};
+```
+
+### 2. The Simplified Interface (The "Cymatic-Box2D" API)
+Instead of complex constraint solvers, you use **Substrate Injection**.
+
+```zig
+pub const Cymatic2D = struct {
+    substrate: Substrate2D,
+
+    // Replace Box2D Body Definition
+    pub fn spawnBody(self: *Cymatic2D, pos: rl.Vector2, shape: rl.Image, mass: f32) void {
+        // 1. Blit the shape into the density field
+        // 2. High density regions automatically become "rigid" due to 
+        //    the Cymatic Flow Cohesion math.
+        self.injectMatter(pos, shape, mass);
+    }
+
+    // Replace Box2D Impulse
+    pub fn applyImpulse(self: *Cymatic2D, pos: rl.Vector2, force: rl.Vector2) void {
+        const idx = self.posToIndex(pos);
+        self.substrate.velocity[idx] += force;
+    }
+
+    // Replace Box2D Step
+    pub fn step(self: *Cymatic2D, dt: f32) void {
+        // Run your thread-module over the 2D grid
+        // Physics emerge: Collisions happen when two density islands 
+        // attempt to occupy the same pressure-cell.
+    }
+};
+```
+
+### 3. Implementing 2D Physics via 3D Substrate
+To keep your existing SVE code compatible, you treat 2D as a **1-Voxel Deep 3D Box**.
+
+1.  **Fixed Z-Axis:** Set `ContentRect.build_box_y_range` to a very small epsilon (e.g., `0.01`).
+2.  **2D Traversal:** Your beam-caster only drills the X/Y plane.
+3.  **Simplified Laplacian:** The physics solver ignores the Z-neighbor.
+    *   *3D Laplacian:* `L + R + T + B + F + Bk - 6*C`
+    *   *2D Laplacian:* `L + R + T + B - 4*C`
+
+### 4. Why this is better than Box2D
+In Box2D, objects can "tunnel" through each other if moving too fast. In Cymatic 2D:
+*   **No Tunneling:** Since physics is a continuous pressure field, a fast-moving object creates a "bow wave" of pressure that prevents it from ever entering another solid cell without a physical interaction.
+*   **Natural Soft Bodies:** If you want a "jelly" box, you just lower the `substrate_stiffness` for that specific `ContentRect`.
+*   **Infinite Contacts:** A pile of 1,000 pebbles costs the same as 1 pebble because the engine isn't counting "Contact Points"; it's just updating a 2D grid.
+
+### 5. Thread Distribution (Zig 0.15.1)
+For 2D, you divide the screen into **Bands** or **Tiles**.
+
+```zig
+pub fn calculate2DStep(batch: WorkBatch) void {
+    // Standard 2D Wave Equation + Navies-Stokes (Simplified)
+    // 1. Pressure = Force from neighbors
+    // 2. Velocity += Pressure * dt
+    // 3. Matter follows Velocity
+    
+    // Batch represents a horizontal strip of the 2D game world
+    const y_start = batch.data_start_index;
+    const y_end = y_start + batch.data_count;
+    
+    // Contiguous memory scan across X for max cache efficiency
+    processRows(y_start, y_end);
+}
+```
+
+### Summary of Usage:
+*   **Object A wants to hit Object B:** You don't write `onCollision()`. You just set the `velocity` of the cells in Object A toward Object B.
+*   **Friction:** This is the `viscosity` field. High viscosity = high friction between sliding density patterns.
+*   **Joints:** You "paint" a line of high-stiffness, high-viscosity cells between two objects. They are now "welded" by the field.
+
+
+---

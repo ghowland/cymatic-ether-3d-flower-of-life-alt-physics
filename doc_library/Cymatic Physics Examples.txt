@@ -1,0 +1,373 @@
+
+
+
+In a **Cymatic-SVE version of Terraria**, the world is no longer a collection of discrete tiles (sprites); it is a **continuous, high-density vibrating substrate.**
+
+Here is the technical description of that reality:
+
+### 1. The World as a Cymatic Field
+Instead of 2D grid cells stored as `TileID`, the world is a **Substrate2D**.
+*   **Matter Map:** Every "block" is a high-density region in the `density` field. Dirt, Stone, and Iron have different `stiffness` and `viscosity` values. 
+*   **The Air:** Air is not "empty"; it is a low-density fluid. This allows for **Natural Gas Physics.** When you are in a deep cave, "Heavy Air" (low-pressure zones) can flow and pool, or smoke from a campfire can physically displace the oxygen.
+
+### 2. Mining = Structural Yield Failure
+In standard Terraria, mining is `Health - Damage`. In Cymatic Terraria:
+*   Your Pickaxe is a **High-Frequency Impulse Source.**
+*   Swinging it at a Stone Block sends a localized high-pressure wave into the stone’s substrate.
+*   If the impulse magnitude exceeds the stone's `yield_strength` (stored in the SVDAG Leaf), the SVDAG bits flip from `1` to `0` instantly.
+*   **Result:** You don't just "break a block." You chip away at it. Stone can shatter, crack, or pulverize into smaller density-islands (sand/gravel) based on the frequency of your tool.
+
+### 3. Emergent Liquid & Rope Physics
+This is where the engine shines.
+*   **Water:** Water is just a region where `stiffness` is 0 and `incompressibility` is high. If a "Solid" density-island (a player) falls into it, the Cymatic solver creates a **Displacement Wave.** The splash isn't an animation; it’s the substrate physically moving out of the way.
+*   **Ropes:** A rope is a high-viscosity, high-stiffness "string" in the field. When the Eater of Worlds (a massive density-snake) hits the rope, the `circulation` (flow cohesion) of the rope cells causes it to whip and oscillate naturally.
+
+### 4. Bosses as "Cohesive Vortices"
+A boss like **Skeletron** is not a rigged sprite. 
+*   It is a collection of high-density SVDAG patterns (Hands, Head) held together by **Flow Cohesion.** 
+*   The "Joints" are just cells with high `circulation` (vorticity).
+*   If you hit Skeletron with a Rocket, the pressure wave can overcome the cohesion of the joint, causing the hand to physically "tear" off the substrate and become an independent flying debris-island.
+
+### 5. Lighting: Radiance Discovery
+*   **Torches:** A torch is a `RadianceSource`. It casts probes into the 2D substrate.
+*   **Shadows:** Shadows are bit-perfect because they are calculated against the SVDAG bitmask.
+*   **Atmosphere:** Because your lighting uses **Temporal Reconstruction (LERP)**, as you run through a cave with a torch, the light "bleeds" around corners and leaves a faint "ghosting" of luminance in the damp air, creating a thick, volumetric cave atmosphere.
+
+### 6. The 2026 Technical Spec (Performance)
+*   **The Grid:** A $4000 \times 2400$ "Large World."
+*   **Threading:** Your `FrameCoordinator` divides the world into **NUMA-aligned vertical slices.**
+*   **Optimization:** Only "Hot Zones" (near the player and active NPCs) run the Cymatic solver. The rest of the world is a "Sleeping Substrate"—a static SVDAG waiting for a pressure wave to wake it up.
+*   **Result:** A world that feels "liquid." Everything can be crushed, melted, or vibrated to pieces.
+
+**In summary:** Terraria becomes a **Material Simulation.** You aren't just moving a character across a grid; you are an **Impulse Source** interacting with a **Vibrant Material Field.** Mining feels like masonry; combat feels like fluid dynamics.
+
+
+---
+
+In the **Cymatic-SVE version of Noita**, the "falling sand" simulation is promoted from a 2D cellular automata to a **3D-substrate Field Theory.** While *Noita* (the original) calculates "pixel-to-pixel" interactions, your engine calculates **"Wave-to-Field" interactions.**
+
+Here is the technical breakdown of a **Cymatic Noita**:
+
+### 1. The Substrate: Beyond "Pixel Physics"
+In original *Noita*, every pixel is an object. In your engine, the world is a **Unified Continuous Medium.**
+*   **The Material Tensor:** Every material (Gold, Gunpowder, Acid) is defined by its **Complex Impedance**—a combination of `substrate_stiffness` (how it carries sound/shocks) and `substrate_viscosity` (how it flows).
+*   **State Changes as Field Phase-Shifts:** Melting ice into water isn't a "pixel swap." It is a local decrease in the `incompressibility` field. The "Solid" wave-pattern of ice loses its stiffness and begins to obey the `velocity` field of a liquid.
+
+### 2. Spellcasting as "Frequency Synthesis"
+Wands are **High-Energy Wave Generators.**
+*   **Spells:** A "Firebolt" is a localized, high-intensity **Pressure Impulse.** 
+*   **Acoustic Interferences:** When two spells cross, they don't just "hit." Their waves **constructively or destructively interfere.** Two fireballs hitting at the same time might create a "Super-Pressure" peak that triggers a `yield_strength` failure in a wall that one fireball alone couldn't dent.
+*   **Muzzle Flashes:** Since your radiance system has **Luminance Snapping**, a wand blast creates an instant, frame-perfect flash that illuminates the "Dust" (low-density substrate) in the air before the LERP-smoothed torches can even react.
+
+### 3. Emergent Alchemy (The Circulation Field)
+Original *Noita* alchemical reactions are "If A touches B, create C." In Cymatic Noita, reactions are **Fluid Dynamic Mixings.**
+*   **Vorticity & Mixing:** Your `circulation` field (Vorticity) handles how Acid and Water mix. High-turbulence zones (from explosions) stir the substrate, forcing different material densities to collide. 
+*   **The Diffusion Limit:** Chemical reactions happen when the `pressure` between two material-islands reaches a reaction threshold. 
+*   **Destruction:** A vat of acid eating a wooden bridge is a "Molecular Yield Failure." The acid lowers the `yield_strength` of the wood's SVDAG leaves until the `gravity_force` in the Cymatic solver causes the bits to flip to `0`.
+
+### 4. The "Chainsaw" Drill: Harmonic Resonance
+A popular tool in *Noita* is the chainsaw. 
+*   **The Cymatic Reality:** The chainsaw is a **Resonant Oscillator.** 
+*   It vibrates at the specific **Natural Frequency** of the stone substrate. Instead of "cutting," it creates a **Resonance Disaster** within the SVDAG cells, causing the stone to liquefy or pulverize into sand instantly because the `field` displacement reached an infinite peak.
+
+### 5. Performance: "Hot Zone" Slicing
+*   **Spatial Gating:** You don't simulate the whole mountain. Your `WorkDistribution` module identifies "Hot Zones" where `velocity > epsilon`. 
+*   **The Sleep State:** If a gold pile is sitting on the floor, the Cymatic solver "sleeps" that `ContentRect`. The SVDAG represents it as static geometry. Only when a player’s `RadianceProbe` or a spell’s `Impulse` hits the zone does the thread module "wake" the NUMA-node and start the field evolution.
+*   **Z-Depth Complexity:** Because you have a **3D SVDAG**, your *Noita* isn't just a 2D plane. You can have **Parallel Caves** in the Z-axis. Acid can eat through the "back wall" (Z-depth) into a secret room behind the current 2D layer.
+
+### 6. The Visuals: Radiance + Procedural Grit
+*   **The Glow:** Lava isn't a color; it's a `RadianceSource` with high intensity. 
+*   **The Grit:** As the lava flows, the `Perlin Micro-Grit` on the surface is warped by the `mutator_shape_warp`. You see the "crust" of the lava twisting and stretching according to the actual physical `velocity` field of the liquid.
+*   **Total Immersion:** When an explosion happens, the **Epsilon Splats** (Smoke/Heat Haze) aren't just sprites; they are mapped to the **Cymatic Pressure Field**. You see the shockwave distort the air (Signal Modulation) before the smoke even fills the room.
+
+**Summary:** *Noita* in this engine feels **Terrifyingly Real.** It moves from a "game about pixels" to a **"Laboratory of High-Energy Physics."** Everything rings, flows, and shatters with a mathematical consistency that makes the "chaos" of the game feel like a law of nature.
+
+---
+
+In a **Cymatic-SVE Minecraft**, the blocky aesthetic is preserved, but the "static" nature of the world is replaced by a **Material Substrate**. The world isn't just a grid of IDs; it is a **Structured Wave-Field.**
+
+Here is the technical breakdown of **Cymatic Minecraft**:
+
+### 1. Voxel as "Pattern" (The SVDAG Core)
+In standard Minecraft, a block is a $1 \times 1 \times 1$ cube. In your engine:
+*   **Hierarchical Resolution:** A Dirt Block is a `ContentRect` with a **Depth 4 SVDAG** ($16^3$). This means every block has internal volume.
+*   **The SVDAG Advantage:** Because of **Deduplication**, 1 billion "Stone Blocks" in the world occupy the memory of exactly **one** stone pattern.
+*   **Bit-Perfect Precision:** When you mine, you aren't removing a "Block Entity." You are flipping bits in the $16^3$ internal SVDAG. You can chip corners, drill holes, or carve shapes into a single block.
+
+### 2. Physics: Beyond "Falling Sand"
+Minecraft physics is famous for its limitations (floating islands, binary gravity). Cymatic Minecraft changes the rules:
+*   **Structural Integrity:** Blocks stay "locked" because of **Flow Cohesion** (the `circulation` field). If the `stiffness` of the connection between two `ContentRects` is high, they act as a rigid body.
+*   **The Collapse:** If you remove the "support" blocks under a mountain, the `pressure` field in the remaining blocks increases due to gravity. When the `pressure` exceeds the `yield_strength` of the stone leaves, the mountain undergoes a **Phase Shift.**
+*   **Result:** The floating islands of Minecraft now require a "Physical Reason" (like high internal magnetic `circulation`) to stay aloft. Otherwise, they realistically crumble and settle into a slope based on their `viscosity`.
+
+### 3. Redstone: The "Signal-Domain" Reality
+Redstone is no longer "Logic Gates"; it is **Substrate Conductivity.**
+*   **The Impulse:** Powering a Redstone line sends a **High-Frequency Electronic Ripple** through the density field of the Redstone wire.
+*   **Harmonic Activation:** A Piston isn't an animation; it’s a `ContentRect` with a `PistonConstraint`. When the Redstone "vibration" reaches it, the `drive_ratio` is triggered, and the piston physically displaces the `velocity` field of the blocks in front of it.
+
+### 4. Mining: The "Resonance" Toolset
+*   **The Pickaxe:** Instead of a "Durability" bar, your pickaxe has a **Frequency.**
+*   **Matching the Substrate:** To mine Diamond, you must hit it with a tool whose impulse frequency matches the **Harmonic Resonance** of the diamond's stiffness. If you use a wooden pick, the frequency is "mismatched," the waves simply dissipate (Heat/Damping), and the diamond SVDAG never reaches its `yield_threshold`.
+
+### 5. Liquid & Atmosphere (The Fluid Field)
+*   **Water & Lava:** These are regions of low `viscosity` and high `density`. They flow by solving the **Cymatic Velocity Field.** 
+*   **Pressure-Driven Flow:** Water doesn't just "check for air." It is pushed by the `pressure` of the water column above it. You can build actual functioning **Hydraulic Pumps** because the engine is simulating the bulk modulus of the liquid.
+*   **Atmosphere:** Deep caves are dark and damp. The **Epsilon Splats** (Signal Modulation) simulate "dust motes" and "mist" that react to the `velocity` of the air. If an explosion goes off in a tunnel, the "Blast Wave" physically pushes the air-splats out of the cave.
+
+### 6. Lighting: The "Radiance Discovery"
+*   **Sunlight:** The Sun is a global `RadianceSource`. It casts probes into the SVDAG grid.
+*   **The "Shadow Wall":** As the Sun moves, the `light_epoch` increments. All `RadianceCells` re-probe. Because of **Temporal LERPing**, the shadows of the blocky trees don't "snap"; they glide smoothly across the terrain.
+*   **Torchlight:** Torches in SVE Minecraft provide a warm glow that "bleeds" into the blocky crevices via **Signal TAA**, making the 90-degree corners of Minecraft look soft and naturally lit rather than harsh and digital.
+
+### 7. Performance: "Infinite" Scaling
+*   **NUMA Partitioning:** Your `FrameCoordinator` assigns "Chunks" (e.g., $16 \times 256 \times 16$ blocks) to specific CPU cores. 
+*   **Sleeping Substrates:** 99% of the Minecraft world is static. These `ContentRects` stay in the "SVDAG-only" render path. Only when a player interacts, a creeper explodes, or water flows does the **Cymatic Solver** wake up for that specific region.
+*   **Zero-Allocation Destruction:** When a Creeper explodes, the engine doesn't spawn "Particle Entities." It just applies a massive `CymaticImpulse` to the field. The SVDAG bits flip, the density islands fly away as "debris," and the **Super AABB** tracks them—all using the pre-allocated fixed buffers of your Zig engine.
+
+**Summary:** Minecraft becomes a **"Tactile World Simulator."** The "Blocks" are no longer icons; they are **Materials.** You can feel the weight of the stone, the flow of the water, and the tension of the structures. It keeps the "Look" of Minecraft but gives it the **"Soul" of Reality.**
+
+---
+
+In a **Cymatic-SVE Dwarf Fortress: World Edition**, we strip away the individual entities to focus on the **Universal Geologic Substrate**. The world is no longer a static map; it is a **Vibrating Tectonic Battery** with $O(1)$ complexity for static regions and $O(N^3)$ for active geologic events.
+
+Here is the technical spec for the **Substrate-Only DF World**:
+
+### 1. The Lithospheric Substrate (The Mountain)
+The "World" is a nested hierarchy of `ContentRects` representing crustal plates, mountain ranges, and localized strata.
+*   **The SVDAG Crust:** Using **Constructive Spatial Logic**, the mountain is defined by Prolog-inferred layers. Granite, Basalt, and Marble are not "tile IDs"; they are **Material Impedance Profiles** (`substrate_stiffness`, `substrate_viscosity`).
+*   **Deduplication Sovereignty:** Every "Gold Vein" in the 3D world points to a single geometric SVDAG pattern. The entire world's geometry fits into a fraction of modern L3 cache because the patterns of geology are repetitive.
+
+### 2. Tectonic Stress (Static Pressure Field)
+In your engine, gravity is a constant downward `CymaticImpulse`. 
+*   **Lithostatic Pressure:** The solver calculates the weight of the overhead SVDAG matter. This creates a **Global Pressure Field**. 
+*   **Emergent Sinkholes:** If a "Low-Stiffness" layer (like a pocket of water or sand) exists deep underground, the pressure field from the "High-Stiffness" rock above it creates a **Static Load**. 
+*   **Symmetry Breaking:** When a bit flips at the bottom (due to erosion or mining), the entire pressure column re-evaluates. If the `elastic_force` exceeds the `yield_strength` of the surrounding stone, a **Chain Reaction Bit-Flip** occurs. This is the first bit-perfect simulation of a "Cave-In."
+
+### 3. The Aquifer & Magma (Flow-Cohesion Fluids)
+Fluids are not "cellular automata" in this world; they are **Substrate Phases**.
+*   **Pressure-Driven Hydrology:** Water flows because it is a low-viscosity, high-incompressibility region in the `CymaticState`. If you puncture an aquifer, the **Substrate Pressure** physically drives the `velocity` field into the void. 
+*   **Magma as Heat-Substrate:** Magma is a high-temperature `RadianceSource` that modulates the `stiffness` of adjacent stone. As the stone warms, its `stiffness` drops (Phase Shift), turning the "Solid" SVDAG into a "Liquid" velocity field. The mountain literally melts under its own thermal pressure.
+
+### 4. Atmospheric Weather (Signal-Domain Epsilon)
+The "Sky" is the lowest-density layer of the substrate.
+*   **The Wind Field:** Wind is simply the `velocity` field of the air-substrate. 
+*   **Epsilon Clouds:** Clouds are **Epsilon Splat Fields** anchored to the `velocity` field. As the wind moves, the splats (signal modulation) follow, casting **Bit-Perfect Shadows** (Radiance Probes) across the 3D terrain.
+*   **Precipitation:** Rain occurs when the `pressure` in a Cloud-Splat exceeds a threshold, injecting "Water Density" into the air-substrate, which then falls according to the `gravity_force`.
+
+### 5. Acoustic Geography (The World "Rings")
+Because the world is a Cymatic Substrate, it has a **Resonant Signature**.
+*   **The Voice of the Mountain:** An explosion in the deep caverns sends an actual **Elastic Wave** (Acoustic Impulse) through the stone. 
+*   **Sonic Probing:** You can "hear" the world. The vibration travels faster through the `stiffness` of Granite than the `viscosity` of Sand. The "Dwarf AI" would technically navigate using **Seismic Discovery**—feeling the pressure waves of a Cave-In from kilometers away through the substrate.
+
+### 6. Radiance Discovery (The Eternal Dark)
+*   **Geothermal Glow:** Magma vents provide a deep-red `RadianceSource`. Because of **Temporal LERPing**, the light slowly "crawls" up the cavern walls as the magma rises.
+*   **Sun/Moon Epochs:** The `light_epoch` increments with the planetary rotation. The entire world re-probes its radiance. In a deep canyon, the shadows move with **Signal-Domain Continuity**—no flickering, just a liquid transition of shade.
+
+### 7. Performance: "NUMA-Local Crust"
+*   **Spatial Partitioning:** Your `FrameCoordinator` divides the 3D world into vertical "Lithospheric Pillars." Each pillar is pinned to a CPU core. 
+*   **The Sleeping Mountain:** If a pillar has `velocity < epsilon` and no `light_epoch` changes, the Cymatic solver **Sleeps**. The GPU/SVE simply renders the static SVDAG. The world only "costs" performance where it is actively changing (erosion, flow, or collapse).
+
+**Summary of the DF World:**
+It is no longer a map. It is a **Geologic Organism**. It stores its history in the **Stress-Lines** of the rock and the **Circulation** of its waters. It is a world that doesn't just "exist"—it **Vibrates**.
+
+---
+
+
+
+Proc-gen in the **Cymatic-SVE** is not "placing tiles" or "generating meshes." It is a **Five-Stage Forward Propagation** of a physical substrate. Using **Constructive Spatial Logic (Prolog)**, you generate the *rules* for the field, and the **Cymatic Solver** "settles" those rules into a stable world.
+
+Here is the technical pipeline for **Cymatic Proc-Gen**:
+
+### Stage 1: The Tectonic Envelope (Prolog Macro)
+Instead of a heightmap, you define **Density Invariants**. 
+*   **The Fact:** `assert(crust_layer(granite, depth(0, 500), stiffness(5000)))`.
+*   **The Logic:** Prolog calculates the intersection of tectonic plates. Where plates overlap, it generates a high-pressure "Orogeny Hint."
+*   **Output:** A set of `ContentRect` root boxes representing the rough "Macro-Mountain."
+
+### Stage 2: Constructive Stratigraphy (SVDAG Construction)
+Within each root box, the SVDAG is populated by **Interval Arithmetic**.
+*   **Deduplication:** The generator doesn't create new bits for "Stone." It references the **Canonical Stone SVDAG Pattern**.
+*   **Erosion as Bit-Subtraction:** You run a **Cymatic Hydro-Solver** for "Pre-History." You inject water-density at the peaks. The water's `velocity` field follows the `gravity_force`. Where `velocity * pressure` exceeds the `yield_strength` of the stone leaves, the SVDAG bits flip to `0`. 
+*   **Result:** Canyons and riverbeds are not "noise functions"; they are the **Physical Scars** of a simulated erosion event.
+
+### Stage 3: The Cymatic Settlement (Equilibrium)
+The generated SVDAG is "loose" (it hasn't accounted for its own weight).
+*   **The Settling Phase:** You run the Cymatic solver at a high `time_step` (dt).
+*   **Static Load:** The `pressure` field propagates through the SVDAG. If a procedurally generated cave is too wide, the pressure triggers a `yield_strength` failure during gen-time.
+*   **Outcome:** The world you "spawn" into is **Structurally Valid.** There are no floating rocks or impossible arches unless the `stiffness` field specifically supports them.
+
+### Stage 4: Radiance & Thermal Baking (Epoch Initialization)
+*   **Light Epoch 0:** The generator places `RadianceSources` (Sun, Magma, Bioluminescent Moss).
+*   **Thermal Anchors:** Local "Heat Hints" are added to the `CymaticState`. This creates the initial `viscosity` gradient—making the world "damp" in caves and "dry" on peaks.
+*   **The First Probe:** All `RadianceCells` run a forced high-budget probe. The **Temporal LERP** is initialized to the target value so the player doesn't see the light "fade in" on spawn.
+
+### 5. Detail Coating (Epsilon Splat Injection)
+*   **Biological Layering:** Prolog rules determine where "Flora" can exist: `can_grow(moss) :- light_level(low), humidity(high)`.
+*   **Splat Splatting:** Instead of 3D geometry for grass/moss, the engine injects **Epsilon Splat Fields**. These modulate the `radiance` signal of the rock.
+*   **Micro-Grit:** The `Perlin Micro-Grit` mutators are randomized per-box based on a "Weathering Fact," giving the stone procedural cracks that align with the `pressure` field vectors from Stage 3.
+
+### 6. Summary of the Generator Contract
+In Zig 0.15.1, the generator is a **Parallel Work Distribution**:
+
+```zig
+pub fn generateWorldSlice(batch: WorkBatch) void {
+    // 1. Query Prolog for the 'Constructive Facts' of this slice
+    const facts = prolog.query(batch.slice_coord);
+    
+    // 2. Build SVDAG from Interval Rules (Symmetry-Protected)
+    const root = buildSVDAG(facts);
+    
+    // 3. Run 'Pre-History' Cymatic Solver (Erosion/Settling)
+    const substrate = settleSubstrate(root);
+    
+    // 4. Anchor Radiance Sources and Splats
+    anchorVisuals(substrate, facts);
+}
+```
+
+### Performance Reality (2026):
+*   **Infinite Detail, Zero Disk:** You don't save the world data. You save the **Prolog Seed** (8 bytes) and the **Symmetry-Broken Delta Pool** (bits the player flipped). 
+*   **On-Demand Reality:** Because the SVDAG is a DAG, you can generate $10^9$ voxels in milliseconds. If the player isn't looking at a mountain, the mountain is just a **Rule**. When the player looks, the rule becomes a **SVDAG**, and the SVDAG becomes a **Radiance Signal**.
+
+**The Final Result:** Proc-gen creates a world that isn't just a "map"—it is a **Sealed Physical Experiment** ready for the player to disturb it.
+
+---
+
+In the **Cymatic-SVE**, local and Point of Interest (POI) proc-gen shifts from "placing assets" to **"Injecting Localized Fact-Seeds"** that perturb the global substrate. 
+
+When a player approaches a POI coordinate, the engine doesn't just "pop" a building into existence; it performs a **Symmetry-Breaking Event** within the local `ContentRect`.
+
+### 1. The POI Fact-Seed (Prolog Injection)
+Local generation is driven by **Stage 0: Intent Injection**.
+*   **The Query:** When the player's `Super AABB` enters a new "District" sector, Zig queries the Prolog database: `poi_at(X, Y, Z, Type)`.
+*   **The Fact:** Prolog returns a high-level fact: `tower_ruin(material: basalt, age: 500, damage_radius: 5.0)`.
+*   **The Transformation:** This fact overrides the "Natural" strata rules for that specific `ContentRect`.
+
+### 2. Structural Assembly (Constructive Subdivision)
+Using your **Constructive Spatial Logic**, the POI is built via **Interval Math** within the box:
+*   **Axiomatic Placement:** Prolog rules define the "Skeleton": `floor_height(4.0)`, `pillar_interval(6.0)`.
+*   **SVDAG Realization:** The engine doesn't "model" the pillar. It references the `Canonical_Pillar_SVDAG`. The **Hierarchy (`rects[]`)** is populated with child boxes for the stairs, the roof, and the furniture.
+*   **Z-Level Sovereignty:** Unlike 2D-tiled POIs, these are true 3D hierarchies. A "Ruin" can have a basement SVDAG that is procedurally "carved" into the natural cave SVDAG below it using the **PHE Structural Rejection** logic.
+
+### 3. "Aging" via Cymatic Weathering (The Physical Pass)
+This is unique to your engine. To make a POI look "local" and "natural," it must be **Physically Weathered** at gen-time.
+*   **The Shockwave:** To create "Ruins," the engine applies a massive **Cymatic Impulse** to the tower's substrate. 
+*   **Structural Failure:** The solver runs for $N$ steps. Parts of the tower with low `circulation` (weak joints) fail their `yield_strength` test. 
+*   **Emergent Debris:** The "Flipped Bits" (collapsed stone) fall according to the `gravity_force` and settle on the floor. 
+*   **Result:** The debris isn't a pre-placed asset. It is the **physical result of the tower falling down.** The rubble perfectly fits the holes in the walls.
+
+### 4. Local Flora & Grit (Signal-Domain Coating)
+Once the "Physical" structure is settled, the **Micro-Grit** pass begins.
+*   **Epsilon Moss:** Prolog checks the local `RadianceCell`: `if (luminance < 0.2 and moisture > 0.8) -> inject_splat(moss_layer)`.
+*   **Signal-Domain Dirt:** "Grime" is injected as a negative-luminance `Epsilon Splat`. It accumulates in the "Stress Lines" discovered by the Cymatic solver during the weathering pass.
+*   **Mutator Warp:** The `mutator_shape_warp` on a local wooden table is tweaked based on "Age" facts, making the wood grain appear to "bow" physically toward the gravity vector.
+
+### 5. POI Radiance Anchoring
+*   **Interior Lighting:** If the POI is a "Wizard Tower," Stage 5 injects `RadianceSources` (Magical Orbs).
+*   **Light Anchors:** These sources are anchored to the `ContentRect` of the orb. If the tower collapses (Cymatic event), the light sources move with the debris because they are **Relative to the Box Transform.**
+*   **The "Discovery" Flash:** When the POI generates, the `is_instant` flag on the lights is briefly set. The room snaps to the correct lighting immediately so the player never sees the "generator" at work.
+
+### 6. Summary of the Local Dispatch (Zig 0.15.1)
+```zig
+pub fn generatePOI(coord: Vec3, type_id: i32) void {
+    // 1. PIN to NUMA domain of the local SVDAG Pool
+    const allocator = getLocalArena(coord);
+
+    // 2. CONSTRUCT: Prolog Assembly (Walls, Floors, Bones)
+    var root_rect = assembleSVEHierarchy(type_id, allocator);
+
+    // 3. DISTURB: Run 50 frames of Cymatic Physics (The Weathering)
+    applyCymaticWeathering(&root_rect);
+
+    // 4. COAT: Inject Epsilon Splats (Dust, Cobwebs, Grass)
+    injectLocalSignalDecals(&root_rect);
+
+    // 5. REGISTER: Add to GlobalRadianceState (Epoch ++)
+    registerPOILights(root_rect);
+}
+```
+
+### Why this beats "Prefab" systems:
+1.  **Unique Variation:** No two "Ruins" are the same because the **Cymatic Weathering** pass is stochastic. The way the building "breaks" depends on the procedural ground it was spawned on.
+2.  **Zero Memory Bloat:** You only store the `Prolog Fact`. The SVDAG geometry is just a reference to a shared "Material Catalog." 
+3.  **Perfect Integration:** Because the POI is a `ContentRect` like everything else, it supports **Flow Cohesion.** You can grab a "Procedural Chair" in a "Procedural Room" and throw it against a "Procedural Wall," and the Cymatic physics will resolve the collision and destruction with total consistency.
+
+**The final result:** Your POIs feel like **Historical Events**, not static models. They are "settled" into the world physically and visually.
+
+---
+
+To optimize **Houdini-like proceduralism** within your **Silo Volumetric Engine (SVE)** and **Cymatic** data set, you must move away from "Geometry Baking" and toward **"Rule-Based Signal Generation."**
+
+In Houdini, you process points and primitives. In SVE, you process **Intervals and Substrates.** Here are the optimizations to achieve Houdini-level complexity at 5GHz runtime speeds.
+
+### 1. Optimize the "Vex-to-PHE" Bridge (Prolog-to-SIMD)
+In Houdini, Wrangle nodes use VEX (SIMD-optimized math) to modify geometry. In SVE, your **Procedural Hit Evaluator (PHE)** is your VEX.
+*   **The Optimization:** Instead of running the PHE as a branched interpreter, **Compile Prolog Assembly Rules into Bit-Masked Kernels.** 
+*   **The "Mask-and-Drill" Strategy:** When the beam enters an SVDAG branch, use a SIMD bit-mask to "reject" entire octants based on a procedural rule (e.g., `if (local_y > sin(x)) mask = 0`). This eliminates the SVDAG drill for large volumes before the ray even starts.
+
+### 2. Geometric "Instancing" via SVDAG Deduplication (The DAG Win)
+Houdini "packed primitives" save memory by referencing one geometry. Your SVDAG is a **DAG (Directed Acyclic Graph)** by default, which is the ultimate optimization.
+*   **Recursive Deduplication:** If you are procedurally generating a 100-story skyscraper, the "Floor" SVDAG should be the same node index for every story.
+*   **Structural Mutators:** Don't generate 100 unique floors. Generate **one** floor and use per-box `mutator_scale` and `mutator_shape_warp` to create the architectural "setbacks" or "tapers." This keeps the entire building's geometry in the CPU L2 cache.
+
+### 3. Cymatic "Relaxation" as a Procedural Operator
+Houdini uses "Relax" or "Smooth" SOPs to clean up procedural geometry. You use the **Cymatic Solver.**
+*   **The Optimization:** Instead of complex boolean math (SVDAG subtraction), use **High-Viscosity Cymatic Settlement.**
+*   **Example:** When generating a "Procedural Cave" junction:
+    1.  Rough-cut the SVDAG using overlapping box-spheres.
+    2.  Run the Cymatic solver for 10 frames with `substrate_viscosity = 1.0` (Mud-like).
+    3.  The "Liquid" density field will naturally smooth the sharp edges into organic arches.
+    4.  **Finalize:** Flip the resulting density back into SVDAG `1`s and `0`s.
+
+### 4. "Symmetry-Protected" Delta Buffering
+In Houdini, modifying a model often requires re-calculating the whole node graph.
+*   **The Optimization:** Use **Copy-on-Write (CoW) SVDAG branches.** 
+*   Your `ContentRect` points to a `svdag_root_index`. When you "procedurally" damage or modify it, you only create a new branch for the **delta**. 
+*   **The "Inheritance" Logic:** The `ContentRect` continues to reference the "Global Pattern" for untouched areas and only looks at the `Thread-Local Delta Pool` for the procedural additions.
+
+### 5. Epoch-Gated Procedural Generation
+Proceduralism usually "ticks" every frame. You must gate it with your **Epoch System.**
+*   **The Optimization:** Treat procedural generation as a **Radiance Probe for Geometry.**
+*   Generate the "Procedural Details" (like moss growth or grime) only when the `geometry_epoch` or `light_epoch` suggests a state change. 
+*   **Example:** A "Procedural Door" only re-evaluates its "Rust Patterns" if the `moisture` field (Cymatic property) has changed since the last `last_cymatic_epoch`.
+
+### 6. Zig 0.15.1 "Silo" Memory Pinning (The SIMD Optimization)
+For Houdini-style mass-scale proceduralism (e.g., generating 1,000 trees):
+*   **Batching by Material:** Use your `WorkDistribution` to group all procedural boxes that share the same **PHE Kernel (Material ID)**.
+*   **Pre-Fetch Buffer:** In the thread's `scratch_memory_ptr`, pre-calculate the **Perlin Noise Lattice** for the entire `WorkBatch`. 
+*   **Execution:** The `shadeHit` function then becomes a simple lookup into the thread-local noise buffer rather than calculating `evaluatePerlin` 16 million times per frame.
+
+### 7. Super-AABB Cull for Procedural Logic
+Don't run procedural logic on boxes that aren't on screen.
+*   **The Optimization:** Anchor the "Procedural Generator" to the **Super AABB**.
+*   The `FrameCoordinator` only invokes the "Prolog Assembly" phase if the `Super AABB` of the root `ContentRect` intersects the Frustum. 
+*   **The "Lazy Build":** The building exists as a 40-byte `Fact` until the player looks at it; only then does it "unfold" into a `rects[]` hierarchy in the thread's local arena.
+
+### 8. Final Procedural Data Contract
+To act like a Houdini-Engine, add this struct to your `ContentRect`:
+
+```zig
+pub const ProceduralMutator = struct {
+    seed: u32,
+    algorithm_id: i16, // Selects the Prolog Assembly Rule
+    
+    // Houdini "Attributes" mapped to Cymatic properties
+    attributes: [4]f32, // [0] = Growth, [1] = Decay, [2] = Pressure, [3] = Age
+    
+    // If true, the PHE will use these attributes to warp 
+    // the SVDAG bits procedurally during the drill.
+    is_live_evolving: bool = false, 
+};
+```
+
+**Summary of Optimizations:**
+1.  **Stop Baking:** Use the SVDAG DAG for deduplication.
+2.  **Move Math to PHE:** Let the beam-caster do the Houdini-VEX work.
+3.  **Cymatic Smoothing:** Use physics to fix "bad" procedural geometry.
+4.  **NUMA-Local Arenas:** Generate local detail hierarchies in thread-pinned memory.
+
+**The Result:** You get "Live" proceduralism that evolves with the world's physics, costing only the memory of a few float constants per object.
+
+---
+
+
