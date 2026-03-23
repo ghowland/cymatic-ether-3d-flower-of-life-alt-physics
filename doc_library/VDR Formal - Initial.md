@@ -2676,3 +2676,1112 @@ If you want, next I can:
 
 ---
 
+# Terminating VDR
+## Completion Semantics Axioms
+
+Good. This is a crucial distinction.
+
+We now state explicitly:
+
+In native VDR semantics, a nested remainder is not interpreted as ordinary addition.
+It is interpreted as exact completion.
+
+Only when converting into a legacy scalar representation may the structure be flattened into additive form.
+
+That is the right way to preserve VDR as its own ontology.
+
+---
+
+## 126. Completion Semantics Axiom
+
+For a VDR object:
+
+$$
+[V,D,R]
+$$
+
+the remainder slot \(R\) is interpreted natively as exact completion of the top-level ratio structure.
+
+Thus a VDR object is not, in native semantics, “a fraction plus a remainder.”
+It is:
+- a top-level ratio frame,
+- completed by exact residual structure.
+
+The object is one exact whole.
+
+---
+
+## 127. Closed Completion Axiom
+
+For a closed VDR object:
+
+$$
+[V,D,0]
+$$
+
+the completion is already total.
+
+Thus:
+
+$$
+[V,D,0]
+$$
+
+is natively complete without further structure.
+
+Its scalar core is simply:
+
+$$
+\frac{V}{D}
+$$
+
+---
+
+## 128. Active Completion Axiom
+
+For an active VDR object:
+
+$$
+[V,D,R], \quad R \neq 0
+$$
+
+the remainder is not external to the value.
+It is part of the value’s exact completion.
+
+Thus the object must be read as:
+
+- “\(V/D\) completed by \(R\)”
+
+not:
+
+- “\(V/D + R\)”
+
+in native VDR semantics.
+
+---
+
+## 129. Child Completion Axiom
+
+For a rebased form such as:
+
+$$
+[Q,B,[S,D,0]]
+$$
+
+the child VDR is the exact completion of the top-level ratio.
+
+Thus the native reading is:
+
+- “\(Q/B\) with exact completion \([S,D,0]\)”
+
+not:
+
+- “\(Q/B + S/D\)”
+
+unless the object is explicitly converted into a legacy scalar representation.
+
+---
+
+## 130. Non-Additivity Axiom
+
+Nested remainder completion is not ordinary addition in native VDR semantics.
+
+That is, for:
+
+$$
+[V,D,[S,E,0]]
+$$
+
+the child is not presumed to be an additive term attached to the parent.
+It is an exact residual completion object.
+
+So the native semantics of nesting are:
+- compositional,
+- hierarchical,
+- exact,
+not:
+- flattened additive arithmetic.
+
+---
+
+## 131. Legacy Conversion Axiom
+
+When a VDR object is converted into a legacy scalar representation, completion may be flattened into additive form for evaluation purposes.
+
+Thus:
+
+$$
+[V,D,[S,E,0]]
+$$
+
+may be converted into legacy scalar form as:
+
+$$
+\frac{V}{D} + \mathrm{legacy}([S,E,0])
+$$
+
+where `legacy(...)` recursively converts the child into scalar form.
+
+Flattening is permitted only in conversion, not in native ontology.
+
+---
+
+## 132. Recursive Legacy Conversion Axiom
+
+The legacy scalar conversion of a VDR object is defined recursively.
+
+For closed form:
+
+$$
+\mathrm{legacy}([V,D,0]) = \frac{V}{D}
+$$
+
+For nested completion:
+
+$$
+\mathrm{legacy}([V,D,R]) = \frac{V}{D} + \mathrm{legacy}(R)
+$$
+
+where `legacy(R)` recursively flattens all nested children into additive scalar form.
+
+This defines conversion to decimal/rational-style interpretation only.
+
+---
+
+## 133. Native vs Legacy Distinction Axiom
+
+A VDR object has two distinct semantic modes:
+
+1. Native mode:
+   - completion semantics
+   - non-additive nesting
+   - exact discrete object ontology
+
+2. Legacy mode:
+   - additive flattening
+   - scalar interpretation
+   - compatibility with decimal/rational comparison
+
+These modes must never be conflated.
+
+---
+
+## 134. Ontological Priority Axiom
+
+Native VDR completion semantics are ontologically primary.
+
+Legacy scalar flattening is secondary and exists only for:
+- comparison,
+- export,
+- compatibility,
+- approximation into conventional mathematics.
+
+Thus the true meaning of a VDR object is its native completed structure, not its flattened legacy image.
+
+---
+
+## 135. Exact Completion Preservation Axiom
+
+Any valid arithmetic, rebase, normalization, or comparison operation in native VDR must preserve exact completion structure unless an explicit legacy conversion is requested.
+
+No native operation may silently replace:
+- completion semantics
+with
+- additive flattening.
+
+---
+
+## 136. Completion Equality Axiom
+
+Two VDR objects may have equal legacy scalar flattenings while remaining distinct in native completion structure unless value-equality rules identify them after normalization.
+
+Thus legacy scalar equality is not automatically native identity.
+
+This prevents the legacy flattening from overwriting native exact structure.
+
+---
+
+## 137. Completion Recursion Axiom
+
+If the remainder contains nested VDRs, each nested child is itself an exact completion object.
+
+Thus completion is recursively compositional:
+- each level completes the level above it,
+- and completion proceeds through finite nesting.
+
+This preserves the layered exactness of VDR.
+
+---
+
+## 138. Completion Termination Axiom
+
+Because terminating VDR requires finite closure, completion must terminate after finite recursive descent.
+
+Thus every native VDR object has:
+- finite exact completion,
+- not infinite deferred completion.
+
+This is what distinguishes VDR completion from decimal tails or real-number limit processes.
+
+---
+
+## 139. Decimal Conversion Non-Identity Axiom
+
+If a VDR object is converted to decimal or other scalar approximation, the resulting representation is not identical to the native object.
+
+It is only:
+- a projection,
+- flattening,
+- or compatibility image.
+
+Thus decimal output must never be mistaken for the native exact VDR itself.
+
+---
+
+## 140. Completion Interpretation Axiom
+
+The phrase:
+
+“\(Q/B\) with residual child as exact completion”
+
+is the canonical native reading of:
+
+$$
+[Q,B,\text{child}]
+$$
+
+This is the preferred interpretive formula for nested VDR objects.
+
+---
+
+# Summary
+
+These axioms establish:
+
+- Native VDR semantics are completion-based, not additive.
+- Nested remainder is exact completion, not “plus leftover.”
+- Only legacy conversion flattens the structure into additive scalar form.
+- The native object remains primary; scalar flattening is secondary.
+
+That gives you a clean semantic foundation.
+
+If you want, next I can:
+- rewrite the arithmetic/rebase examples under these completion semantics,
+- define a signed integer division convention,
+- or draft ordering axioms now that native vs legacy meaning is separated.
+
+---
+
+# Terminating VDR
+## Quotient Selection Axioms
+### For Exact Active Rebasing
+
+Good. These axioms define how the top-level quotient \(Q\) is chosen during rebasing.
+
+The goal is:
+
+- never lose value
+- never approximate
+- never use real-number rounding concepts
+- choose among exact candidates only
+- prefer simpler exact finite completion structure
+
+So quotient selection becomes a structural minimization problem, not a numeric approximation rule.
+
+---
+
+## 141. Quotient Selection Purpose Axiom
+
+For rebasing a VDR object:
+
+$$
+[V,D,R]
+$$
+
+into target denominator \(B \neq 0\),
+
+quotient selection chooses an integer \(Q\) such that the rebased form:
+
+$$
+[Q,B,C]
+$$
+
+is exactly value-equal to the source, where \(C\) is the exact completion child or child structure.
+
+The quotient is not a rounded estimate.
+It is the top-level exact frame selected for minimal exact completion complexity.
+
+---
+
+## 142. Exact Equality Constraint Axiom
+
+A candidate quotient \(Q\) is admissible only if there exists a finite exact completion object \(C\) such that:
+
+$$
+[Q,B,C] \equiv_v [V,D,R]
+$$
+
+Any quotient that cannot be completed into a finite exact VDR is invalid.
+
+Thus quotient selection occurs only inside the space of exact admissible candidates.
+
+---
+
+## 143. No Approximation Quotient Axiom
+
+Quotient selection may not be based on:
+- truncation
+- floor
+- ceiling
+- nearest
+- epsilon thresholds
+- decimal fit
+- float closeness
+
+unless those are later proven equivalent to a purely exact structural rule.
+
+Quotient choice must arise from discrete exact criteria only.
+
+---
+
+## 144. Completion Candidate Axiom
+
+For each admissible quotient \(Q\), define the exact completion object \(C_Q\) by:
+
+$$
+\mathrm{legacy}(C_Q) = \mathrm{legacy}([V,D,R]) - \frac{Q}{B}
+$$
+
+with the requirement that \(C_Q\) admit a finite exact terminating VDR representation.
+
+Thus each admissible quotient induces an exact completion candidate.
+
+---
+
+## 145. Primary Selection Criterion Axiom
+
+Among all admissible quotients, the preferred quotient is one that minimizes the recursive depth of the resulting completion object.
+
+Define:
+
+$$
+\mathrm{depth}(C)
+$$
+
+as the maximum nesting depth of VDR objects inside \(C\), with:
+- atomic remainder depth = 0
+- child VDR adds 1 plus max child depth
+
+Then quotient selection first minimizes:
+
+$$
+\mathrm{depth}(C_Q)
+$$
+
+This is the primary criterion.
+
+---
+
+## 146. Secondary Selection Criterion Axiom
+
+If multiple admissible quotients yield completion objects with equal minimal recursive depth, prefer the quotient whose completion object has the smallest denominator complexity.
+
+Denominator complexity may be measured by a deterministic system-wide function such as:
+
+$$
+\mathrm{den\_complexity}(C)
+$$
+
+where lower values are preferred.
+
+At minimum, this should reward:
+- smaller absolute denominators
+- more common/shared denominators
+- fewer distinct denominator levels
+
+The exact denominator complexity function must be fixed globally.
+
+---
+
+## 147. Tertiary Selection Criterion Axiom
+
+If multiple admissible quotients remain tied after recursive depth and denominator complexity, prefer the quotient whose completion object has the smallest structural size.
+
+Define structural size as a deterministic finite measure such as:
+- total node count
+- total child count
+- total slot complexity
+
+Again, lower is preferred.
+
+---
+
+## 148. Quaternary Selection Criterion Axiom
+
+If candidates remain tied after the first three criteria, prefer the quotient with the smallest absolute top-level numerator magnitude:
+
+$$
+|Q|
+$$
+
+This is a late tie-breaker only.
+It must never override better exact completion structure.
+
+---
+
+## 149. Canonical Quotient Selection Axiom
+
+Quotient selection must be deterministic.
+
+Given the same source object and target denominator, the system must always choose the same admissible quotient under the fixed structural ordering:
+
+1. exact admissibility
+2. minimum recursive depth
+3. minimum denominator complexity
+4. minimum structural size
+5. minimum absolute quotient magnitude
+6. fixed sign/order tie-breaker if still needed
+
+This ensures reproducible rebasing.
+
+---
+
+## 150. Completion Depth Axiom
+
+The recursive depth of a completion object is defined recursively:
+
+1. For atomic integer remainder:
+$$
+\mathrm{depth}(r)=0
+$$
+
+2. For closed child VDR:
+$$
+\mathrm{depth}([V,D,0])=1
+$$
+
+3. For active child VDR:
+$$
+\mathrm{depth}([V,D,R])=1+\mathrm{depth}(R)
+$$
+
+4. For remainder sums:
+$$
+\mathrm{depth}(r + X_1 + \dots + X_n) = \max(\mathrm{depth}(X_1), \dots, \mathrm{depth}(X_n))
+$$
+
+This gives a precise primary selection measure.
+
+---
+
+## 151. Denominator Simplicity Axiom
+
+A denominator configuration is simpler if it is more unified.
+
+All else equal, prefer completion objects whose denominators:
+- are fewer in number,
+- share common factors,
+- or reduce to smaller normalized magnitudes.
+
+Thus, exact forms that preserve common denominator structure are preferred over equally exact forms with fragmented denominator trees.
+
+This is the formal expression of “lowest common denominators where possible.”
+
+---
+
+## 152. Equality Supremacy Axiom
+
+No quotient may ever be selected for elegance, simplicity, or lower size if doing so compromises exact value equality.
+
+Equality outranks all simplification criteria.
+
+This is absolute.
+
+---
+
+## 153. Integer Preference Axiom
+
+Quotient selection should prefer exact decompositions that keep the completion structure inside finite integer-governed VDR form.
+
+This means:
+- no approximation rescue,
+- no irrational insertion,
+- no hidden infinite tails.
+
+The selected quotient must serve exact integer-structured completion.
+
+This is one of the reasons integers are foundational in terminating VDR.
+
+---
+
+## 154. Zero-Completion Preference Axiom
+
+If there exists any admissible quotient \(Q\) such that the resulting completion object is zero:
+
+$$
+C_Q = 0
+$$
+
+then that quotient must be selected.
+
+Thus fully closed rebasing always outranks active rebasing.
+
+---
+
+## 155. Minimal Active Preference Axiom
+
+If no zero-completion quotient exists, choose the quotient whose completion object is minimally active under the structural ordering.
+
+That is:
+- exact closure first,
+- minimal active complexity second.
+
+This makes active rebasing disciplined rather than arbitrary.
+
+---
+
+## 156. Sign Symmetry Axiom
+
+Quotient selection must not introduce sign bias unrelated to structural minimization.
+
+If two exact candidates are mirror-equivalent under sign and equal under all higher criteria, a fixed system-wide sign tie-break rule may be used.
+
+For example:
+- prefer positive \(Q\),
+or
+- prefer sign matching the source top-level ratio.
+
+But this must only break exact structural ties.
+
+---
+
+## 157. Finite Search Axiom
+
+For any valid rebasing operation, quotient selection must occur over a finite admissible candidate search.
+
+This requires a finite bound on quotient exploration, derived from exact structure rather than heuristic approximation.
+
+A quotient selection rule that requires infinite search is invalid in terminating VDR.
+
+---
+
+## 158. Quotient Search Bound Axiom
+
+A valid quotient search bound may be defined by restricting candidates to those whose completion structure can be produced within finite exact denominator constraints determined by the source and target.
+
+Thus quotient search is not over all integers blindly, but over a finite exact candidate class determined by:
+- source denominator
+- target denominator
+- current active structure
+- normalization constraints
+
+The exact bound function still needs to be formalized later.
+
+---
+
+## 159. Quotient-Completion Pair Axiom
+
+Quotient selection is fundamentally selection of a pair:
+
+$$
+(Q, C_Q)
+$$
+
+not just \(Q\) alone.
+
+That is:
+- the quotient has meaning only through the completion it induces,
+- and quotient ranking must always evaluate the full rebased pair.
+
+This prevents isolated quotient heuristics.
+
+---
+
+## 160. Native Selection Axiom
+
+Quotient selection must be defined entirely in native VDR terms.
+
+Legacy scalar conversion may be used to verify equality, but may not be used to rank candidates by approximation-like notions.
+
+So:
+- equality check may refer to legacy flattening if needed,
+- selection ranking must remain VDR-native.
+
+---
+
+# Summary of Quotient Selection
+
+A quotient \(Q\) is chosen only if:
+- it admits a finite exact completion object \(C_Q\)
+
+Among admissible exact candidates, choose by:
+
+1. smallest recursive depth of \(C_Q\)
+2. lowest denominator complexity
+3. smallest structural size
+4. smallest absolute \(Q\)
+5. fixed deterministic tie-break
+
+And never:
+- lose equality
+- approximate
+- use floor/nearest/truncation as primitive rules
+
+That gives you a properly VDR-native quotient selection system.
+
+---
+
+# Still Needed
+
+To make this fully executable, the next missing pieces are:
+
+1. a formal denominator complexity function
+2. a formal structural size function
+3. a finite quotient search bound
+4. a worked constructive quotient-selection algorithm
+
+If you want, next I can:
+- define denominator complexity formally,
+- define structural size formally,
+- or write a finite constructive quotient search algorithm.
+
+---
+
+# Terminating VDR
+## Formal Denominator Complexity Function
+
+Good. Since denominator complexity is a tie-break criterion in quotient selection, it needs to be:
+- exact,
+- finite,
+- recursive,
+- deterministic,
+- and native to VDR.
+
+The goal is to reward denominator structures that are:
+- smaller,
+- less fragmented,
+- and more unified.
+
+So here is a first formal version.
+
+---
+
+## 161. Denominator Complexity Purpose Axiom
+
+Denominator complexity is a structural measure used to compare exact completion objects.
+
+It does not affect validity.
+It affects preference among equally exact candidates.
+
+Lower denominator complexity is preferred.
+
+---
+
+## 162. Denominator Set Axiom
+
+For any VDR object \(X\), define its denominator multiset:
+
+$$
+\Delta(X)
+$$
+
+to be the multiset of all denominators appearing in every VDR node of \(X\), including:
+- the top-level denominator,
+- all child VDR denominators,
+- and all nested descendants.
+
+So if:
+
+$$
+X = [3,4,[1,12,0] + [2,5,[1,7,0]]]
+$$
+
+then:
+
+$$
+\Delta(X) = \{4,12,5,7\}
+$$
+
+with multiplicity if denominators repeat.
+
+---
+
+## 163. Absolute Denominator Axiom
+
+Denominator complexity depends only on denominator magnitude, not sign.
+
+So every denominator \(D\) contributes through:
+
+$$
+|D|
+$$
+
+Negative denominators are valid, but sign does not increase or decrease denominator complexity.
+
+---
+
+## 164. Local Denominator Cost Axiom
+
+The local cost of a denominator \(D\) is:
+
+$$
+c(D) = |D|
+$$
+
+for all \(D \neq 0\).
+
+This is the primitive denominator cost.
+
+Smaller magnitude denominators are simpler.
+
+---
+
+## 165. Distinct Denominator Count Axiom
+
+For a VDR object \(X\), define:
+
+$$
+u(X) = |\mathrm{uniq}(\Delta(X))|
+$$
+
+the number of distinct denominator magnitudes appearing in \(X\).
+
+Fewer distinct denominator values are preferred.
+
+This captures denominator unification.
+
+---
+
+## 166. Denominator Multiplicity Cost Axiom
+
+For \(X\), define:
+
+$$
+m(X) = |\Delta(X)|
+$$
+
+the total number of denominator-bearing nodes in the object.
+
+This captures denominator fragmentation.
+
+All else equal, fewer denominator-bearing nodes are preferred.
+
+---
+
+## 167. Raw Denominator Sum Axiom
+
+For \(X\), define the raw denominator sum:
+
+$$
+s(X) = \sum_{D \in \Delta(X)} |D|
+$$
+
+with multiplicity.
+
+This measures the total denominator mass of the object.
+
+All else equal, lower total denominator mass is preferred.
+
+---
+
+## 168. Denominator Complexity Function Axiom
+
+The denominator complexity of a VDR object \(X\) is the ordered tuple:
+
+$$
+\mathrm{den\_complexity}(X) = \big(u(X),\; s(X),\; m(X)\big)
+$$
+
+Comparison is lexicographic:
+1. minimize number of distinct denominators
+2. then minimize total denominator sum
+3. then minimize denominator node count
+
+This is the formal denominator complexity function.
+
+---
+
+## 169. Lexicographic Preference Axiom
+
+For two candidate completion objects \(X\) and \(Y\),
+
+$$
+\mathrm{den\_complexity}(X) < \mathrm{den\_complexity}(Y)
+$$
+
+iff:
+- \(u(X) < u(Y)\), or
+- \(u(X)=u(Y)\) and \(s(X) < s(Y)\), or
+- \(u(X)=u(Y)\), \(s(X)=s(Y)\), and \(m(X) < m(Y)\)
+
+Thus denominator unification dominates denominator size, which dominates multiplicity.
+
+---
+
+## 170. Denominator Unification Priority Axiom
+
+Among exact candidates of equal recursive depth, one that uses fewer distinct denominators is always preferred over one that uses more, even if the latter has slightly smaller individual denominators.
+
+This formalizes:
+- “lowest common denominators where possible”
+
+as:
+- “prefer shared denominator structure.”
+
+---
+
+## 171. Atomic Remainder Neutrality Axiom
+
+Atomic integer remainder contributes nothing directly to denominator complexity.
+
+Only VDR nodes contribute denominators.
+
+So:
+- `r` alone has no denominator cost
+- only `[V,D,R]` nodes add denominator complexity
+
+---
+
+## 172. Closed Child Contribution Axiom
+
+A closed child VDR:
+
+$$
+[V,D,0]
+$$
+
+contributes exactly one denominator cost:
+- \(|D|\)
+- one denominator node
+- one possible distinct denominator class
+
+Thus closed children still count in denominator complexity.
+
+---
+
+## 173. Recursive Denominator Complexity Axiom
+
+For a VDR object:
+
+$$
+X = [V,D,R]
+$$
+
+denominator complexity is computed recursively over:
+- the top-level denominator \(D\)
+- plus all child VDR denominators found in \(R\)
+
+Thus denominator complexity is a whole-object measure, not only a local measure.
+
+---
+
+## 174. Normalization Sensitivity Axiom
+
+Denominator complexity is evaluated on normalized form unless otherwise specified.
+
+That is, preferred quotient selection should compare:
+
+$$
+\mathrm{den\_complexity}(\mathrm{norm}(X))
+$$
+
+not raw unnormalized forms.
+
+This prevents accidental preference for artificially fragmented raw structures.
+
+---
+
+## 175. Equivalent Denominator Preservation Axiom
+
+If two exact completion objects are value-equal but one normalizes to a denominator structure with fewer distinct denominators, then the latter is preferred.
+
+This ensures denominator complexity rewards genuine structural simplification.
+
+---
+
+## 176. Example Axiom 1
+
+Compare:
+
+$$
+X = [3,4,[1,12,0]]
+$$
+
+Denominators:
+$$
+\Delta(X) = \{4,12\}
+$$
+
+So:
+- \(u(X)=2\)
+- \(s(X)=16\)
+- \(m(X)=2\)
+
+Thus:
+
+$$
+\mathrm{den\_complexity}(X) = (2,16,2)
+$$
+
+---
+
+## 177. Example Axiom 2
+
+Compare:
+
+$$
+Y = [3,4,[1,4,0]]
+$$
+
+Denominators:
+$$
+\Delta(Y)=\{4,4\}
+$$
+
+Unique set:
+$$
+\{4\}
+$$
+
+So:
+- \(u(Y)=1\)
+- \(s(Y)=8\)
+- \(m(Y)=2\)
+
+Thus:
+
+$$
+\mathrm{den\_complexity}(Y)=(1,8,2)
+$$
+
+So \(Y\) is denominator-simpler than \(X\).
+
+---
+
+## 178. Example Axiom 3
+
+Compare:
+
+$$
+A = [1,6,[1,6,0]]
+$$
+
+$$
+B = [1,6,[1,3,0] + [1,2,0]]
+$$
+
+For \(A\):
+$$
+\Delta(A)=\{6,6\}
+$$
+So:
+- \(u(A)=1\)
+- \(s(A)=12\)
+- \(m(A)=2\)
+
+Thus:
+$$
+\mathrm{den\_complexity}(A)=(1,12,2)
+$$
+
+For \(B\):
+$$
+\Delta(B)=\{6,3,2\}
+$$
+So:
+- \(u(B)=3\)
+- \(s(B)=11\)
+- \(m(B)=3\)
+
+Thus:
+$$
+\mathrm{den\_complexity}(B)=(3,11,3)
+$$
+
+By lexicographic ordering, \(A\) is preferred because denominator unification outranks raw sum.
+
+This is exactly the intended behavior.
+
+---
+
+## 179. Finite Computability Axiom
+
+Because every terminating VDR object is finite, denominator complexity must be computable in finite time.
+
+Thus:
+- collect denominator multiset recursively
+- normalize sign by absolute value
+- compute \(u, s, m\)
+
+No approximation or nontermination is involved.
+
+---
+
+## 180. Denominator Complexity Purity Axiom
+
+Denominator complexity is purely structural.
+
+It does not depend on:
+- decimal expansion length
+- scalar magnitude of the full value
+- proximity to a real-number estimate
+- semantics of the remainder
+- physics interpretation
+
+It is a pure property of denominator organization.
+
+---
+
+# Final Definition
+
+For any valid terminating VDR object \(X\),
+
+1. collect all denominators in the object:
+$$
+\Delta(X)
+$$
+
+2. compute:
+$$
+u(X) = |\mathrm{uniq}(\Delta(X))|
+$$
+
+$$
+s(X) = \sum_{D\in\Delta(X)} |D|
+$$
+
+$$
+m(X) = |\Delta(X)|
+$$
+
+3. define:
+$$
+\mathrm{den\_complexity}(X) = (u(X), s(X), m(X))
+$$
+
+with lexicographic minimization.
+
+That is the formal denominator complexity function.
+
+---
+
+# Why this is a good first version
+
+It rewards:
+- shared denominators
+- smaller denominator magnitudes
+- fewer denominator-bearing nodes
+
+And it does so:
+- exactly
+- recursively
+- finitely
+- without importing real-number ideas
+
+That makes it a strong VDR-native criterion.
+
+If you want, next I can:
+- define structural size formally,
+- define a finite quotient search bound,
+- or write the constructive quotient-selection algorithm using depth + denominator complexity.
+
