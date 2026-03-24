@@ -5100,3 +5100,692 @@ This is enough to begin:
 
 ---
 
+We came to a Path A/B fork with the design, and chose Path B, that [2,5,1] does not equal [3,5,0] it is "11/5 = [2, 5, 1]" and Active VDR based a process state object.
+
+---
+
+Agreed.
+
+The affected layers are mainly:
+
+- Native Semantic Rules v1
+- Denominator-Sensitive Completion Semantics v1
+- Active Scalar Projection Rules v1
+- Active Rebase Rules v1
+- Active Arithmetic Rules v1
+- Active Rebase Repair Notes v1
+- some worked examples that assumed additive active projection
+
+Best move is to rewrite them narrowly and cleanly around:
+
+- closed objects may project numerically
+- active objects are native operation-state objects
+- active residual is not scalar-additive by default
+- active scalar projection is deferred or only allowed under later domain-specific interpretation
+
+I’ll start with the semantic layers in order.
+
+# VDR
+## Revised Native Semantic Rules v1
+### Path B Commitment
+
+These rules replace the earlier active-semantics direction with a
+state-carrying interpretation.
+
+They define the native semantic layer of VDR under the decision that active
+VDR objects are not ordinary scalar values by default.
+
+Closed VDR objects may still admit direct scalar interpretation.
+Active VDR objects are instead exact operation-state objects.
+
+---
+
+### 41. Native Object Rule
+A valid VDR object is natively an exact triple-structured object.
+
+Its native meaning is not exhausted by any scalar reading, decimal rendering,
+rational collapse, or external comparison image.
+
+A VDR object is first an object of VDR, not first a number in another system.
+
+---
+
+### 42. Triple-State Semantic Rule
+For:
+
+$$
+[V,D,R]
+$$
+
+the three slots are semantically distinct:
+
+- \(V\) is the settled value slot
+- \(D\) is the denominator frame slot
+- \(R\) is the residual state slot
+
+No slot is reducible to another, and no slot may be erased merely because a
+conventional scalar notation would compress the form.
+
+---
+
+### 43. Residual State Rule
+The residual slot \(R\) is exact native state.
+
+A nonzero residual is not:
+- error,
+- noise,
+- approximation residue,
+- delayed numerator addition,
+- or dispensable annotation.
+
+It is preserved exact unresolved state carried by the object.
+
+---
+
+### 44. Closed and Active Semantic Rule
+A VDR object is semantically classified in one of two native states:
+
+1. Closed:
+$$
+[V,D,0]
+$$
+
+2. Active:
+$$
+[V,D,R]
+\quad\text{with } R \neq 0
+$$
+
+A closed object has no residual state.
+An active object carries exact residual state.
+
+This distinction is native and foundational.
+
+---
+
+### 45. Global Closure Rule
+A VDR object is globally closed if and only if:
+- its top-level residual is zero,
+- and every descendant residual in its full recursive structure is also zero.
+
+Closure is global across the full recursive object.
+
+---
+
+### 46. Operation-State Rule
+An active VDR object is an exact operation-state object.
+
+It records:
+- a settled value slot,
+- a denominator frame,
+- and residual state left exact rather than collapsed.
+
+Thus active VDR objects are not ordinary scalar values by default.
+
+---
+
+### 47. Non-Additivity of Residual Rule
+At the native semantic layer, a residual is not automatically interpreted as
+additive scalar completion of the value slot.
+
+So, in general:
+
+$$
+[V,D,R] \not\equiv [V+r,D,0]
+$$
+
+merely because \(R\) contains atomic residual \(r\).
+
+In particular, active residual does not collapse by default into the value
+slot.
+
+---
+
+### 48. Example Distinctness Rule
+Objects such as:
+
+$$
+[2,5,1],\quad [2,5,0],\quad [2,5,-1]
+$$
+
+are three distinct native VDR objects.
+
+They are not identified merely by any additive scalar reading.
+
+This expresses the state-carrying role of residual.
+
+---
+
+### 49. Recursive State Rule
+If a residual contains child VDR objects, each child is itself a full native
+VDR object.
+
+Thus recursive nesting is recursive state structure, not merely recursive
+number expansion.
+
+---
+
+### 50. No Native Scalar Collapse Rule
+Inside VDR, no active object may be semantically identified with:
+- a rational,
+- a real,
+- a decimal,
+- a float,
+- or any scalar value
+merely because some later interpretation layer may map it outward.
+
+Closed objects may later admit scalar projection.
+Active objects do not collapse to scalar identity by default.
+
+---
+
+### 51. Structural Meaning Priority Rule
+At the native layer, structure comes before any external interpretation.
+
+If two active VDR objects differ structurally, they remain natively distinct
+unless a later exact equivalence rule explicitly identifies them.
+
+---
+
+### 52. Semantic Deferral Rule
+At v1 under Path B, native semantics do not yet fully define:
+- active scalar meaning,
+- active scalar equality,
+- active arithmetic collapse,
+- or domain-specific interpretation of residual state.
+
+They establish only that:
+- active objects are exact operation-state objects,
+- residual is exact preserved state,
+- closure and activity are semantically meaningful,
+- and scalar collapse is not native.
+
+---
+
+### 53. Semantic Layer Boundary Rule
+The native semantic layer now commits VDR to:
+- triple-state ontology
+- residual state significance
+- closure/activity distinction
+- recursive state structure
+- and anti-collapse semantics
+
+It does not yet commit VDR to:
+- additive residual semantics
+- general scalar projection of active objects
+- temporal or physical interpretation
+- or scalar arithmetic on active states
+
+Those belong to later layers if introduced.
+
+---
+
+# VDR
+## Revised Denominator-Sensitive Completion Semantics v1
+### Path B Commitment
+
+These rules replace the earlier additive-completion reading.
+
+Under Path B, denominator-sensitive semantics no longer treat active residual
+as scalar-additive completion by default.
+
+Instead, the denominator frame determines how residual state is held,
+interpreted, and constrained inside the parent object.
+
+This layer remains native to VDR.
+It does not define general scalar projection for active objects.
+
+---
+
+### 172. Parent-Frame State Rule
+For a VDR object:
+
+$$
+[V,D,R]
+$$
+
+the residual \(R\) is held in the denominator frame determined by the parent
+denominator \(D\).
+
+Thus residual state is denominator-sensitive:
+it is not free-floating and not independent of the parent frame.
+
+---
+
+### 173. Closed Completion Rule
+For a closed VDR object:
+
+$$
+[V,D,0]
+$$
+
+the object is fully settled in its denominator frame.
+
+Closed objects retain the exact scalar projection rule:
+
+$$
+\Pi([V,D,0]) = \frac{V}{D}
+$$
+
+So the closed subclass is unchanged.
+
+---
+
+### 174. Active Frame-Sensitivity Rule
+For an active VDR object:
+
+$$
+[V,D,R]
+\quad\text{with } R \neq 0
+$$
+
+the residual is interpreted as exact state relative to the parent denominator
+frame \(D\).
+
+It is not interpreted by default as:
+- numerator correction,
+- denominator correction,
+- additive scalar tail,
+- or free-standing scalar remainder.
+
+---
+
+### 175. Denominator-Constrained State Rule
+The denominator slot \(D\) constrains the meaning of residual state.
+
+Thus two objects with the same value slot and residual structure but different
+denominators are natively different operation-state objects:
+
+$$
+[V,D_1,R] \neq [V,D_2,R]
+\quad\text{in native semantics if } D_1 \neq D_2
+$$
+
+unless a later exact rule explicitly identifies them in some domain.
+
+---
+
+### 176. Residual Non-Collapse Rule
+At the native semantic layer, the residual does not collapse automatically
+into the value slot even when written as an atomic integer.
+
+So in general:
+
+$$
+[V,D,r] \not\equiv [V+r,D,0]
+$$
+
+for \(r \neq 0\).
+
+The residual is state, not delayed simplification.
+
+---
+
+### 177. Child State Rule
+If a child VDR object appears in the residual of a parent, that child is
+itself a full state object nested inside the parent’s residual structure.
+
+Thus a child in the residual is not automatically interpreted as:
+- scalar addition,
+- fractional correction,
+- or direct numeric completion of the parent.
+
+It is nested exact state.
+
+---
+
+### 178. Recursive Frame Rule
+Because child VDR objects are themselves full VDR objects, denominator
+sensitivity is recursive.
+
+Each child carries:
+- its own denominator frame,
+- its own residual state,
+- and its own closure/activity status,
+
+while still appearing as state-bearing structure inside the parent residual.
+
+---
+
+### 179. No Additive Completion Rule
+At v1 under Path B, there is no general native law of the form:
+
+$$
+[V,D,R] = \frac{V + f(R)}{D}
+$$
+
+for active objects.
+
+Any such scalarization of active state is deferred to later interpretation
+layers, if introduced at all.
+
+This rule explicitly rejects the earlier additive-completion path as
+foundational semantics.
+
+---
+
+### 180. Closed/Active Boundary Rule
+The closed subclass admits direct scalar comparison through rational
+projection.
+
+The active subclass does not inherit that scalar comparability by default.
+
+Thus VDR now has a semantic boundary:
+- closed objects are scalar-projectable in the current layer
+- active objects are exact state objects first
+
+---
+
+### 181. Rebase Sensitivity Rule
+Because residual state is held in a denominator frame, changing the
+denominator of an active object changes the frame in which residual state is
+held.
+
+Therefore active rebasing cannot be defined merely by preserving scalar value.
+It must preserve exact state in a denominator-sensitive way.
+
+This rule motivates a separate active rebase theory.
+
+---
+
+### 182. Lift Sensitivity Rule
+Residual transport across denominator changes must be interpreted as
+state-transport, not scalar-additive transport.
+
+Thus any lift-like operation must preserve:
+- exact residual state,
+- recursive structure,
+- and denominator-frame sensitivity,
+
+rather than merely preserving a scalarized contribution.
+
+---
+
+### 183. Native Completion Deferral Rule
+The word “completion” in active VDR no longer means scalar completion by
+default.
+
+At v1 under Path B, it means only that the residual belongs to the exact
+native state of the object and is required to fully specify that state.
+
+So active completion is ontological completion of the object, not scalar
+completion of a number.
+
+---
+
+### 184. Structural Priority Rule
+Two active objects may remain natively distinct even if some later external
+interpretation layer maps them to the same scalar or observational output.
+
+Native structural state remains primary over any later scalar image.
+
+---
+
+### 185. Domain Interpretation Deferral Rule
+If active VDR objects later receive:
+- temporal interpretation,
+- update interpretation,
+- physical interpretation,
+- process interpretation,
+- or scalar interpretation,
+
+those must be added as later domain-specific interpretation layers.
+
+They are not part of v1 foundational semantics.
+
+---
+
+### 186. Completion Scope Rule
+The revised denominator-sensitive semantics now define only:
+
+- residual state is held in a parent denominator frame
+- active objects are denominator-sensitive operation-state objects
+- residuals do not collapse additively by default
+- child VDRs are nested state, not automatic numeric correction
+- closed objects remain scalar-projectable
+- active objects remain non-scalar by default
+
+They do not yet define:
+- general active scalar projection
+- scalar-preserving active rebasing
+- active arithmetic as scalar arithmetic
+- or any domain-specific execution meaning of active state
+
+Those belong to later layers if introduced.
+
+---
+
+## Summary of Revised Denominator-Sensitive Semantics v1
+
+At this stage, VDR now says:
+
+- the denominator frame matters natively
+- active residual is frame-sensitive state
+- active residual is not additive scalar completion
+- nested children are nested state objects
+- closed objects remain the scalar-projectable subclass
+- active objects are exact operation-state objects by default
+
+This preserves the ontological role of the residual and prevents active VDR
+from collapsing back into decorated fraction arithmetic.
+
+---
+
+# VDR
+## Revised Active Scalar Projection Rules v1
+### Path B Commitment
+
+These rules replace the earlier additive active projection layer.
+
+Under Path B, active VDR objects are not ordinary scalar values by default.
+Therefore active scalar projection is no longer a general built-in operation
+of the foundational layer.
+
+Instead, active scalar projection is restricted, deferred, or domain-specific.
+
+Closed objects retain exact scalar projection.
+Active objects remain exact operation-state objects unless an additional
+interpretation layer explicitly defines how they are projected outward.
+
+---
+
+### 187. Active Projection Non-Default Rule
+For an active VDR object:
+
+$$
+[V,D,R]
+\quad\text{with } R \neq 0
+$$
+
+there is no general scalar projection by default at v1.
+
+So unlike closed objects, active objects do not automatically admit an
+external scalar value.
+
+---
+
+### 188. Closed Projection Boundary Rule
+The exact scalar projection rule:
+
+$$
+\Pi([V,D,0]) = \frac{V}{D}
+$$
+
+applies only to the closed subclass.
+
+It may not be extended to active objects merely by treating residual state as
+scalar addition, correction, or completion.
+
+---
+
+### 189. Active Projection Deferral Rule
+General projection of active objects into:
+- rational form,
+- real-number form,
+- decimal form,
+- float form,
+- or any scalar comparison image
+
+is deferred at v1 unless a later interpretation layer explicitly defines it.
+
+Thus active scalar projection is not foundationally built in.
+
+---
+
+### 190. Structured External Report Rule
+Although active scalar projection is not generally defined, a valid active VDR
+object may still be reported externally in exact structured form.
+
+Such a report may include:
+- the value slot \(V\),
+- the denominator frame \(D\),
+- the residual structure \(R\),
+- closure/activity status,
+- and the recursively visible child structure.
+
+This is an external structured report, not a scalar collapse.
+
+---
+
+### 191. Closed-Descendant Projection Rule
+If an active VDR object contains closed descendant children, those descendants
+may individually admit exact scalar projection under the closed rules.
+
+However, the existence of scalar-projectable descendants does not imply that
+the parent active object itself has a scalar projection.
+
+---
+
+### 192. Scalar Projection by Additional Interpretation Rule
+An active object may admit scalar projection only if an additional exact
+interpretation layer is supplied that explicitly defines:
+- what the residual state means in scalar terms,
+- how denominator-frame sensitivity is resolved,
+- and how projection preserves the intended interpretation.
+
+Such a layer is outside foundational v1.
+
+---
+
+### 193. No Additive Recovery Rule
+At v1 under Path B, active scalar projection may not be recovered by any rule
+of the form:
+
+$$
+[V,D,R] \mapsto \frac{V + f(R)}{D}
+$$
+
+unless such a rule is introduced explicitly in a later interpretation layer.
+
+This forbids silent fallback to additive active semantics.
+
+---
+
+### 194. Approximate Export Prohibition Rule
+Because general active scalar projection is not defined by default, an active
+object may not be exported approximately to decimal or float merely by
+inventing a scalar reading.
+
+Approximate external scalar export of active objects is invalid unless an
+exact interpretation layer first defines what scalar quantity is being
+approximated.
+
+So approximation may not substitute for missing meaning.
+
+---
+
+### 195. Native/External Separation Rule
+The absence of default active scalar projection does not make active objects
+meaningless.
+
+It means only that their native exact identity is not exhausted by any scalar
+comparison image in the foundational layer.
+
+Thus active VDR remains exact and well-defined even when scalar comparison is
+deferred.
+
+---
+
+### 196. Deterministic Structured Reporting Rule
+For a fixed valid active VDR object and fixed reporting format, structured
+external reporting must be deterministic.
+
+The same active object must produce the same external structured report under
+the same reporting rules.
+
+---
+
+### 197. Equality Independence Rule
+Native structural equality and native value equality of active objects do not
+depend on scalar projection.
+
+They remain fully internal VDR relations.
+
+Thus active objects may still be:
+- validated,
+- normalized,
+- compared internally,
+- and manipulated structurally
+even when scalar projection is absent.
+
+---
+
+### 198. Benchmark Boundary Rule
+At v1, benchmark comparison with scalar systems applies directly only to:
+- the closed rational core,
+- and any later active subclasses for which a scalar interpretation layer has
+  been explicitly defined.
+
+So active objects without such an interpretation are outside scalar benchmark
+comparison at the current layer.
+
+---
+
+### 199. Interpretation-Layer Reservation Rule
+Future layers may define one or more distinct scalar interpretations of active
+objects, for example:
+- observational interpretations,
+- evaluation interpretations,
+- execution-step interpretations,
+- physical interpretations,
+- or other domain-specific scalarizations.
+
+These are reserved possibilities, not part of foundational v1.
+
+---
+
+### 200. Active Projection Scope Rule
+The revised active projection layer now defines only:
+
+- active objects do not have default scalar projection
+- closed scalar projection remains intact
+- active objects may be externally reported in exact structured form
+- closed descendants may project individually
+- scalar projection of active objects requires an added interpretation layer
+- approximation may not replace missing semantics
+
+It does not define:
+- a general scalar value for active objects
+- decimal export of active objects by default
+- float export of active objects by default
+- or active scalar equality
+
+Those are deferred.
+
+---
+
+## Summary of Revised Active Scalar Projection v1
+
+At this stage, VDR now has a clean boundary:
+
+- closed objects admit exact scalar projection
+- active objects do not admit general scalar projection by default
+- active objects may still be externally reported exactly as structured
+  operation-state objects
+- scalar projection of active objects requires an added interpretation layer
+
+This preserves the Path B commitment:
+active VDR objects are exact native state, not ordinary scalar values.
+
+---
+

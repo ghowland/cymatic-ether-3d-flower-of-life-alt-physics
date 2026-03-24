@@ -1087,3 +1087,2094 @@ That is the right benchmark standard for the current stage of VDR.
 
 ---
 
+# VDR
+## Paper Outline v1
+
+This document gives the first paper outline for presenting VDR as a formal
+program.
+
+It is intended for:
+- a Zenodo paper,
+- early external review,
+- implementation-aligned documentation,
+- and future revision into a stronger formal publication.
+
+The purpose of the v1 paper is not to claim final completion.
+Its purpose is to present:
+- the charter,
+- the foundational system,
+- the current exact core,
+- the open frontier,
+- and the standards by which VDR should be judged.
+
+This outline is written for a serious but early-stage mathematical paper.
+
+---
+
+## Proposed Title
+
+Possible title options:
+
+1. VDR: A Finite Exact Triple-Structured Framework for Discrete Value
+   Representation
+2. VDR: A Charter and v1 Formal Core for Exact Finite Representation Beyond
+   Approximation
+3. VDR: Exact Triple-Structured Representation with Finite Residual
+   Completion
+4. VDR: A Pure-Mathematics Program for Exact Finite Discrete Representation
+
+Recommended v1 title:
+
+VDR: A Charter and v1 Formal Core for Exact Finite Discrete Representation
+
+---
+
+## Proposed Abstract
+
+This paper introduces VDR, a pure-mathematics program for exact finite
+discrete representation in irreducible triple form. VDR is motivated by the
+loss of exact equality that occurs when mathematical and scientific practice
+depends on approximation-dominant scalar systems such as floating-point,
+decimal truncation, and limit-based representations. VDR treats exact
+value-bearing residual structure as primary rather than discardable, and
+defines a native domain of finite triple-structured objects with exact
+recursive completion.
+
+This v1 paper presents the VDR charter, foundational axioms, residual
+formation rules, structural validity, normalization, internal equality,
+scalar projection, exact closed arithmetic, first-pass active rebasing and
+transport, inbound construction for the rational core, and a reference data
+model for implementation. The paper does not claim final completion of VDR’s
+long-term ambitions, such as exact admission of transcendental constants or
+full replacement of practical real-number roles. Instead, it establishes a
+coherent exact finite core, identifies the open research frontier, and gives
+correctness-first implementation and benchmarking plans.
+
+---
+
+## Section-by-Section Outline
+
+### 1. Introduction
+Purpose:
+- introduce the problem VDR addresses
+- state why a new exact finite framework is being attempted
+- set expectations honestly
+
+Key points:
+- approximation-dominant scalar practice is useful but loses exact equality
+- VDR is not just a new notation for fractions
+- VDR is a finite exact triple-structured representation program
+- this paper presents the charter and v1 formal core, not a final theory
+
+Possible subsection:
+- 1.1 Why VDR exists
+- 1.2 What this paper does and does not claim
+
+---
+
+### 2. Motivation and Problem Statement
+Purpose:
+- explain the practical and conceptual motivation without overstating final
+  claims
+
+Key points:
+- loss of equality under approximation
+- hidden drift across long computation chains
+- scalar systems compress structure for utility, but at a cost
+- VDR seeks to preserve exact residual structure rather than discard it
+
+Possible subsection:
+- 2.1 Equality versus approximation
+- 2.2 Why finite exact structure matters
+- 2.3 Why triple irreducibility matters
+
+---
+
+### 3. Charter of VDR
+Purpose:
+- present the governing charter clearly before technical rules
+
+Contents:
+- purpose
+- scope
+- foundational principles
+- interoperability requirements
+- success criteria / practical validation tests
+- research ambitions
+- completeness horizon
+- practical standard of judgment
+
+This section should likely appear almost verbatim from the charter document,
+lightly polished for paper form.
+
+---
+
+### 4. Foundational Formal Layer
+Purpose:
+- define what a VDR object is at the most basic level
+
+Contents:
+- primitive object axiom
+- triple irreducibility
+- integer slot constraints
+- residual locality
+- finite structure
+- exactness
+- inspectability
+- admissibility
+
+This is the first formal definition section.
+
+---
+
+### 5. Residual Formation and Structural Validity
+Purpose:
+- define admissible residuals and raw-valid objects
+
+Contents:
+- residual domain
+- atomic and composite residuals
+- recursive child validity
+- raw validity
+- finite whole-object validity
+- structural equality
+
+This section gives the formal syntax and validity layer.
+
+---
+
+### 6. Native Semantics
+Purpose:
+- explain what VDR means natively before any scalar comparison
+
+Contents:
+- native object rule
+- triple-state semantics
+- residual significance
+- active versus closed distinction
+- global closure
+- residual as completion structure
+- no native scalar collapse
+
+This is where the paper makes clear that VDR is not internally just rational
+arithmetic with annotations.
+
+---
+
+### 7. Normalization and Internal Equality
+Purpose:
+- define canonical form and the first non-structural equality relation
+
+Contents:
+- normalization rules
+- sign placement
+- closed reduction
+- residual consolidation
+- canonical child order
+- same-denominator absorption policy
+- value equality via normalization
+
+This section should distinguish carefully:
+- structural equality
+- value equality
+
+---
+
+### 8. Scalar Projection and Interoperability
+Purpose:
+- define how VDR meets conventional scalar mathematics externally
+
+Contents:
+- projection externality
+- closed scalar projection
+- denominator-sensitive completion semantics
+- active scalar projection
+- exact versus approximate export
+- projection determinism
+- structural distinctness despite equal projection
+
+This section is critical because it explains how VDR is validated against the
+existing scalar world without collapsing into it.
+
+---
+
+### 9. Exact Rational Core
+Purpose:
+- present the fully workable current exact core
+
+Contents:
+- closed arithmetic
+- closed rebasing
+- rational inbound construction
+- rational projection compatibility
+- exact closed examples
+
+This is likely the strongest currently mature part of the paper.
+
+---
+
+### 10. First-Pass Active Layer
+Purpose:
+- present the current active structure honestly, without overstating maturity
+
+Contents:
+- active rebasing
+- residual transport / lift
+- denominator-sensitive completion
+- active scalar projection
+- active addition and subtraction
+- semantic constraints on multiplication and division
+- explicit failure for unsupported exact constructions
+
+This section should explicitly mark:
+- what is formal,
+- what is provisional,
+- what is deferred.
+
+---
+
+### 11. Supported Domain Examples
+Purpose:
+- clarify current boundary of the system by examples rather than universal
+  claims
+
+Contents:
+- clearly in scope
+- clearly out of scope
+- open / unresolved
+- working scope summary
+
+This section is important for honesty and reader orientation.
+
+---
+
+### 12. Reference Data Model and Implementation Path
+Purpose:
+- show that the system is not merely philosophical; it is implementable
+
+Contents:
+- reference data model
+- tree structure
+- exact integer requirement
+- parser / serializer strategy
+- module plan
+- implementation milestones
+
+This section makes the work legible to programmers and computational
+mathematicians.
+
+---
+
+### 13. Benchmark Plan
+Purpose:
+- define how VDR should be judged in the current stage
+
+Contents:
+- correctness-first benchmark philosophy
+- exactness tests
+- equality recovery tests
+- drift resistance tests
+- boundary export tests
+- deferred performance benchmarking
+
+This section is crucial for avoiding vague claims of usefulness.
+
+---
+
+### 14. Open Problems and Research Frontier
+Purpose:
+- state clearly what is not solved yet
+
+Contents:
+- exact admission of algebraic irrationals
+- exact admission of transcendental constants
+- full active multiplication/division
+- canonical quotient selection
+- broader admitted target class
+- long-term scientific ceiling
+
+This section protects the paper from overclaiming.
+
+---
+
+### 15. Discussion
+Purpose:
+- interpret the significance of the work without overstating proof of success
+
+Key themes:
+- VDR as exact finite alternative, not yet replacement
+- difference between native identity and scalar comparison
+- tradeoff between elegance and exactness
+- possible future value if long-chain utility is confirmed
+- what failure would still teach
+
+---
+
+### 16. Conclusion
+Purpose:
+- close with a clear statement of what has been achieved
+
+Key points:
+- VDR now has a charter and a coherent v1 formal core
+- the rational closed core is exact and implementable
+- the active layer is structurally and semantically framed, though not final
+- the project is now concrete enough for implementation, criticism, and
+  benchmark testing
+
+---
+
+## Suggested Appendices
+
+### Appendix A. Full Axiom Listing v1
+Include:
+- foundational axioms
+- residual rules
+- validity and equality rules
+- normalization rules
+- projection rules
+- arithmetic rules
+- rebasing and lift rules
+- inbound rules
+
+This is useful for serious readers and implementers.
+
+---
+
+### Appendix B. Worked Examples
+Include:
+- closed arithmetic examples
+- normalization examples
+- rebase examples
+- active projection examples
+- direct-specification examples
+
+---
+
+### Appendix C. Example Serialization Forms
+Include:
+- native text notation
+- JSON-like representation
+- normalized serialization examples
+
+---
+
+### Appendix D. Benchmark Fixture Set
+Include:
+- small exact fixtures
+- long-chain fixtures
+- return-to-origin examples
+- active projection check cases
+
+---
+
+## Recommended Order of Writing
+
+To produce the paper efficiently, write in this order:
+
+1. Charter
+2. Foundational formal layer
+3. Rational closed core
+4. Scalar projection section
+5. Active semantic layer
+6. Supported domain examples
+7. Data model / implementation section
+8. Benchmark section
+9. Open problems
+10. Introduction and conclusion last
+
+This reduces revision churn.
+
+---
+
+## Tone Guidance for the Paper
+
+The paper should be:
+- exact
+- careful
+- explicit about what is solved and unsolved
+- resistant to overclaiming
+- implementation-aware
+- open to falsification
+
+Avoid:
+- claiming universal success too early
+- treating ambitions as theorems
+- overstating physics implications
+- implying all reals are already solved
+
+Prefer:
+- “v1 formal core”
+- “current exact rational core”
+- “active layer provisional but structured”
+- “open research boundary”
+- “benchmark-driven practical evaluation”
+
+---
+
+## Minimal Publishable Claim
+
+The v1 paper can safely claim:
+
+- a coherent charter for an exact finite representation program
+- a formal triple-structured object model
+- exact finite structural validity and equality
+- an exact rational closed core with arithmetic and rebasing
+- denominator-sensitive active semantics and projection at a first-pass level
+- a reference implementation path
+- a correctness-first benchmark plan
+- an explicit open frontier rather than false completion
+
+That is enough for a serious early paper.
+
+---
+
+## Summary
+
+Paper Outline v1 gives a clear path to a first public VDR paper that is:
+- mathematically honest
+- technically structured
+- implementation-aware
+- and ambitious without pretending completion
+
+It should be strong enough for:
+- Zenodo publication
+- code-linked documentation
+- external criticism
+- and future refinement
+
+---
+
+# VDR
+## Worked Examples v1
+
+This document collects worked examples for the current v1 formal layer.
+
+Its purpose is to make the system inspectable through concrete cases rather
+than abstract rules alone.
+
+These examples are chosen to illustrate:
+- raw validity,
+- normalization,
+- structural equality,
+- value equality,
+- closed arithmetic,
+- closed rebasing,
+- active specification,
+- denominator-sensitive completion,
+- active scalar projection,
+- active rebasing,
+- and exact failure cases.
+
+These are v1 examples only.
+They do not claim that all future VDR behavior is settled.
+
+---
+
+## 1. Closed Object Examples
+
+### Example 1.1. Simple closed rational
+Object:
+
+$$
+[1,2,0]
+$$
+
+Interpretation status:
+- raw-valid
+- closed
+- already normalized under standard sign convention
+- exact rational projection:
+
+$$
+\Pi([1,2,0]) = \frac{1}{2}
+$$
+
+---
+
+### Example 1.2. Non-normal closed rational
+Object:
+
+$$
+[2,4,0]
+$$
+
+Status:
+- raw-valid
+- closed
+- not normalized
+
+Normalization:
+
+$$
+[2,4,0] \mapsto [1,2,0]
+$$
+
+So:
+- structurally distinct from \([1,2,0]\)
+- but value-equal after normalization
+
+---
+
+### Example 1.3. Negative denominator
+Object:
+
+$$
+[1,-2,0]
+$$
+
+Status:
+- raw-valid
+- closed
+- not normalized if denominator-positive convention is chosen
+
+Normalization:
+
+$$
+[1,-2,0] \mapsto [-1,2,0]
+$$
+
+So:
+- negative denominators are valid
+- sign normalization is canonicality, not validity
+
+---
+
+## 2. Structural Equality and Value Equality
+
+### Example 2.1. Structural equality
+Compare:
+
+$$
+X = [1,2,0]
+$$
+
+$$
+Y = [1,2,0]
+$$
+
+Since all slots match exactly,
+
+$$
+X \equiv_s Y
+$$
+
+Therefore also:
+
+$$
+X \equiv_v Y
+$$
+
+---
+
+### Example 2.2. Structural inequality but value equality
+Compare:
+
+$$
+X = [2,4,0]
+$$
+
+$$
+Y = [1,2,0]
+$$
+
+They are not structurally equal:
+
+$$
+X \not\equiv_s Y
+$$
+
+But normalization gives:
+
+$$
+\mathrm{norm}(X) = [1,2,0]
+$$
+
+$$
+\mathrm{norm}(Y) = [1,2,0]
+$$
+
+So:
+
+$$
+X \equiv_v Y
+$$
+
+---
+
+### Example 2.3. Child order structural difference
+Compare:
+
+$$
+X = [1,2,1 + [1,3,0] + [1,5,0]]
+$$
+
+$$
+Y = [1,2,1 + [1,5,0] + [1,3,0]]
+$$
+
+As written:
+- child order differs
+- so structural equality fails
+
+$$
+X \not\equiv_s Y
+$$
+
+If normalization sorts children canonically, then they may become
+value-equal.
+
+---
+
+## 3. Closed Arithmetic Examples
+
+### Example 3.1. Closed addition
+Compute:
+
+$$
+[1,2,0] + [1,3,0]
+$$
+
+By closed addition rule:
+
+$$
+[1\cdot 3 + 1\cdot 2,\; 2\cdot 3,\; 0]
+=
+[5,6,0]
+$$
+
+Projection check:
+
+$$
+\frac{1}{2} + \frac{1}{3} = \frac{5}{6}
+$$
+
+So:
+
+$$
+[1,2,0] + [1,3,0] = [5,6,0]
+$$
+
+---
+
+### Example 3.2. Closed subtraction
+Compute:
+
+$$
+[3,4,0] - [1,2,0]
+$$
+
+By closed subtraction rule:
+
+$$
+[3\cdot 2 - 1\cdot 4,\; 4\cdot 2,\; 0]
+=
+[2,8,0]
+$$
+
+Normalize:
+
+$$
+[2,8,0] \mapsto [1,4,0]
+$$
+
+So the exact result is value-equal to:
+
+$$
+[1,4,0]
+$$
+
+---
+
+### Example 3.3. Closed multiplication
+Compute:
+
+$$
+[2,3,0] \times [3,5,0]
+$$
+
+By closed multiplication rule:
+
+$$
+[2\cdot 3,\; 3\cdot 5,\; 0]
+=
+[6,15,0]
+$$
+
+Normalize:
+
+$$
+[6,15,0] \mapsto [2,5,0]
+$$
+
+---
+
+### Example 3.4. Closed division
+Compute:
+
+$$
+[2,3,0] \div [4,5,0]
+$$
+
+By closed division rule:
+
+$$
+[2\cdot 5,\; 3\cdot 4,\; 0]
+=
+[10,12,0]
+$$
+
+Normalize:
+
+$$
+[10,12,0] \mapsto [5,6,0]
+$$
+
+---
+
+### Example 3.5. Division by closed zero fails
+Attempt:
+
+$$
+[1,2,0] \div [0,7,0]
+$$
+
+Since the divisor is closed zero, division is invalid.
+
+Result:
+- explicit failure
+- no approximation rescue
+
+---
+
+## 4. Closed Rebasing Examples
+
+### Example 4.1. Successful closed rebase
+Rebase:
+
+$$
+[1,2,0]
+$$
+
+to denominator:
+
+$$
+4
+$$
+
+Check:
+
+$$
+\frac{1\cdot 4}{2} = 2 \in \mathbb{Z}
+$$
+
+So rebasing succeeds:
+
+$$
+\mathrm{rebase}([1,2,0],4) = [2,4,0]
+$$
+
+Normalize if desired:
+
+$$
+[2,4,0] \mapsto [1,2,0]
+$$
+
+So rebasing changes representation, not value.
+
+---
+
+### Example 4.2. Failed closed rebase
+Rebase:
+
+$$
+[1,2,0]
+$$
+
+to denominator:
+
+$$
+3
+$$
+
+Check:
+
+$$
+\frac{1\cdot 3}{2} = \frac{3}{2} \notin \mathbb{Z}
+$$
+
+So closed rebasing fails at v1.
+
+This is exactly the case that motivates active rebasing.
+
+---
+
+## 5. Active Specification Examples
+
+### Example 5.1. Atomic active object
+Object:
+
+$$
+[3,5,1]
+$$
+
+Status:
+- raw-valid
+- active
+- residual is atomic integer \(1\)
+
+Under denominator-sensitive projection:
+
+$$
+\Pi([3,5,1]) = \frac{3+1}{5} = \frac{4}{5}
+$$
+
+---
+
+### Example 5.2. Active object with closed child
+Object:
+
+$$
+[1,2,[1,3,0]]
+$$
+
+Status:
+- raw-valid
+- active
+- residual contains one child VDR
+
+Projection:
+
+$$
+\Pi([1,3,0]) = \frac{1}{3}
+$$
+
+Then by parent-sensitive completion:
+
+$$
+\Pi([1,2,[1,3,0]]) = \frac{1 + 1/3}{2}
+$$
+
+$$
+= \frac{4/3}{2}
+= \frac{2}{3}
+$$
+
+This is a key example:
+the child contributes inside the parent denominator frame.
+
+---
+
+### Example 5.3. Composite active object
+Object:
+
+$$
+[2,5,1 + [1,4,0] + [1,2,0]]
+$$
+
+Projection pieces:
+
+$$
+\Pi([1,4,0]) = \frac{1}{4}
+$$
+
+$$
+\Pi([1,2,0]) = \frac{1}{2}
+$$
+
+So residual completion is:
+
+$$
+\rho_5(R) = 1 + \frac{1}{4} + \frac{1}{2}
+= \frac{7}{4}
+$$
+
+Then:
+
+$$
+\Pi([2,5,R]) = \frac{2 + 7/4}{5}
+= \frac{15/4}{5}
+= \frac{3}{4}
+$$
+
+---
+
+## 6. Active Rebase Examples
+
+### Example 6.1. Closed-to-active rebase motivation
+Start with:
+
+$$
+[1,2,0]
+$$
+
+Target denominator:
+
+$$
+3
+$$
+
+Closed rebase fails.
+
+So use active rebasing.
+
+Compute:
+
+$$
+N = VB = 1\cdot 3 = 3
+$$
+
+Divide by original denominator \(D=2\):
+
+$$
+3 = 1\cdot 2 + 1
+$$
+
+So:
+- \(Q = 1\)
+- \(S = 1\)
+
+Construct active rebased form:
+
+$$
+[1,3,[1,2,0]]
+$$
+
+Projection check:
+
+$$
+\Pi([1,3,[1,2,0]])
+=
+\frac{1 + 1/2}{3}
+=
+\frac{3/2}{3}
+=
+\frac{1}{2}
+$$
+
+So the active rebased object projects exactly to the original value.
+
+This is the core example showing why denominator-sensitive completion matters.
+
+---
+
+### Example 6.2. Active rebase with existing residual
+Start with:
+
+$$
+[2,5,1]
+$$
+
+Target denominator:
+
+$$
+3
+$$
+
+Compute top-level mismatch:
+
+$$
+N = 2\cdot 3 = 6
+$$
+
+Divide by original denominator \(5\):
+
+$$
+6 = 1\cdot 5 + 1
+$$
+
+So:
+- \(Q = 1\)
+- \(S = 1\)
+
+First-pass rebased form:
+
+$$
+[1,3,[1,5,0] + 1]
+$$
+
+This is still provisional and may later normalize more elegantly.
+
+Projection check:
+
+Residual completion:
+
+$$
+\rho_3([1,5,0] + 1) = \frac{1}{5} + 1 = \frac{6}{5}
+$$
+
+Then:
+
+$$
+\Pi([1,3,[1,5,0] + 1]) = \frac{1 + 6/5}{3}
+= \frac{11/5}{3}
+= \frac{11}{15}
+$$
+
+Original projection:
+
+$$
+\Pi([2,5,1]) = \frac{2+1}{5} = \frac{3}{5}
+$$
+
+These are not equal.
+
+This example shows that first-pass active residual preservation without a full
+transport adjustment can fail to preserve projection.
+
+This is important and should be documented honestly:
+- v1 active rebase idea is motivated
+- but full correctness for existing residual transport needs the lift /
+  denominator-sensitive machinery refined carefully
+
+This is not a defect in the example.
+It is exactly the kind of worked case that reveals where the theory still
+needs repair.
+
+---
+
+## 7. Lift Examples
+
+### Example 7.1. Atomic lift
+Lift residual:
+
+$$
+1
+$$
+
+by factor:
+
+$$
+3
+$$
+
+Then:
+
+$$
+\mathrm{lift}(1,3) = 3
+$$
+
+---
+
+### Example 7.2. Child lift
+Lift child:
+
+$$
+[1,3,0]
+$$
+
+by factor:
+
+$$
+2
+$$
+
+Then:
+
+$$
+\mathrm{lift}([1,3,0],2) = [2,3,0]
+$$
+
+Projection of original child:
+
+$$
+\frac{1}{3}
+$$
+
+Projection of lifted child:
+
+$$
+\frac{2}{3}
+$$
+
+This matches the intended scaling of child contribution before insertion into a
+new parent frame.
+
+---
+
+### Example 7.3. Composite residual lift
+Lift:
+
+$$
+1 + [1,3,0]
+$$
+
+by factor:
+
+$$
+2
+$$
+
+Then:
+
+$$
+\mathrm{lift}(1 + [1,3,0],2)
+=
+2 + [2,3,0]
+$$
+
+This is exact structural transport.
+
+---
+
+## 8. Equality Recovery Examples
+
+### Example 8.1. Return to origin under closed arithmetic
+Start with:
+
+$$
+X = [1,2,0]
+$$
+
+Add:
+
+$$
+[1,3,0]
+$$
+
+then subtract:
+
+$$
+[1,3,0]
+$$
+
+By exact closed arithmetic, the final result is value-equal to:
+
+$$
+[1,2,0]
+$$
+
+No epsilon test is needed.
+
+---
+
+### Example 8.2. Multiply and divide return
+Start with:
+
+$$
+X = [3,7,0]
+$$
+
+Multiply by:
+
+$$
+[5,2,0]
+$$
+
+then divide by:
+
+$$
+[5,2,0]
+$$
+
+The final normalized result is value-equal to:
+
+$$
+[3,7,0]
+$$
+
+This is the kind of exact return scalar pipelines often only approximate.
+
+---
+
+## 9. Inbound Construction Examples
+
+### Example 9.1. Integer inbound
+Input:
+
+$$
+5
+$$
+
+Inbound construction:
+
+$$
+\mathrm{in}(5) = [5,1,0]
+$$
+
+Projection check:
+
+$$
+\Pi([5,1,0]) = 5
+$$
+
+---
+
+### Example 9.2. Rational inbound
+Input:
+
+$$
+-\frac{3}{4}
+$$
+
+Inbound construction:
+
+$$
+\mathrm{in}\!\left(-\frac{3}{4}\right) = [-3,4,0]
+$$
+
+Projection check:
+
+$$
+\Pi([-3,4,0]) = -\frac{3}{4}
+$$
+
+---
+
+### Example 9.3. Approximate decimal rejected as exact admission
+Input:
+- decimal approximation of \( \pi \), e.g. `3.14159`
+
+At v1:
+- this may be represented as an approximate external decimal
+- but it is not admitted as an exact VDR representation of \( \pi \)
+
+So exact inbound construction fails unless the intended object is explicitly
+the rational decimal value \(314159/100000\).
+
+This is an important boundary example.
+
+---
+
+## 10. Out-of-Scope Example
+
+### Example 10.1. Malformed infinite decimal artifact
+Input:
+
+```text
+0.3333...751
+```
+
+This mixes:
+- infinite continuation
+- and a final terminal suffix
+
+It lacks a coherent finite exact constructive meaning.
+
+So:
+- it is not admitted exactly into v1 VDR
+- exact inbound construction fails
+
+---
+
+## 11. Key Lessons from the Worked Examples
+
+These examples show that v1 already has:
+- a correct closed rational core,
+- exact normalization-based equality,
+- exact closed rebasing,
+- meaningful active specification,
+- denominator-sensitive active projection,
+- and exact boundaries against fake exactness.
+
+They also show that:
+- active rebasing with preexisting residual structure is not yet fully solved
+- transport and rebasing laws still need refinement in nontrivial active cases
+
+This is exactly what worked examples should reveal.
+
+---
+
+## Summary
+
+Worked Examples v1 demonstrates:
+
+1. what already works exactly
+2. what is structurally admissible
+3. what projects coherently
+4. what fails honestly
+5. what still needs repair or refinement
+
+This makes VDR inspectable not just as a philosophy or axiom list, but as a
+live formal program with a working exact core and a visible frontier.
+
+---
+
+# VDR
+## Active Rebase Repair Notes v1
+
+This document records a semantic issue exposed by the current worked examples
+for active rebasing.
+
+Its purpose is not to invalidate the VDR program.
+Its purpose is to:
+- identify the precise failure,
+- explain why it occurs,
+- preserve what still appears correct,
+- and define the repair direction for later formal refinement.
+
+This is a correctness document, not a retreat from the charter.
+
+---
+
+## 1. The Issue Exposed
+
+The current first-pass active rebasing idea works cleanly in the simplest
+case:
+
+- source object closed
+- target denominator incompatible with closed rebasing
+- active child introduced to preserve mismatch
+
+Example:
+
+$$
+[1,2,0] \rightsquigarrow [1,3,[1,2,0]]
+$$
+
+Under denominator-sensitive completion:
+
+$$
+\Pi([1,3,[1,2,0]])
+=
+\frac{1 + 1/2}{3}
+=
+\frac{1}{2}
+$$
+
+So the simple closed-to-active motivation works.
+
+However, a problem appears when the source object already has residual
+structure.
+
+Example source:
+
+$$
+[2,5,1]
+$$
+
+Projection:
+
+$$
+\Pi([2,5,1]) = \frac{2+1}{5} = \frac{3}{5}
+$$
+
+Target denominator:
+
+$$
+3
+$$
+
+First-pass active rebasing produced:
+
+$$
+[1,3,[1,5,0] + 1]
+$$
+
+But projection gives:
+
+$$
+\Pi([1,3,[1,5,0] + 1])
+=
+\frac{1 + (1/5 + 1)}{3}
+=
+\frac{11}{15}
+$$
+
+which is not equal to:
+
+$$
+\frac{3}{5}
+=
+\frac{9}{15}
+$$
+
+So the first-pass rebasing rule fails in this case.
+
+---
+
+## 2. What Failed
+
+The failure is not in:
+- the idea of denominator-sensitive completion itself,
+- nor in the simple mismatch-child construction for a closed source.
+
+The failure is specifically in the naive preservation of pre-existing residual
+structure during rebasing.
+
+The problematic first-pass rule was effectively:
+
+$$
+R' = [S,D,0] + R
+$$
+
+That treats the old residual as if it could simply be carried unchanged into
+the new parent denominator frame.
+
+But under denominator-sensitive semantics, residual meaning depends on the
+parent denominator.
+
+So preserving \(R\) unchanged across a denominator change is not generally
+correct.
+
+---
+
+## 3. Why It Failed
+
+For:
+
+$$
+[V,D,R]
+$$
+
+the active projection rule is:
+
+$$
+\Pi([V,D,R]) = \frac{V + \rho_D(R)}{D}
+$$
+
+If the parent denominator changes from \(D\) to \(B\), then the residual
+contribution must be reinterpreted in the new denominator frame.
+
+That means the rebased object:
+
+$$
+[Q,B,R']
+$$
+
+must satisfy:
+
+$$
+\frac{Q + \rho_B(R')}{B}
+=
+\frac{V + \rho_D(R)}{D}
+$$
+
+The old residual \(R\) does not generally satisfy this if inserted unchanged.
+
+So the repair target is:
+
+- not “preserve old residual literally”
+- but “construct a new residual whose contribution in the new parent frame
+  matches the old total contribution exactly”
+
+This is a stronger and more precise requirement.
+
+---
+
+## 4. What Still Appears Correct
+
+The following parts still appear sound and should be preserved:
+
+### 4.1. Parent-sensitive completion
+Residual meaning depends on the parent denominator frame.
+
+This remains the correct semantic direction.
+
+### 4.2. Closed-to-active mismatch preservation
+For a closed source:
+
+$$
+[V,D,0]
+$$
+
+rebased to \(B\), the mismatch construction:
+
+$$
+VB = QD + S
+\quad\Rightarrow\quad
+[Q,B,[S,D,0]]
+$$
+
+still projects correctly.
+
+### 4.3. Active rebasing must remain exact
+Approximation is still forbidden.
+If exact finite active rebasing cannot be constructed, rebasing must fail.
+
+### 4.4. Structural preservation principle
+Residual structure remains exact value-bearing structure.
+The repair is not permission to discard residuals.
+The repair is to transport them correctly.
+
+---
+
+## 5. Correct Repair Direction
+
+The correct repair direction is:
+
+When rebasing:
+
+$$
+[V,D,R] \to [Q,B,R']
+$$
+
+the rebased residual \(R'\) must satisfy:
+
+$$
+\rho_B(R') = \frac{B(V + \rho_D(R))}{D} - Q
+$$
+
+in exact external comparison form.
+
+This is the fundamental rebase condition.
+
+So active rebasing must be redefined as a residual reconstruction problem:
+
+1. compute the exact required new parent-frame residual contribution
+2. construct a valid finite VDR residual object \(R'\) whose
+   denominator-sensitive completion in frame \(B\) equals that contribution
+3. fail if no such finite exact residual can be constructed in the current
+   layer
+
+This is more precise than the original child-plus-old-residual heuristic.
+
+---
+
+## 6. Consequence for `lift`
+
+The current `lift` rule may still be structurally useful, but it is not by
+itself sufficient to guarantee correct active rebasing.
+
+Why:
+- `lift` transports structure under scaling assumptions
+- but active rebasing requires parent-frame residual equivalence, not merely
+  structural carryover
+
+So `lift` should now be treated as:
+- a possible helper operation,
+- not the full solution to active rebase transport
+
+This is an important correction.
+
+---
+
+## 7. Recommended Formal Change
+
+The current active rebase rule should be weakened.
+
+Instead of saying, in effect:
+
+$$
+R' = [S,D,0] + R
+$$
+
+it should say:
+
+For rebasing:
+
+$$
+[V,D,R] \to [Q,B,R']
+$$
+
+the rebased residual \(R'\) must be any valid finite residual object such
+that:
+
+$$
+\frac{Q + \rho_B(R')}{B}
+=
+\frac{V + \rho_D(R)}{D}
+$$
+
+and such that the rebased object remains raw-valid.
+
+Then:
+- closed-to-active mismatch construction becomes one valid special case
+- general active rebasing remains exact but no longer falsely overspecified
+
+This is the correct v1 repair.
+
+---
+
+## 8. Example of the Corrected View
+
+Source:
+
+$$
+[2,5,1]
+$$
+
+Projection:
+
+$$
+\Pi([2,5,1]) = \frac{2+1}{5} = \frac{3}{5}
+$$
+
+Target denominator:
+
+$$
+3
+$$
+
+Need rebased form:
+
+$$
+[Q,3,R']
+$$
+
+such that:
+
+$$
+\frac{Q + \rho_3(R')}{3} = \frac{3}{5}
+$$
+
+So:
+
+$$
+Q + \rho_3(R') = \frac{9}{5}
+$$
+
+If we choose \(Q = 1\), then we need:
+
+$$
+\rho_3(R') = \frac{4}{5}
+$$
+
+One possible exact residual witness is:
+
+$$
+R' = [4,5,0]
+$$
+
+because:
+
+$$
+\rho_3([4,5,0]) = \Pi([4,5,0]) = \frac{4}{5}
+$$
+
+Thus a corrected rebased form is:
+
+$$
+[1,3,[4,5,0]]
+$$
+
+Projection check:
+
+$$
+\Pi([1,3,[4,5,0]]) = \frac{1 + 4/5}{3} = \frac{9/5}{3} = \frac{3}{5}
+$$
+
+This works.
+
+So the repair note shows:
+- the naive carryover rule was wrong
+- but exact active rebasing itself remains viable
+
+---
+
+## 9. Practical Implementation Consequence
+
+Implementation should not hard-code the naive rule:
+
+```text
+R' = mismatch_child + old_residual
+```
+
+Instead, implementation should:
+1. compute required residual target contribution in the new parent frame
+2. attempt exact residual construction for that target
+3. return rebased result if construction succeeds
+4. otherwise fail explicitly
+
+This means active rebase now depends on an exact residual-construction helper,
+not just literal transport.
+
+---
+
+## 10. Status of v1 After This Repair
+
+After this repair note, the status is:
+
+### Stable:
+- charter
+- foundational object model
+- residual formation
+- structural validity
+- normalization core
+- value equality layer
+- closed arithmetic
+- closed rebasing
+- denominator-sensitive completion semantics
+- active scalar projection semantics
+
+### Provisional but repairable:
+- active rebasing with nontrivial pre-existing residuals
+- the role of lift in rebase
+- fully canonical active arithmetic beyond add/sub
+
+### Still open:
+- exact residual-construction algorithm for broader classes
+- canonical quotient selection
+- full active multiplication/division
+- broader exact inbound construction beyond rationals
+
+---
+
+## 11. Recommended Next Formal Action
+
+The next formal refinement should be:
+
+### Residual Construction Rules v1
+A rule layer that answers:
+
+Given an exact external scalar comparison target \(T\), can we construct a
+finite valid residual object \(R\) such that:
+
+$$
+\rho_D(R) = T
+$$
+
+for a specified parent denominator \(D\)?
+
+This becomes the missing bridge between:
+- denominator-sensitive semantics,
+- active rebasing,
+- and future active arithmetic.
+
+---
+
+## Summary
+
+Active Rebase Repair Notes v1 establishes:
+
+1. the original naive carryover rule for pre-existing residuals was incorrect
+2. the failure is due to parent-denominator-sensitive semantics
+3. active rebasing must be defined by exact residual reconstruction in the new
+   denominator frame
+4. the simple closed-to-active case still works
+5. the general active rebase program remains viable, but needs a residual
+   construction layer
+
+This is a productive correction, not a collapse of the theory.
+
+---
+
+# VDR
+## Semantic Fork Note v1
+
+This note records a major semantic fork discovered during v1 development.
+
+The issue is whether active VDR objects with nonzero residuals should be
+interpreted as:
+- scalar-additive completions,
+or
+- exact state-carrying objects that do not collapse to ordinary scalar value
+  by default.
+
+This fork is foundational.
+Once chosen, it will strongly affect:
+- active semantics,
+- active equality,
+- rebasing,
+- scalar projection,
+- arithmetic,
+- and the long-term role of VDR.
+
+---
+
+## 1. The Trigger for the Fork
+
+Consider the VDR object:
+
+$$
+[2,5,1]
+$$
+
+One possible reading is:
+
+- additive completion reading:
+  “\(2/5\) completed by residual \(1\)”
+  which could collapse to something like \(3/5\)
+
+But this creates a problem:
+
+If:
+
+$$
+[2,5,1] \equiv [3,5,0]
+$$
+
+then the residual slot loses much of its reason to exist, because the object
+could be collapsed into an ordinary closed rational form.
+
+This directly conflicts with the motivating idea that the residual is exact
+value-bearing structure that must not be discarded.
+
+The intended motivating example is:
+
+$$
+11 / 5 \rightsquigarrow [2,5,1]
+$$
+
+Under this reading:
+- \(2\) is the settled quotient component,
+- \(5\) is the denominator frame,
+- \(1\) is the exact residual left by the operation.
+
+Then:
+
+$$
+[2,5,1] \neq [3,5,0]
+$$
+
+because:
+- “quotient 2 with residual 1”
+is not the same native object as
+- “quotient 3 with no residual”
+
+This tension creates the semantic fork.
+
+---
+
+## 2. Path A: Additive Active Semantics
+
+Under Path A, an active VDR object is interpreted as carrying scalar
+completion in a way that contributes directly to scalar value.
+
+Example guiding idea:
+
+$$
+[V,D,r]
+\mapsto
+\frac{V+r}{D}
+$$
+
+or, more generally, some parent-sensitive additive completion law.
+
+### Advantages
+- easier connection to conventional scalar mathematics
+- active scalar projection becomes straightforward
+- rebasing can be justified by scalar-preserving formulas
+- VDR resembles a recursive exact scalar representation system
+
+### Cost
+- residual begins to act like delayed scalar addition
+- objects such as:
+
+$$
+[2,5,1]
+$$
+
+risk collapsing toward:
+
+$$
+[3,5,0]
+$$
+
+- negative residuals become scalar corrections rather than exact state
+- the ontological force of triple irreducibility weakens
+- VDR risks becoming “fraction-plus-annotation” rather than a genuinely new
+  exact native object system
+
+### Consequence
+Path A favors interoperability and scalar comparability, but risks losing the
+deep reason for preserving residual structure.
+
+---
+
+## 3. Path B: State-Carrying Active Semantics
+
+Under Path B, a nonzero residual is not automatically interpreted as scalar
+additive completion.
+
+Instead, an active VDR object is an exact state-carrying object.
+
+Example guiding idea:
+
+$$
+[2,5,1]
+$$
+
+means:
+- quotient/state value \(2\),
+- denominator frame \(5\),
+- residual state \(1\),
+
+not:
+- \(3/5\)
+
+and not:
+- \(2/5 + 1/5\)
+
+Likewise:
+
+$$
+[2,5,-1]
+$$
+
+is not simply \(1/5\),
+but a distinct exact signed residual state in the same denominator frame.
+
+### Advantages
+- preserves the ontological importance of the residual
+- supports the intuition that VDR records exact operation-state, not merely
+  scalar output
+- makes triple irreducibility meaningful
+- keeps active objects genuinely distinct from closed rational objects
+
+### Cost
+- active scalar projection can no longer be assumed by default
+- rebasing must preserve exact state, not just scalar value
+- arithmetic becomes more difficult
+- interoperability with conventional scalar systems becomes weaker or more
+  conditional
+- VDR becomes less like a generalized fraction system and more like a native
+  exact state calculus
+
+### Consequence
+Path B preserves VDR’s deeper identity, but requires a more careful theory of:
+- when active objects project outward,
+- which active subclasses have scalar images,
+- and how state-preserving operations work.
+
+---
+
+## 4. Why the Example [2,5,-1] Matters
+
+The object:
+
+$$
+[2,5,-1]
+$$
+
+makes the fork especially clear.
+
+Under additive semantics, this tends to collapse toward:
+
+$$
+\frac{2-1}{5} = \frac{1}{5}
+$$
+
+But under state-carrying semantics, it is a different exact object:
+- same denominator frame,
+- same quotient shell,
+- opposite signed residual state.
+
+This strongly suggests that residual is not merely a numerator adjustment.
+
+So the sign of the residual supports Path B more naturally than Path A.
+
+---
+
+## 5. Immediate Consequences if Path B Is Chosen
+
+If Path B is chosen, the following v1 layers must be revised:
+
+1. Denominator-sensitive completion semantics
+   - active residual must no longer be treated as scalar-additive by default
+
+2. Active scalar projection
+   - must be weakened, restricted, or deferred
+   - active objects may not always have direct scalar meaning
+
+3. Active rebasing
+   - must preserve exact state, not scalar comparison image alone
+
+4. Lift / residual transport
+   - must transport state structure, not just value contribution
+
+5. Active arithmetic
+   - must be re-grounded as state operations, not scalar arithmetic extension
+
+The closed rational core remains intact.
+
+---
+
+## 6. Immediate Consequences if Path A Is Chosen
+
+If Path A is chosen, the current v1 active semantics can continue in roughly
+their current direction, with technical repair.
+
+But this comes with a conceptual concession:
+
+- the residual becomes part of scalar completion
+- and active VDR becomes closer to recursive exact scalar representation
+
+This may still be useful, but it is a weaker break from conventional scalar
+thinking.
+
+---
+
+## 7. Current Evidence
+
+The current evidence favors Path B if the design goal is to keep residual
+ontologically real rather than merely scalar-additive.
+
+The strongest evidence is:
+
+1. the motivating interpretation of
+
+$$
+11/5 \rightsquigarrow [2,5,1]
+$$
+
+as exact quotient-plus-residual state
+
+2. the non-collapse intuition:
+
+$$
+[2,5,1] \neq [3,5,0]
+$$
+
+3. the signed residual distinction:
+
+$$
+[2,5,1],\quad [2,5,0],\quad [2,5,-1]
+$$
+
+appear to be three different exact native states, not merely three scalar
+fractions
+
+4. the charter’s insistence that residual is exact value-bearing structure and
+must not be discarded
+
+---
+
+## 8. Recommended Decision Framing
+
+The decision should be framed as follows:
+
+Question:
+Should active VDR objects have scalar-additive meaning by default?
+
+- If yes, choose Path A.
+- If no, and active residual is exact native state rather than scalar
+  correction, choose Path B.
+
+This is the real semantic choice.
+
+---
+
+## 9. Recommendation at v1
+
+Current evidence suggests:
+
+- closed objects:
+  retain direct exact rational/scalar projection
+
+- active objects:
+  should not be assumed to collapse to scalar value by default
+
+So the likely direction for VDR is:
+
+- scalar semantics for the closed subclass
+- state-carrying semantics for the active subclass unless and until a later
+  interpretation layer provides a justified scalar projection
+
+This is a mixed but coherent position.
+
+---
+
+## 10. Summary
+
+The semantic fork is:
+
+### Path A
+Active residuals contribute directly to scalar completion.
+
+### Path B
+Active residuals are exact native state and do not collapse to ordinary scalar
+meaning by default.
+
+Choosing Path A makes VDR easier to compare to scalar mathematics, but risks
+collapsing the reason the residual exists.
+
+Choosing Path B preserves the ontological force of the residual, but requires
+a more difficult theory of active operations and active interoperability.
+
+At this stage, the motivating examples strongly suggest that Path B is closer
+to the intended identity of VDR.
+
+This fork should be settled before further active semantic expansion.
+
+---
+
