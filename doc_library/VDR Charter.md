@@ -2051,3 +2051,2549 @@ That is enough for:
 
 ---
 
+# VDR
+## Rebase Rules v1
+### Closed Objects Only
+
+These rules define the first rebasing layer of VDR for the closed subclass only.
+
+They apply only to VDR objects of the form:
+
+$$
+[V,D,0]
+$$
+
+Rebasing changes the explicit top-level denominator while preserving closed exact value.
+
+They do not yet define general rebasing for active objects with nonzero residuals.
+
+---
+
+### 123. Closed Rebase Domain Rule
+For a valid closed VDR object:
+
+$$
+X = [V,D,0]
+$$
+
+and a target denominator:
+
+$$
+B \in \mathbb{Z}\setminus\{0\}
+$$
+
+the closed rebase operation, when valid, produces another closed VDR object:
+
+$$
+\mathrm{rebase}(X,B) = [V',B,0]
+$$
+
+with the same closed projected value.
+
+---
+
+### 124. Closed Rebase Purpose Rule
+Closed rebasing changes the explicit denominator of a closed VDR object without changing its exact closed value.
+
+Thus rebasing is a representational operation, not a value-changing operation.
+
+---
+
+### 125. Closed Rebase Validity Rule
+A closed rebase from:
+
+$$
+[V,D,0]
+$$
+
+to target denominator \(B\) is valid if and only if there exists an integer \(V'\) such that:
+
+$$
+\frac{V'}{B} = \frac{V}{D}
+$$
+
+Equivalently, closed rebasing is valid if and only if:
+
+$$
+V' = \frac{VB}{D} \in \mathbb{Z}
+$$
+
+---
+
+### 126. Closed Rebase Construction Rule
+If closed rebasing is valid, then:
+
+$$
+\mathrm{rebase}([V,D,0],B)
+=
+\left[\frac{VB}{D},\; B,\; 0\right]
+$$
+
+provided the numerator computed is an integer.
+
+---
+
+### 127. Closed Rebase Failure Rule
+If:
+
+$$
+\frac{VB}{D} \notin \mathbb{Z}
+$$
+
+then closed rebasing to denominator \(B\) fails in v1.
+
+At this stage, failure does not trigger active rebasing automatically.
+That belongs to a later layer.
+
+So closed v1 rebasing is:
+- exact where possible,
+- explicit failure where not possible.
+
+---
+
+### 128. Same-Denominator Identity Rule
+For every valid closed VDR object:
+
+$$
+\mathrm{rebase}([V,D,0],D) = [V,D,0]
+$$
+
+So rebasing to the same denominator is identity.
+
+---
+
+### 129. Sign-Compatible Rebase Rule
+Closed rebasing may target either positive or negative nonzero denominators.
+
+If the target denominator \(B\) is negative, rebasing is still allowed provided the resulting numerator is an integer.
+
+Sign normalization, if desired, may later rewrite the result into canonical sign form.
+
+---
+
+### 130. Closed Rebase Equality Preservation Rule
+If closed rebasing succeeds, then rebasing preserves value equality:
+
+$$
+\mathrm{rebase}([V,D,0],B) \equiv_v [V,D,0]
+$$
+
+This follows through normalization and closed projection compatibility.
+
+---
+
+### 131. Closed Rebase Structural Nonidentity Rule
+Closed rebasing generally does not preserve structural equality.
+
+So even when rebasing succeeds:
+
+$$
+\mathrm{rebase}([V,D,0],B) \not\equiv_s [V,D,0]
+$$
+
+in general, unless \(B = D\) and the representation is unchanged.
+
+Thus rebasing is a change of representation, not of value.
+
+---
+
+### 132. Closed Rebase Projection Compatibility Rule
+If closed rebasing succeeds, then rational projection is preserved:
+
+$$
+\pi_{\mathbb{Q}}(\mathrm{rebase}([V,D,0],B))
+=
+\pi_{\mathbb{Q}}([V,D,0])
+$$
+
+So rebasing is compatible with closed scalar projection.
+
+---
+
+### 133. Closed Rebase Determinism Rule
+For a fixed closed VDR object and fixed target denominator, the closed rebase result is unique when it exists.
+
+So closed rebasing is deterministic.
+
+---
+
+### 134. Closed Rebase Termination Rule
+Closed rebasing must terminate in finite time.
+
+It requires only:
+- integer multiplication,
+- integer divisibility check,
+- and integer construction of the rebased numerator.
+
+No approximation or nonterminating process is involved.
+
+---
+
+### 135. Closed Rebase Canonicality Rule
+Closed rebasing itself is not normalization.
+
+A rebased closed object may still require normalization for:
+- sign placement,
+- gcd reduction,
+- or canonical closed form.
+
+Thus rebasing and normalization are distinct layers.
+
+---
+
+### 136. Closed Rebase Arithmetic Compatibility Rule
+If closed rebasing succeeds on operands or results, it must preserve compatibility with closed arithmetic and value equality.
+
+So rebasing is a representational tool that may be used before or after closed arithmetic, provided all rebases involved are valid.
+
+---
+
+### 137. Closed Rebase Scope Rule
+The v1 closed rebase layer defines only:
+- exact denominator change for closed objects,
+- explicit success/failure,
+- and value-preserving representational rebasing.
+
+It does not yet define:
+- active rebasing,
+- residual transport,
+- same-denominator child absorption mechanics,
+- quotient selection,
+- or scalar-aware active completion.
+
+Those belong to later layers.
+
+---
+
+## Summary of Closed Rebase v1
+
+At this stage, VDR supports exact rebasing for closed objects when the target denominator is compatible with the represented closed value.
+
+So for:
+
+$$
+[V,D,0]
+$$
+
+and target \(B \neq 0\),
+
+- if \(VB/D\) is an integer, rebasing succeeds exactly
+- otherwise rebasing fails explicitly
+
+This gives you:
+- exact denominator change,
+- no approximation,
+- deterministic behavior,
+- and a clean base before active rebasing is introduced
+
+---
+
+# VDR
+## Active Rebase Rules v1
+
+These rules extend rebasing beyond the closed subclass.
+
+They define the first exact rebasing layer for active VDR objects, where rebasing to a new denominator may require preservation of unresolved exact structure in the residual slot.
+
+The purpose of active rebasing is:
+- to preserve exact native VDR structure,
+- to preserve value equality inside VDR,
+- and to avoid approximation when closed rebasing alone is insufficient.
+
+These rules are first-pass and conservative.
+
+---
+
+### 138. Active Rebase Domain Rule
+For a valid VDR object:
+
+$$
+X = [V,D,R]
+$$
+
+with:
+
+$$
+D \neq 0
+$$
+
+and target denominator:
+
+$$
+B \in \mathbb{Z}\setminus\{0\}
+$$
+
+the active rebase operation, when valid, produces a valid VDR object:
+
+$$
+\mathrm{rebase}(X,B) = [V',B,R']
+$$
+
+such that rebasing preserves native value equality.
+
+---
+
+### 139. Closed Rebase Priority Rule
+If a VDR object is closed and closed rebasing succeeds, then closed rebasing must be used directly.
+
+So active rebasing is not used when a valid closed rebased form already exists.
+
+Closure is preferred where exact closure is available.
+
+---
+
+### 140. Active Rebase Trigger Rule
+Active rebasing is used when:
+- a target denominator \(B\) is requested,
+- exact closed rebasing is not available in the intended representation layer,
+- and exact residual-preserving rebasing is still possible.
+
+Thus active rebasing is the exact non-approximate extension of rebasing beyond closed direct denominator transfer.
+
+---
+
+### 141. Rebased Form Rule
+For:
+
+$$
+X = [V,D,R]
+$$
+
+and target denominator \(B\neq 0\),
+
+an active rebase result has the form:
+
+$$
+[Q,B,R']
+$$
+
+where:
+- \(Q \in \mathbb{Z}\),
+- \(R'\) is exact residual structure,
+- and the rebased object remains a valid VDR object.
+
+At v1, \(Q\) is the rebased top-level value slot and \(R'\) is the exact residual structure required to preserve rebase equality.
+
+---
+
+### 142. Quotient-Residual Decomposition Rule
+To actively rebase:
+
+$$
+[V,D,R]
+$$
+
+to denominator \(B\), form the integer-scaled numerator demand:
+
+$$
+N = VB
+$$
+
+Then choose integers \(Q\) and \(S\) such that:
+
+$$
+N = QD + S
+$$
+
+This decomposes the target top-level denominator change into:
+- a quotient part \(Q\),
+- and a residual mismatch part \(S\).
+
+At v1, this decomposition is exact and finite.
+
+---
+
+### 143. Residual Child Construction Rule
+The residual mismatch part \(S\) is preserved exactly by constructing the closed child:
+
+$$
+[S,D,0]
+$$
+
+This child is inserted into the rebased residual structure rather than discarded or approximated away.
+
+So the simplest active rebased form begins with:
+
+$$
+[Q,B,[S,D,0]]
+$$
+
+before any further residual combination or normalization.
+
+---
+
+### 144. Existing Residual Preservation Rule
+If the original object already has residual structure \(R\), then active rebasing must preserve that residual structure exactly rather than erase it.
+
+So rebasing must account for both:
+- the newly introduced denominator mismatch residual,
+- and the original residual structure already present in the source object.
+
+---
+
+### 145. Rebased Residual Combination Rule
+For a source object:
+
+$$
+[V,D,R]
+$$
+
+rebased to denominator \(B\), the first-pass active rebased residual is formed by combining:
+1. the newly constructed residual child from quotient mismatch,
+2. and the preserved original residual structure, carried into the rebased object.
+
+At v1 this combined rebased residual may be written schematically as:
+
+$$
+R' = [S,D,0] + R
+$$
+
+subject to later refinement by normalization and residual transport rules.
+
+This is a structural preservation rule, not yet a final arithmetic combination law.
+
+---
+
+### 146. Exact Preservation Rule
+If active rebasing succeeds, it must preserve native value equality:
+
+$$
+\mathrm{rebase}([V,D,R],B) \equiv_v [V,D,R]
+$$
+
+This is the defining requirement of active rebasing.
+
+---
+
+### 147. No Approximation Rebase Rule
+Active rebasing may not use:
+- decimal fitting,
+- floating conversion,
+- truncation,
+- epsilon acceptance,
+- or limit-style reasoning.
+
+If exact finite rebasing is not possible, rebasing must fail rather than approximate.
+
+---
+
+### 148. Rebase Failure Rule
+Active rebasing fails if:
+- the target denominator is zero,
+- exact finite residual preservation cannot be constructed,
+- rebasing would require invalid structure,
+- or the rebased object cannot be normalized and validated within the current layer.
+
+Failure is explicit and valid.
+
+---
+
+### 149. Rebase Structural Nonidentity Rule
+Active rebasing generally changes representation and so does not preserve structural equality.
+
+Thus:
+
+$$
+\mathrm{rebase}(X,B) \not\equiv_s X
+$$
+
+in general, even when:
+
+$$
+\mathrm{rebase}(X,B) \equiv_v X
+$$
+
+---
+
+### 150. Rebase Determinism Rule
+For a fixed source object, fixed target denominator, and fixed quotient-selection rule, active rebasing must be deterministic.
+
+At v1, quotient selection is exact but not yet fully canonically optimized.
+A later quotient-selection layer may refine which valid \(Q\) is preferred when multiple exact decompositions are available.
+
+---
+
+### 151. Rebase Termination Rule
+Active rebasing must terminate in finite time whenever it succeeds.
+
+It may not rely on:
+- infinite search,
+- hidden completion,
+- or asymptotic convergence.
+
+At v1, only finitely expressible rebased structures are admitted.
+
+---
+
+### 152. Normalization Compatibility Rule
+If active rebasing succeeds, the rebased result must remain a raw-valid VDR object and must be compatible with later normalization rules.
+
+Thus active rebasing is a representational transformation inside VDR, not an escape from VDR structure.
+
+---
+
+### 153. Reserved Residual Transport Rule
+The rule:
+
+$$
+R' = [S,D,0] + R
+$$
+
+is only a first-pass structural preservation rule.
+
+A later layer may replace this with a more precise residual transport mechanism when:
+- denominator-sensitive completion semantics,
+- lift operators,
+- or exact child absorption laws
+are formally introduced.
+
+So v1 active rebasing preserves structure conservatively without claiming that residual transport is fully solved.
+
+---
+
+### 154. Active Rebase Scope Rule
+The v1 active rebase layer defines:
+- exact quotient-residual decomposition,
+- exact preservation of mismatch through residual child construction,
+- preservation of existing residual structure,
+- value-preserving rebased representation in principle,
+- and explicit failure instead of approximation.
+
+It does not yet fully define:
+- canonical quotient selection,
+- denominator-sensitive residual transport,
+- full active arithmetic,
+- full scalar projection for active objects,
+- or final normalized active rebasing behavior.
+
+Those belong to later layers.
+
+---
+
+## Summary of Active Rebase v1
+
+At this stage, active rebasing says:
+
+- rebasing to a new denominator may produce an active VDR object
+- denominator mismatch is preserved exactly as residual child structure
+- prior residual structure is not discarded
+- exactness is preserved
+- failure is explicit if finite exact rebasing cannot be constructed
+
+This gives you the first exact extension beyond closed rebasing.
+
+Important note:
+this is still intentionally provisional.
+It preserves the rebasing idea without pretending the deeper residual transport problem is solved.
+
+---
+
+# VDR
+## Residual Transport / Lift Rules v1
+
+These rules define the first transport layer for residual structure during
+operations such as active rebasing and later active arithmetic.
+
+The purpose of `lift` is to preserve exact residual structure when a VDR
+object is moved into a new denominator context, without approximation and
+without collapsing the residual into scalar form.
+
+This is a first-pass structural transport layer. It is conservative and
+keeps exact native structure primary.
+
+---
+
+### 155. Lift Domain Rule
+`lift` is defined on:
+- valid residual objects,
+- valid child VDR objects appearing in residual structure,
+- and nonzero integer scale factors.
+
+Formally, v1 admits:
+
+$$
+\mathrm{lift} : \mathcal{R} \times (\mathbb{Z}\setminus\{0\}) \to \mathcal{R}
+$$
+
+and the corresponding child action:
+
+$$
+\mathrm{lift} : \mathcal{V} \times (\mathbb{Z}\setminus\{0\}) \to \mathcal{V}
+$$
+
+where:
+- \( \mathcal{R} \) is the residual domain,
+- \( \mathcal{V} \) is the domain of valid VDR objects.
+
+Lift by zero is invalid.
+
+---
+
+### 156. Lift Purpose Rule
+`lift` transports exact residual structure into a new denominator frame.
+
+It is used when:
+- a parent denominator context changes,
+- but existing residual structure must remain exact and native,
+- and scalar collapse is forbidden.
+
+Thus `lift` is a structural transport operation, not a scalar evaluation.
+
+---
+
+### 157. Atomic Lift Rule
+For an atomic residual integer:
+
+$$
+r \in \mathbb{Z}
+$$
+
+define:
+
+$$
+\mathrm{lift}(r,k) = kr
+$$
+
+for every nonzero integer \(k\).
+
+So atomic residual transport is exact integer scaling.
+
+---
+
+### 158. Composite Residual Lift Rule
+For a composite residual of the form:
+
+$$
+R = r + X_1 + X_2 + \dots + X_n
+$$
+
+define:
+
+$$
+\mathrm{lift}(R,k)
+=
+kr + \mathrm{lift}(X_1,k) + \mathrm{lift}(X_2,k) + \dots + \mathrm{lift}(X_n,k)
+$$
+
+where:
+- \(r \in \mathbb{Z}\),
+- each \(X_i\) is a valid child VDR object,
+- \(n\) is finite.
+
+This is a structural distribution rule over residual form.
+
+---
+
+### 159. Child Lift Rule
+For a child VDR object:
+
+$$
+X = [V,D,R]
+$$
+
+define:
+
+$$
+\mathrm{lift}(X,k) = [kV,\; D,\; \mathrm{lift}(R,k)]
+$$
+
+where \(k \neq 0\).
+
+So lift:
+- scales the value slot,
+- preserves the child denominator slot,
+- and recursively lifts the child residual.
+
+At v1, this preserves child denominator identity while transporting the
+child into a new outer denominator context.
+
+---
+
+### 160. Lift Identity Rule
+Lift by \(1\) is identity.
+
+For every valid residual object \(R\),
+
+$$
+\mathrm{lift}(R,1) = R
+$$
+
+and for every valid child VDR object \(X\),
+
+$$
+\mathrm{lift}(X,1) = X
+$$
+
+---
+
+### 161. Lift Sign Rule
+Lift by \(-1\) negates transported structure.
+
+For atomic residuals:
+
+$$
+\mathrm{lift}(r,-1) = -r
+$$
+
+For child VDR objects:
+
+$$
+\mathrm{lift}([V,D,R],-1) = [-V,D,\mathrm{lift}(R,-1)]
+$$
+
+So lift is sign-compatible with exact negation.
+
+---
+
+### 162. Lift Composition Rule
+Lift composes multiplicatively.
+
+For every valid residual object \(R\) and nonzero integers \(a,b\),
+
+$$
+\mathrm{lift}(\mathrm{lift}(R,a),b)
+=
+\mathrm{lift}(R,ab)
+$$
+
+Likewise for valid child VDR objects \(X\),
+
+$$
+\mathrm{lift}(\mathrm{lift}(X,a),b)
+=
+\mathrm{lift}(X,ab)
+$$
+
+This ensures multi-stage transport is coherent.
+
+---
+
+### 163. Lift Exactness Rule
+Lift may not introduce:
+- approximation,
+- floating conversion,
+- decimal fitting,
+- hidden continuation,
+- or invalid recursive structure.
+
+It is an exact native transport operation only.
+
+---
+
+### 164. Lift Validity Preservation Rule
+If \(R\) is a valid residual object and \(k \neq 0\), then
+\(\mathrm{lift}(R,k)\) is a valid residual object.
+
+If \(X\) is a valid child VDR object and \(k \neq 0\), then
+\(\mathrm{lift}(X,k)\) is a valid VDR object.
+
+So lift preserves raw validity.
+
+---
+
+### 165. Lift Finiteness Rule
+Because every valid residual and child VDR object is finite, every valid
+lift operation terminates in finite time.
+
+Lift may not rely on infinite descent or hidden infinite expansion.
+
+---
+
+### 166. Lift Structural Preservation Rule
+Lift preserves recursive locality.
+
+It may not:
+- move structure out of the residual slot,
+- introduce recursion into \(V\) or \(D\),
+- or destroy the finite tree structure of the object.
+
+Thus lift transports structure without changing the foundational shape of
+VDR.
+
+---
+
+### 167. Lift Zero Rule
+For the atomic residual zero:
+
+$$
+\mathrm{lift}(0,k) = 0
+$$
+
+for every nonzero integer \(k\).
+
+So closed residual zero remains zero under transport.
+
+---
+
+### 168. Lift Addition-Shaped Distribution Rule
+Where residual structure is written in composite form, lift distributes over
+the admitted residual decomposition:
+
+$$
+\mathrm{lift}(R_1 + R_2, k)
+=
+\mathrm{lift}(R_1,k) + \mathrm{lift}(R_2,k)
+$$
+
+provided both sides are read as valid residual structural expressions in the
+v1 sense.
+
+This is a structural distribution law, not yet a full arithmetic statement.
+
+---
+
+### 169. Lift Rebase Support Rule
+Lift exists in v1 primarily to support active rebasing and later active
+arithmetic.
+
+When denominator context changes but residual structure must be preserved,
+`lift` is the canonical first-pass transport operator.
+
+---
+
+### 170. Reserved Semantic Refinement Rule
+The v1 lift rules define exact structural transport, but they do not yet
+fully settle the deeper semantic question of how transported residuals
+contribute to external scalar meaning in all active cases.
+
+Thus v1 lift is admitted as:
+- exact,
+- finite,
+- deterministic,
+- structurally valid,
+- and operationally useful,
+
+while leaving full denominator-sensitive active semantics to later layers.
+
+---
+
+### 171. Lift Scope Rule
+The v1 lift layer defines:
+- exact transport of residual integers,
+- recursive transport of child VDR objects,
+- validity preservation,
+- structural preservation,
+- and support for active rebase.
+
+It does not yet fully define:
+- full active scalar projection,
+- full active arithmetic semantics,
+- quotient optimization,
+- or complete denominator-sensitive completion laws.
+
+Those belong to later layers.
+
+---
+
+## Summary of Lift v1
+
+At this stage, `lift` gives VDR:
+
+- a finite exact transport operator,
+- defined on residuals and child VDR objects,
+- compatible with sign and composition,
+- preserving validity and structure,
+- ready to support active rebasing and later arithmetic.
+
+This is the minimal exact transport layer needed before more serious active
+operations are built.
+
+---
+
+# VDR
+## Denominator-Sensitive Completion Semantics v1
+
+These rules refine native semantics for active VDR objects.
+
+Their purpose is to make explicit that residual structure is interpreted in
+the denominator frame of its parent, rather than as an externally added
+scalar term detached from that frame.
+
+This layer is introduced to support:
+- active rebasing,
+- residual transport,
+- and later active arithmetic,
+while preserving the charter principle that residual structure is exact
+completion rather than approximation residue.
+
+---
+
+### 172. Parent-Frame Completion Rule
+For a VDR object:
+
+$$
+[V,D,R]
+$$
+
+the residual \(R\) is interpreted natively as completion structure in the
+denominator frame of the parent denominator \(D\).
+
+Thus \(R\) is not interpreted as a free-standing scalar addend independent
+of \(D\).
+
+---
+
+### 173. Closed Completion Rule
+For a closed VDR object:
+
+$$
+[V,D,0]
+$$
+
+the native completed content is fully settled at the top level.
+
+The closed external rational projection remains:
+
+$$
+\pi_{\mathbb{Q}}([V,D,0]) = \frac{V}{D}
+$$
+
+So closed nodes are unchanged by this semantic refinement.
+
+---
+
+### 174. Residual Numerator-Space Rule
+At v1, residual completion is interpreted in numerator-space relative to the
+parent denominator.
+
+This means the residual contributes as exact numerator-side completion of the
+parent frame, not as an externally detached scalar term.
+
+So the parent denominator governs how the residual is understood.
+
+---
+
+### 175. Parent-Sensitive Completion Function Rule
+Introduce a parent-sensitive completion function:
+
+$$
+\rho_D(R)
+$$
+
+which interprets residual \(R\) relative to parent denominator \(D\).
+
+The native external comparison form of a VDR object is then guided by:
+
+$$
+\Pi([V,D,R]) = \frac{V + \rho_D(R)}{D}
+$$
+
+where \( \Pi \) is an external scalar-comparison interpretation schema.
+
+At v1, this is a semantic guiding rule, not yet a full executable projection
+algorithm for all active cases.
+
+---
+
+### 176. Atomic Residual Completion Rule
+For an atomic residual integer \(r\),
+
+$$
+\rho_D(r) = r
+$$
+
+So an atomic residual contributes as numerator-side completion in the parent
+frame.
+
+This yields the guiding schema:
+
+$$
+\Pi([V,D,r]) = \frac{V+r}{D}
+$$
+
+for atomic-residual active objects, where external comparison is defined.
+
+---
+
+### 177. Child Residual Completion Rule
+For a child VDR object \(X\) appearing in the residual of a parent with
+denominator \(D\), the child contributes through its own projected value as
+numerator-side completion of the parent frame.
+
+So the parent-sensitive residual interpretation takes the form:
+
+$$
+\rho_D(r + X_1 + \dots + X_n)
+=
+r + \Pi(X_1) + \dots + \Pi(X_n)
+$$
+
+as a first-pass semantic schema.
+
+Accordingly:
+
+$$
+\Pi([V,D,r + X_1 + \dots + X_n])
+=
+\frac{V + r + \Pi(X_1) + \dots + \Pi(X_n)}{D}
+$$
+
+This expresses denominator-sensitive completion:
+child contributions are divided by the parent denominator through the parent
+frame, not added externally after the parent ratio is already complete.
+
+---
+
+### 178. Completion Not External Addition Rule
+Even though the comparison schema may be written in additive form, native VDR
+semantics do not treat residual structure as an externally attached scalar
+sum.
+
+The additive-looking schema is only an external comparison image of the
+native completion relation.
+
+So native completion remains ontologically primary.
+
+---
+
+### 179. Rebase Compatibility Rule
+Under denominator-sensitive completion semantics, a rebased object of the
+form:
+
+$$
+[Q,B,[S,D,0]]
+$$
+
+has the comparison schema:
+
+$$
+\Pi([Q,B,[S,D,0]])
+=
+\frac{Q + \Pi([S,D,0])}{B}
+=
+\frac{Q + S/D}{B}
+$$
+
+which equals:
+
+$$
+\frac{QD + S}{BD}
+$$
+
+This is exactly the required form for preserving the source value when:
+
+$$
+VB = QD + S
+$$
+
+Thus denominator-sensitive completion makes active rebasing semantically
+coherent.
+
+---
+
+### 180. Lift Compatibility Rule
+Under denominator-sensitive completion semantics, lifted residual structure
+remains parent-frame sensitive.
+
+So `lift` is interpreted as transporting numerator-side completion structure
+into the new parent denominator frame without collapsing child denominator
+identity.
+
+This is why child lift preserves the child denominator while scaling the
+child value slot and residual recursively.
+
+---
+
+### 181. Same-Denominator Child Absorption Rule
+If a child VDR object in a residual has the same denominator as the parent,
+then under denominator-sensitive completion semantics its contribution already
+lives in the same parent denominator frame.
+
+Therefore such a child is a candidate for canonical absorption into the
+parent level during normalization, rather than retention as a separate child.
+
+This justifies the reserved same-denominator absorption rule introduced
+earlier.
+
+---
+
+### 182. Recursive Completion Rule
+If a child VDR object \(X\) appears in a residual, then \(X\) is itself
+interpreted by the same denominator-sensitive completion semantics.
+
+So completion is recursively compositional.
+
+At v1 this recursion is finite because all valid VDR objects are finite.
+
+---
+
+### 183. Exactness of Completion Rule
+Denominator-sensitive completion semantics may not introduce:
+- approximation,
+- infinite expansion,
+- limit behavior,
+- or hidden deferred evaluation.
+
+Any active interpretation admitted by this layer must remain finite and exact
+in structure.
+
+---
+
+### 184. Structural Priority Rule
+The parent-sensitive completion schema does not override native structural
+priority.
+
+Two VDR objects may project to the same external comparison form while still
+remaining structurally distinct and natively non-identical unless a later
+value-equality or equivalence rule identifies them.
+
+So scalar comparison image is still secondary.
+
+---
+
+### 185. Active Projection Preparation Rule
+This semantic layer prepares the way for full active scalar projection, but
+does not yet complete it as an implementation layer.
+
+At v1 it gives the semantic law that active external comparison must follow,
+without yet requiring every active projection procedure to be fully built.
+
+---
+
+### 186. Completion Scope Rule
+The denominator-sensitive completion layer defines:
+- parent-frame interpretation of residuals,
+- numerator-space completion,
+- recursive child contribution under the parent denominator,
+- semantic justification for active rebasing,
+- and semantic justification for lift.
+
+It does not yet fully define:
+- all active arithmetic laws,
+- full executable active scalar projection algorithms,
+- canonical quotient choice beyond current rebase rules,
+- or all equivalence classes induced by completion.
+
+Those belong to later layers.
+
+---
+
+## Summary of Denominator-Sensitive Completion Semantics v1
+
+At this stage, VDR now has the key semantic refinement it needed:
+
+- residuals complete the parent in the parent denominator frame
+- child VDRs contribute through the parent denominator, not as detached
+  external sums
+- active rebasing of the form
+
+$$
+[Q,B,[S,D,0]]
+$$
+
+now projects coherently as:
+
+$$
+\frac{Q + S/D}{B}
+$$
+
+which fixes the earlier rebase-scaling problem
+
+This is a major semantic stabilization point.
+
+---
+
+# VDR
+## Active Scalar Projection Rules v1
+
+These rules extend scalar projection beyond the closed subclass.
+
+They use the denominator-sensitive completion semantics introduced earlier to
+define the first active external comparison layer for VDR objects with
+nonzero residual structure.
+
+This layer remains external and secondary:
+it does not redefine native VDR identity.
+
+Its purpose is to make active VDR objects comparable to conventional scalar
+systems in a principled exact way where possible, and in a controlled
+approximate way where necessary.
+
+---
+
+### 187. Active Projection Domain Rule
+An active VDR object is any valid VDR object of the form:
+
+$$
+[V,D,R]
+\quad\text{with } R \neq 0
+$$
+
+The active scalar projection rules v1 apply to valid active VDR objects.
+
+Closed objects remain projected by the closed projection rules.
+
+---
+
+### 188. Active Projection Principle Rule
+Active scalar projection follows denominator-sensitive completion semantics.
+
+For a valid active VDR object:
+
+$$
+[V,D,R]
+$$
+
+its scalar comparison image is determined by:
+
+$$
+\Pi([V,D,R]) = \frac{V + \rho_D(R)}{D}
+$$
+
+where:
+- \(D \neq 0\),
+- \(\rho_D(R)\) is the parent-sensitive residual completion function.
+
+At v1 this is the governing exact semantic law for active scalar projection.
+
+---
+
+### 189. Atomic Active Projection Rule
+If the residual is atomic:
+
+$$
+R = r
+\quad\text{with } r \in \mathbb{Z}
+$$
+
+then:
+
+$$
+\rho_D(r) = r
+$$
+
+and therefore:
+
+$$
+\Pi([V,D,r]) = \frac{V+r}{D}
+$$
+
+So atomic active residuals project exactly as numerator-side completion.
+
+---
+
+### 190. Composite Active Projection Rule
+If the residual has composite form:
+
+$$
+R = r + X_1 + X_2 + \dots + X_n
+$$
+
+where:
+- \(r \in \mathbb{Z}\),
+- each \(X_i\) is a valid child VDR object,
+- \(n\) is finite,
+
+then:
+
+$$
+\rho_D(R) = r + \Pi(X_1) + \Pi(X_2) + \dots + \Pi(X_n)
+$$
+
+and therefore:
+
+$$
+\Pi([V,D,R])
+=
+\frac{V + r + \Pi(X_1) + \Pi(X_2) + \dots + \Pi(X_n)}{D}
+$$
+
+This is the exact recursive active projection schema in v1.
+
+---
+
+### 191. Closed Child Projection Rule
+If a child in the residual is closed:
+
+$$
+X = [A,B,0]
+$$
+
+then its contribution is:
+
+$$
+\Pi(X) = \frac{A}{B}
+$$
+
+and so in the parent frame it contributes as:
+
+$$
+\frac{A/B}{D}
+$$
+
+through the parent denominator-sensitive completion rule.
+
+---
+
+### 192. Recursive Projection Termination Rule
+Because every valid VDR object is finite, active scalar projection terminates
+after finitely many recursive applications of:
+- closed projection,
+- atomic residual completion,
+- and composite residual expansion.
+
+So exact active projection is finite on all finite valid VDR objects in v1.
+
+---
+
+### 193. Projection Exactness Rule
+Exact active scalar projection may not use:
+- approximation,
+- floating conversion,
+- decimal fitting,
+- epsilon acceptance,
+- or infinite completion.
+
+If exact recursive projection is defined for a valid finite active object, it
+must terminate with an exact scalar comparison expression.
+
+---
+
+### 194. Projection Target Interpretation Rule
+The result of active projection may be rendered into different target systems:
+
+- exact rational expression where possible
+- exact symbolic scalar expression where needed
+- decimal or floating approximation where the target format requires loss
+
+Thus active projection has two layers:
+1. exact scalar comparison form,
+2. target-specific rendering.
+
+---
+
+### 195. Exact Rational Collapse Rule
+If the exact recursive active projection of a valid finite VDR object reduces
+to a rational number, then the preferred external scalar result is that exact
+rational value.
+
+So when active structure projects exactly to a rational, rational comparison
+is preferred over decimal approximation.
+
+---
+
+### 196. Exact Symbolic Projection Rule
+If the exact recursive active projection yields a finite exact scalar
+expression that is not yet reduced to a single rational fraction at the
+current layer, that expression may still serve as a valid exact external
+comparison form.
+
+Thus exact projection need not always collapse immediately to one reduced
+fraction before later simplification.
+
+---
+
+### 197. Approximate Rendering Rule
+If an external target system such as decimal or floating-point format cannot
+receive the exact projected scalar comparison form losslessly, then an
+approximate rendering may be produced.
+
+Such approximation is:
+- external,
+- target-imposed,
+- and not a loss of native VDR exactness.
+
+---
+
+### 198. Deterministic Projection Rule
+For a fixed valid VDR object and fixed target projection procedure, active
+scalar projection must be deterministic.
+
+Repeated projection under the same rules must produce the same exact scalar
+comparison form and the same target rendering.
+
+---
+
+### 199. Value Equality Projection Compatibility Rule
+If two VDR objects are value-equal in a domain where active scalar projection
+is defined exactly, then their exact scalar comparison forms should agree.
+
+At v1 this is a semantic compatibility expectation and should hold for all
+cases covered by the recursive projection rules.
+
+---
+
+### 200. Structural Distinctness Preservation Rule
+Even if two VDR objects project to the same exact scalar comparison form, they
+need not be structurally equal and need not be natively identical.
+
+Scalar projection agreement does not collapse native VDR distinction.
+
+---
+
+### 201. Benchmark Export Rule
+When VDR is used for comparison against conventional scalar pipelines,
+benchmarking should occur at the scalar rendering layer after exact VDR
+computation is complete.
+
+Thus:
+- internal work stays exact in VDR,
+- projection occurs at the boundary,
+- and approximation enters only if required by the external target system.
+
+This rule supports the charter’s practical validation strategy.
+
+---
+
+### 202. Active Projection Scope Rule
+The v1 active projection layer defines:
+- exact recursive scalar comparison for finite active VDR objects,
+- denominator-sensitive parent-frame projection,
+- exact projection preference where possible,
+- approximate external rendering where necessary,
+- and preservation of native structural distinction.
+
+It does not yet fully define:
+- optimized simplification of exact scalar comparison forms,
+- active arithmetic laws inside VDR,
+- or a complete inbound construction algorithm from all scalar systems.
+
+Those belong to later layers.
+
+---
+
+## Summary of Active Scalar Projection v1
+
+At this stage, VDR now supports scalar projection for active objects by the
+exact recursive schema:
+
+$$
+\Pi([V,D,R]) = \frac{V + \rho_D(R)}{D}
+$$
+
+with:
+
+$$
+\rho_D(r + X_1 + \dots + X_n)
+=
+r + \Pi(X_1) + \dots + \Pi(X_n)
+$$
+
+This gives you:
+
+- full finite recursive external comparison semantics
+- exact projection where possible
+- approximate rendering only at the target boundary
+- compatibility with active rebasing and denominator-sensitive completion
+- preservation of native structural distinction
+
+This is a major interoperability milestone.
+
+---
+
+# VDR
+## Active Arithmetic Rules v1
+
+These rules extend arithmetic beyond the closed subclass.
+
+They define the first exact arithmetic layer for VDR objects with nonzero
+residual structure, using:
+- denominator-sensitive completion semantics,
+- active scalar projection,
+- and residual transport.
+
+This layer is intentionally conservative.
+Its purpose is to preserve exact VDR structure without approximation.
+
+Where a fully internal structural construction is not yet settled, the rule
+states what must be preserved and what is deferred.
+
+---
+
+### 203. Active Arithmetic Domain Rule
+The active arithmetic rules apply to valid VDR objects of the form:
+
+$$
+[V,D,R]
+$$
+
+where the residual \(R\) may be zero or nonzero.
+
+Thus the active arithmetic layer extends arithmetic to the general finite VDR
+domain, including mixed closed/active inputs.
+
+---
+
+### 204. Exactness Preservation Rule
+Every valid active arithmetic operation must preserve:
+- finite exact structure,
+- triple irreducibility,
+- residual significance,
+- and value equality as defined or extended by the active arithmetic layer.
+
+No active arithmetic rule may use:
+- approximation,
+- decimal fitting,
+- floating conversion,
+- epsilon acceptance,
+- or limit completion.
+
+---
+
+### 205. Closed Compatibility Rule
+When both operands are closed, active arithmetic agrees with the minimal
+closed arithmetic rules v1.
+
+So the active arithmetic layer extends the closed layer; it does not replace
+or contradict it.
+
+---
+
+### 206. Same-Denominator Addition Rule
+For two valid VDR objects with the same denominator:
+
+$$
+[V_1,D,R_1]
++
+[V_2,D,R_2]
+$$
+
+their sum is defined by:
+
+$$
+[V_1 + V_2,\; D,\; R_1 \oplus R_2]
+$$
+
+where \( \oplus \) is exact residual combination at the same parent
+denominator frame.
+
+At v1, \( \oplus \) is defined structurally by:
+- combining atomic residual bases,
+- concatenating child structures,
+- then applying normalization where available.
+
+So same-denominator addition preserves the shared denominator frame.
+
+---
+
+### 207. Same-Denominator Residual Combination Rule
+For residuals:
+
+$$
+R_1 = r_1 + X_1 + \dots + X_n
+$$
+
+and
+
+$$
+R_2 = r_2 + Y_1 + \dots + Y_m
+$$
+
+their same-frame combination is:
+
+$$
+R_1 \oplus R_2
+=
+(r_1 + r_2) + X_1 + \dots + X_n + Y_1 + \dots + Y_m
+$$
+
+subject to later normalization:
+- atomic consolidation,
+- child ordering,
+- same-denominator absorption,
+- and other canonical rules.
+
+For atomic residuals, this reduces to ordinary integer addition.
+
+---
+
+### 208. Same-Denominator Subtraction Rule
+For two valid VDR objects with the same denominator:
+
+$$
+[V_1,D,R_1]
+-
+[V_2,D,R_2]
+$$
+
+their difference is defined by:
+
+$$
+[V_1 - V_2,\; D,\; R_1 \ominus R_2]
+$$
+
+where \( \ominus \) is exact residual subtraction in the shared denominator
+frame.
+
+At v1, \( R_1 \ominus R_2 \) is defined structurally by:
+- subtracting atomic residual bases,
+- appending negated child structures from the second residual,
+- then normalizing where defined.
+
+---
+
+### 209. Residual Negation Rule
+Residual negation is defined recursively.
+
+For atomic residuals:
+
+$$
+-(r) = -r
+$$
+
+For composite residuals:
+
+$$
+-(r + X_1 + \dots + X_n)
+=
+-r + (-X_1) + \dots + (-X_n)
+$$
+
+For child VDR objects:
+
+$$
+-[V,D,R] = [-V,D,-R]
+$$
+
+subject to later sign normalization.
+
+---
+
+### 210. Additive Inverse Rule
+For every valid VDR object:
+
+$$
+X = [V,D,R]
+$$
+
+its additive inverse is:
+
+$$
+-X = [-V,D,-R]
+$$
+
+Then, where addition is defined,
+
+$$
+X + (-X)
+$$
+
+must normalize to the additive identity in the corresponding exact sense.
+
+At v1 this is exact structurally and may require normalization to expose the
+identity form.
+
+---
+
+### 211. Different-Denominator Addition Rule
+For two valid VDR objects:
+
+$$
+[V_1,D_1,R_1]
++
+[V_2,D_2,R_2]
+$$
+
+with \(D_1 \neq D_2\), addition is performed by moving both operands into a
+shared denominator frame using exact rebasing where possible.
+
+The preferred shared frame at v1 is:
+
+$$
+D_1D_2
+$$
+
+unless a later normalization or rebase rule selects a simpler valid shared
+denominator.
+
+So addition proceeds by:
+1. rebasing the first operand to denominator \(D_1D_2\),
+2. rebasing the second operand to denominator \(D_1D_2\),
+3. applying same-denominator addition,
+4. normalizing the result.
+
+---
+
+### 212. Different-Denominator Subtraction Rule
+For two valid VDR objects:
+
+$$
+[V_1,D_1,R_1]
+-
+[V_2,D_2,R_2]
+$$
+
+with \(D_1 \neq D_2\), subtraction is performed by:
+1. rebasing both operands to a shared denominator frame,
+2. applying same-denominator subtraction,
+3. normalizing the result.
+
+At v1 the default shared frame is:
+
+$$
+D_1D_2
+$$
+
+unless a simpler valid exact shared frame is already available.
+
+---
+
+### 213. Multiplication Rule
+For two valid VDR objects:
+
+$$
+X = [V_1,D_1,R_1]
+\quad\text{and}\quad
+Y = [V_2,D_2,R_2]
+$$
+
+their product must preserve exact denominator-sensitive completion semantics.
+
+At v1, multiplication is governed by the semantic requirement:
+
+$$
+\Pi(X \times Y) = \Pi(X)\Pi(Y)
+$$
+
+and the result must be represented by a valid finite VDR object if such a
+representation can be constructed exactly.
+
+Where both inputs are closed, this reduces to the closed multiplication rule.
+
+Where either input is active, exact internal product construction is admitted
+as a required operation but is not yet fully canonically specified in a
+single structural formula at v1.
+
+Thus active multiplication is semantically constrained but operationally
+provisional.
+
+---
+
+### 214. Division Rule
+For two valid VDR objects:
+
+$$
+X \div Y
+$$
+
+division is valid only if the projected value of \(Y\) is not exact zero in
+the domain where division is being considered.
+
+At v1, division is governed by the semantic requirement:
+
+$$
+\Pi(X \div Y) = \frac{\Pi(X)}{\Pi(Y)}
+$$
+
+and the result must be represented by a valid finite VDR object if such a
+representation can be constructed exactly.
+
+Where both inputs are closed, this reduces to the closed division rule.
+
+Where the divisor is active, exact internal quotient construction is admitted
+in principle but not yet fully canonically specified at v1.
+
+---
+
+### 215. Explicit Failure Rule
+If an active arithmetic operation would require:
+- approximation,
+- invalid structure,
+- nonterminating construction,
+- or a representational step not yet defined in the current layer,
+
+then the operation must fail explicitly rather than silently approximate.
+
+Failure is valid behavior in v1.
+
+---
+
+### 216. Addition Projection Compatibility Rule
+Where active addition is defined exactly,
+
+$$
+\Pi(X + Y) = \Pi(X) + \Pi(Y)
+$$
+
+must hold under the active scalar projection rules.
+
+This is the external comparison compatibility requirement for exact active
+addition.
+
+---
+
+### 217. Subtraction Projection Compatibility Rule
+Where active subtraction is defined exactly,
+
+$$
+\Pi(X - Y) = \Pi(X) - \Pi(Y)
+$$
+
+must hold under active scalar projection.
+
+---
+
+### 218. Multiplication Projection Compatibility Rule
+Where active multiplication is defined exactly,
+
+$$
+\Pi(X \times Y) = \Pi(X)\Pi(Y)
+$$
+
+must hold under active scalar projection.
+
+---
+
+### 219. Division Projection Compatibility Rule
+Where active division is defined exactly,
+
+$$
+\Pi(X \div Y) = \frac{\Pi(X)}{\Pi(Y)}
+$$
+
+must hold under active scalar projection.
+
+---
+
+### 220. Commutativity Rule
+Where the relevant operations are defined exactly and succeed:
+
+$$
+X + Y \equiv_v Y + X
+$$
+
+and
+
+$$
+X \times Y \equiv_v Y \times X
+$$
+
+after normalization.
+
+---
+
+### 221. Associativity Rule
+Where the relevant operations are defined exactly and succeed:
+
+$$
+(X + Y) + Z \equiv_v X + (Y + Z)
+$$
+
+and
+
+$$
+(X \times Y) \times Z \equiv_v X \times (Y \times Z)
+$$
+
+after normalization.
+
+---
+
+### 222. Distributivity Rule
+Where the relevant operations are defined exactly and succeed:
+
+$$
+X \times (Y + Z) \equiv_v (X \times Y) + (X \times Z)
+$$
+
+after normalization.
+
+---
+
+### 223. Identity Rule
+The additive identity remains:
+
+$$
+[0,1,0]
+$$
+
+The multiplicative identity remains:
+
+$$
+[1,1,0]
+$$
+
+Where active arithmetic is defined and succeeds, these identities behave as
+exact identities under value equality.
+
+---
+
+### 224. Arithmetic Scope Rule
+The v1 active arithmetic layer defines:
+- exact same-denominator addition and subtraction,
+- recursive residual negation,
+- different-denominator addition/subtraction by exact rebasing,
+- semantic constraints for multiplication and division,
+- explicit failure instead of approximation,
+- and compatibility with active scalar projection.
+
+It does not yet fully define:
+- a canonical constructive formula for all active products,
+- a canonical constructive formula for all active quotients,
+- complete active simplification laws,
+- or optimized denominator selection beyond current rebasing rules.
+
+Those belong to later refinement layers.
+
+---
+
+## Summary of Active Arithmetic v1
+
+At this stage, VDR now supports:
+
+- exact addition and subtraction for general finite VDR objects
+- exact different-denominator combination via rebasing
+- recursive residual negation
+- semantic constraints for multiplication and division
+- explicit failure where full exact finite construction is not yet settled
+
+This is enough to begin:
+- implementation of active addition/subtraction,
+- testing projection compatibility,
+- and exploring active structure computationally
+
+It is not yet the final arithmetic system.
+
+---
+
+# VDR
+## Inbound Construction Rules v1
+
+These rules define the first admission layer by which objects external to VDR
+may enter the system as valid VDR objects.
+
+They serve the charter requirement that VDR must be able to connect to
+existing scalar practice while preserving native exactness once inside VDR.
+
+Inbound construction is external-to-internal.
+It is not the same as scalar projection, which is internal-to-external.
+
+This v1 layer is intentionally conservative.
+
+---
+
+### 225. Inbound Construction Purpose Rule
+Inbound construction is the process of taking an accepted external
+specification and producing a valid VDR object.
+
+Its purpose is to admit external mathematical or scientific values into VDR
+without approximation where exact admission is possible.
+
+---
+
+### 226. Inbound/Projection Distinction Rule
+Inbound construction and scalar projection are distinct operations.
+
+- Inbound construction:
+  external specification \(\to\) VDR object
+
+- Scalar projection:
+  VDR object \(\to\) external comparison form
+
+They are not inverses in general, especially when the external target system
+is lossy.
+
+---
+
+### 227. Accepted External Specification Rule
+At v1, accepted external specifications are limited to external forms whose
+exact meaning is already clear and finite.
+
+This includes, at minimum:
+- integers,
+- rational fractions,
+- and exact closed scalar forms reducible to rational input.
+
+Other external forms may be admitted later by additional rules.
+
+---
+
+### 228. Integer Inbound Rule
+For any integer:
+
+$$
+n \in \mathbb{Z}
+$$
+
+the canonical inbound construction is:
+
+$$
+\mathrm{in}(n) = [n,1,0]
+$$
+
+Thus every integer is admitted exactly as a closed VDR object.
+
+---
+
+### 229. Rational Inbound Rule
+For any rational number given exactly as:
+
+$$
+\frac{a}{b}
+\quad\text{with } a \in \mathbb{Z},\; b \in \mathbb{Z}\setminus\{0\}
+$$
+
+the canonical inbound construction is:
+
+$$
+\mathrm{in}\!\left(\frac{a}{b}\right) = [a,b,0]
+$$
+
+subject to later normalization.
+
+Thus every exact rational input is admitted exactly as a closed VDR object.
+
+---
+
+### 230. Reduced Rational Inbound Preference Rule
+If an exact rational input is already known in reduced form, reduced form is
+preferred for stable construction.
+
+If not, raw fraction input may still be admitted and later normalized.
+
+So inbound construction does not require canonicality at admission time.
+
+---
+
+### 231. Sign-Compatible Inbound Rule
+Negative numerators and negative denominators are both admitted at inbound
+construction time so long as the denominator is nonzero.
+
+Sign normalization, if desired, is deferred to normalization rules.
+
+---
+
+### 232. Closed Exactness Rule
+Every integer or rational admitted under the v1 inbound rules enters VDR as a
+closed exact object.
+
+So the v1 inbound layer guarantees exact admission for the closed rational
+subclass.
+
+---
+
+### 233. Exact Specification Admission Rule
+An object may also enter VDR by direct exact specification in native VDR form,
+provided it is raw-valid under the foundational and structural rules.
+
+Thus inbound admission at v1 includes both:
+- accepted external scalar construction,
+- and direct exact VDR specification.
+
+These are distinct admission paths.
+
+---
+
+### 234. Direct Active Specification Rule
+A valid active VDR object may be admitted directly by exact specification:
+
+$$
+[V,D,R]
+$$
+
+provided:
+- \(V \in \mathbb{Z}\),
+- \(D \neq 0\),
+- \(R\) is a valid residual object,
+- and the whole structure is finite and raw-valid.
+
+At v1 this direct route allows active objects to exist in VDR even before
+general external active-construction algorithms are complete.
+
+---
+
+### 235. Active External Construction Deferral Rule
+General inbound construction of active VDR objects from external scalar
+descriptions is not fully defined in v1.
+
+At this stage, active objects may be:
+- directly specified in native VDR form,
+- or later derived internally,
+but there is not yet a complete external-to-active admission algorithm for
+all supported target classes.
+
+---
+
+### 236. Exact Construction Rule
+No v1 inbound construction may use:
+- decimal fitting,
+- floating approximation,
+- epsilon acceptance,
+- or limit-based admission
+as a justification for exact VDR entry.
+
+If an external input is admitted exactly, the admission must be exact.
+
+---
+
+### 237. Approximate Inbound Rejection Rule
+An approximate external scalar input does not become exact merely by being
+placed into VDR syntax.
+
+If the source is only approximate and no exact constructive VDR admission is
+available, then exact inbound construction fails.
+
+Approximate data may be handled in later application layers, but not as exact
+native admission in v1.
+
+---
+
+### 238. Exhaustive Construction Reservation Rule
+For some future target classes, exact inbound construction may require
+exhaustive search, exhaustive derivation, or other finite constructive
+discovery procedures.
+
+This is allowed in principle, provided:
+- the procedure is exact,
+- finite when successful,
+- and does not rely on approximation as proof of admission.
+
+Such procedures are reserved for later layers.
+
+---
+
+### 239. External Scope Limitation Rule
+VDR v1 does not claim exact inbound construction for:
+- arbitrary writable decimal strings,
+- malformed notation artifacts,
+- or external expressions lacking exact constructive meaning.
+
+Thus v1 inbound scope is narrower than “all external scalar notation.”
+
+---
+
+### 240. Inbound Determinism Rule
+For any accepted external specification and fixed inbound construction rule,
+the resulting admitted VDR object must be deterministic.
+
+Different admitted raw forms may still later normalize to a common canonical
+form, but a given inbound rule must not be ambiguous.
+
+---
+
+### 241. Inbound Normalization Compatibility Rule
+Inbound construction need not produce normal form directly.
+
+However, every exactly admitted inbound object must remain compatible with
+later normalization and value equality rules.
+
+So exact admission and canonical form are distinct layers.
+
+---
+
+### 242. Projection Compatibility Rule
+For every external object admitted exactly into the closed rational subclass,
+inbound construction and scalar projection are compatible in the following
+sense:
+
+If \(x\) is an accepted integer or rational input, then:
+
+$$
+\Pi(\mathrm{in}(x)) = x
+$$
+
+under the exact closed projection rules.
+
+At v1, this compatibility is guaranteed for the closed rational subclass.
+
+---
+
+### 243. Inbound Scope Rule
+The v1 inbound construction layer defines:
+- exact admission for integers,
+- exact admission for rational fractions,
+- direct native specification of valid VDR objects,
+- rejection of approximate admission as exact admission,
+- and explicit deferral of general external active construction.
+
+It does not yet fully define:
+- exact admission of irrational constants,
+- exact admission of transcendental values,
+- exhaustive admission procedures for broader target classes,
+- or exact admission of all values required by established scientific
+  computation.
+
+Those belong to later layers.
+
+---
+
+## Summary of Inbound Construction v1
+
+At this stage, VDR supports:
+
+- exact admission of integers
+- exact admission of rationals
+- direct exact specification of native VDR objects
+- explicit refusal to treat approximate inputs as exact just by syntax
+- a clean separation between inbound construction and scalar projection
+
+This is enough to begin:
+- implementation of exact closed admission,
+- parser support for native VDR objects,
+- and later experimentation with broader construction classes
+
+It is not yet the final inbound story.
+
+---
+
+# VDR
+## Supported Domain Examples v1
+
+These examples do not extend the formal axioms.
+They clarify the present working boundary of VDR by giving concrete cases in
+three classes:
+
+1. clearly in scope,
+2. clearly out of scope,
+3. open or unresolved.
+
+This document exists because, at v1, examples are more informative than an
+overconfident universal scope claim.
+
+The purpose of these examples is to make the current intent of VDR easier to
+inspect, implement, criticize, and refine.
+
+---
+
+## A. Clearly In Scope at v1
+
+These are objects or classes currently admitted by the foundational and
+inbound rules.
+
+### 1. Integers
+Examples:
+- \(0\)
+- \(1\)
+- \(-7\)
+- \(10^{12}\)
+
+Inbound construction:
+- all integers enter exactly as closed VDR objects of the form
+
+$$
+[n,1,0]
+$$
+
+Status:
+- fully in scope
+
+---
+
+### 2. Exact Rational Fractions
+Examples:
+- \(1/2\)
+- \(-3/5\)
+- \(14/7\)
+- \(22/7\)
+
+Inbound construction:
+- exact rational input enters as
+
+$$
+[a,b,0]
+\quad\text{with } b \neq 0
+$$
+
+Status:
+- fully in scope
+
+---
+
+### 3. Non-Normal Closed Forms
+Examples:
+- \([2,4,0]\)
+- \([1,-2,0]\)
+- \([-6,-9,0]\)
+
+These are exact raw-valid VDR objects even if not normalized.
+
+Status:
+- fully in scope as raw-valid objects
+- normalization may later reduce them canonically
+
+---
+
+### 4. Directly Specified Active Objects
+Examples:
+- \([3,5,1]\)
+- \([2,7,-1]\)
+- \([4,9,[1,3,0]]\)
+- \([1,2,1 + [1,3,0]]\)
+
+These are admitted provided they satisfy raw-validity rules:
+- triple form,
+- nonzero denominator,
+- valid residual structure,
+- finite nesting.
+
+Status:
+- in scope as native VDR objects by exact specification
+
+---
+
+### 5. Finite Nested Residual Structures
+Examples:
+- \([1,2,[1,3,0]]\)
+- \([2,5,1 + [1,4,0] + [3,7,0]]\)
+- \([4,11,-2 + [1,3,[1,2,0]]]\)
+
+These are finite native VDR structures with recursive residuals.
+
+Status:
+- in scope if raw-valid and finite
+
+---
+
+### 6. Closed Arithmetic Cases
+Examples:
+- \([1,2,0] + [1,3,0]\)
+- \([3,4,0] - [1,2,0]\)
+- \([2,3,0] \times [3,5,0]\)
+- \([2,3,0] \div [4,5,0]\)
+
+Status:
+- fully in scope under minimal arithmetic v1
+
+---
+
+### 7. Closed Rebasing Cases
+Examples:
+- rebase \([1,2,0]\) to denominator \(4\), yielding \([2,4,0]\)
+- rebase \([3,5,0]\) to denominator \(10\), yielding \([6,10,0]\)
+
+Status:
+- fully in scope when integer transfer succeeds
+
+---
+
+### 8. Active Rebase / Projection Exploration Cases
+Examples:
+- \([1,2,0]\) rebased actively toward denominator \(3\)
+- \([1,2,[1,3,0]]\) projected by denominator-sensitive completion
+
+These are in scope for exploratory formal work under v1’s provisional active
+layers.
+
+Status:
+- in scope as development cases
+- not yet fully mature in all operational details
+
+---
+
+## B. Clearly Out of Scope at v1
+
+These are not currently admitted as exact inbound constructions, or they
+violate the structural foundations of VDR.
+
+### 9. Zero-Denominator Objects
+Examples:
+- \([1,0,0]\)
+- \([3,0,[1,2,0]]\)
+
+Status:
+- invalid by foundational rule
+
+---
+
+### 10. Infinite Residual Trees
+Examples:
+- a residual with infinitely many child VDRs
+- infinite nesting with no finite terminal depth
+- any VDR object requiring ellipsis to complete
+
+Status:
+- out of scope
+- invalid in terminating VDR
+
+---
+
+### 11. Approximate Admission Disguised as Exact Admission
+Examples:
+- importing a floating approximation of \( \pi \) and treating it as exact
+- importing a measured decimal and declaring it exact merely by wrapping it
+  into VDR syntax
+- treating truncated decimal output as native VDR identity
+
+Status:
+- out of scope as exact admission
+
+---
+
+### 12. Arbitrary Notation Artifacts Without Constructive Meaning
+Examples:
+- `0.3333...751`
+- malformed decimal strings claiming both infinite continuation and a final
+  terminal digit
+- externally written scalar forms with no exact constructive meaning
+
+Status:
+- out of scope
+
+---
+
+### 13. Infinite Decimal Tail Objects Taken Literally
+Examples:
+- “all decimal digits of a number” when no finite exact constructive rule is
+  given
+- values admitted only by saying “continue forever”
+
+Status:
+- out of scope as exact finite VDR admission
+
+---
+
+### 14. Implicit Approximation Acceptance
+Examples:
+- “close enough to be treated as equal”
+- “admit this because the float is precise enough”
+- “normalize by truncating a long residual”
+
+Status:
+- out of scope by charter and foundational rules
+
+---
+
+## C. Open / Unresolved Cases at v1
+
+These are important targets or possibilities, but are not yet settled by the
+current specification.
+
+### 15. Algebraic Irrationals
+Examples:
+- \( \sqrt{2} \)
+- \( \sqrt{3} \)
+- roots of exact polynomial equations
+
+Status:
+- unresolved
+
+Reason:
+- VDR does not yet provide a general exact inbound construction rule for these
+
+---
+
+### 16. Named Transcendental Constants
+Examples:
+- \( \pi \)
+- \( e \)
+
+Status:
+- unresolved
+
+Reason:
+- these are major target values for the long-term ambition of VDR,
+  but v1 does not yet provide exact admission rules for them
+
+---
+
+### 17. Constants Required by Established Scientific Computation
+Examples:
+- fine-structure constant
+- Planck-related constants
+- measured or model-dependent scientific constants
+
+Status:
+- unresolved
+
+Reason:
+- some are measured approximations rather than exact mathematical givens
+- others may require derivation, exact construction, or domain-specific
+  interpretation beyond current v1 rules
+
+---
+
+### 18. Exact Inbound Construction by Exhaustive Discovery
+Examples:
+- a finite but nontrivial discovery process that constructs a VDR object from
+  a scientifically meaningful external specification
+
+Status:
+- allowed in principle
+- unresolved in concrete algorithmic form
+
+---
+
+### 19. Full Active Multiplication and Division
+Examples:
+- exact product of two active nested VDR objects
+- exact quotient of active structures with nontrivial residuals
+
+Status:
+- semantically constrained, but operationally unresolved in full canonical
+  form
+
+---
+
+### 20. Full Canonical Quotient Selection in Active Rebasing
+Examples:
+- choosing among multiple exact quotient/residual decompositions
+- minimizing complexity of rebased active form
+
+Status:
+- unresolved refinement layer
+
+---
+
+### 21. Domain Ceiling
+Examples:
+- all algebraic numbers
+- all computable reals
+- all values required by established scientific computation
+- all mathematically meaningful scalar values
+
+Status:
+- explicitly open research boundary
+
+Reason:
+- the charter sets ambition, but v1 does not claim completion at this scale
+
+---
+
+## D. Working Scope Summary
+
+At v1, VDR clearly supports:
+- integers
+- exact rationals
+- raw-valid finite native triple structures
+- direct specification of active objects
+- exact closed arithmetic
+- partial active semantics and projection
+
+At v1, VDR clearly rejects:
+- zero denominators
+- infinite structures
+- approximate admission as exactness
+- malformed notation artifacts
+- hidden infinite tails
+
+At v1, VDR leaves open:
+- exact admission of algebraic irrationals
+- exact admission of transcendental constants
+- exact construction of scientific constants
+- the full practical ceiling of the system
+
+---
+
+## E. Why These Examples Matter
+
+These examples clarify that VDR is not:
+- “all scalar notation rewritten”
+- nor “just fractions”
+
+It is a growing exact finite domain with:
+- a clear rational core,
+- an admitted native active structure,
+- a strict anti-approximation boundary,
+- and an open research frontier.
+
+This example-based boundary is appropriate at v1 because the exact full scope
+of VDR is still under investigation.
+
+---
+
+## Summary
+
+Supported Domain Examples v1 gives three things:
+
+1. a clear set of cases everyone can agree are already inside VDR
+2. a clear set of cases everyone can agree are outside VDR
+3. an explicit open frontier for further work
+
+This is useful for:
+- implementation planning
+- paper clarity
+- criticism by outsiders
+- and preventing accidental overclaiming
+
+---
+
