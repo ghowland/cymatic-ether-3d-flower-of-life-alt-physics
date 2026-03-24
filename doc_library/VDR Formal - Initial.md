@@ -3785,3 +3785,1727 @@ If you want, next I can:
 - define a finite quotient search bound,
 - or write the constructive quotient-selection algorithm using depth + denominator complexity.
 
+---
+
+# Terminating VDR
+## Formal Structural Size Function
+
+Good. Structural size should be:
+- independent of scalar value semantics,
+- finite,
+- recursive,
+- exact,
+- and useful as a later tie-break after depth and denominator complexity.
+
+It should measure how much “thing” there is in the object.
+
+---
+
+## 181. Structural Size Purpose Axiom
+
+Structural size is a finite recursive measure of representational bulk.
+
+It is used only as a preference criterion among exact candidate VDR objects.
+
+Lower structural size is preferred.
+
+Structural size does not affect validity.
+
+---
+
+## 182. Structural Size Domain Axiom
+
+Structural size is defined on:
+- valid VDR objects,
+- valid remainder objects,
+- and atomic integer remainder values.
+
+Formally:
+
+$$
+\mathrm{size} : \mathcal{V} \cup \mathcal{R} \to \mathbb{N}^+
+$$
+
+Every valid terminating VDR object has finite structural size.
+
+---
+
+## 183. Atomic Integer Size Axiom
+
+For an atomic integer remainder:
+
+$$
+r \in \mathbb{Z}
+$$
+
+define:
+
+$$
+\mathrm{size}(r) = 1
+$$
+
+Every atomic integer contributes one structural unit.
+
+This includes:
+- positive integers
+- negative integers
+- zero
+
+---
+
+## 184. Closed VDR Node Size Axiom
+
+For a closed VDR object:
+
+$$
+[V,D,0]
+$$
+
+define:
+
+$$
+\mathrm{size}([V,D,0]) = 1 + \mathrm{size}(0)
+$$
+
+Since \(\mathrm{size}(0)=1\),
+
+$$
+\mathrm{size}([V,D,0]) = 2
+$$
+
+Interpretation:
+- one unit for the VDR node itself
+- one unit for its atomic remainder
+
+---
+
+## 185. General VDR Node Size Axiom
+
+For a general VDR object:
+
+$$
+[V,D,R]
+$$
+
+define:
+
+$$
+\mathrm{size}([V,D,R]) = 1 + \mathrm{size}(R)
+$$
+
+That is:
+- each VDR node contributes one unit,
+- plus the full structural size of its remainder.
+
+The \(V\) and \(D\) slots do not recursively contribute size because they are primitive integer slots of the node itself.
+
+---
+
+## 186. Remainder Sum Size Axiom
+
+For a remainder of the form:
+
+$$
+R = r + X_1 + X_2 + \dots + X_n
+$$
+
+define:
+
+$$
+\mathrm{size}(R) = \mathrm{size}(r) + \sum_{i=1}^{n} \mathrm{size}(X_i)
+$$
+
+Since \(\mathrm{size}(r)=1\),
+
+$$
+\mathrm{size}(R) = 1 + \sum_{i=1}^{n} \mathrm{size}(X_i)
+$$
+
+Thus the remainder contributes:
+- one unit for its atomic base,
+- plus the sizes of all nested child VDR objects.
+
+---
+
+## 187. Structural Recursion Axiom
+
+Structural size is recursive only through the remainder slot.
+
+Thus:
+- nested VDR children contribute through \(R\),
+- no recursion exists through \(V\) or \(D\),
+- and the total structural size is finite because terminating VDR is finite.
+
+---
+
+## 188. Structural Size of Pure Closed Object Axiom
+
+For a simple closed VDR:
+
+$$
+[V,D,0]
+$$
+
+we always have:
+
+$$
+\mathrm{size}([V,D,0]) = 2
+$$
+
+So all simple closed VDRs have equal structural size regardless of numerator or denominator magnitude.
+
+This confirms that size measures structure, not arithmetic complexity.
+
+---
+
+## 189. Structural Size of Single-Child Active Object Axiom
+
+For:
+
+$$
+[V,D,[S,E,0]]
+$$
+
+we have:
+
+$$
+\mathrm{size}([S,E,0]) = 2
+$$
+
+so:
+
+$$
+\mathrm{size}([V,D,[S,E,0]]) = 1 + 2 = 3
+$$
+
+Thus a one-child active completion object has size 3.
+
+---
+
+## 190. Structural Size of Multi-Child Active Object Axiom
+
+For:
+
+$$
+[V,D, r + X_1 + X_2 + \dots + X_n]
+$$
+
+we have:
+
+$$
+\mathrm{size}([V,D,R]) = 1 + \left(1 + \sum_{i=1}^{n} \mathrm{size}(X_i)\right)
+$$
+
+Thus:
+
+$$
+\mathrm{size}([V,D,R]) = 2 + \sum_{i=1}^{n} \mathrm{size}(X_i)
+$$
+
+This makes structural size effectively count:
+- the parent node,
+- the atomic remainder slot,
+- and all descendant nodes recursively.
+
+---
+
+## 191. Equivalent Structural Counting Axiom
+
+Structural size is equivalent to counting:
+- every VDR node as one unit,
+- every atomic remainder integer as one unit.
+
+No other hidden units exist.
+
+So for any valid VDR object:
+- size = total node count + total atomic remainder count
+
+This gives a very simple interpretation.
+
+---
+
+## 192. Structural Size Invariance Under Sign Axiom
+
+Structural size is independent of sign.
+
+Changing:
+- \(V \to -V\)
+- \(D \to -D\)
+- \(R \to -R\)
+
+does not change size.
+
+Thus structural size measures form only, not sign or arithmetic magnitude.
+
+---
+
+## 193. Structural Size Invariance Under Numeric Magnitude Axiom
+
+Structural size is independent of the absolute magnitudes of integers.
+
+For example:
+- \([1,2,0]\)
+- \([10^{100}, 7, 0]\)
+
+both have size 2.
+
+Thus structural size is not digit-length or encoding-size.
+It is pure object-form size.
+
+---
+
+## 194. Structural Size and Normalization Axiom
+
+Structural size should normally be evaluated on normalized form when used for quotient selection:
+
+$$
+\mathrm{size}(\mathrm{norm}(X))
+$$
+
+This prevents raw non-normal form from artificially inflating or fragmenting size.
+
+Normalization may reduce structural size, but may never increase value ambiguity.
+
+---
+
+## 195. Structural Size Comparison Axiom
+
+For two candidate completion objects \(X\) and \(Y\),
+
+$$
+X \text{ is structurally smaller than } Y
+$$
+
+iff:
+
+$$
+\mathrm{size}(X) < \mathrm{size}(Y)
+$$
+
+This criterion is used only after:
+1. recursive depth
+2. denominator complexity
+
+have already tied.
+
+---
+
+## 196. Structural Simplicity Preference Axiom
+
+All else equal, a completion object with fewer total structural units is preferred.
+
+This rewards:
+- fewer child VDRs
+- fewer nested levels
+- less fragmented completion
+
+while still preserving exactness.
+
+---
+
+## 197. Example Axiom 1
+
+For:
+
+$$
+X = [1,2,0]
+$$
+
+we have:
+
+$$
+\mathrm{size}(X)=2
+$$
+
+because:
+- one VDR node
+- one atomic remainder `0`
+
+---
+
+## 198. Example Axiom 2
+
+For:
+
+$$
+Y = [1,3,[1,6,0]]
+$$
+
+child size:
+$$
+\mathrm{size}([1,6,0])=2
+$$
+
+so:
+
+$$
+\mathrm{size}(Y)=1+2=3
+$$
+
+Thus \(Y\) has size 3.
+
+---
+
+## 199. Example Axiom 3
+
+For:
+
+$$
+Z = [1,3,[1,6,0] + [1,6,0]]
+$$
+
+remainder size:
+- atomic base = 1
+- first child = 2
+- second child = 2
+
+So:
+$$
+\mathrm{size}(R)=1+2+2=5
+$$
+
+Then:
+$$
+\mathrm{size}(Z)=1+5=6
+$$
+
+If normalization merges the duplicate children, size may reduce.
+
+---
+
+## 200. Finite Computability Axiom
+
+Because every valid terminating VDR object has finite recursive structure, structural size must be computable in finite time.
+
+No approximation or nonterminating process is needed.
+
+---
+
+## 201. Structural Size Purity Axiom
+
+Structural size depends only on:
+- node form,
+- recursion structure,
+- and atomic remainder presence.
+
+It does not depend on:
+- decimal expansion,
+- scalar magnitude,
+- denominator complexity,
+- physics meaning,
+- or legacy conversion.
+
+It is purely structural.
+
+---
+
+# Final Definition
+
+For any valid terminating VDR object \(X\):
+
+1. for atomic integer:
+$$
+\mathrm{size}(r)=1
+$$
+
+2. for remainder sum:
+$$
+\mathrm{size}(r + X_1 + \dots + X_n)=1+\sum_{i=1}^{n}\mathrm{size}(X_i)
+$$
+
+3. for VDR node:
+$$
+\mathrm{size}([V,D,R])=1+\mathrm{size}(R)
+$$
+
+This is the formal structural size function.
+
+---
+
+# Interpretation
+
+Structural size counts:
+- one unit per VDR node,
+- one unit per atomic remainder base.
+
+So it measures:
+- how much exact representational structure the object contains.
+
+That makes it an appropriate late tie-breaker after:
+- recursive depth
+- denominator complexity
+
+---
+
+# Still Needed
+
+Now the next major missing piece is:
+- a finite quotient search bound
+- and then the full constructive quotient-selection algorithm
+
+If you want, next I can:
+- define the finite quotient search bound,
+- or write the full constructive quotient-selection algorithm using:
+  - exact admissibility
+  - depth
+  - denominator complexity
+  - structural size.
+
+---
+
+# Terminating VDR
+## Finite Quotient Search Bound Axioms
+
+Good. This is necessary, because quotient selection must not become:
+- an infinite search over all integers,
+- a real-number optimization problem,
+- or an approximation procedure.
+
+It must stay:
+- finite,
+- exact,
+- native,
+- and computable.
+
+So the quotient search domain must be bounded structurally.
+
+---
+
+## 202. Quotient Search Purpose Axiom
+
+For rebasing a valid terminating VDR object:
+
+$$
+X = [V,D,R]
+$$
+
+to target denominator:
+
+$$
+B \neq 0
+$$
+
+the quotient search bound defines a finite candidate set of integers:
+
+$$
+\mathcal{Q}(X,B)
+$$
+
+over which quotient selection is performed.
+
+Only candidates in this finite set may be considered.
+
+---
+
+## 203. Search Finiteness Axiom
+
+For every valid terminating VDR object \(X\) and nonzero target denominator \(B\), the quotient candidate set:
+
+$$
+\mathcal{Q}(X,B)
+$$
+
+must be finite.
+
+Any quotient-selection rule requiring unbounded or infinite search is invalid in terminating VDR.
+
+---
+
+## 204. Legacy Anchor Axiom
+
+To construct a finite quotient bound, one may use the exact legacy scalar of the source object as an equality anchor only.
+
+That is, define:
+
+$$
+\lambda(X) = \mathrm{legacy}(X)
+$$
+
+for exact rationally flattenable VDR objects.
+
+This may be used to determine the finite interval within which top-level quotients can preserve exact completion.
+
+The legacy anchor may verify equality, but it may not rank candidates by approximation.
+
+---
+
+## 205. Quotient Bounding Interval Axiom
+
+For source object \(X\) and target denominator \(B\), any admissible quotient \(Q\) must satisfy:
+
+$$
+\frac{Q}{B}
+$$
+
+being a top-level frame whose exact completion can reconstruct \(X\).
+
+Therefore \(Q\) must lie in a finite integer interval determined by the source value and one denominator step of residual freedom.
+
+In first-pass form, admissible quotients must satisfy:
+
+$$
+Q \in [Q_{\min}, Q_{\max}]
+$$
+
+where:
+$$
+Q_{\min} = \left\lfloor \lambda(X)\cdot B \right\rfloor - 1
+$$
+$$
+Q_{\max} = \left\lceil \lambda(X)\cdot B \right\rceil + 1
+$$
+
+but this is only an initial derived search fence, not a selection rule.
+
+The purpose of this interval is to ensure finite search, not to impose floor/nearest semantics.
+
+---
+
+## 206. Exact Neighbor Sufficiency Axiom
+
+For a first-pass terminating VDR system, it is sufficient to search only quotients near the exact scaled source value:
+
+$$
+\lambda(X)\cdot B
+$$
+
+because any exact completion outside the immediately neighboring quotient region would strictly increase completion complexity without improving exact equality.
+
+Thus quotient search may be restricted to a finite neighborhood around the scaled source value.
+
+---
+
+## 207. Canonical Candidate Set Axiom
+
+The initial canonical quotient candidate set is:
+
+$$
+\mathcal{Q}(X,B)=\{q \in \mathbb{Z} \mid Q_{\min} \le q \le Q_{\max}\}
+$$
+
+with:
+
+$$
+Q_{\min} = \lfloor \lambda(X)B \rfloor - 1
+$$
+$$
+Q_{\max} = \lceil \lambda(X)B \rceil + 1
+$$
+
+This gives a finite search set of at most 4 integers in ordinary cases, sometimes fewer if endpoints coincide.
+
+Again:
+- this does not make floor/ceiling ontological,
+- it only builds a finite exact search fence.
+
+---
+
+## 208. Search Fence Non-Ontology Axiom
+
+The use of floor/ceiling in defining the quotient search interval does not define the arithmetic semantics of VDR.
+
+It is only a finite candidate-generation device.
+
+The chosen quotient is still determined by:
+- exact admissibility,
+- recursive depth,
+- denominator complexity,
+- structural size,
+- and tie-break rules.
+
+Thus:
+- floor/ceiling are not selection principles,
+- only bounding tools.
+
+---
+
+## 209. Exact Candidate Verification Axiom
+
+Every quotient candidate \(Q \in \mathcal{Q}(X,B)\) must be tested by exact completion construction.
+
+A candidate is admissible if and only if:
+- it produces a finite exact completion object,
+- and the rebased result is value-equal to \(X\).
+
+Candidates that fail exact construction are discarded.
+
+---
+
+## 210. Bound Tightening Axiom
+
+If a stronger exact structural bound is known for a subclass of VDR objects, it may replace the canonical candidate interval, provided:
+- the resulting candidate set remains finite,
+- all exact admissible quotients are still included.
+
+Thus the canonical bound is safe by default, but not necessarily minimal.
+
+---
+
+## 211. Closed-Source Bound Axiom
+
+For a closed source object:
+
+$$
+X=[V,D,0]
+$$
+
+the legacy scalar is rational:
+
+$$
+\lambda(X)=\frac{V}{D}
+$$
+
+So the canonical quotient interval becomes:
+
+$$
+Q_{\min} = \left\lfloor \frac{VB}{D} \right\rfloor - 1
+$$
+$$
+Q_{\max} = \left\lceil \frac{VB}{D} \right\rceil + 1
+$$
+
+This is always finite and exactly computable.
+
+---
+
+## 212. Active-Source Bound Axiom
+
+For an active source object:
+
+$$
+X=[V,D,R]
+$$
+
+if exact legacy flattening is defined, then:
+
+$$
+\lambda(X)=\frac{V}{D}+\lambda(R)
+$$
+
+and the same finite candidate fence applies.
+
+If exact flattening is not yet defined for the current VDR layer, then quotient search must be bounded using:
+- normalized top-level frame,
+- plus recursively bounded child completions,
+- yielding a finite candidate envelope by structural construction.
+
+Thus active-source search must still remain finite.
+
+---
+
+## 213. Symmetric Search Axiom
+
+The quotient candidate interval must be symmetric around the exact scaled source value up to integer rounding.
+
+That is why one extra candidate is included on each side:
+- to permit exact structural forms with positive or negative residual completion.
+
+This is necessary because the simplest exact completion may not correspond to the nearest integer quotient.
+
+---
+
+## 214. Minimal Bound Preference Axiom
+
+If multiple finite quotient bounds are available, prefer the smallest one that is guaranteed to contain all exact admissible candidates.
+
+This improves computability without sacrificing exactness.
+
+---
+
+## 215. Search Completeness Axiom
+
+A quotient bound is valid only if every exact admissible quotient lies within it.
+
+A smaller but incomplete bound is invalid.
+
+Thus finite search must be complete over exact candidates, not merely convenient.
+
+---
+
+## 216. Search Order Axiom
+
+Candidates within the finite quotient search set should be evaluated in deterministic order.
+
+A recommended canonical order is:
+1. exact scaled center candidates first
+2. then outward symmetrically
+3. negative before positive only if needed for deterministic tie-breaking
+
+This affects efficiency only, not correctness.
+
+---
+
+## 217. Bounded Search Computability Axiom
+
+Because the candidate set is finite and exact admissibility testing is finite, quotient selection is computable in finite time.
+
+Thus quotient selection remains compatible with:
+- knowability,
+- solvability,
+- and termination.
+
+---
+
+## 218. No Infinite Rescue Axiom
+
+If no quotient within the finite complete candidate set yields a finite exact completion object, then rebasing fails.
+
+The system may not expand the search indefinitely in hopes of recovering exactness.
+
+Failure is preferable to hidden infinity.
+
+---
+
+# Final Finite Quotient Search Bound
+
+For a VDR object \(X\) rebased to denominator \(B\neq 0\):
+
+1. compute the exact scaled source anchor:
+$$
+\lambda(X)\cdot B
+$$
+
+2. define:
+$$
+Q_{\min} = \lfloor \lambda(X)B \rfloor - 1
+$$
+$$
+Q_{\max} = \lceil \lambda(X)B \rceil + 1
+$$
+
+3. define candidate set:
+$$
+\mathcal{Q}(X,B)=\{q\in\mathbb{Z} \mid Q_{\min}\le q\le Q_{\max}\}
+$$
+
+4. test each candidate for:
+- exact admissibility
+- recursive depth
+- denominator complexity
+- structural size
+
+5. choose the exact canonical minimum
+
+This gives you a finite search domain.
+
+---
+
+# Why this is acceptable
+Even though floor/ceiling appear here, they do not control semantics.
+They only define:
+- a finite candidate envelope.
+
+The actual selected quotient is still chosen purely by exact structural criteria.
+
+So this preserves your philosophy:
+- integers first
+- no approximation in the actual object
+- no endless search
+- no shortcuts on equality
+
+---
+
+# What’s next
+Now you have all four ranking/search ingredients:
+
+- exact admissibility
+- recursive depth
+- denominator complexity
+- structural size
+- finite quotient candidate set
+
+So the next natural step is the full constructive quotient-selection algorithm.
+
+If you want, I can write that next.
+
+---
+
+# Terminating VDR
+## Full Constructive Quotient-Selection Algorithm
+
+Good. We now have all the pieces:
+- exact admissibility
+- recursive depth
+- denominator complexity
+- structural size
+- finite quotient search bound
+
+So here is the full constructive quotient-selection algorithm for rebasing a VDR object into target denominator \(B\).
+
+This is still first-pass and pure-math.
+It assumes:
+- terminating VDR
+- completion semantics
+- no modulo-shell layer yet
+
+---
+
+# 1. Goal
+
+Given:
+$$
+X = [V,D,R]
+$$
+and target denominator:
+$$
+B \in \mathbb{Z}\setminus\{0\}
+$$
+
+construct a rebased exact VDR object:
+
+$$
+\mathrm{rebase}(X,B) = [Q,B,C]
+$$
+
+such that:
+1. exact value is preserved
+2. completion object \(C\) is finite
+3. quotient \(Q\) is chosen canonically
+4. no approximation is used
+5. no infinite search is used
+
+---
+
+# 2. Definitions Used
+
+We assume the following already exist:
+
+- exact value equality:
+$$
+\equiv_v
+$$
+
+- normalization:
+$$
+\mathrm{norm}(X)
+$$
+
+- recursive depth:
+$$
+\mathrm{depth}(X)
+$$
+
+- denominator complexity:
+$$
+\mathrm{den\_complexity}(X)
+$$
+
+- structural size:
+$$
+\mathrm{size}(X)
+$$
+
+- exact legacy flattening for candidate verification:
+$$
+\lambda(X)
+$$
+
+- finite quotient search set:
+$$
+\mathcal{Q}(X,B)
+$$
+
+---
+
+# 3. Constructive Algorithm
+
+## Step 0: Normalize source
+Set:
+$$
+X_0 = \mathrm{norm}(X)
+$$
+
+This ensures quotient search uses normalized structure.
+
+---
+
+## Step 1: Generate finite quotient candidate set
+Compute:
+$$
+\mathcal{Q}(X_0,B)
+$$
+
+using the finite search bound.
+
+This is a finite set of candidate integers:
+$$
+Q_1, Q_2, \dots, Q_n
+$$
+
+---
+
+## Step 2: For each candidate quotient \(Q\), construct exact completion
+For each candidate \(Q \in \mathcal{Q}(X_0,B)\):
+
+### Step 2a: Define target top-level frame
+Construct provisional top-level node:
+$$
+T_Q = [Q,B,\_]
+$$
+
+### Step 2b: Compute exact leftover
+Define the exact completion residual in legacy comparison form:
+
+$$
+L_Q = \lambda(X_0) - \frac{Q}{B}
+$$
+
+This is not yet the VDR child.
+It is the exact value the child must complete.
+
+### Step 2c: Attempt finite exact VDR realization of leftover
+Construct:
+$$
+C_Q = \mathrm{complete}(L_Q)
+$$
+
+where `complete` means:
+- produce a finite exact VDR object whose native completion semantics flatten to \(L_Q\),
+- or fail if no finite terminating exact VDR representation exists.
+
+If completion fails, discard candidate \(Q\).
+
+### Step 2d: Form full rebased candidate
+If completion succeeds, define:
+$$
+Y_Q = [Q,B,C_Q]
+$$
+
+### Step 2e: Normalize candidate
+Set:
+$$
+\widetilde{Y}_Q = \mathrm{norm}(Y_Q)
+$$
+
+### Step 2f: Verify exact equality
+Check:
+$$
+\widetilde{Y}_Q \equiv_v X_0
+$$
+
+If not, discard candidate \(Q\).
+
+Thus only exact finite verified candidates survive.
+
+---
+
+## Step 3: Collect admissible candidates
+Define the admissible set:
+
+$$
+\mathcal{A}(X_0,B)
+=
+\left\{
+\widetilde{Y}_Q
+\;\middle|\;
+Q \in \mathcal{Q}(X_0,B),
+\;
+\widetilde{Y}_Q \equiv_v X_0
+\right\}
+$$
+
+If:
+$$
+\mathcal{A}(X_0,B)=\varnothing
+$$
+
+then rebasing fails.
+
+---
+
+# 4. Canonical Selection Ordering
+
+Among admissible candidates, choose the canonical minimum under the following lexicographic ordering:
+
+## Criterion 1: Minimal recursive depth
+Choose candidates minimizing:
+$$
+\mathrm{depth}(\widetilde{Y}_Q)
+$$
+
+---
+
+## Criterion 2: Minimal denominator complexity
+Among those tied on depth, choose candidates minimizing:
+
+$$
+\mathrm{den\_complexity}(\widetilde{Y}_Q)
+$$
+
+---
+
+## Criterion 3: Minimal structural size
+Among those tied on denominator complexity, choose candidates minimizing:
+
+$$
+\mathrm{size}(\widetilde{Y}_Q)
+$$
+
+---
+
+## Criterion 4: Minimal absolute quotient magnitude
+Among those still tied, choose candidates minimizing:
+
+$$
+|Q|
+$$
+
+---
+
+## Criterion 5: Deterministic sign/order tie-break
+If still tied, use a fixed deterministic rule, e.g.:
+- prefer positive \(Q\),
+or
+- prefer sign matching source top-level scalar sign.
+
+This must be fixed system-wide.
+
+---
+
+# 5. Final Output
+
+Let the selected canonical admissible candidate be:
+
+$$
+Y^\ast = [Q^\ast,B,C^\ast]
+$$
+
+Then define:
+
+$$
+\mathrm{rebase}(X,B)=Y^\ast
+$$
+
+This is the rebased exact VDR result.
+
+---
+
+# 6. The Completion Operator
+
+The algorithm above depends on:
+
+$$
+\mathrm{complete}(L)
+$$
+
+This operator must satisfy:
+
+1. If \(L=0\), return:
+$$
+0
+$$
+
+2. If \(L\) is exactly representable as a closed VDR, return that closed VDR.
+
+3. Otherwise construct a finite exact active VDR completion object.
+
+4. If no finite exact VDR completion exists, fail.
+
+So quotient selection is only as strong as the completion operator.
+But the quotient-selection algorithm itself is now fully defined.
+
+---
+
+# 7. Pseudocode Form
+
+```text
+function REBASE(X, B):
+    require B != 0
+
+    X0 = NORM(X)
+
+    candidates = QUOTIENT_BOUND(X0, B)
+    admissible = []
+
+    for Q in candidates:
+        LQ = LEGACY(X0) - Q/B
+
+        CQ = COMPLETE(LQ)
+        if COMPLETE failed:
+            continue
+
+        YQ = [Q, B, CQ]
+        YQn = NORM(YQ)
+
+        if VALUE_EQUAL(YQn, X0):
+            admissible.append((Q, YQn))
+
+    if admissible is empty:
+        fail
+
+    return lexicographic minimum under:
+        1. depth(YQn)
+        2. den_complexity(YQn)
+        3. size(YQn)
+        4. abs(Q)
+        5. fixed deterministic tie-break
+```
+
+---
+
+# 8. Example Sketch
+
+Take:
+$$
+X=[1,2,0], \quad B=3
+$$
+
+Candidate quotients might include:
+$$
+0,1,2
+$$
+
+For \(Q=1\):
+$$
+L = \frac12 - \frac13 = \frac16
+$$
+Completion succeeds:
+$$
+C=[1,6,0]
+$$
+Candidate:
+$$
+[1,3,[1,6,0]]
+$$
+
+For \(Q=0\):
+$$
+L = \frac12
+$$
+Completion:
+$$
+[1,2,0]
+$$
+Candidate:
+$$
+[0,3,[1,2,0]]
+$$
+
+Both are exact.
+
+Then compare:
+- depth
+- denominator complexity
+- structural size
+- \(|Q|\)
+
+and select canonically.
+
+This is exactly how the system should work.
+
+---
+
+# 9. Core Properties of the Algorithm
+
+This algorithm is:
+
+- finite
+- exact
+- deterministic
+- non-approximative
+- native to VDR structure
+- capable of failure
+- driven by structural minimization, not scalar rounding
+
+That makes it compatible with your foundational criteria.
+
+---
+
+# 10. What Still Needs Completion
+
+The full quotient-selection algorithm is now structurally complete, but one critical piece remains open:
+
+## The exact `complete(L)` operator
+
+That is the next foundational object:
+- how to construct finite exact VDR completion objects from exact leftover values.
+
+Without that, rebasing is specified but not executable.
+
+---
+
+# Final Statement
+
+The full constructive quotient-selection algorithm for terminating VDR is:
+
+1. normalize source,
+2. generate finite quotient candidates,
+3. construct exact completion for each,
+4. discard any non-finite or unequal candidate,
+5. choose the exact candidate minimizing:
+   - recursive depth,
+   - denominator complexity,
+   - structural size,
+   - quotient magnitude,
+   - deterministic final tie-break.
+
+That is the canonical rebasing algorithm.
+
+If you want, next I can:
+- define the exact `complete(L)` operator,
+- test the full algorithm on several rationals,
+- or formalize the signed division convention needed underneath candidate generation.
+
+---
+
+# Terminating VDR
+## Constructing Finite Exact Completion Objects
+### From Exact Leftover Values
+
+Good. This is the central constructive problem.
+
+We need an operator:
+
+$$
+\mathrm{complete}(L)
+$$
+
+that takes an exact leftover value \(L\) and returns a finite exact VDR completion object, or fails if no such finite terminating representation exists.
+
+This must satisfy:
+- exactness
+- finite closure
+- no approximation
+- no infinity
+- native completion semantics
+
+So here is the first-pass formal construction.
+
+---
+
+# 1. Domain of Completion
+
+We only attempt completion on exact leftover values already known exactly.
+
+In first-pass terminating VDR, that means:
+- exact rational leftovers
+- and later, any other values already proven to admit finite exact VDR representation
+
+So for now the completion operator is defined first on:
+
+$$
+L \in \mathbb{Q}
+$$
+
+Later it may be extended.
+
+---
+
+## 219. Completion Domain Axiom
+
+The completion operator:
+
+$$
+\mathrm{complete}(L)
+$$
+
+is defined on exact leftover values \(L\) for which a finite exact terminating VDR representation exists.
+
+If no such finite exact representation exists, completion fails.
+
+In the first-pass system, all rational \(L\) are admissible completion inputs.
+
+---
+
+## 220. Completion Correctness Axiom
+
+If completion succeeds on \(L\), producing \(C\), then:
+
+$$
+\mathrm{legacy}(C)=L
+$$
+
+and \(C\) must be:
+- valid,
+- finite,
+- exact,
+- and terminating.
+
+This is the defining requirement.
+
+---
+
+# 2. Canonical Completion of Rational Leftovers
+
+Let the leftover be an exact rational:
+
+$$
+L = \frac{A}{B}
+$$
+
+with:
+- \(A \in \mathbb{Z}\)
+- \(B \in \mathbb{Z}\setminus\{0\}\)
+
+First reduce to lowest terms.
+
+---
+
+## 221. Rational Reduction Axiom
+
+Before constructing a completion object for rational leftover \(L\), reduce:
+
+$$
+L = \frac{A}{B}
+$$
+
+to normalized rational form:
+
+$$
+\frac{A'}{B'}
+$$
+
+where:
+- \(\gcd(A',B')=1\)
+- \(B' \neq 0\)
+
+This reduced rational is the canonical input to completion.
+
+---
+
+## 222. Zero Completion Axiom
+
+If:
+
+$$
+L = 0
+$$
+
+then:
+
+$$
+\mathrm{complete}(0)=0
+$$
+
+This is the unique minimal completion object.
+
+---
+
+## 223. Closed Completion Axiom
+
+If the leftover reduced rational is:
+
+$$
+L = \frac{A'}{B'}
+$$
+
+with \(B' \neq 0\), then the canonical first-pass completion object is:
+
+$$
+\mathrm{complete}\!\left(\frac{A'}{B'}\right) = [A',B',0]
+$$
+
+Thus every rational leftover admits a finite exact closed VDR completion object.
+
+This is the foundational constructive rule.
+
+---
+
+## 224. Rational Completion Sufficiency Axiom
+
+For all rational leftovers:
+
+$$
+L \in \mathbb{Q}
+$$
+
+the first-pass completion operator always succeeds by returning a closed VDR:
+
+$$
+[A',B',0]
+$$
+
+where \(A'/B' = L\) in lowest terms.
+
+Thus every exact rational leftover is finitely completable.
+
+---
+
+# 3. Completion in Rebase Context
+
+When rebasing:
+
+$$
+X \to [Q,B,C]
+$$
+
+the completion object \(C\) is constructed from the exact leftover:
+
+$$
+L = \mathrm{legacy}(X) - \frac{Q}{B}
+$$
+
+If \(L\) is rational, then:
+
+$$
+C = [A',B',0]
+$$
+
+where:
+$$
+\frac{A'}{B'} = L
+$$
+in reduced form.
+
+Thus rebasing of rational VDR objects always has a finite exact completion candidate for any quotient.
+
+This is important.
+
+---
+
+## 225. Rebase Completion Axiom
+
+For a rational source VDR object \(X\) and target denominator \(B\), every quotient candidate \(Q\) induces a rational leftover:
+
+$$
+L_Q = \mathrm{legacy}(X) - \frac{Q}{B}
+$$
+
+Thus first-pass completion always yields:
+
+$$
+C_Q = [A_Q,B_Q,0]
+$$
+
+with:
+$$
+\frac{A_Q}{B_Q}=L_Q
+$$
+in lowest terms.
+
+So all quotient candidates are finitely completable in the rational case.
+
+The quotient-selection algorithm therefore compares exact finite candidates, not candidate existence.
+
+---
+
+# 4. Completion Object Normal Form
+
+Since rational completion returns a closed child VDR, the result is already in a simple exact form.
+
+---
+
+## 226. Minimal Rational Completion Axiom
+
+For rational leftovers, the closed reduced VDR:
+
+$$
+[A',B',0]
+$$
+
+is the minimal completion object.
+
+No nested active form may be preferred over it for the same rational leftover unless a later higher-level rule explicitly requires preserving additional structure.
+
+Thus rational completion prefers closure immediately.
+
+---
+
+## 227. No Unnecessary Nesting Axiom
+
+If a leftover value can be represented exactly as a closed VDR:
+
+$$
+[A',B',0]
+$$
+
+then completion may not replace it with a nested active structure of greater depth.
+
+So:
+- exact closure outranks expressive nesting,
+- unless domain-specific semantics later require otherwise.
+
+This keeps the pure math completion operator simple.
+
+---
+
+# 5. Completion of Already-VDR Leftovers
+
+If the leftover is already provided as an exact valid terminating VDR object rather than as a raw rational, completion may simply normalize it.
+
+---
+
+## 228. VDR Completion Identity Axiom
+
+If \(L\) is already represented as a valid terminating VDR object \(X\), then:
+
+$$
+\mathrm{complete}(X)=\mathrm{norm}(X)
+$$
+
+provided:
+$$
+\mathrm{legacy}(X)=L
+$$
+
+Thus completion on already-structured exact values is identity up to normalization.
+
+---
+
+# 6. Completion Failure
+
+For the first-pass system, completion fails only when the leftover is outside the rationally closable domain and no finite exact VDR representation is known.
+
+---
+
+## 229. Completion Failure Axiom
+
+Completion fails if and only if:
+- the leftover is exact,
+- but no finite exact terminating VDR representation exists under the current theory.
+
+In first-pass terminating VDR:
+- rational leftovers never fail,
+- non-rational leftovers fail unless separately given finite exact VDR forms.
+
+---
+
+# 7. First-Pass Completion Algorithm
+
+Given exact leftover \(L\):
+
+## Step 1: If \(L=0\), return:
+$$
+0
+$$
+
+## Step 2: If \(L\) is rational:
+- reduce to lowest terms:
+$$
+L = \frac{A'}{B'}
+$$
+- return:
+$$
+[A',B',0]
+$$
+
+## Step 3: If \(L\) is already a valid VDR object:
+- normalize and return it
+
+## Step 4: Otherwise:
+- fail
+
+That is the complete first-pass exact completion algorithm.
+
+---
+
+# 8. Worked Examples
+
+## Example 1
+Leftover:
+$$
+\frac16
+$$
+
+Completion:
+$$
+\mathrm{complete}\!\left(\frac16\right) = [1,6,0]
+$$
+
+---
+
+## Example 2
+Leftover:
+$$
+-\frac16
+$$
+
+Completion:
+$$
+[-1,6,0]
+$$
+
+---
+
+## Example 3
+Leftover:
+$$
+\frac{10}{12}
+$$
+
+Reduce:
+$$
+\frac{10}{12} = \frac56
+$$
+
+Completion:
+$$
+[5,6,0]
+$$
+
+---
+
+## Example 4
+Leftover:
+$$
+0
+$$
+
+Completion:
+$$
+0
+$$
+
+---
+
+# 9. Consequence for Rebase
+
+This gives an important result:
+
+For rational source objects, quotient rebasing is always finitely completable in first-pass VDR.
+
+So the real quotient-selection problem is not:
+- “does completion exist?”
+but:
+- “which exact completion is simplest?”
+
+That makes the system much more tractable.
+
+---
+
+# Final Statement
+
+The first-pass exact completion operator for terminating VDR is:
+
+- zero returns zero
+- every rational leftover returns its reduced closed VDR form
+- existing exact VDR values normalize to themselves
+- everything else fails unless later extended
+
+Formally:
+
+$$
+\mathrm{complete}(0)=0
+$$
+
+$$
+\mathrm{complete}\!\left(\frac{A}{B}\right) = [A',B',0]
+\quad\text{where } \frac{A'}{B'}=\frac{A}{B}\text{ in lowest terms}
+$$
+
+$$
+\mathrm{complete}(X)=\mathrm{norm}(X)\quad\text{if }X\text{ is already a valid exact VDR}
+$$
+
+Otherwise:
+- fail.
+
+---
+
+# What this means
+This is a very strong simplification:
+
+At first pass, completion is easy for rationals.
+
+That means your next hard problem is no longer completion itself, but:
+- quotient-selection strategy,
+- modulo/shell semantics,
+- and whether finite exact VDR representations can exist beyond the rational domain.
+
+If you want, next I can:
+- rewrite the rebasing algorithm now that completion is simple,
+- run a bunch of rational rebasing examples cleanly under this system,
+- or move to modulo/shell axioms.
+
+---
+
