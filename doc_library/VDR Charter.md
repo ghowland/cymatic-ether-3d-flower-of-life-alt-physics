@@ -4597,3 +4597,506 @@ This is useful for:
 
 ---
 
+# VDR
+## Reference Data Model v1
+
+This document gives a practical implementation-oriented data model for VDR
+based on the current v1 rules.
+
+It is not a replacement for the axioms.
+Its purpose is to provide a canonical implementation shape for:
+- parsers,
+- serializers,
+- validators,
+- test harnesses,
+- and early libraries.
+
+The reference data model must reflect the current formal layers:
+- foundational object rules,
+- residual formation rules,
+- structural validity,
+- normalization,
+- equality,
+- scalar projection,
+- arithmetic,
+- rebasing,
+- and active semantics.
+
+At v1, the data model is finite, exact, tree-structured, and integer-based.
+
+---
+
+## 1. Core Types
+
+### 1.1. VDR Object Type
+A VDR object is a record with exactly three fields:
+
+- `v`: integer
+- `d`: nonzero integer
+- `r`: residual
+
+Abstractly:
+
+```text
+VDR = {
+  v: Int,
+  d: IntNonZero,
+  r: Residual
+}
+```
+
+This corresponds to the formal triple:
+
+$$
+[V,D,R]
+$$
+
+---
+
+### 1.2. Residual Type
+A residual is one of two admissible shapes:
+
+1. atomic integer residual
+2. composite residual with one integer base and a finite list of child VDRs
+
+Abstractly:
+
+```text
+Residual =
+  | AtomicResidual(Int)
+  | CompositeResidual {
+      base: Int,
+      children: List<VDR>
+    }
+```
+
+This reflects the formal residual rules:
+- atomic form: \(r\)
+- composite form: \(r + X_1 + \dots + X_n\)
+
+Implementation note:
+- an atomic residual `r` may be treated as syntactic sugar for
+  `CompositeResidual { base: r, children: [] }`
+- however, v1 keeps both forms explicit because the formal layer distinguishes
+  them structurally
+
+---
+
+### 1.3. Normalized Residual Convention
+For normalization and serialization purposes, a canonical internal
+implementation may choose to store all residuals in expanded composite form:
+
+```text
+CompositeResidual {
+  base: Int,
+  children: List<VDR>
+}
+```
+
+with atomic residuals represented as:
+
+```text
+CompositeResidual {
+  base: r,
+  children: []
+}
+```
+
+This is an implementation convenience, not a formal replacement of the
+admissible syntax layer.
+
+---
+
+## 2. Primitive Value Domains
+
+### 2.1. Integer Domain
+The `v` field and residual integer bases belong to the implementation’s exact
+integer type.
+
+At v1 this must be:
+- mathematically exact,
+- not floating,
+- not approximate.
+
+Preferred implementation type:
+- arbitrary-precision signed integer.
+
+---
+
+### 2.2. Nonzero Integer Domain
+The `d` field must belong to the exact integer domain with the additional
+constraint:
+
+```text
+d != 0
+```
+
+This should be enforced by:
+- constructor validation,
+- smart type,
+- or explicit validation logic.
+
+---
+
+## 3. Tree Structure
+
+### 3.1. Finite Rooted Tree Model
+A VDR object is a finite rooted tree.
+
+- each VDR node is a tree node
+- each node stores one integer value slot `v`
+- one nonzero integer denominator slot `d`
+- and one residual object `r`
+- residual children form the outgoing tree edges
+
+---
+
+### 3.2. Recursion Locality
+Only the residual contains recursive child VDR objects.
+
+So:
+- `v` is always atomic integer
+- `d` is always atomic nonzero integer
+- recursion occurs only through `r.children`
+
+This should be reflected directly in the data model.
+
+---
+
+### 3.3. Finiteness Constraint
+All VDR values in the reference model must be finite.
+
+So:
+- finite node count
+- finite child list at every residual
+- finite recursion depth
+
+An implementation must reject cyclic or infinite structure.
+
+Recommended practical rule:
+- no pointer-sharing semantics unless treated as copied tree structure for
+  logical validity
+- no graph cycles
+
+---
+
+## 4. Canonical Structural Encoding
+
+### 4.1. Raw Encoding
+A raw-valid VDR object may preserve:
+- unreduced denominators,
+- noncanonical sign placement,
+- arbitrary admissible child order,
+- and explicit same-denominator child structure.
+
+Raw form is allowed for authoring, parsing, and intermediate computation.
+
+---
+
+### 4.2. Canonical Encoding
+A normalized VDR object should obey:
+- chosen sign convention
+- reduced closed nodes
+- single residual integer base per level
+- canonical child order
+- absorbed same-denominator child structure where defined
+- no redundant zero-like child forms where canonical zero is available
+
+The data model should support both:
+- raw representation
+- and normalized representation
+
+without changing the underlying core type.
+
+---
+
+## 5. Required Operations on the Data Model
+
+The reference model must support at least the following operation classes.
+
+### 5.1. Validation
+Functions to check:
+- exact triple shape
+- integer fields
+- nonzero denominator
+- residual validity
+- recursive child validity
+- finiteness
+- absence of invalid recursion shape
+
+Example API shape:
+
+```text
+validate(vdr) -> Valid | Invalid(reason)
+```
+
+---
+
+### 5.2. Structural Equality
+Exact recursive equality:
+- same `v`
+- same `d`
+- same residual structure
+- same child order
+- same descendant structure
+
+Example API shape:
+
+```text
+structuralEqual(x, y) -> Bool
+```
+
+---
+
+### 5.3. Normalization
+Normalization must produce canonical form where defined.
+
+Example API shape:
+
+```text
+normalize(vdr) -> VDR | Failure(reason)
+```
+
+---
+
+### 5.4. Value Equality
+Value equality at v1 is normalization-based structural equality.
+
+Example API shape:
+
+```text
+valueEqual(x, y) -> Bool | Failure(reason)
+```
+
+where implementation may do:
+1. normalize both
+2. compare structurally
+
+---
+
+### 5.5. Closed Projection
+Exact rational projection for closed nodes:
+
+```text
+projectClosed(x) -> Rational | Failure(reason)
+```
+
+---
+
+### 5.6. Active Projection
+Recursive parent-sensitive projection for active objects:
+
+```text
+projectScalarExact(x) -> ExactScalarForm | Failure(reason)
+projectDecimal(x, precision) -> DecimalApprox | Failure(reason)
+projectFloat(x, format) -> FloatApprox | Failure(reason)
+```
+
+At v1 the exact target form may be:
+- rational when collapsible
+- or symbolic scalar expression when not yet reduced
+
+---
+
+### 5.7. Arithmetic
+The model must support:
+- closed arithmetic
+- active addition / subtraction
+- active negation
+- rebasing
+- lift / residual transport
+
+Example API shape:
+
+```text
+add(x, y) -> VDR | Failure(reason)
+sub(x, y) -> VDR | Failure(reason)
+mul(x, y) -> VDR | Failure(reason)   // provisional for active v1
+div(x, y) -> VDR | Failure(reason)   // provisional for active v1
+neg(x) -> VDR
+rebase(x, targetD) -> VDR | Failure(reason)
+liftResidual(r, k) -> Residual | Failure(reason)
+```
+
+---
+
+## 6. Reference Serialized Forms
+
+### 6.1. Native Text Form
+A direct text serialization should preserve the triple structure explicitly.
+
+Recommended canonical text style:
+
+```text
+[v, d, r]
+```
+
+Examples:
+
+```text
+[1, 2, 0]
+[3, 5, 1]
+[1, 2, 1 + [1, 3, 0]]
+[2, 7, -1 + [1, 3, 0] + [2, 5, 0]]
+```
+
+This is human-readable but not necessarily the only serialization.
+
+---
+
+### 6.2. Structured Data Form
+For implementation and interchange, a JSON-like form may be used.
+
+Example closed node:
+
+```json
+{
+  "v": 1,
+  "d": 2,
+  "r": { "kind": "atomic", "value": 0 }
+}
+```
+
+Example composite residual:
+
+```json
+{
+  "v": 1,
+  "d": 2,
+  "r": {
+    "kind": "composite",
+    "base": 1,
+    "children": [
+      {
+        "v": 1,
+        "d": 3,
+        "r": { "kind": "atomic", "value": 0 }
+      }
+    ]
+  }
+}
+```
+
+---
+
+### 6.3. Canonical Serialized Form
+For reproducible storage and hashing, canonical serialization should use:
+- normalized VDR object
+- deterministic child ordering
+- deterministic sign placement
+- explicit composite residual encoding if chosen system-wide
+
+This should be implementation-defined but fixed once chosen.
+
+---
+
+## 7. Suggested Auxiliary Types
+
+### 7.1. Exact Scalar Form
+Because active scalar projection may yield exact forms not immediately reduced
+to one rational at the current layer, implementations may use an exact scalar
+comparison type such as:
+
+```text
+ExactScalarForm =
+  | Rational(a, b)
+  | Sum(List<ExactScalarForm>)
+  | Quotient(ExactScalarForm, ExactScalarForm)
+  | Integer(n)
+```
+
+or any equivalent exact symbolic form.
+
+This is not a VDR object.
+It is an external comparison form.
+
+---
+
+### 7.2. Failure Type
+Because explicit failure is part of the charter, implementations should use a
+structured failure type rather than silent null/none behavior.
+
+Example:
+
+```text
+Failure =
+  | InvalidStructure
+  | ZeroDenominator
+  | NonFiniteStructure
+  | RebaseImpossible
+  | ApproximationRequired
+  | UnsupportedInV1
+  | NormalizationFailure
+  | ProjectionFailure
+  | ArithmeticFailure
+```
+
+---
+
+## 8. Minimal Reference Invariants
+
+Any conforming v1 implementation should preserve at least these invariants:
+
+1. every VDR object has exactly three fields
+2. denominator is never zero
+3. recursion occurs only through residual children
+4. every object is finite
+5. every operation either:
+   - returns exact finite VDR / exact external form,
+   - or explicit failure
+6. normalization does not leave the VDR domain
+7. structural equality is exact recursive equality
+8. scalar projection does not redefine native identity
+
+---
+
+## 9. Implementation Levels
+
+### 9.1. Minimal v1 Implementation
+A minimal conforming implementation may support:
+- exact integer type
+- VDR parsing / serialization
+- validation
+- structural equality
+- normalization for closed objects
+- closed arithmetic
+- rational closed projection
+- direct active object parsing
+- active projection by recursive exact comparison form
+
+---
+
+### 9.2. Stronger v1 Implementation
+A stronger v1 implementation may additionally support:
+- active addition / subtraction
+- rebasing
+- lift
+- normalization of active forms
+- exact symbolic scalar output
+- decimal export at requested precision
+- benchmark tools against scalar pipelines
+
+---
+
+## 10. Summary
+
+Reference Data Model v1 gives VDR a practical implementation shape:
+
+- finite rooted tree
+- exact integers only
+- recursion only in residual children
+- raw and normalized forms
+- explicit validation
+- explicit failure
+- separate native VDR objects from external scalar comparison objects
+
+This is enough to begin:
+- parser design
+- serializer design
+- Python/Zig reference libraries
+- test generation
+- equality testing
+- and closed-core execution
+
+---
+
