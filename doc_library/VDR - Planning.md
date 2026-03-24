@@ -3178,3 +3178,1751 @@ This fork should be settled before further active semantic expansion.
 
 ---
 
+# VDR
+## Revised Active Rebase Repair Notes v1
+### Path B Commitment
+
+This note replaces the earlier repair note that was still framed by scalar
+preservation.
+
+Under Path B, active VDR objects are exact operation-state objects, not
+ordinary scalar values by default. Therefore active rebasing cannot be
+repaired by asking only whether a rebased form has the same scalar
+projection.
+
+Instead, the repair problem is:
+
+How can an active VDR object be reconstructed exactly in a new denominator
+frame without collapsing its residual state into scalar semantics?
+
+This note records:
+- what was wrong in the earlier account,
+- what remains sound,
+- and what the correct repair direction is under Path B.
+
+---
+
+## 1. The Earlier Error
+
+Earlier active rebase discussion relied on a scalar-preserving intuition of
+the form:
+
+- start with an active object,
+- change denominator,
+- preserve projected scalar meaning,
+- adjust the residual accordingly.
+
+This was already unstable under the previous additive semantics, and it is no
+longer acceptable under Path B.
+
+The deeper error was assuming that an active object could be repaired by
+finding the “right scalar-equivalent residual.”
+
+That assumes the active object has a scalar value by default.
+Under Path B, it does not.
+
+So the old repair target was conceptually wrong.
+
+---
+
+## 2. What the Worked Example Still Taught
+
+The failed example involving:
+
+$$
+[2,5,1]
+$$
+
+was still valuable, but for a different reason than first stated.
+
+It showed that:
+- literal residual carryover across denominator change is not safe
+- additive mismatch correction is not safe
+- and denominator frame matters to active state
+
+So the example still exposed a real issue:
+active rebasing cannot be defined by naive structural reuse of the old
+residual.
+
+That conclusion remains correct.
+
+---
+
+## 3. What Remains Sound
+
+The following points still appear correct and should be preserved:
+
+### 3.1. Active rebasing is needed
+If VDR is to support denominator-frame manipulation of active objects at all,
+an active rebase theory is necessary.
+
+### 3.2. Denominator frame matters
+Residual state is held in a denominator frame.
+Changing the denominator changes the frame, so state reconstruction is needed.
+
+### 3.3. Literal carryover is unsound
+A rule of the form:
+
+$$
+R' = [S,D,0] + R
+$$
+
+or any direct copy-forward of old residual state is not a valid general
+active rebasing law.
+
+### 3.4. Approximation remains forbidden
+If exact active reframe cannot be constructed, rebasing must fail.
+
+---
+
+## 4. What Changes Under Path B
+
+Under Path B, the repair target is no longer:
+
+- “find a rebased object with the same scalar value”
+
+The correct target is:
+
+- “find a rebased object that is a valid exact reconstruction of the same
+  native operation-state in a new denominator frame”
+
+This is a stronger and more native requirement.
+
+It means active rebasing is not a scalar equivalence problem.
+It is a state-reexpression problem.
+
+---
+
+## 5. Correct Repair Direction
+
+The correct Path B repair direction is:
+
+Given an active object:
+
+$$
+X = [V,D,R]
+$$
+
+and target denominator:
+
+$$
+B \neq 0
+$$
+
+seek a new object:
+
+$$
+X' = [Q,B,R']
+$$
+
+such that:
+
+1. \(X'\) is raw-valid
+2. \(X'\) is finite
+3. \(X'\) is an exact reexpression of the same native operation-state as \(X\)
+   in denominator frame \(B\)
+4. no approximation is used
+5. if no such exact reconstruction rule is known, rebasing fails
+
+This is the proper Path B rebase criterion.
+
+---
+
+## 6. What This Means for Residual Reconstruction
+
+Residual reconstruction is now not:
+- scalar residual matching,
+- or additive compensation.
+
+Instead, it is:
+- state reconstruction under denominator-frame change.
+
+So a future reconstruction rule must answer:
+
+Given source state \( [V,D,R] \), what residual structure \(R'\) in frame
+\(B\) exactly preserves the native state-content of the source?
+
+That is a genuinely different problem from scalar equality.
+
+---
+
+## 7. What This Means for Quotient Selection
+
+Under the discarded scalar path, quotient choice was guided by scalar
+decomposition.
+
+Under Path B, quotient choice can no longer be justified by “nearest” or
+scalar convenience ideas.
+
+Instead, any quotient choice must be justified by native state criteria, such
+as:
+- exact reconstructibility,
+- structural simplicity,
+- canonicality,
+- frame coherence,
+- or later explicitly defined native rules.
+
+So quotient selection remains open, but now on the correct foundation.
+
+---
+
+## 8. What This Means for `lift`
+
+`lift` remains useful as a structural transport helper, but it is not the same
+thing as full state reconstruction.
+
+So:
+- `lift` may support active rebasing
+- but `lift` alone is not the repair
+
+This remains true under Path B.
+
+---
+
+## 9. What a Safe v1 Position Looks Like
+
+A safe v1 position is:
+
+- active rebasing is conceptually required
+- denominator-frame sensitivity makes it nontrivial
+- naive residual carryover is invalid
+- scalar-preserving repair is not the right target
+- exact native state reconstruction is the right target
+- general active rebase remains provisional until such reconstruction rules
+  are defined
+
+This is a strong and honest position.
+
+---
+
+## 10. Example Status Under Path B
+
+The object:
+
+$$
+[2,5,1]
+$$
+
+should no longer be used as if it had a default scalar value like \(3/5\).
+
+Instead, it should be used as an example of:
+- exact active state,
+- denominator-frame sensitivity,
+- and non-collapse of residual state.
+
+Thus the earlier worked example still reveals a problem, but the problem is
+now stated correctly:
+not
+- “the projected value came out wrong,”
+but
+- “the attempted rebasing failed to preserve native active state in a justified
+  way.”
+
+---
+
+## 11. Recommended Formal Next Step
+
+The next formal step should no longer be “residual construction from scalar
+target.”
+
+Instead, it should be something like:
+
+### Active State Reconstruction Rules v1
+
+A future layer should define:
+- when two active objects count as the same native state across denominator
+  frames
+- how a new residual structure is constructed in a target frame
+- and which reconstruction rules are exact and finite
+
+This is the real missing bridge for Path B active rebasing.
+
+---
+
+## 12. Status After This Repair
+
+After the Path B repair, the current status is:
+
+### Stable
+- charter
+- foundational object model
+- residual formation
+- raw validity
+- structural equality
+- normalization core
+- value equality
+- closed arithmetic
+- closed rebasing
+- active objects as native operation-state objects
+
+### Provisional but correctly framed
+- active rebasing
+- lift as support for rebasing
+- active same-frame addition-like / subtraction-like operations
+
+### Deferred
+- general active state reconstruction
+- canonical quotient selection
+- active multiplication/division
+- scalar interpretation of active objects
+- broader inbound construction beyond the closed rational core
+
+---
+
+## Summary
+
+The revised repair note establishes:
+
+1. the old scalar-preservation repair target was wrong under Path B
+2. active rebasing must preserve native operation-state, not scalar image
+3. naive residual carryover remains invalid
+4. denominator-frame reconstruction remains the true problem
+5. the next missing layer is active state reconstruction, not scalar residual
+   construction
+
+This is a cleaner and more faithful foundation for the next stage of VDR.
+
+---
+
+# VDR
+## Revised Worked Examples v1
+### Path B Commitment
+
+This document revises the worked examples so they match the Path B semantic
+decision.
+
+Under Path B:
+- closed VDR objects may still admit exact scalar projection
+- active VDR objects are exact operation-state objects by default
+- active residual is not additive scalar completion
+- active examples must no longer be explained by collapsing them into ordinary
+  fractions unless a later interpretation layer explicitly does so
+
+These examples illustrate:
+- raw validity,
+- normalization,
+- structural equality,
+- normalized value equality,
+- closed arithmetic,
+- closed rebasing,
+- active specification,
+- active structural distinction,
+- same-frame active combination,
+- exact failure,
+- and open reconstruction questions.
+
+---
+
+## 1. Closed Object Examples
+
+### Example 1.1. Simple closed rational
+Object:
+
+$$
+[1,2,0]
+$$
+
+Status:
+- raw-valid
+- closed
+- already normalized under standard sign convention
+
+Closed scalar projection:
+
+$$
+\Pi([1,2,0]) = \frac{1}{2}
+$$
+
+---
+
+### Example 1.2. Non-normal closed rational
+Object:
+
+$$
+[2,4,0]
+$$
+
+Status:
+- raw-valid
+- closed
+- not normalized
+
+Normalization:
+
+$$
+[2,4,0] \mapsto [1,2,0]
+$$
+
+So:
+- structurally distinct from \([1,2,0]\)
+- normalized-value equal to \([1,2,0]\)
+
+Write:
+
+$$
+[2,4,0] \not\equiv_s [1,2,0]
+$$
+
+but:
+
+$$
+[2,4,0] \equiv_n [1,2,0]
+$$
+
+---
+
+### Example 1.3. Negative denominator
+Object:
+
+$$
+[1,-2,0]
+$$
+
+Status:
+- raw-valid
+- closed
+- not normalized if denominator-positive convention is chosen
+
+Normalization:
+
+$$
+[1,-2,0] \mapsto [-1,2,0]
+$$
+
+So negative denominators remain valid in raw form.
+
+---
+
+## 2. Structural Equality and Normalized Value Equality
+
+### Example 2.1. Structural equality
+Compare:
+
+$$
+X = [1,2,0]
+\qquad
+Y = [1,2,0]
+$$
+
+Then:
+
+$$
+X \equiv_s Y
+$$
+
+Therefore also:
+
+$$
+X \equiv_n Y
+$$
+
+---
+
+### Example 2.2. Structural inequality but normalized-value equality
+Compare:
+
+$$
+X = [2,4,0]
+\qquad
+Y = [1,2,0]
+$$
+
+Then:
+
+$$
+X \not\equiv_s Y
+$$
+
+but after normalization:
+
+$$
+\mathrm{norm}(X) = [1,2,0]
+=
+\mathrm{norm}(Y)
+$$
+
+So:
+
+$$
+X \equiv_n Y
+$$
+
+---
+
+### Example 2.3. Child order difference
+Compare:
+
+$$
+X = [1,2,1 + [1,3,0] + [1,5,0]]
+$$
+
+$$
+Y = [1,2,1 + [1,5,0] + [1,3,0]]
+$$
+
+As written:
+- child order differs
+- so structural equality fails
+
+$$
+X \not\equiv_s Y
+$$
+
+If normalization canonically orders children, then they may satisfy:
+
+$$
+X \equiv_n Y
+$$
+
+This is a normalization-layer fact, not a scalar one.
+
+---
+
+## 3. Closed Arithmetic Examples
+
+### Example 3.1. Closed addition
+Compute:
+
+$$
+[1,2,0] + [1,3,0]
+$$
+
+By closed addition:
+
+$$
+[1\cdot 3 + 1\cdot 2,\; 2\cdot 3,\; 0]
+=
+[5,6,0]
+$$
+
+Closed projection check:
+
+$$
+\frac{1}{2} + \frac{1}{3} = \frac{5}{6}
+$$
+
+---
+
+### Example 3.2. Closed subtraction
+Compute:
+
+$$
+[3,4,0] - [1,2,0]
+$$
+
+By closed subtraction:
+
+$$
+[3\cdot 2 - 1\cdot 4,\; 4\cdot 2,\; 0]
+=
+[2,8,0]
+$$
+
+Normalize:
+
+$$
+[2,8,0] \mapsto [1,4,0]
+$$
+
+---
+
+### Example 3.3. Closed multiplication
+Compute:
+
+$$
+[2,3,0] \times [3,5,0]
+$$
+
+By closed multiplication:
+
+$$
+[6,15,0]
+$$
+
+Normalize:
+
+$$
+[6,15,0] \mapsto [2,5,0]
+$$
+
+---
+
+### Example 3.4. Closed division
+Compute:
+
+$$
+[2,3,0] \div [4,5,0]
+$$
+
+By closed division:
+
+$$
+[10,12,0]
+$$
+
+Normalize:
+
+$$
+[10,12,0] \mapsto [5,6,0]
+$$
+
+---
+
+### Example 3.5. Division by closed zero fails
+Attempt:
+
+$$
+[1,2,0] \div [0,7,0]
+$$
+
+This fails explicitly because division by a closed zero object is invalid.
+
+---
+
+## 4. Closed Rebasing Examples
+
+### Example 4.1. Successful closed rebase
+Rebase:
+
+$$
+[1,2,0]
+$$
+
+to denominator:
+
+$$
+4
+$$
+
+Check:
+
+$$
+\frac{1\cdot 4}{2} = 2 \in \mathbb{Z}
+$$
+
+So:
+
+$$
+\mathrm{rebase}([1,2,0],4) = [2,4,0]
+$$
+
+Normalization may then return:
+
+$$
+[1,2,0]
+$$
+
+---
+
+### Example 4.2. Failed closed rebase
+Rebase:
+
+$$
+[1,2,0]
+$$
+
+to denominator:
+
+$$
+3
+$$
+
+Check:
+
+$$
+\frac{1\cdot 3}{2} \notin \mathbb{Z}
+$$
+
+So closed rebasing fails at v1.
+
+---
+
+## 5. Active Specification Examples
+
+### Example 5.1. Atomic active object
+Object:
+
+$$
+[2,5,1]
+$$
+
+Status:
+- raw-valid
+- active
+- residual is atomic integer \(1\)
+
+Native reading under Path B:
+- settled value slot \(2\)
+- denominator frame \(5\)
+- residual state \(1\)
+
+This object is not identified by default with:
+
+$$
+[3,5,0]
+$$
+
+and it is not assigned a default scalar projection in v1.
+
+---
+
+### Example 5.2. Negative atomic active object
+Object:
+
+$$
+[2,5,-1]
+$$
+
+Status:
+- raw-valid
+- active
+
+Native reading:
+- settled value slot \(2\)
+- denominator frame \(5\)
+- residual state \(-1\)
+
+This is distinct from both:
+
+$$
+[2,5,0]
+\qquad\text{and}\qquad
+[2,5,1]
+$$
+
+So Path B treats residual sign as meaningful native state, not simple scalar
+correction.
+
+---
+
+### Example 5.3. Active object with child state
+Object:
+
+$$
+[1,2,[1,3,0]]
+$$
+
+Status:
+- raw-valid
+- active
+- residual contains one child VDR object
+
+Native reading under Path B:
+- parent frame \(2\)
+- child state \([1,3,0]\) nested in residual
+- no default collapse into a scalar such as \(2/3\)
+
+The child is exact nested state, not automatic numeric completion.
+
+---
+
+### Example 5.4. Composite active state
+Object:
+
+$$
+[2,5,1 + [1,4,0] + [1,2,0]]
+$$
+
+Status:
+- raw-valid
+- active
+- composite residual with atomic base and two child states
+
+Native reading:
+- exact operation-state object with finite nested residual structure
+
+No default scalar projection is assigned in v1.
+
+---
+
+## 6. Active Equality Boundary Examples
+
+### Example 6.1. Non-collapse of active to closed
+Compare:
+
+$$
+X = [2,5,1]
+\qquad
+Y = [3,5,0]
+$$
+
+Under Path B:
+- \(X\) is active
+- \(Y\) is closed
+
+They are structurally unequal:
+
+$$
+X \not\equiv_s Y
+$$
+
+And they should not be normalized-value equal at v1:
+
+$$
+X \not\equiv_n Y
+$$
+
+This is a core Path B example.
+
+---
+
+### Example 6.2. Signed active distinction
+Compare:
+
+$$
+[2,5,1]
+\qquad
+[2,5,-1]
+$$
+
+These are structurally distinct and remain normalized-value distinct unless a
+future rule explicitly identifies them, which Path B does not suggest.
+
+So sign of residual state matters natively.
+
+---
+
+### Example 6.3. Raw-distinct active forms with possible normalization
+Compare:
+
+$$
+X = [1,2,1 + [1,5,0] + [1,3,0]]
+$$
+
+$$
+Y = [1,2,1 + [1,3,0] + [1,5,0]]
+$$
+
+These are structurally distinct due to child order.
+
+If normalization canonically orders children, they may satisfy:
+
+$$
+X \equiv_n Y
+$$
+
+This is structural normalization, not scalar collapse.
+
+---
+
+## 7. Same-Frame Active Combination Examples
+
+### Example 7.1. Same-frame addition-like combination
+Take:
+
+$$
+X = [2,5,1]
+\qquad
+Y = [3,5,-1]
+$$
+
+Since both are in denominator frame \(5\), v1 permits same-frame
+addition-like combination:
+
+$$
+X + Y = [2+3,\;5,\;1 \oplus (-1)]
+$$
+
+Residual combination:
+
+$$
+1 \oplus (-1) = 0
+$$
+
+So the raw result is:
+
+$$
+[5,5,0]
+$$
+
+Normalize:
+
+$$
+[5,5,0] \mapsto [1,1,0]
+$$
+
+This example is valid as a native same-frame rule under v1.
+It should not be interpreted as evidence that each operand separately had a
+default scalar meaning.
+
+---
+
+### Example 7.2. Same-frame subtraction-like combination
+Take:
+
+$$
+X = [4,7,2]
+\qquad
+Y = [1,7,1]
+$$
+
+Then:
+
+$$
+X - Y = [3,7,2 \ominus 1]
+= [3,7,1]
+$$
+
+This is an exact same-frame state transformation.
+
+No scalar reading is required.
+
+---
+
+### Example 7.3. Same-frame child residual combination
+Take:
+
+$$
+X = [1,3,[1,5,0]]
+\qquad
+Y = [2,3,[2,5,0]]
+$$
+
+Then same-frame addition-like combination gives:
+
+$$
+[3,3,[1,5,0] \oplus [2,5,0]]
+$$
+
+At raw structural level this becomes a composite residual containing both
+children, subject to later normalization and any same-denominator child
+absorption rules once fully defined.
+
+---
+
+## 8. Active Rebase Boundary Examples
+
+### Example 8.1. Trivial same-frame reconstruction
+For:
+
+$$
+[2,5,1]
+$$
+
+rebasing to denominator:
+
+$$
+5
+$$
+
+the reconstruction may be identity:
+
+$$
+[2,5,1] \rightsquigarrow [2,5,1]
+$$
+
+This is the trivial active state reconstruction case.
+
+---
+
+### Example 8.2. Nontrivial active rebase remains open
+Attempt to rebase:
+
+$$
+[2,5,1]
+$$
+
+to denominator:
+
+$$
+3
+$$
+
+Under Path B, this is not solved by assigning a scalar value and matching it.
+
+Instead, this requires exact active state reconstruction in the new frame.
+
+At v1:
+- this case is open unless a special reconstruction rule is explicitly
+  supplied
+- so honest result is currently:
+  explicit failure / unresolved case
+
+This is the correct Path B treatment.
+
+---
+
+## 9. Lift Examples
+
+### Example 9.1. Atomic lift
+Lift residual:
+
+$$
+1
+$$
+
+by factor:
+
+$$
+3
+$$
+
+Result:
+
+$$
+\mathrm{lift}(1,3) = 3
+$$
+
+This is exact structural/state transport, not scalar multiplication of an
+active object as a whole.
+
+---
+
+### Example 9.2. Child lift
+Lift child:
+
+$$
+[1,3,0]
+$$
+
+by factor:
+
+$$
+2
+$$
+
+Result:
+
+$$
+\mathrm{lift}([1,3,0],2) = [2,3,0]
+$$
+
+This preserves child denominator frame while scaling the child value slot.
+
+---
+
+### Example 9.3. Composite lift
+Lift:
+
+$$
+1 + [1,3,0]
+$$
+
+by factor:
+
+$$
+2
+$$
+
+Result:
+
+$$
+2 + [2,3,0]
+$$
+
+This is exact residual-state transport.
+
+---
+
+## 10. Equality Recovery Examples
+
+### Example 10.1. Closed return to origin
+Start:
+
+$$
+X = [1,2,0]
+$$
+
+Add:
+
+$$
+[1,3,0]
+$$
+
+then subtract:
+
+$$
+[1,3,0]
+$$
+
+Final result is normalized-value equal to:
+
+$$
+[1,2,0]
+$$
+
+No epsilon test is needed.
+
+---
+
+### Example 10.2. Closed multiply/divide return
+Start:
+
+$$
+X = [3,7,0]
+$$
+
+Multiply by:
+
+$$
+[5,2,0]
+$$
+
+then divide by:
+
+$$
+[5,2,0]
+$$
+
+Final normalized result is:
+
+$$
+[3,7,0]
+$$
+
+again exactly.
+
+---
+
+## 11. Inbound Construction Examples
+
+### Example 11.1. Integer inbound
+Input:
+
+$$
+5
+$$
+
+Inbound construction:
+
+$$
+\mathrm{in}(5) = [5,1,0]
+$$
+
+Closed projection:
+
+$$
+\Pi([5,1,0]) = 5
+$$
+
+---
+
+### Example 11.2. Rational inbound
+Input:
+
+$$
+-\frac{3}{4}
+$$
+
+Inbound construction:
+
+$$
+\mathrm{in}\!\left(-\frac{3}{4}\right) = [-3,4,0]
+$$
+
+Closed projection:
+
+$$
+\Pi([-3,4,0]) = -\frac{3}{4}
+$$
+
+---
+
+### Example 11.3. Approximate decimal not admitted as exact active meaning
+Input:
+- decimal approximation of \( \pi \), such as `3.14159`
+
+At v1:
+- this may be treated externally as an approximate decimal quantity
+- but it is not admitted as an exact VDR representation of \( \pi \)
+- and it is not turned into an active VDR object merely by syntax
+
+If treated exactly at all, it is only the rational decimal value:
+
+$$
+\frac{314159}{100000}
+$$
+
+not \( \pi \).
+
+---
+
+## 12. Out-of-Scope Example
+
+### Example 12.1. Malformed infinite decimal artifact
+Input:
+
+```text
+0.3333...751
+```
+
+This has no coherent finite exact constructive meaning.
+
+So:
+- exact inbound construction fails
+- it is outside v1 scope
+
+---
+
+## 13. Key Lessons from the Revised Examples
+
+These revised examples show that v1 now has:
+
+- a correct closed rational core
+- exact normalization-based equality for the current normalization layer
+- exact closed rebasing
+- exact active specification
+- exact active structural distinction
+- exact same-frame active combination rules
+- honest failure or openness where active reconstruction is not solved
+
+They also show clearly that:
+
+- active objects are not ordinary scalar values by default
+- residual sign matters
+- nested child structure is nested state, not automatic arithmetic correction
+- nontrivial active rebasing remains open
+- the Path B fork is real and productive
+
+---
+
+## Summary
+
+Revised Worked Examples v1 demonstrates:
+
+1. what already works exactly
+2. what active state looks like without scalar collapse
+3. what closed projection still supports
+4. what remains open and must fail honestly
+5. how Path B makes VDR genuinely different from decorated fraction
+   arithmetic
+
+This is the correct example set for the current state of the theory.
+
+---
+
+Good. Here’s a clean vocabulary split.
+
+1. Native equality
+Use:
+- “is natively equal to”
+- symbols: \( \equiv_s \), \( \equiv_n \), later \( \equiv_a \)
+
+Meaning:
+- equality inside VDR only
+
+Do not use `=` casually here unless the layer is clear.
+
+2. Structural identity
+Use:
+- “is structurally equal to”
+
+Meaning:
+- same object as written
+
+Example:
+- \([1,2,0]\) is structurally equal to \([1,2,0]\)
+
+3. Normalized equality
+Use:
+- “is normalized-value equal to”
+
+Meaning:
+- same after current normalization rules
+
+Example:
+- \([2,4,0]\) is normalized-value equal to \([1,2,0]\)
+
+4. Active-state equivalence
+Use:
+- “is active-state equivalent to”
+
+Meaning:
+- future deeper sameness of active state across frames/reconstructions
+- not yet fully defined
+
+5. Projection
+Use:
+- “projects to”
+
+Meaning:
+- external map out of VDR
+
+Safe for closed objects now:
+- \([1,2,0]\) projects to \(1/2\)
+
+Not safe by default for active objects.
+
+6. Interpretation / correspondence
+Use:
+- “corresponds to under interpretation”
+- “is a witness for”
+- “is motivated by”
+- “admits the active form”
+- “is represented by under a chosen construction rule”
+
+This is the right language for things like \(11/5\) and \([2,5,1]\).
+
+So instead of:
+- \(11/5 = [2,5,1]\)
+
+say:
+- \(11/5\) admits \([2,5,1]\) as an active VDR witness under a division-state construction
+or shorter:
+- \(11/5\) motivates the active form \([2,5,1]\)
+
+And for the negative case:
+- it is not yet established whether \(9/5\) admits \([2,5,-1]\) under the same kind of interpretation
+
+7. Construction
+Use:
+- “constructs into”
+- “is admitted as”
+- “has inbound form”
+
+Example:
+- the rational \(1/2\) constructs into \([1,2,0]\)
+
+That is stronger than “motivates,” but still not native equality.
+
+Recommended rule of thumb
+
+Inside VDR:
+- use equality words only for VDR-to-VDR relations
+
+Across VDR and scalar:
+- use projection, construction, witness, or interpretation words
+- avoid bare `=`
+
+That will save a lot of confusion.
+
+---
+
+# VDR
+## Terminology and Relation Discipline v1
+
+This document defines the recommended language discipline for discussing VDR.
+
+Its purpose is to prevent confusion between:
+- native VDR relations,
+- external scalar relations,
+- interpretation-layer correspondences,
+- and implementation-oriented construction statements.
+
+This is especially important under Path B, where:
+- closed VDR objects may admit scalar projection,
+- active VDR objects do not collapse to scalar meaning by default,
+- and the same symbol `=` can become dangerously ambiguous if used loosely.
+
+This document is not a replacement for the formal axioms.
+It is a usage discipline for writing and discussing the system correctly.
+
+---
+
+## 1. General Rule
+
+### 1.1. Equality Discipline Rule
+Inside VDR, equality language should be used only for explicitly defined VDR
+relations.
+
+Across VDR and external scalar systems, do not use bare equality unless the
+relevant interpretation or projection layer is explicitly stated.
+
+So:
+- use exact VDR relation names for VDR-to-VDR comparisons
+- use projection / construction / interpretation words for VDR-to-scalar or
+  scalar-to-VDR discussion
+
+---
+
+## 2. Native VDR Relations
+
+### 2.1. Structural Equality
+Use:
+
+- “is structurally equal to”
+
+and the symbol:
+
+$$
+\equiv_s
+$$
+
+Meaning:
+- exact same VDR object as written,
+- slot by slot,
+- recursively,
+- and in order.
+
+Example:
+
+$$
+[1,2,0] \equiv_s [1,2,0]
+$$
+
+---
+
+### 2.2. Normalized Value Equality
+Use:
+
+- “is normalized-value equal to”
+
+and the symbol:
+
+$$
+\equiv_n
+$$
+
+Meaning:
+- same current canonical form after normalization,
+- not necessarily structurally identical as written.
+
+Example:
+
+$$
+[2,4,0] \equiv_n [1,2,0]
+$$
+
+provided normalization maps both to the same normal form.
+
+---
+
+### 2.3. Reserved Active-State Equivalence
+Use:
+
+- “is active-state equivalent to”
+
+and the reserved symbol:
+
+$$
+\equiv_a
+$$
+
+Meaning:
+- exact sameness of native active state across possibly different frames or
+  reconstructions,
+- beyond current normalization.
+
+At v1 this relation is reserved but not generally defined.
+
+So the phrase may be used only when explicitly discussing future or
+special-case active-state theory.
+
+---
+
+## 3. External Scalar Relations
+
+### 3.1. Projection Language
+Use:
+
+- “projects to”
+- “has scalar projection”
+- “has exact closed projection”
+
+Meaning:
+- a VDR object is mapped outward into a scalar comparison form by a specified
+  external rule.
+
+Example:
+
+$$
+[1,2,0]
+$$
+
+projects to:
+
+$$
+\frac{1}{2}
+$$
+
+under the closed projection rule.
+
+---
+
+### 3.2. Projection Limitation Rule
+Under Path B, projection language should be used by default only for:
+- closed VDR objects,
+- or active subclasses for which a specific interpretation layer has been
+  explicitly defined.
+
+Do not say that a general active object “equals” or “is” a scalar value by
+default.
+
+---
+
+## 4. Scalar-to-VDR Language
+
+### 4.1. Construction Language
+Use:
+
+- “constructs into”
+- “is admitted as”
+- “has inbound form”
+- “is represented in VDR as”  
+  only when the construction rule is explicit
+
+Meaning:
+- an external object is brought into VDR by a specified exact construction
+  rule.
+
+Example:
+
+$$
+\frac{1}{2}
+$$
+
+constructs into:
+
+$$
+[1,2,0]
+$$
+
+under the rational inbound rule.
+
+---
+
+### 4.2. Construction Is Not Equality Rule
+Do not use bare equality to identify an external scalar and a VDR object just
+because there is an inbound construction.
+
+So prefer:
+
+- “\(1/2\) constructs into \([1,2,0]\)”,
+
+not:
+
+- “\(1/2 = [1,2,0]\)”
+
+unless a specific interpretive identification is formally stated.
+
+---
+
+## 5. Interpretation-Layer Language
+
+### 5.1. Interpretation Language
+When discussing a possible or optional relation between an external scalar and
+an active VDR object, use:
+
+- “corresponds to under interpretation”
+- “is a witness for”
+- “is motivated by”
+- “admits the active form”
+- “arises under a division-state construction”
+- “is associated with under a chosen interpretation layer”
+
+These phrases mark that the relation is:
+- not native equality,
+- not default scalar projection,
+- and not yet a foundational theorem unless stated as such.
+
+---
+
+### 5.2. Motivating Example Language
+For examples such as:
+
+$$
+11/5
+$$
+
+and
+
+$$
+[2,5,1]
+$$
+
+prefer phrases like:
+
+- “\(11/5\) motivates the active form \([2,5,1]\)”
+- “\(11/5\) admits \([2,5,1]\) as an active witness under a division-state
+  reading”
+- “\([2,5,1]\) may arise from a division-style construction on \(11/5\)”
+
+Do not write, at v1:
+
+$$
+11/5 = [2,5,1]
+$$
+
+because that incorrectly suggests native scalar equality.
+
+---
+
+### 5.3. Unsettled Interpretation Language
+For cases not yet justified, use:
+
+- “not established”
+- “open”
+- “unresolved”
+- “not yet admitted”
+- “not yet justified by a formal interpretation layer”
+
+Example:
+it is not yet established whether:
+
+$$
+9/5
+$$
+
+admits:
+
+$$
+[2,5,-1]
+$$
+
+under the same kind of interpretation that motivates:
+
+$$
+11/5 \rightsquigarrow [2,5,1]
+$$
+
+---
+
+## 6. Disallowed Informal Shortcuts
+
+### 6.1. No Bare Cross-Domain Equality Rule
+Do not use bare `=` between:
+- a scalar and an active VDR object,
+- unless a specific interpretation layer explicitly authorizes it.
+
+So avoid statements like:
+
+- \(11/5 = [2,5,1]\)
+- \(9/5 = [2,5,-1]\)
+
+at the foundational v1 level.
+
+---
+
+### 6.2. No Silent Scalar Collapse Rule
+Do not use language that silently treats an active residual as:
+- numerator adjustment,
+- additive correction,
+- delayed simplification,
+- or fraction completion
+
+unless a later interpretation layer explicitly defines that semantics.
+
+So avoid phrases like:
+
+- “\([2,5,1]\) is just \(3/5\)”
+
+under Path B.
+
+---
+
+### 6.3. No Ambiguous “Value” Rule
+The word “value” can be ambiguous in VDR.
+
+At v1, distinguish carefully among:
+- value slot \(V\)
+- normalized value equality
+- native operation-state
+- scalar projection value
+
+When necessary, say:
+- “value slot”
+- “normalized value equality”
+- “native state”
+- “external scalar value”
+
+rather than just “value.”
+
+---
+
+## 7. Recommended Writing Pattern
+
+### 7.1. Inside VDR
+Use:
+- structural equality
+- normalized-value equality
+- active-state equivalence
+- validity
+- normalization
+- reconstruction
+- rebasing
+- state combination
+
+---
+
+### 7.2. At the VDR Boundary
+Use:
+- projects to
+- constructs into
+- is admitted as
+- is reported externally as
+- has exact closed projection
+
+---
+
+### 7.3. In Open/Interpretive Discussion
+Use:
+- motivates
+- corresponds under interpretation
+- is a witness for
+- may arise from
+- is unresolved
+- is not yet established
+
+---
+
+## 8. Canonical Examples
+
+### Example 8.1. Correct closed statement
+Correct:
+
+- \(1/2\) constructs into \([1,2,0]\)
+- \([1,2,0]\) projects to \(1/2\)
+
+Avoid:
+- \(1/2 = [1,2,0]\)  
+  unless a specific formal identification is being made in context
+
+---
+
+### Example 8.2. Correct active statement
+Correct:
+
+- \(11/5\) motivates the active form \([2,5,1]\)
+- \([2,5,1]\) is an active VDR object with value slot \(2\), denominator frame
+  \(5\), and residual state \(1\)
+
+Avoid:
+- \(11/5 = [2,5,1]\)
+- \([2,5,1] = 3/5\)
+
+---
+
+### Example 8.3. Correct unresolved statement
+Correct:
+
+- it is not yet established whether \(9/5\) admits \([2,5,-1]\) under a
+  corresponding interpretation layer
+
+Avoid:
+- \(9/5 = [2,5,-1]\)
+
+---
+
+## 9. Summary
+
+Terminology and Relation Discipline v1 establishes a clean language boundary:
+
+Inside VDR:
+- use native equality names and native structural language
+
+Across domains:
+- use projection, construction, interpretation, witness, and motivation
+  language
+
+Do not let bare equality silently cross between:
+- active VDR state
+- and scalar mathematics
+
+This discipline is necessary to keep the Path B version of VDR coherent.
+
+---
+
+## Recommended Immediate Use
+
+This discipline should now be applied when revising:
+- Supported Domain Examples v1
+- Paper Outline v1
+- benchmark wording
+- implementation docs
+- and any future examples involving active objects
+
+It is one of the key safeguards against accidentally drifting back into the
+discarded Path A semantics.
+
+---
+

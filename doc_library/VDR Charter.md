@@ -5789,3 +5789,1827 @@ active VDR objects are exact native state, not ordinary scalar values.
 
 ---
 
+# VDR
+## Revised Active Rebase Rules v1
+### Path B Commitment
+
+These rules replace the earlier scalar-preserving account of active rebasing.
+
+Under Path B, active VDR objects are exact operation-state objects, not
+ordinary scalar values by default. Therefore active rebasing is no longer
+defined as preservation of a scalar projection.
+
+Instead, active rebasing is defined as exact denominator-frame reconstruction
+of native state.
+
+This is a first-pass structural/state-preserving layer. It is intentionally
+conservative.
+
+---
+
+### 138. Active Rebase Domain Rule
+For a valid active VDR object:
+
+$$
+X = [V,D,R]
+\quad\text{with } R \neq 0
+$$
+
+and a target denominator:
+
+$$
+B \in \mathbb{Z}\setminus\{0\}
+$$
+
+an active rebase operation, when valid, produces a valid active VDR object:
+
+$$
+\mathrm{rebase}(X,B) = [V',B,R']
+$$
+
+such that the rebased object is an exact denominator-frame reconstruction of
+the source state.
+
+---
+
+### 139. Closed Rebase Priority Rule
+If an object is closed and closed rebasing succeeds, then closed rebasing must
+be used directly.
+
+Active rebasing is reserved for active objects or for later layers where
+closed rebasing is intentionally lifted into active form.
+
+Closure remains preferred when exact closure is already available.
+
+---
+
+### 140. Active Rebase Purpose Rule
+Active rebasing changes the denominator frame of an active VDR object while
+preserving exact native state in the rebased representation.
+
+It is:
+- not scalar evaluation,
+- not additive redistribution,
+- and not approximation.
+
+It is a state-reexpression operation across denominator frames.
+
+---
+
+### 141. Frame Reconstruction Rule
+Because active residual is denominator-sensitive state, changing the
+denominator frame from \(D\) to \(B\) requires reconstruction of the state in
+the new frame.
+
+Therefore active rebasing may not preserve residual structure literally.
+
+What must be preserved is:
+- exact native state,
+not
+- literal residual syntax.
+
+---
+
+### 142. Rebased Form Rule
+For:
+
+$$
+X = [V,D,R]
+$$
+
+and target denominator \(B \neq 0\), a rebased result has the form:
+
+$$
+[Q,B,R']
+$$
+
+where:
+- \(Q \in \mathbb{Z}\),
+- \(R'\) is a valid residual object,
+- and the full rebased object is raw-valid and active unless closure is later
+  reached by exact rule.
+
+At v1, \(Q\) is the new top-level value slot and \(R'\) is the reconstructed
+residual state in the new denominator frame.
+
+---
+
+### 143. Quotient-Residual Decomposition Rule
+As a first-pass state reconstruction step, active rebasing may begin by
+forming:
+
+$$
+N = VB
+$$
+
+and choosing integers \(Q,S\) such that:
+
+$$
+N = QD + S
+$$
+
+This decomposition is a representational aid for frame reconstruction.
+
+At v1, it does not by itself settle the final rebased residual.
+
+It is only a structural starting point.
+
+---
+
+### 144. Mismatch Witness Rule
+The mismatch term \(S\) may be witnessed by the child:
+
+$$
+[S,D,0]
+$$
+
+inside the rebased residual structure.
+
+This witness is valid as a first-pass exact record of denominator mismatch,
+but it is not sufficient by itself to define full rebasing when the source
+already carries residual state.
+
+---
+
+### 145. Existing Residual Reconstruction Rule
+If the source object already has residual state \(R\), then active rebasing
+must reconstruct that residual state in the new denominator frame rather than
+copy it unchanged.
+
+Thus, in general:
+
+$$
+R' \neq R
+$$
+
+and active rebase must not assume literal residual carryover.
+
+---
+
+### 146. Reserved State-Preservation Rule
+At v1 under Path B, active rebasing preserves native state in principle, but
+the full exact equivalence criterion for general active frame reconstruction
+is not yet fully formalized.
+
+So the rule is:
+
+- active rebasing is allowed only where an exact finite frame-reconstruction
+  rule is explicitly known,
+- otherwise rebasing must fail explicitly.
+
+This prevents false completion.
+
+---
+
+### 147. No Scalar Preservation Rule
+Active rebasing is not justified at v1 by requiring equality of scalar
+projection, because active objects do not have default scalar projection.
+
+Thus the earlier scalar-preservation criterion is withdrawn from the
+foundational rebasing layer.
+
+---
+
+### 148. No Additive Residual Carryover Rule
+Active rebasing may not be defined by any default rule of the form:
+
+$$
+R' = [S,D,0] + R
+$$
+
+nor by any scalar-additive residual redistribution law.
+
+Such rules belong to the discarded Path A semantics and are invalid as
+foundational active rebase rules under Path B.
+
+---
+
+### 149. Rebase Validity Rule
+An active rebase is valid in v1 only if all of the following hold:
+
+1. the target denominator is nonzero,
+2. the rebased object is raw-valid,
+3. the rebased object is finite,
+4. the reconstruction step used is exact,
+5. no approximation is used,
+6. and the reconstruction rule is explicitly justified in the current layer.
+
+Otherwise rebasing fails.
+
+---
+
+### 150. Rebase Failure Rule
+Active rebasing fails if:
+- denominator-frame reconstruction is not defined for the case,
+- exact residual reconstruction is unknown,
+- the target denominator is zero,
+- the result would violate raw validity,
+- or the result would require approximation.
+
+Failure is the correct result when exact state-preserving reexpression is not
+yet available.
+
+---
+
+### 151. Rebase Structural Nonidentity Rule
+Active rebasing generally changes structure and therefore does not preserve
+structural equality.
+
+Thus, in general:
+
+$$
+\mathrm{rebase}(X,B) \not\equiv_s X
+$$
+
+even when rebasing is valid.
+
+Rebasing is a change of frame, not a literal identity operation.
+
+---
+
+### 152. Lift Compatibility Rule
+Any lift-like transport used during active rebasing must be interpreted as
+state transport only.
+
+It may support rebasing, but it does not by itself define active rebasing.
+
+So lift remains auxiliary to frame reconstruction, not a complete rebasing
+law.
+
+---
+
+### 153. Determinism Rule
+For a fixed source object, fixed target denominator, and fixed explicitly
+defined active rebase procedure, the result must be deterministic.
+
+If a procedure is underdefined, that case is not yet a valid rebasing rule.
+
+---
+
+### 154. Rebase Scope Rule
+The revised active rebase layer now defines:
+
+- active rebasing as denominator-frame reconstruction of native state
+- rejection of scalar-preserving semantics as foundational
+- rejection of additive residual carryover as foundational
+- explicit validity/failure conditions
+- mismatch witnessing as a provisional structural aid
+- dependence on future exact reconstruction rules
+
+It does not yet fully define:
+- a general exact frame-equivalence criterion for all active objects
+- a general active rebase algorithm
+- canonical quotient choice
+- or general successful rebasing across all active subclasses
+
+Those remain open.
+
+---
+
+## Summary of Revised Active Rebase v1
+
+At this stage, active rebasing means:
+
+- changing denominator frame for an active operation-state object
+- without collapsing to scalar semantics
+- and only where exact denominator-frame reconstruction is actually defined
+
+So active rebasing is now:
+- conceptually preserved,
+- technically narrowed,
+- and protected from false scalarization
+
+This is a safer and more accurate Path B foundation.
+
+---
+
+# VDR
+## Revised Active Arithmetic Rules v1
+### Path B Commitment
+
+These rules replace the earlier scalar-compatible active arithmetic layer.
+
+Under Path B, active VDR objects are exact operation-state objects, not
+ordinary scalar values by default. Therefore active arithmetic is no longer
+defined as general scalar arithmetic lifted to active objects.
+
+Instead, active arithmetic is the exact transformation of operation-state
+objects under explicitly defined native rules.
+
+At v1, this layer is deliberately narrow.
+It preserves what can be stated exactly and defers what cannot yet be stated
+without collapsing back into scalar semantics.
+
+---
+
+### 203. Active Arithmetic Domain Rule
+The active arithmetic layer applies to valid VDR objects of the form:
+
+$$
+[V,D,R]
+$$
+
+where the residual \(R\) may be zero or nonzero.
+
+Closed objects remain part of this domain, but they continue to obey the
+closed arithmetic rules already defined.
+
+Active arithmetic concerns the extension beyond the closed subclass.
+
+---
+
+### 204. Native-State Exactness Rule
+Every valid active arithmetic operation must preserve:
+- finite exact structure,
+- triple irreducibility,
+- residual state significance,
+- denominator-frame sensitivity,
+- and native exactness.
+
+No active arithmetic rule may use:
+- approximation,
+- scalar fitting,
+- decimal conversion,
+- floating conversion,
+- or epsilon acceptance.
+
+---
+
+### 205. Closed Compatibility Rule
+When both operands are closed, active arithmetic agrees with the closed
+arithmetic rules v1.
+
+Thus the closed rational core remains intact.
+
+---
+
+### 206. Same-Denominator State Combination Rule
+For two valid VDR objects with the same denominator:
+
+$$
+[V_1,D,R_1]
+\quad\text{and}\quad
+[V_2,D,R_2]
+$$
+
+a native same-frame combination operation may be defined because both objects
+already inhabit the same denominator frame.
+
+At v1, this supports exact structural combination for addition-like and
+subtraction-like operations where a same-frame rule is explicitly given.
+
+This is a frame-sensitive native rule, not default scalar addition.
+
+---
+
+### 207. Same-Denominator Addition-Like Rule
+For two valid VDR objects with the same denominator:
+
+$$
+[V_1,D,R_1]
++
+[V_2,D,R_2]
+$$
+
+the v1 addition-like state combination is:
+
+$$
+[V_1 + V_2,\; D,\; R_1 \oplus R_2]
+$$
+
+where \( \oplus \) is exact residual-state combination in the shared
+denominator frame.
+
+At v1, \( \oplus \) is defined structurally by:
+- combining atomic residual bases,
+- adjoining child structures,
+- and applying normalization where defined.
+
+This rule defines a native state-combination law, not a scalar value law.
+
+---
+
+### 208. Same-Denominator Subtraction-Like Rule
+For two valid VDR objects with the same denominator:
+
+$$
+[V_1,D,R_1]
+-
+[V_2,D,R_2]
+$$
+
+the v1 subtraction-like state combination is:
+
+$$
+[V_1 - V_2,\; D,\; R_1 \ominus R_2]
+$$
+
+where \( \ominus \) is exact residual-state subtraction in the shared frame.
+
+At v1, \( \ominus \) is defined structurally by:
+- subtracting atomic residual bases,
+- adjoining negated child structures from the second residual,
+- and applying normalization where defined.
+
+Again, this is a native frame operation, not default scalar subtraction.
+
+---
+
+### 209. Residual State Combination Rule
+For composite residuals:
+
+$$
+R_1 = r_1 + X_1 + \dots + X_n
+$$
+
+and
+
+$$
+R_2 = r_2 + Y_1 + \dots + Y_m
+$$
+
+define the same-frame residual combination:
+
+$$
+R_1 \oplus R_2
+=
+(r_1 + r_2) + X_1 + \dots + X_n + Y_1 + \dots + Y_m
+$$
+
+subject to normalization where defined.
+
+For subtraction-like combination:
+
+$$
+R_1 \ominus R_2
+=
+(r_1 - r_2) + X_1 + \dots + X_n + (-Y_1) + \dots + (-Y_m)
+$$
+
+subject to normalization where defined.
+
+This is structural state combination, not scalar collapse.
+
+---
+
+### 210. Residual Negation Rule
+Residual negation is defined recursively.
+
+For atomic residuals:
+
+$$
+-(r) = -r
+$$
+
+For composite residuals:
+
+$$
+-(r + X_1 + \dots + X_n)
+=
+-r + (-X_1) + \dots + (-X_n)
+$$
+
+For child VDR objects:
+
+$$
+-[V,D,R] = [-V,D,-R]
+$$
+
+subject to later sign normalization.
+
+This is exact state negation.
+
+---
+
+### 211. Additive-Inverse-Like Rule
+For every valid VDR object:
+
+$$
+X = [V,D,R]
+$$
+
+its exact native inverse under the current addition-like rule is:
+
+$$
+-X = [-V,D,-R]
+$$
+
+Then, where same-frame addition-like combination is defined,
+
+$$
+X + (-X)
+$$
+
+must normalize to the corresponding identity state.
+
+At minimum this must hold in the closed subclass and in any active subclass
+for which the addition-like rule is explicitly supported.
+
+---
+
+### 212. Different-Denominator Combination Rule
+For two VDR objects with different denominators:
+
+$$
+[V_1,D_1,R_1]
+\quad\text{and}\quad
+[V_2,D_2,R_2]
+$$
+
+an addition-like or subtraction-like combination is not defined directly at
+the native layer.
+
+Such combination requires:
+- exact rebasing into a shared denominator frame,
+- and that the required rebasing be valid under the revised active rebase
+  rules.
+
+So different-denominator active combination is mediated by rebasing, not by
+immediate scalar common-denominator arithmetic.
+
+---
+
+### 213. Rebase-Mediated Addition-Like Rule
+If:
+
+$$
+\mathrm{rebase}(X,B)
+\quad\text{and}\quad
+\mathrm{rebase}(Y,B)
+$$
+
+are both valid for a chosen target denominator \(B\), then an addition-like
+combination may be defined by:
+1. rebasing both objects into frame \(B\),
+2. applying same-frame combination,
+3. normalizing the result where defined.
+
+If either rebase fails, the operation fails.
+
+---
+
+### 214. Rebase-Mediated Subtraction-Like Rule
+Likewise, if both operands can be validly rebased into the same denominator
+frame \(B\), then a subtraction-like combination may be defined by:
+1. rebasing both operands into frame \(B\),
+2. applying same-frame subtraction-like combination,
+3. normalizing the result where defined.
+
+If exact shared-frame reconstruction is unavailable, the operation fails.
+
+---
+
+### 215. Multiplication Deferral Rule
+General multiplication of active VDR objects is not defined by default at v1
+under Path B.
+
+Reason:
+multiplication would require a native state-composition law stronger than the
+current structural combination rules, and it may not be safely defined by
+scalar analogies.
+
+So at v1:
+- closed multiplication remains valid,
+- active multiplication is deferred unless an explicitly defined subclass rule
+  is supplied.
+
+---
+
+### 216. Division Deferral Rule
+General division of active VDR objects is not defined by default at v1 under
+Path B.
+
+Reason:
+division would require a native state-transformation law stronger than the
+current exact frame rules, and it may not be safely defined by scalar
+projection.
+
+So at v1:
+- closed division remains valid,
+- active division is deferred unless an explicitly defined subclass rule is
+  supplied.
+
+---
+
+### 217. Explicit Failure Rule
+If an active arithmetic operation would require:
+- undefined rebasing,
+- approximation,
+- scalar collapse,
+- invalid structure,
+- or a state-composition rule not yet defined,
+
+then the operation must fail explicitly.
+
+Failure is correct behavior in v1.
+
+---
+
+### 218. No Scalar Compatibility Requirement Rule
+At v1 under Path B, active arithmetic is not required to satisfy any general
+law of the form:
+
+$$
+\Pi(X \star Y) = \Pi(X) \star \Pi(Y)
+$$
+
+for active objects, because active objects do not have default scalar
+projection.
+
+Any such compatibility law belongs only to later interpretation layers, if
+introduced.
+
+---
+
+### 219. Structural Result Requirement Rule
+Every successful active arithmetic operation must return a raw-valid finite
+VDR object.
+
+This object must preserve:
+- exact native structure,
+- denominator-frame correctness,
+- and residual-state significance.
+
+Returning a scalar, decimal, float, or symbolic non-VDR object is not a valid
+native arithmetic result.
+
+---
+
+### 220. Commutativity Scope Rule
+Commutativity may be asserted only for operation classes explicitly defined in
+the current layer.
+
+Thus:
+- same-frame addition-like combination is commutative where defined,
+- closed multiplication remains commutative,
+- no unrestricted commutativity claim is made for deferred active operations.
+
+---
+
+### 221. Associativity Scope Rule
+Associativity may be asserted only for operation classes explicitly defined in
+the current layer.
+
+Thus:
+- same-frame addition-like combination is associative where defined,
+  subject to normalization,
+- closed multiplication remains associative,
+- no unrestricted associativity claim is made for deferred active operations.
+
+---
+
+### 222. Identity Scope Rule
+The additive identity-like object remains:
+
+$$
+[0,1,0]
+$$
+
+for the closed core and for any active operation class where the addition-like
+rule is explicitly supported.
+
+The multiplicative identity remains:
+
+$$
+[1,1,0]
+$$
+
+for the closed core only at v1.
+No general multiplicative identity claim is made for deferred active
+multiplication.
+
+---
+
+### 223. Arithmetic Scope Rule
+The revised active arithmetic layer now defines:
+
+- exact same-frame addition-like combination
+- exact same-frame subtraction-like combination
+- recursive residual negation
+- rebase-mediated different-frame combination where rebasing is valid
+- explicit failure in unsupported cases
+
+It does not yet define:
+
+- general active multiplication
+- general active division
+- scalar-compatible active arithmetic
+- full algebraic laws for all active operations
+- or domain-specific execution meanings of active state arithmetic
+
+Those remain open.
+
+---
+
+### 224. Native Arithmetic Boundary Rule
+At v1 under Path B, active arithmetic should be understood as exact
+transformation of native operation-state objects, not as an extension of
+ordinary scalar arithmetic.
+
+This is the key semantic boundary of the revised active layer.
+
+---
+
+## Summary of Revised Active Arithmetic v1
+
+At this stage, VDR now supports:
+
+- exact closed arithmetic
+- exact active same-frame combination for addition-like and subtraction-like
+  operations
+- exact residual negation
+- different-frame active combination only through valid rebasing
+- explicit failure instead of false scalarization
+- deferral of active multiplication and division
+
+This is a much safer Path B arithmetic layer.
+
+It preserves what is exact and refuses to fake the rest.
+
+---
+
+# VDR
+## Active State Reconstruction Rules v1
+
+These rules define the first formal layer for reconstructing an active VDR
+object across denominator frames under Path B semantics.
+
+Under Path B, active VDR objects are exact operation-state objects, not
+ordinary scalar values by default. Therefore reconstruction is not based on
+scalar equality. It is based on exact native state preservation under a change
+of denominator frame.
+
+This layer is intentionally conservative.
+It defines:
+- the reconstruction problem,
+- the admissibility conditions for a reconstruction,
+- and the limits of what v1 can honestly claim.
+
+It does not yet solve general reconstruction in all active cases.
+
+---
+
+## 1. Reconstruction Purpose
+
+### 225. Reconstruction Purpose Rule
+Active state reconstruction is the process of producing a new valid active VDR
+object in a target denominator frame that preserves the native operation-state
+content of a source active object.
+
+Formally, given:
+
+$$
+X = [V,D,R]
+\quad\text{with } R \neq 0
+$$
+
+and a target denominator:
+
+$$
+B \in \mathbb{Z}\setminus\{0\},
+$$
+
+reconstruction seeks:
+
+$$
+X' = [Q,B,R']
+$$
+
+such that \(X'\) is a valid exact reconstruction of the same native state as
+\(X\), but in denominator frame \(B\).
+
+---
+
+## 2. Reconstruction Is Not Scalar Equality
+
+### 226. Non-Scalar Reconstruction Rule
+Active state reconstruction may not be defined by default through:
+- rational equality,
+- real equality,
+- decimal equality,
+- float equality,
+- additive residual equality,
+- or any scalar-comparison shortcut.
+
+So the criterion for successful reconstruction is not:
+
+- “same number”
+
+but:
+
+- “same native operation-state under a valid frame change rule”
+
+---
+
+## 3. Reconstruction Admissibility
+
+### 227. Reconstruction Admissibility Rule
+A candidate reconstruction:
+
+$$
+[V,D,R] \rightsquigarrow [Q,B,R']
+$$
+
+is admissible in v1 only if all of the following hold:
+
+1. \(B \neq 0\)
+2. \([Q,B,R']\) is raw-valid
+3. \([Q,B,R']\) is finite
+4. the reconstruction uses only exact finite operations
+5. the reconstruction is justified by an explicit native frame rule
+6. no approximation is used
+
+If any of these fail, reconstruction fails.
+
+---
+
+### 228. Reconstruction Raw-Validity Rule
+Every successful active state reconstruction must remain entirely inside the
+VDR domain.
+
+So the reconstruction output must be:
+- a valid VDR object,
+- not a scalar,
+- not a symbolic proxy outside VDR,
+- and not an approximate stand-in.
+
+---
+
+### 229. Reconstruction Finiteness Rule
+Every successful active state reconstruction must terminate after finitely many
+explicit construction steps and produce a finite VDR object.
+
+No reconstruction may depend on:
+- infinite search,
+- infinite series,
+- deferred completion,
+- or hidden continuation.
+
+---
+
+## 4. Frame Change and State Preservation
+
+### 230. Denominator-Frame Change Rule
+Changing the denominator from \(D\) to \(B\) changes the frame in which the
+residual state is held.
+
+Therefore the output residual \(R'\) must be treated as newly constructed
+state in frame \(B\), not as literal carryover of \(R\).
+
+So in general:
+
+$$
+R' \neq R
+$$
+
+even when the reconstruction is exact.
+
+---
+
+### 231. Literal Carryover Exclusion Rule
+No general reconstruction rule may assume:
+
+$$
+[V,D,R] \rightsquigarrow [Q,B,R]
+$$
+
+merely by changing the denominator slot.
+
+Such literal residual carryover is not valid by default because residual state
+is denominator-sensitive.
+
+---
+
+### 232. Additive Carryover Exclusion Rule
+No general reconstruction rule may assume any direct additive transfer law of
+the form:
+
+$$
+R' = [S,D,0] + R
+$$
+
+or any equivalent scalar-correction scheme.
+
+Those belong to the rejected Path A semantics and are invalid as a
+foundational reconstruction law under Path B.
+
+---
+
+## 5. Reconstruction Witnesses
+
+### 233. Reconstruction Witness Rule
+A successful active state reconstruction should, where possible, admit an
+explicit witness of how the source state is represented in the new frame.
+
+At v1, such a witness may include:
+- the chosen new value slot \(Q\),
+- any mismatch witness child such as \([S,D,0]\),
+- transport steps used,
+- and the final reconstructed residual \(R'\).
+
+The witness is not yet required to be unique.
+
+---
+
+### 234. Mismatch Witness Permission Rule
+A child object of the form:
+
+$$
+[S,D,0]
+$$
+
+may still be used as a mismatch witness during reconstruction.
+
+However, such a witness is only a local structural aid.
+It is not, by itself, the full reconstructed residual state.
+
+---
+
+## 6. Restricted Reconstruction Cases in v1
+
+### 235. Closed-to-Active Reconstruction Rule
+A closed object may be reconstructed into an active object when:
+- closed rebasing fails,
+- and an exact finite active witness is explicitly known.
+
+For example, a case like:
+
+$$
+[1,2,0] \rightsquigarrow [1,3,[1,2,0]]
+$$
+
+may be admitted as a valid reconstruction pattern if explicitly adopted as a
+special v1 rule.
+
+This is a restricted reconstruction class, not yet a general law for all
+active cases.
+
+---
+
+### 236. Same-Frame Identity Rule
+If the target denominator equals the source denominator, then active state
+reconstruction may be identity:
+
+$$
+[V,D,R] \rightsquigarrow [V,D,R]
+$$
+
+This is the trivial frame-preserving reconstruction case.
+
+---
+
+### 237. Explicitly Defined Special-Case Rule
+Any active reconstruction case beyond trivial same-frame identity is valid in
+v1 only if it is explicitly given as a special-case reconstruction rule or is
+derived by one.
+
+There is no blanket general reconstruction theorem in v1.
+
+---
+
+## 7. Determinism and Canonicality
+
+### 238. Reconstruction Determinism Rule
+For a fixed source object, target denominator, and explicitly chosen
+reconstruction procedure, the result must be deterministic.
+
+If multiple procedures are available, v1 need not yet choose a global
+canonical one.
+
+So:
+- determinism is required per procedure
+- canonical uniqueness is deferred
+
+---
+
+### 239. Canonical Reconstruction Deferral Rule
+v1 does not yet define a complete canonical quotient-selection or canonical
+state-reconstruction strategy for all active rebasing cases.
+
+Thus:
+- existence of an exact reconstruction,
+- and canonical preference among several exact reconstructions,
+remain separate questions.
+
+---
+
+## 8. Relationship to Other Layers
+
+### 240. Reconstruction and Rebase Rule
+Active rebasing should now be understood as a use of active state
+reconstruction across denominator frames.
+
+So rebase is no longer primitive scalar preservation.
+It is a reconstruction problem.
+
+---
+
+### 241. Reconstruction and Lift Rule
+`lift` may assist reconstruction by transporting pieces of structure, but
+transport alone is not sufficient for full reconstruction.
+
+Thus lift is auxiliary, not complete.
+
+---
+
+### 242. Reconstruction and Equality Rule
+The exact equality relation governing reconstructed active objects across
+frames is not yet fully defined beyond current structural and value-equality
+layers.
+
+So reconstruction may preserve native state even when:
+- structural equality fails,
+- and current normalization-based value equality is not yet sufficient to
+  recognize the preserved state.
+
+This marks an open frontier.
+
+---
+
+## 9. Failure Rules
+
+### 243. Reconstruction Failure Rule
+Active state reconstruction fails if:
+- the target denominator is zero,
+- no explicit exact reconstruction rule is available,
+- the output would be invalid,
+- the output would be infinite,
+- or approximation would be required.
+
+Failure is correct and expected in unresolved cases.
+
+---
+
+### 244. No False Completion Rule
+v1 may not pretend general active reconstruction is solved where it is not.
+
+If a reconstruction law is unknown, unsupported, or only heuristically
+suggested, that case must remain explicit failure or open research.
+
+---
+
+## 10. Scope of v1 Reconstruction
+
+### 245. Reconstruction Scope Rule
+The v1 reconstruction layer defines:
+
+- reconstruction as exact denominator-frame reexpression of active state
+- non-scalar admissibility criteria
+- exclusion of literal and additive residual carryover
+- mismatch witnesses as local aids
+- trivial same-frame identity
+- permission for explicitly stated special reconstruction cases
+- explicit failure where no exact reconstruction rule exists
+
+It does not yet define:
+
+- a complete equivalence theory for active state across denominator frames
+- a general reconstruction algorithm
+- canonical quotient selection
+- full active multiplication/division reconstruction
+- or scalar semantics for active states
+
+Those remain open.
+
+---
+
+## Summary of Active State Reconstruction v1
+
+At this stage, VDR now has a correct Path B statement of the missing problem:
+
+- active rebasing is really active state reconstruction
+- reconstruction is denominator-frame sensitive
+- reconstruction is not scalar equality
+- residual cannot be copied forward literally or additively
+- exact special cases may be admitted
+- general reconstruction remains open and must fail honestly where unsolved
+
+This is the right base for future refinement.
+
+---
+
+# VDR
+## Active State Reconstruction Rules v1
+
+These rules define the first formal layer for reconstructing an active VDR
+object across denominator frames under Path B semantics.
+
+Under Path B, active VDR objects are exact operation-state objects, not
+ordinary scalar values by default. Therefore reconstruction is not based on
+scalar equality. It is based on exact native state preservation under a change
+of denominator frame.
+
+This layer is intentionally conservative.
+It defines:
+- the reconstruction problem,
+- the admissibility conditions for a reconstruction,
+- and the limits of what v1 can honestly claim.
+
+It does not yet solve general reconstruction in all active cases.
+
+---
+
+## 1. Reconstruction Purpose
+
+### 225. Reconstruction Purpose Rule
+Active state reconstruction is the process of producing a new valid active VDR
+object in a target denominator frame that preserves the native operation-state
+content of a source active object.
+
+Formally, given:
+
+$$
+X = [V,D,R]
+\quad\text{with } R \neq 0
+$$
+
+and a target denominator:
+
+$$
+B \in \mathbb{Z}\setminus\{0\},
+$$
+
+reconstruction seeks:
+
+$$
+X' = [Q,B,R']
+$$
+
+such that \(X'\) is a valid exact reconstruction of the same native state as
+\(X\), but in denominator frame \(B\).
+
+---
+
+## 2. Reconstruction Is Not Scalar Equality
+
+### 226. Non-Scalar Reconstruction Rule
+Active state reconstruction may not be defined by default through:
+- rational equality,
+- real equality,
+- decimal equality,
+- float equality,
+- additive residual equality,
+- or any scalar-comparison shortcut.
+
+So the criterion for successful reconstruction is not:
+
+- “same number”
+
+but:
+
+- “same native operation-state under a valid frame change rule”
+
+---
+
+## 3. Reconstruction Admissibility
+
+### 227. Reconstruction Admissibility Rule
+A candidate reconstruction:
+
+$$
+[V,D,R] \rightsquigarrow [Q,B,R']
+$$
+
+is admissible in v1 only if all of the following hold:
+
+1. \(B \neq 0\)
+2. \([Q,B,R']\) is raw-valid
+3. \([Q,B,R']\) is finite
+4. the reconstruction uses only exact finite operations
+5. the reconstruction is justified by an explicit native frame rule
+6. no approximation is used
+
+If any of these fail, reconstruction fails.
+
+---
+
+### 228. Reconstruction Raw-Validity Rule
+Every successful active state reconstruction must remain entirely inside the
+VDR domain.
+
+So the reconstruction output must be:
+- a valid VDR object,
+- not a scalar,
+- not a symbolic proxy outside VDR,
+- and not an approximate stand-in.
+
+---
+
+### 229. Reconstruction Finiteness Rule
+Every successful active state reconstruction must terminate after finitely many
+explicit construction steps and produce a finite VDR object.
+
+No reconstruction may depend on:
+- infinite search,
+- infinite series,
+- deferred completion,
+- or hidden continuation.
+
+---
+
+## 4. Frame Change and State Preservation
+
+### 230. Denominator-Frame Change Rule
+Changing the denominator from \(D\) to \(B\) changes the frame in which the
+residual state is held.
+
+Therefore the output residual \(R'\) must be treated as newly constructed
+state in frame \(B\), not as literal carryover of \(R\).
+
+So in general:
+
+$$
+R' \neq R
+$$
+
+even when the reconstruction is exact.
+
+---
+
+### 231. Literal Carryover Exclusion Rule
+No general reconstruction rule may assume:
+
+$$
+[V,D,R] \rightsquigarrow [Q,B,R]
+$$
+
+merely by changing the denominator slot.
+
+Such literal residual carryover is not valid by default because residual state
+is denominator-sensitive.
+
+---
+
+### 232. Additive Carryover Exclusion Rule
+No general reconstruction rule may assume any direct additive transfer law of
+the form:
+
+$$
+R' = [S,D,0] + R
+$$
+
+or any equivalent scalar-correction scheme.
+
+Those belong to the rejected Path A semantics and are invalid as a
+foundational reconstruction law under Path B.
+
+---
+
+## 5. Reconstruction Witnesses
+
+### 233. Reconstruction Witness Rule
+A successful active state reconstruction should, where possible, admit an
+explicit witness of how the source state is represented in the new frame.
+
+At v1, such a witness may include:
+- the chosen new value slot \(Q\),
+- any mismatch witness child such as \([S,D,0]\),
+- transport steps used,
+- and the final reconstructed residual \(R'\).
+
+The witness is not yet required to be unique.
+
+---
+
+### 234. Mismatch Witness Permission Rule
+A child object of the form:
+
+$$
+[S,D,0]
+$$
+
+may still be used as a mismatch witness during reconstruction.
+
+However, such a witness is only a local structural aid.
+It is not, by itself, the full reconstructed residual state.
+
+---
+
+## 6. Restricted Reconstruction Cases in v1
+
+### 235. Closed-to-Active Reconstruction Rule
+A closed object may be reconstructed into an active object when:
+- closed rebasing fails,
+- and an exact finite active witness is explicitly known.
+
+For example, a case like:
+
+$$
+[1,2,0] \rightsquigarrow [1,3,[1,2,0]]
+$$
+
+may be admitted as a valid reconstruction pattern if explicitly adopted as a
+special v1 rule.
+
+This is a restricted reconstruction class, not yet a general law for all
+active cases.
+
+---
+
+### 236. Same-Frame Identity Rule
+If the target denominator equals the source denominator, then active state
+reconstruction may be identity:
+
+$$
+[V,D,R] \rightsquigarrow [V,D,R]
+$$
+
+This is the trivial frame-preserving reconstruction case.
+
+---
+
+### 237. Explicitly Defined Special-Case Rule
+Any active reconstruction case beyond trivial same-frame identity is valid in
+v1 only if it is explicitly given as a special-case reconstruction rule or is
+derived by one.
+
+There is no blanket general reconstruction theorem in v1.
+
+---
+
+## 7. Determinism and Canonicality
+
+### 238. Reconstruction Determinism Rule
+For a fixed source object, target denominator, and explicitly chosen
+reconstruction procedure, the result must be deterministic.
+
+If multiple procedures are available, v1 need not yet choose a global
+canonical one.
+
+So:
+- determinism is required per procedure
+- canonical uniqueness is deferred
+
+---
+
+### 239. Canonical Reconstruction Deferral Rule
+v1 does not yet define a complete canonical quotient-selection or canonical
+state-reconstruction strategy for all active rebasing cases.
+
+Thus:
+- existence of an exact reconstruction,
+- and canonical preference among several exact reconstructions,
+remain separate questions.
+
+---
+
+## 8. Relationship to Other Layers
+
+### 240. Reconstruction and Rebase Rule
+Active rebasing should now be understood as a use of active state
+reconstruction across denominator frames.
+
+So rebase is no longer primitive scalar preservation.
+It is a reconstruction problem.
+
+---
+
+### 241. Reconstruction and Lift Rule
+`lift` may assist reconstruction by transporting pieces of structure, but
+transport alone is not sufficient for full reconstruction.
+
+Thus lift is auxiliary, not complete.
+
+---
+
+### 242. Reconstruction and Equality Rule
+The exact equality relation governing reconstructed active objects across
+frames is not yet fully defined beyond current structural and value-equality
+layers.
+
+So reconstruction may preserve native state even when:
+- structural equality fails,
+- and current normalization-based value equality is not yet sufficient to
+  recognize the preserved state.
+
+This marks an open frontier.
+
+---
+
+## 9. Failure Rules
+
+### 243. Reconstruction Failure Rule
+Active state reconstruction fails if:
+- the target denominator is zero,
+- no explicit exact reconstruction rule is available,
+- the output would be invalid,
+- the output would be infinite,
+- or approximation would be required.
+
+Failure is correct and expected in unresolved cases.
+
+---
+
+### 244. No False Completion Rule
+v1 may not pretend general active reconstruction is solved where it is not.
+
+If a reconstruction law is unknown, unsupported, or only heuristically
+suggested, that case must remain explicit failure or open research.
+
+---
+
+## 10. Scope of v1 Reconstruction
+
+### 245. Reconstruction Scope Rule
+The v1 reconstruction layer defines:
+
+- reconstruction as exact denominator-frame reexpression of active state
+- non-scalar admissibility criteria
+- exclusion of literal and additive residual carryover
+- mismatch witnesses as local aids
+- trivial same-frame identity
+- permission for explicitly stated special reconstruction cases
+- explicit failure where no exact reconstruction rule exists
+
+It does not yet define:
+
+- a complete equivalence theory for active state across denominator frames
+- a general reconstruction algorithm
+- canonical quotient selection
+- full active multiplication/division reconstruction
+- or scalar semantics for active states
+
+Those remain open.
+
+---
+
+## Summary of Active State Reconstruction v1
+
+At this stage, VDR now has a correct Path B statement of the missing problem:
+
+- active rebasing is really active state reconstruction
+- reconstruction is denominator-frame sensitive
+- reconstruction is not scalar equality
+- residual cannot be copied forward literally or additively
+- exact special cases may be admitted
+- general reconstruction remains open and must fail honestly where unsolved
+
+This is the right base for future refinement.
+
+---
+
+# VDR
+## Revised Value Equality Rules v1
+### Path B Commitment
+
+These rules revise the earlier value-equality layer to reflect Path B
+semantics.
+
+Under Path B:
+- closed objects may still admit normalization-based value equality in the
+  scalar/rational-like sense,
+- active objects are exact operation-state objects,
+- and normalization alone is not sufficient to define the full equality theory
+  of the active layer.
+
+So v1 now distinguishes more carefully among:
+
+1. structural equality
+2. normalized value equality
+3. reserved active-state equivalence beyond current normalization
+
+This revision keeps what is stable and explicitly defers what is not yet
+solved.
+
+---
+
+## 1. Equality Layer Distinction
+
+### 72. Equality Layer Distinction Rule
+VDR distinguishes at least three equality-related notions:
+
+1. Structural equality
+2. Normalized value equality
+3. Reserved active-state equivalence
+
+These are not identical.
+
+---
+
+### 73. Structural Equality Rule
+Structural equality remains the exact equality of representation as written.
+
+Write:
+
+$$
+X \equiv_s Y
+$$
+
+when two raw-valid VDR objects match exactly:
+- slot by slot,
+- recursively,
+- and in order.
+
+This remains unchanged from the structural layer.
+
+---
+
+## 2. Normalized Value Equality
+
+### 74. Normalized Value Equality Rule
+Write normalized value equality as:
+
+$$
+X \equiv_n Y
+$$
+
+and define it by:
+
+$$
+X \equiv_n Y
+\iff
+\mathrm{norm}(X) \equiv_s \mathrm{norm}(Y)
+$$
+
+provided normalization is defined for both objects.
+
+This is the equality relation captured by the current normalization layer.
+
+---
+
+### 75. Structural Equality Implies Normalized Value Equality Rule
+For all raw-valid VDR objects:
+
+$$
+X \equiv_s Y \implies X \equiv_n Y
+$$
+
+So structural equality is sufficient for normalized value equality.
+
+---
+
+### 76. Reflexivity Rule
+For every raw-valid VDR object \(X\),
+
+$$
+X \equiv_n X
+$$
+
+provided normalization is defined for \(X\).
+
+---
+
+### 77. Symmetry Rule
+For all raw-valid VDR objects \(X,Y\),
+
+$$
+X \equiv_n Y \implies Y \equiv_n X
+$$
+
+---
+
+### 78. Transitivity Rule
+For all raw-valid VDR objects \(X,Y,Z\),
+
+$$
+X \equiv_n Y \land Y \equiv_n Z \implies X \equiv_n Z
+$$
+
+provided normalization is defined for the objects involved.
+
+---
+
+### 79. Structural Difference Compatibility Rule
+Two objects may be structurally unequal while still being normalized-value
+equal.
+
+So:
+
+$$
+X \not\equiv_s Y
+$$
+
+does not imply
+
+$$
+X \not\equiv_n Y
+$$
+
+This remains true.
+
+---
+
+## 3. Stable Scope of Normalized Value Equality
+
+### 80. Closed Subclass Sufficiency Rule
+For the closed subclass, normalized value equality is currently the stable
+internal equality relation beyond structural equality.
+
+So for closed objects, v1 may safely use:
+
+- structural equality, and
+- normalized value equality
+
+as the working exact equality framework.
+
+---
+
+### 81. Closed Reduced Equality Rule
+Differently written closed objects may be normalized-value equal when
+normalization settles them to the same canonical closed form.
+
+Examples include:
+- gcd reduction,
+- sign normalization,
+- child-order normalization where applicable to zero residual structure.
+
+---
+
+### 82. Child Order Insensitivity Through Normalization Rule
+If two raw-valid objects differ only by child ordering at a level where
+normalization canonically reorders children, then they may be normalized-value
+equal.
+
+This remains true as a normalization-layer fact.
+
+---
+
+### 83. Same-Denominator Absorption Compatibility Rule
+If same-denominator child absorption is explicitly defined and normalization
+absorbs such child structure, then objects differing only by that absorbed
+redundancy may be normalized-value equal.
+
+This remains a normalization-layer compatibility statement.
+
+---
+
+## 4. Path B Limitation on Active Equality
+
+### 84. Active Equality Non-Reduction Rule
+For active objects, normalized value equality is not assumed to capture the
+full equality theory of native active state.
+
+Thus for active objects:
+
+$$
+X \equiv_n Y
+$$
+
+means only:
+- the objects normalize to the same current canonical structural form
+
+It does not yet mean:
+- full native state equivalence across denominator frames,
+- full rebase-invariant equality,
+- or any scalar equality.
+
+---
+
+### 85. No Active Scalar Equality Rule
+At v1 under Path B, active equality is not defined through:
+- rational equality,
+- real equality,
+- decimal equality,
+- float equality,
+- or additive residual semantics.
+
+So active objects do not inherit scalar equality by default.
+
+---
+
+### 86. Reserved Active-State Equivalence Rule
+Introduce a reserved future relation:
+
+$$
+X \equiv_a Y
+$$
+
+to mean:
+- \(X\) and \(Y\) are exact equivalents of the same native active state,
+  possibly across different denominator frames or different reconstructed
+  forms.
+
+At v1, this relation is reserved but not yet generally defined.
+
+It marks the missing equality layer needed beyond current normalization.
+
+---
+
+### 87. Reconstruction Equality Reservation Rule
+A future active-state reconstruction layer may establish cases where:
+
+$$
+X \equiv_a Y
+$$
+
+even though:
+- \(X \not\equiv_s Y\),
+- and perhaps even \(X \not\equiv_n Y\)
+
+under the current normalization rules.
+
+So active-state equivalence may eventually be strictly broader than current
+normalized value equality.
+
+---
+
+## 5. Equality Boundaries
+
+### 88. No Collapse Rule
+The current normalized value equality layer does not collapse active objects
+into closed objects merely because some heuristic scalar reading might suggest
+it.
+
+In particular, objects such as:
+
+$$
+[2,5,1]
+\quad\text{and}\quad
+[3,5,0]
+$$
+
+are not identified by v1 normalized value equality unless normalization rules
+explicitly produce the same canonical form, which under Path B they should
+not.
+
+---
+
+### 89. Value Distinctness Rule
+If two raw-valid objects normalize to structurally different normal forms, then
+they are not normalized-value equal:
+
+$$
+\mathrm{norm}(X) \not\equiv_s \mathrm{norm}(Y)
+\implies
+X \not\equiv_n Y
+$$
+
+provided normalization is defined for both.
+
+This remains valid.
+
+---
+
+### 90. Equality Scope Rule
+The revised equality layer now defines:
+
+- structural equality \( \equiv_s \)
+- normalized value equality \( \equiv_n \)
+- and a reserved future active-state equivalence \( \equiv_a \)
+
+It does not yet define:
+- a complete active-state equivalence theory,
+- scalar equality for active objects,
+- or a full denominator-frame invariant equality for active reconstruction.
+
+Those remain open.
+
+---
+
+## 6. Decidability
+
+### 91. Structural Equality Decidability Rule
+Structural equality is decidable in finite time for all raw-valid finite VDR
+objects by exact recursive comparison.
+
+---
+
+### 92. Normalized Value Equality Decidability Rule
+For every raw-valid finite VDR object for which normalization is defined and
+terminating, normalized value equality is decidable in finite time by:
+
+1. normalizing both objects
+2. comparing the normalized forms structurally
+
+This remains the exact internal equality test for the current normalization
+layer.
+
+---
+
+### 93. Active-State Equivalence Decidability Deferral Rule
+Decidability of the reserved active-state equivalence relation \( \equiv_a \)
+is deferred.
+
+It may later be defined for:
+- specific active subclasses,
+- specific reconstruction classes,
+- or broader active domains.
+
+It is not yet part of v1.
+
+---
+
+## Summary of Revised Value Equality v1
+
+At this stage, VDR now has a cleaner equality stack:
+
+1. Structural equality:
+   exact same object as written
+
+2. Normalized value equality:
+   same current canonical form under normalization
+
+3. Reserved active-state equivalence:
+   future exact sameness of active state beyond current normalization
+
+This is the correct Path B position.
+
+It preserves:
+- exact internal comparison now,
+while leaving room for:
+- a deeper active-state equivalence theory later
+
+without falsely collapsing active state into scalar equality.
+
+---
+
