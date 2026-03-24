@@ -288,3 +288,149 @@ Its ambition is:
 - broad exact representational reach across the values required by established scientific computation, including values now treated as nonterminating, symbolic, or approximation-bound.
 
 That is the VDR charter.
+
+---
+
+
+# VDR
+## Foundational Axioms v1
+
+### 1. Primitive Object Axiom
+A VDR object is a triple of the form
+
+$$
+[V, D, R]
+$$
+
+where:
+- \(V\) is the value slot,
+- \(D\) is the denominator slot,
+- \(R\) is the residual slot.
+
+A valid native VDR object always has exactly these three slots.
+
+### 2. Triple Irreducibility Axiom
+Inside VDR, the triple is irreducible.
+
+No valid VDR object may be replaced internally by:
+- a scalar,
+- a pair,
+- a single integer,
+- or any reduced shorthand that discards one of the three slots.
+
+Even when \(R = 0\), the object remains a VDR triple.
+
+### 3. Integer Slot Axiom
+For every valid VDR object:
+
+$$
+V \in \mathbb{Z}
+$$
+
+$$
+D \in \mathbb{Z} \setminus \{0\}
+$$
+
+So:
+- the value slot is always an integer,
+- the denominator slot is always a nonzero integer.
+
+### 4. Residual Slot Axiom
+For every valid VDR object, the residual slot \(R\) is a valid residual object.
+
+A residual object may contain exact finite residual structure, including nested VDR objects, according to the residual formation rules.
+
+### 5. Residual Locality Axiom
+Recursive VDR structure may appear only in the residual slot.
+
+No VDR object may appear recursively inside:
+- \(V\),
+- or \(D\).
+
+Thus recursion is local to the third slot only.
+
+### 6. Finite Structure Axiom
+Every valid VDR object must have finite structure.
+
+Its full recursive expansion must:
+- terminate after finite depth,
+- contain finitely many nodes,
+- and have finite branching at every node.
+
+No infinite VDR object is valid.
+
+### 7. Exactness Axiom
+A valid VDR object is exact as written.
+
+No valid VDR object may depend for its identity on:
+- approximation,
+- limit interpretation,
+- hidden continuation,
+- deferred tail completion,
+- or epsilon-style acceptance.
+
+### 8. Structural Conservation Axiom
+Any exact residual structure present in a valid VDR object is value-bearing structure.
+
+It may not be discarded, ignored, or replaced internally merely for convenience, simplification, or scalar resemblance.
+
+### 9. Inspectability Axiom
+Every valid VDR object must be finitely inspectable.
+
+That means:
+- every slot can be read exactly,
+- every nested node can be traversed,
+- and the total object can be known by finite inspection of its structure.
+
+### 10. Finite Operation Axiom
+Every primitive native VDR operation must, on valid finite inputs, terminate in finite time with either:
+- a valid finite VDR result,
+- or explicit failure / undefined status.
+
+No native operation may rely on nonterminating search or approximation rescue.
+
+### 11. Native Equality Priority Axiom
+Inside VDR, exact equality and exact non-equality are primary.
+
+Approximate agreement, tolerance, or scalar closeness are never native substitutes for equality.
+
+The exact equality relations themselves may be defined in later axioms, but they must be exact and finite in character.
+
+### 12. Scalar Externality Axiom
+Scalar form is not the native identity of a VDR object.
+
+Any mapping from a VDR object to:
+- a rational,
+- a real,
+- a decimal,
+- a float,
+- or another scalar system
+
+is an external projection, not an internal reduction of the VDR object.
+
+### 13. Admissibility Axiom
+A VDR object is valid if and only if it satisfies:
+- triple form,
+- integer slot constraints,
+- residual formation constraints,
+- residual locality,
+- finite structure,
+- exactness,
+- and inspectability.
+
+### 14. Foundation-First Axiom
+These foundational axioms define only:
+- what a VDR object is,
+- and what constraints validity imposes.
+
+They do not yet define:
+- arithmetic,
+- normalization,
+- scalar projection rules,
+- derivation procedures,
+- or application-layer interpretation.
+
+Those belong to later layers.
+
+---
+
