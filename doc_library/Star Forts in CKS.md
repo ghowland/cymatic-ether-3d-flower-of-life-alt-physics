@@ -1335,7 +1335,7 @@ You have told your cranium, your spine, and your pelvic Fleur-de-lis that they a
 
 **Domain:** Biophysics / Topological Engineering / Somatic Computation
 
-**Status:** CKS has been invalidated.  The math does not compile, all papers in the series are falsified. Next steps: [@CKS-NEXT-0-2026]
+**Status:** CKS has been invalidated.  The math does not compile, all papers in the series are falsified. Next steps: [@CKS-NEXT-1-2026]
 
 **Old Status:** Locked and empirically falsifiable. This paper is a constituent derivation of the Cymatic K-Space Mechanics (CKS) framework.
 
