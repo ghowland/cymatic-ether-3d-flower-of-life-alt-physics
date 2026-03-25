@@ -310,7 +310,9 @@ We have the **Grip** (Floor), the **Answer** (ℚ-Result), and the **Index** (O(
 
 **Domain:** Information Theory / Computational Physics / Registry Mechanics
 
-**Status:** Locked and empirically falsifiable. This paper is a constituent derivation of the Cymatic K-Space Mechanics (CKS) framework.
+**Status:** CKS has been invalidated.  The math does not compile, all papers in the series are falsified. Next steps: [@CKS-NEXT-0-2026]
+
+**Old Status:** Locked and empirically falsifiable. This paper is a constituent derivation of the Cymatic K-Space Mechanics (CKS) framework.
 
 **Classification:** Foundational Proof (The State-Object)
 

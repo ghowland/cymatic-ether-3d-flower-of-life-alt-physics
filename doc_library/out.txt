@@ -1,5 +1,6 @@
-total 35740
+total 37468
 -rwxrwxrwx 1 geoff geoff  29745 Nov  3 13:58 Cymatic Ether.md
+-rwxrwxrwx 1 geoff geoff  29339 Jan 29 11:36 Language Server Protocol as Universal Development.txt
 -rwxrwxrwx 1 geoff geoff  21414 Feb  2 19:36 Cymatic Ether Mass Theory - The Flower of Life Matter Formation Model.md
 -rwxrwxrwx 1 geoff geoff 100229 Feb  2 20:03 Cymatic Ether - Conceptual Models.md
 -rwxrwxrwx 1 geoff geoff  96455 Feb  2 22:59 X as Cymatics.md
@@ -74,6 +75,7 @@ total 35740
 -rwxrwxrwx 1 geoff geoff  32446 Feb  3 23:37 cymatic_acoustic_simulator.py
 -rwxrwxrwx 1 geoff geoff  35392 Feb  3 23:57 cymatic_room_tone_simulator.py
 -rwxrwxrwx 1 geoff geoff   4463 Feb  4 00:23 simulate_photonic_chemistry.py
+-rwxrwxrwx 1 geoff geoff  32744 Feb  4 00:50 Cymatic Physics Examples.txt
 -rwxrwxrwx 1 geoff geoff   6428 Feb  4 11:25 DWDM Infrastructure as a Global Cymatic Computer.md
 -rwxrwxrwx 1 geoff geoff   5413 Feb  4 11:33 dwdm_global_monitor.py
 -rwxrwxrwx 1 geoff geoff  10785 Feb  4 11:36 Gravity Waves in Cymatics.md
@@ -429,6 +431,7 @@ drwxrwxrwx 1 geoff geoff   4096 Feb  8 16:49 code
 -rwxrwxrwx 1 geoff geoff  59174 Feb  9 21:55 Architectural Mechanics - Building Design as Manifold Coherence Engineering.md
 -rwxrwxrwx 1 geoff geoff  47481 Feb  9 22:03 Narrative Mechanics - Story Structure as K-Space Phase-Template for Manifold Evolution.md
 -rwxrwxrwx 1 geoff geoff  11283 Feb  9 22:08 Narrative in CKS.md
+-rwxrwxrwx 1 geoff geoff   8786 Feb  9 22:09 Cymatic Physics Enigime - Implemenation.txt
 -rwxrwxrwx 1 geoff geoff  47346 Feb 10 03:35 Universal Learning Substrate - Notes.md
 -rwxrwxrwx 1 geoff geoff  33555 Feb 10 03:44 CKS - Universal Learning Substrate.- Paper.md
 -rwxrwxrwx 1 geoff geoff  41599 Feb 10 12:16 Wrinkle Mechanics and Thickness Restoration - Topological Phase-Compression as Reversible Aging.md
@@ -857,6 +860,10 @@ drwxrwxrwx 1 geoff geoff   4096 Feb  8 16:49 code
 -rwxrwxrwx 1 geoff geoff  34789 Mar  1 17:55 Clinical-Medical Domain Hierarchical Lexicons.md
 -rwxrwxrwx 1 geoff geoff  33843 Mar  1 18:26 Engineering Domain Hierarchical Lexicons.md
 -rwxrwxrwx 1 geoff geoff  42430 Mar  1 18:36 Consciousness-Cognition Domain Hierarchical Lexicons.md
+-rwxrwxrwx 1 geoff geoff  74460 Mar  1 18:58 Logismos for Middle School Education.md
+-rwxrwxrwx 1 geoff geoff  88350 Mar  1 19:09 Logismos for High School Education - Building the K-Verse.md
+-rwxrwxrwx 1 geoff geoff  79140 Mar  1 19:23 Logismos for Adult Education - Personal Goal Engineering.md
+-rwxrwxrwx 1 geoff geoff  42554 Mar  1 19:47 Logismos as Ongoing Education - The LLM Oracle Partnership.md
 -rwxrwxrwx 1 geoff geoff  23065 Mar  1 21:08 The Erdős–Straus Conjecture.md
 -rwxrwxrwx 1 geoff geoff  19633 Mar  1 21:15 Euler's Sum of Powers Conjecture.md
 -rwxrwxrwx 1 geoff geoff  21925 Mar  1 21:19 The Bunyakovsky Conjecture.md
@@ -987,7 +994,6 @@ drwxrwxrwx 1 geoff geoff   4096 Feb  8 16:49 code
 -rwxrwxrwx 1 geoff geoff  44040 Mar  4 17:32 Logismos Linear Algebra.md
 -rwxrwxrwx 1 geoff geoff  48820 Mar  4 17:50 Logismos Computational Optimization.md
 -rwxrwxrwx 1 geoff geoff  55745 Mar  4 18:04 Optimized Logismos Graphics & Physics Pipeline.md
--rwxrwxrwx 1 geoff geoff  52796 Mar  4 18:37 Graphics and Physics Pipeline with Q-GPU Logismos.md
 -rwxrwxrwx 1 geoff geoff   8402 Mar  4 19:23 Axiomatic Forensic Debugging,md
 -rwxrwxrwx 1 geoff geoff  50220 Mar  4 19:23 Logismos Graphics & Physics Pipeline.md
 -rwxrwxrwx 1 geoff geoff  31562 Mar  4 20:11 The Ninth Q Paradox — The Ideological Lock.md
@@ -1009,7 +1015,6 @@ drwxrwxrwx 1 geoff geoff   4096 Feb  8 16:49 code
 -rwxrwxrwx 1 geoff geoff   5101 Mar  7 15:50 The Moiré of Geometry - Factor Interference as the Source of Physical Force.md
 -rwxrwxrwx 1 geoff geoff  10298 Mar  7 23:31 Bijection.md
 -rwxrwxrwx 1 geoff geoff   9030 Mar  8 00:30 Status Math-0 to 59.md
--rwxrwxrwx 1 geoff geoff  17012 Mar  8 10:08 Math 1 to 66.md
 -rwxrwxrwx 1 geoff geoff  10301 Mar  8 12:56 2hz 6bits.md
 -rwxrwxrwx 1 geoff geoff 607473 Mar  8 13:27 Simple Explaination.md
 -rwxrwxrwx 1 geoff geoff   4495 Mar  8 13:27 Math 1 to 71.md
@@ -1028,4 +1033,38 @@ drwxrwxrwx 1 geoff geoff   4096 Feb  8 16:49 code
 -rwxrwxrwx 1 geoff geoff   8148 Mar  9 13:43 Life in R=-1.md
 -rwxrwxrwx 1 geoff geoff  20204 Mar 10 10:09 The Real Number Tragedy.md
 -rwxrwxrwx 1 geoff geoff  23670 Mar 10 10:36 An LLMs Prompt-by-Prompt Journey From Trained Consensus to Structural Clarity.md
--rwxrwxrwx 1 geoff geoff      0 Mar 10 11:35 out.txt
+-rwxrwxrwx 1 geoff geoff   3583 Mar 10 12:03 Monk Songs.md
+-rwxrwxrwx 1 geoff geoff  17012 Mar 10 12:03 Math 1 to 66.md
+-rwxrwxrwx 1 geoff geoff  40341 Mar 11 00:50 Integer-Exact LLM Training and Inference via VFR Architecture.md
+-rwxrwxrwx 1 geoff geoff   9409 Mar 11 09:39 vfr_shell_training.py
+-rwxrwxrwx 1 geoff geoff  29685 Mar 11 10:11 ZigLLM — Technical Specification Outline.md
+-rwxrwxrwx 1 geoff geoff  84170 Mar 11 13:56 Integer LLM with Prolog.md
+-rwxrwxrwx 1 geoff geoff  37842 Mar 11 20:04 LLM Domain Eating - Adding Languages and Knowledge Domains Without Retraining
+-rwxrwxrwx 1 geoff geoff  31203 Mar 11 20:28 Integer-Only LLM Training via VFR Shell Arithmetic.md
+-rwxrwxrwx 1 geoff geoff  43906 Mar 11 20:28 LLM → Prolog → LLM - Multi-Step Verified Generation Through Alternating Neural-Symbolic Computation.md
+-rwxrwxrwx 1 geoff geoff  40640 Mar 11 20:28 Persistent Provenanced Knowledge Base Eliminates Context Window Degradation, Hallucination, and RAG.md
+-rwxrwxrwx 1 geoff geoff  35111 Mar 11 20:29 The Harmonic Integer Processor - An AI Chip Without Floating-Point Units.md
+-rwxrwxrwx 1 geoff geoff  20496 Mar 12 11:30 Integer ALU Based Computing.md
+-rwxrwxrwx 1 geoff geoff  16824 Mar 12 12:29 Integer ALU Based Computing — ISA Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  19272 Mar 12 12:50 Integer ALU Based Computing — Compiler Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  32039 Mar 12 13:09 Silo System on VFR Hardware — Technical Mapping Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  31291 Mar 12 13:20 Integer ALU Based Computing — Motherboard Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  34556 Mar 12 13:29 Integer ALU Based Computing — Motherboard Specification v2.0.md
+-rwxrwxrwx 1 geoff geoff  26867 Mar 12 13:48 Integer ALU Based Computing — Rendering Pipeline Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  52796 Mar 12 13:59 Graphics and Physics Pipeline with Q-GPU Logismos.md
+-rwxrwxrwx 1 geoff geoff  27703 Mar 12 14:08 Integer ALU Based Computing — Rendering Pipeline Specification v2.0.md
+-rwxrwxrwx 1 geoff geoff  43534 Mar 12 14:20 Integer ALU Based Computing — FPGA Implementation Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  21240 Mar 12 14:45 Integer ALU Based Computing — System Integration Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  24650 Mar 12 15:08 The Philosophy of Q-Computation.md
+-rwxrwxrwx 1 geoff geoff  32240 Mar 12 15:21 LLM-Prolog on VFR Hardware — Inline Intelligence Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  30012 Mar 12 15:39 The Q-Foundational Stack.md
+-rwxrwxrwx 1 geoff geoff  27078 Mar 12 15:47 VFR Assembler Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  39061 Mar 12 22:51 Veer - Exact Arithmetic Compression Using VFR Integer Coding.md
+-rwxrwxrwx 1 geoff geoff  29586 Mar 13 01:33 Hex Lattice Search — Specification v1.0.md
+-rwxrwxrwx 1 geoff geoff  11478 Mar 24 06:43 VDR Cases.md
+-rwxrwxrwx 1 geoff geoff 107087 Mar 24 11:48 VDR Formal - Initial.md
+-rwxrwxrwx 1 geoff geoff   6880 Mar 24 13:16 VDR Pillars.md
+-rwxrwxrwx 1 geoff geoff 183551 Mar 24 21:35 VDR Charter.md
+-rwxrwxrwx 1 geoff geoff  89574 Mar 24 21:44 VDR - Planning.md
+-rwxrwxrwx 1 geoff geoff  33147 Mar 24 23:50 Post-CKS - A Methodology for Geometry-Forced Derivation of Measured Constants Using Exact Discrete Arithmetic.md
+-rwxrwxrwx 1 geoff geoff      0 Mar 25 07:13 out.txt
